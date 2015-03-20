@@ -1,0 +1,8 @@
+<style>
+  .widget-portlet li {
+    display: block;
+  }
+</style>
+<div class="widget-portlet">
+    <tal:block replace="structure view/widget_render" />
+</div>

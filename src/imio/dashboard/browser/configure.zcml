@@ -10,4 +10,14 @@
       directory="static"
       />
 
+    <include package="plone.app.portlets" />
+
+    <plone:portlet
+        name="imio.dashboard.FacetedCollectionPortlet"
+        interface=".facetedcollection.IFacetedCollectionPortlet"
+        assignment=".facetedcollection.Assignment"
+        renderer=".facetedcollection.Renderer"
+        addview=".facetedcollection.AddForm"
+        editview=".facetedcollection.EditForm"/>
+
 </configure>

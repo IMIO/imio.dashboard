@@ -43,6 +43,9 @@ setup(
     install_requires=[
         'plone.api',
         'setuptools',
+        'collective.eeafaceted.collectionwidget',
+        'collective.eeafaceted.z3ctable',
+        'collective.compoundcriterion'
     ],
     extras_require={
         'test': [

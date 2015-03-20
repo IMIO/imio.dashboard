@@ -1,4 +1,8 @@
 <?xml version="1.0"?>
 <metadata>
   <version>1</version>
+  <dependencies>
+    <dependency>profile-collective.eeafaceted.collectionwidget:default</dependency>
+    <dependency>profile-collective.compoundcriterion:default</dependency>
+  </dependencies>
 </metadata>
