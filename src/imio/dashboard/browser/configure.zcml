@@ -14,10 +14,10 @@
 
     <plone:portlet
         name="imio.dashboard.FacetedCollectionPortlet"
-        interface=".facetedcollection.IFacetedCollectionPortlet"
-        assignment=".facetedcollection.Assignment"
-        renderer=".facetedcollection.Renderer"
-        addview=".facetedcollection.AddForm"
-        editview=".facetedcollection.EditForm"/>
+        interface=".facetedcollectionportlet.IFacetedCollectionPortlet"
+        assignment=".facetedcollectionportlet.Assignment"
+        renderer=".facetedcollectionportlet.Renderer"
+        addview=".facetedcollectionportlet.AddForm"
+        editview=".facetedcollectionportlet.EditForm"/>
 
 </configure>
