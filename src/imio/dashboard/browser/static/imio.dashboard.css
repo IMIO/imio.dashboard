@@ -1,0 +1,23 @@
+/* make advanced search widget displayed next to each other */
+div#top---advanced---widgets,
+div#center---default---widgets {
+    display: inline-block;
+    width: 100%;
+}
+div#top---advanced---widgets {
+    background-color: #EEEEEE;
+}
+
+div#top---advanced---widgets div.faceted-widget,
+div#center---default---widgets div.faceted-widget {
+    float: left;
+}
+
+#faceted-form fieldset.widget-fieldset {
+    padding-top: 0em;
+}
+
+#content fieldset.widget-fieldset ul {
+    margin-left: 0.5em;
+    margin-right: 1em;
+}
