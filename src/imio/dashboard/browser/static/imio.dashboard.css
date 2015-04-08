@@ -21,3 +21,13 @@ div#center---default---widgets div.faceted-widget {
     margin-left: 0.5em;
     margin-right: 1em;
 }
+
+/* limit spacing in faceted widget under the fieldset legend */
+.widget-fieldset legend {
+    margin-bottom: 0em;
+}
+
+/* remove margin left so shown widget in center---default---widgets are aligned with tablde displaying results */
+#faceted-form div#center---default---widgets fieldset {
+    margin-left: 0em;
+}
