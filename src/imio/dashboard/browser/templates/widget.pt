@@ -1,0 +1,28 @@
+<div class="faceted-widget faceted-tagscloud-widget faceted-tagscloud-collection-widget">
+  <ul>
+    <tal:categories repeat="category view/categories">
+      <tal:category define="key python:category[0];
+                            title python:category[1];
+                            elements python:view.grouped_vocabulary[key];">
+        <span class="title" tal:content="title">Category title</span>
+        <tal:items repeat="term elements">
+          <li tal:define="
+            wid python:view.data.getId();
+            term_id python:term[0];
+            term_label python:term[1];
+            term_label python:view.translate(term_label);
+            wbr_term_label python:view.word_break(term_label);"
+            tal:attributes="
+            value python:term_id;
+            title term_label;
+            id string:${wid}${term_id};
+            data-kept-criteria python:view.kept_criteria_as_json(term_id);">
+               <a href="#"
+                  tal:attributes="href string:${view/criteria_holder_url}#${wid}=${term_id};"
+                  tal:content="wbr_term_label" />
+          </li>
+        </tal:items>
+      </tal:category>
+    </tal:categories>
+  </ul>
+</div>

@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+from Acquisition import aq_inner, aq_parent
+
 from zope.formlib import form
 from zope.interface import implements
 
@@ -34,18 +36,42 @@ class Renderer(base.Renderer):
 
     @property
     def available(self):
-        return IFacetedNavigable.providedBy(self.context)
+        return bool(self._criteriaHolder)
 
     @property
     def widget_render(self):
-        criteria = ICriteria(self.context)
+        # get the IFacetedNavigable element the criteria are define on
+        criteriaHolder = self._criteriaHolder
+        criteria = ICriteria(criteriaHolder)
         widgets = []
         for criterion in criteria.values():
             if criterion.widget not in self.widget_types:
                 continue
             widget_cls = criteria.widget(wid=criterion.widget)
-            widgets.append(widget_cls(self.context, self.request, criterion))
-        return ''.join([w() for w in widgets])
+            widget = widget_cls(criteriaHolder, self.request, criterion)
+            widget.display_fieldset = False
+            # if current context does not provide IFacetedNavigable it means
+            # that the portlet is displayed on children, we use another template
+            # for rendering the widget
+            rendered_widget = widget()
+            if not IFacetedNavigable.providedBy(self.context):
+                widget.criteria_holder_url = criteriaHolder.absolute_url()
+                rendered_widget = ViewPageTemplateFile('templates/widget.pt')(widget)
+            widgets.append(rendered_widget)
+        return ''.join([w for w in widgets])
+
+    @property
+    def _criteriaHolder(self):
+        '''Get the element the criteria are defined on.  This will look up parents until
+           a folder providing IFacetedNavigable is found.'''
+        parent = self.context
+        # look up parents until we found the criteria holder or we reach the 'Plone Site'
+        while parent:
+            if IFacetedNavigable.providedBy(parent):
+                return parent
+            parent = aq_parent(aq_inner(parent))
+            if parent.portal_type == 'PloneSite':
+                return None
 
 
 class AddForm(base.AddForm):

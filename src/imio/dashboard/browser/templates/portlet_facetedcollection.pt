@@ -3,6 +3,27 @@
     display: block;
   }
 </style>
-<div class="widget-portlet">
-    <tal:block replace="structure view/widget_render" />
-</div>
+
+<dl class="portlet portletWidgetCollection"
+    tal:condition="view/available">
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        <a href="#"
+           class="tile"
+           tal:attributes="href python: view._criteriaHolder.absolute_url()">Collections</a>
+        <span class="portletTopRight"></span>
+    </dt>
+    <dd class="portletItem odd">
+      <div class="widget-portlet">
+          <tal:block replace="structure view/widget_render" />
+      </div>
+      <div class="widget-portlet" tal:condition="python: view.context != view._criteriaHolder">
+          <script type="text/javascript">
+            jQuery(document).ready(function($) {
+              Faceted.Load.apply();
+              Faceted.Widgets.c4.tags[0].className = '';
+            });
+          </script>
+      </div>
+    </dd>
+</dl>
