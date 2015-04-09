@@ -16,7 +16,7 @@
             value python:term_id;
             title term_label;
             id string:${wid}${term_id};
-            data-kept-criteria python:view.kept_criteria_as_json(term_id);">
+            class python: not key and 'no-category-tag' or '';">
                <a href="#"
                   tal:attributes="href string:${view/criteria_holder_url}#${wid}=${term_id};"
                   tal:content="wbr_term_label" />
