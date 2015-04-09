@@ -15,6 +15,7 @@ div#center---default---widgets div.faceted-widget {
 
 #faceted-form fieldset.widget-fieldset {
     padding-top: 0em;
+    margin-top: 0em;
 }
 
 #content fieldset.widget-fieldset ul {
@@ -30,4 +31,14 @@ div#center---default---widgets div.faceted-widget {
 /* remove margin left so shown widget in center---default---widgets are aligned with tablde displaying results */
 #faceted-form div#center---default---widgets fieldset {
     margin-left: 0em;
+}
+
+/* limit space on the top */
+div#faceted-form {
+   padding-top: 0em;
+}
+/* limit space on top, make 'more filters' link take less place */
+#faceted-form .faceted-sections-buttons {
+    position: fixed;
+    right: 5em;
 }
