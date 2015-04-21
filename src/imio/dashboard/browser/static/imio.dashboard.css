@@ -18,9 +18,12 @@ div#center---default---widgets div.faceted-widget {
     margin-top: 0em;
 }
 
+/* reduce margin and use height and overflow so checkbox lists are displayed with a scrollbar */
 #content fieldset.widget-fieldset ul {
     margin-left: 0.5em;
     margin-right: 1em;
+    height: 85px;
+    overflow: auto;
 }
 
 /* limit spacing in faceted widget under the fieldset legend */
@@ -39,6 +42,6 @@ div#faceted-form {
 }
 /* limit space on top, make 'more filters' link take less place */
 #faceted-form .faceted-sections-buttons {
-    position: fixed;
+    position: absolute;
     right: 5em;
 }
