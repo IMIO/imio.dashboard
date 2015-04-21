@@ -6,6 +6,8 @@
   <include file="configure.zcml" />
 
   <include package="ecreall.helpers.testing" />
+  <include package="collective.eeafaceted.collectionwidget" />
+  <include package="collective.compoundcriterion" />
 
   <genericsetup:registerProfile
       name="testing"
