@@ -45,9 +45,10 @@ setup(
         # version 1.0.3+ manage correctly orphans
         'plone.batching > 1.0.2',
         'setuptools',
+        'collective.compoundcriterion',
         'collective.eeafaceted.collectionwidget',
         'collective.eeafaceted.z3ctable',
-        'collective.compoundcriterion'
+        'collective.monkeypatcher',
     ],
     extras_require={
         'test': [
