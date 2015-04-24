@@ -12,7 +12,9 @@
     <i18n:registerTranslations directory="locales" />
 
     <include package="Products.CMFCore" file="permissions.zcml" />
-    <include package="collective.monkeypatcher" />
+    <include package="collective.monkeypatcher" file="meta.zcml" />
+    <include package="collective.eeafaceted.z3ctable"/>
+
     <include package=".browser" />
 
     <genericsetup:registerProfile
@@ -34,6 +36,11 @@
              factory=".adapters.CustomViewFieldsVocabularyAdapter"
            provides=".interfaces.ICustomViewFieldsVocabulary" />
 
+    <subscriber
+        for="collective.monkeypatcher.interfaces.IMonkeyPatchEvent"
+        handler=".events.onMonkeyPatched"
+        />
+
     <monkey:patch
         description="Makes the plone.app.collection Collection.customViewFields vocabulary easy to override"
         class="plone.app.collection.collection.Collection"
@@ -46,6 +53,13 @@
         class="plone.app.collection.collection.Collection"
         original="selectedViewFields"
         replacement=".patches.selectedViewFields"
+        />
+
+    <monkey:patch
+        description="Build correct back url when triggering a transition in the actions_panel if user is in a dashboard so he comes back to the right page"
+        class="imio.actionspanel.browser.views.ActionsPanelView"
+        original="buildExactReferer"
+        replacement=".patches.buildExactReferer"
         />
 
 </configure>

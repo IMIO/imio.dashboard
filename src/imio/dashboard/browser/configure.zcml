@@ -6,9 +6,9 @@
 
     <!-- Publish static files -->
     <browser:resourceDirectory
-      name="imio.dashboard"
-      directory="static"
-      />
+        name="imio.dashboard"
+        directory="static"
+    />
 
     <include package="plone.app.portlets" />
 
@@ -18,6 +18,16 @@
         assignment=".facetedcollectionportlet.Assignment"
         renderer=".facetedcollectionportlet.Renderer"
         addview=".facetedcollectionportlet.AddForm"
-        editview=".facetedcollectionportlet.EditForm"/>
+        editview=".facetedcollectionportlet.EditForm"
+    />
+
+    <configure package="collective.eeafaceted.z3ctable">
+        <browser:view
+            for="Products.ATContentTypes.interfaces.folder.IATFolder"
+            name="faceted-table-view"
+            class="imio.dashboard.browser.overrides.IDFacetedTableView"
+            permission="zope2.View"
+        />
+    </configure>
 
 </configure>
