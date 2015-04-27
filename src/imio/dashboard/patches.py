@@ -28,18 +28,3 @@ def selectedViewFields(self):
             continue
         _mapping[field[0]] = field
     return [_mapping[field] for field in self.customViewFields if field in metadatas]
-
-
-# override the imio.actionspanel.browser.views buildExactReferer
-# to take into account the QUERY_STRING while getting the referer so
-# changing an element's state will send the user back to the right page on the dashboard
-def buildExactReferer(self):
-    """
-      Keep the exact referer.  By default, we keep 'HTTP_REFERER' but this
-      is made to be overriden...
-    """
-    if self.request['URL'].endswith('@@faceted_query'):
-        # we are displaying the actions_panel in a dashboard
-        import urllib2
-        return urllib2.quote('{0}#{1}'.format(self.request['HTTP_REFERER'], self.request['QUERY_STRING']))
-    return self.request['HTTP_REFERER']

@@ -55,11 +55,4 @@
         replacement=".patches.selectedViewFields"
         />
 
-    <monkey:patch
-        description="Build correct back url when triggering a transition in the actions_panel if user is in a dashboard so he comes back to the right page"
-        class="imio.actionspanel.browser.views.ActionsPanelView"
-        original="buildExactReferer"
-        replacement=".patches.buildExactReferer"
-        />
-
 </configure>
