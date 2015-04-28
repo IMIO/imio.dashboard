@@ -43,7 +43,7 @@ setup(
     install_requires=[
         'plone.api',
         # version 1.0.3+ manage correctly orphans
-        'plone.batching > 1.0.2',
+        'plone.batching > 1.0.3',
         'setuptools',
         'collective.compoundcriterion',
         'collective.eeafaceted.collectionwidget',
