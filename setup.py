@@ -56,7 +56,7 @@ setup(
         'test': [
             'ecreall.helpers.testing',
             'plone.app.testing',
-            'plone.app.robotframework',
+            'plone.app.robotframework[debug]',
         ],
     },
     entry_points="""
