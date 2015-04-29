@@ -2,7 +2,8 @@
 <metadata>
   <version>1</version>
   <dependencies>
-    <dependency>profile-collective.eeafaceted.collectionwidget:default</dependency>
+    <dependency>profile-collective.behavior.talcondition:default</dependency>
     <dependency>profile-collective.compoundcriterion:default</dependency>
+    <dependency>profile-collective.eeafaceted.collectionwidget:default</dependency>
   </dependencies>
 </metadata>
