@@ -20,6 +20,10 @@ div#center---default---widgets div.faceted-widget {
     margin-top: 0em;
     margin-right: 0.5em;
 }
+/* reduce spacing between checkboxes in a widget */
+#faceted-form li {
+    line-height: 1em;
+}
 
 /* reduce margin and use height and overflow so checkbox lists are displayed with a scrollbar */
 #content fieldset.widget-fieldset ul {
