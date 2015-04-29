@@ -17,13 +17,5 @@
       <div class="widget-portlet">
           <tal:block replace="structure view/widget_render" />
       </div>
-      <div class="widget-portlet" tal:condition="python: view.context != view._criteriaHolder">
-          <script type="text/javascript">
-            jQuery(document).ready(function($) {
-              Faceted.Load.apply();
-              Faceted.Widgets.c4.tags[0].className = '';
-            });
-          </script>
-      </div>
     </dd>
 </dl>

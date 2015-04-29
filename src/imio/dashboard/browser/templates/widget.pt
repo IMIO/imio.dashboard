@@ -1,10 +1,9 @@
 <div class="faceted-widget faceted-tagscloud-widget faceted-tagscloud-collection-widget">
   <ul>
-    <tal:categories repeat="category view/categories">
-      <tal:category define="key python:category[0];
-                            title python:category[1];
-                            elements python:view.grouped_vocabulary[key];">
-        <div class="title" tal:content="title">Category title</div>
+    <tal:categories repeat="grouped_element python: view.grouped_vocabulary.items()">
+      <tal:category define="category python:grouped_element[0];
+                            elements python:grouped_element[1];">
+        <div class="title" tal:content="python: category[1]">Category title</div>
         <tal:items repeat="term elements">
           <li tal:define="
             wid python:view.data.getId();
@@ -16,7 +15,7 @@
             value python:term_id;
             title term_label;
             id string:${wid}${term_id};
-            class python: not key and 'no-category-tag' or '';">
+            class python: not category[0] and 'no-category-tag' or '';">
                <a href="#"
                   tal:attributes="href string:${view/criteria_holder_url}#${wid}=${term_id};"
                   tal:content="wbr_term_label" />
