@@ -1,3 +1,6 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -12,17 +15,17 @@ msgstr ""
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: DOMAIN\n"
+"Domain: imio.dashboard\n"
 
 #: ./browser/facetedcollectionportlet.py:79
 msgid "Add Collection Criteria Portlet"
-msgstr "Ajouter portlet 'Faceted Collection'"
+msgstr ""
 
 #: ./browser/facetedcollectionportlet.py:88
 msgid "Edit Collection Criteria Portlet"
-msgstr "Editer portlet 'Faceted Collection'"
+msgstr ""
 
 #: ./browser/facetedcollectionportlet.py:80
 msgid "This portlet shows controls for faceted with collections."
-msgstr "Ce portlet affiche les widgets collection définis sur un dossier utilisant une vue à facettes"
+msgstr ""
 
