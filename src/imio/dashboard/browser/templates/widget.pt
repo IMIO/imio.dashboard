@@ -17,7 +17,7 @@
             id string:${wid}${term_id};
             class python: not category[0] and 'no-category-tag' or '';">
                <a href="#"
-                  tal:attributes="href string:${view/criteria_holder_url}#${wid}=${term_id};"
+                  tal:attributes="href string:${view/base_url}&${wid}=${term_id};"
                   tal:content="wbr_term_label" />
           </li>
         </tal:items>

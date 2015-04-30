@@ -55,7 +55,16 @@ class Renderer(base.Renderer):
             # for rendering the widget
             rendered_widget = widget()
             if not IFacetedNavigable.providedBy(self.context):
-                widget.criteria_holder_url = criteriaHolder.absolute_url()
+                # compute default criteria to display in the URL
+                default_criteria = []
+                for criterion in criteria.values():
+                    # keep default of criteria in the "default" section omitting the collection widget
+                    if criterion.section == u'default' and \
+                       not criterion.widget == u'collection-link' \
+                       and criterion.default:
+                        default_criteria.append('{0}={1}'.format(criterion.__name__, criterion.default))
+                base_query_url = '&'.join(default_criteria)
+                widget.base_url = '{0}#{1}'.format(criteriaHolder.absolute_url(), base_query_url)
                 rendered_widget = ViewPageTemplateFile('templates/widget.pt')(widget)
             widgets.append(rendered_widget)
         return ''.join([w for w in widgets])
