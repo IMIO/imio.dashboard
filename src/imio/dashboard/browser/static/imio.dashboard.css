@@ -71,3 +71,22 @@ dl.portlet.portletWidgetCollection div.widget-portlet div.title {
 .faceted-tag-selected {
     font-size: 100%;
 }
+
+/* manage the div.listingBar so buttons are displayed all together */
+div.listingBar,
+div.listingBar span.next {
+    float: right;
+    margin-left: 0.25em;
+}
+
+/* place "number of results" beside the listingBar */
+.table_faceted_results {
+    float: left;
+    margin: 1em;
+}
+
+/* skin sentence "25 results" and "no results" */
+.table_faceted_results_number,
+.table_faceted_no_results {
+    font-weight: bold;
+}
