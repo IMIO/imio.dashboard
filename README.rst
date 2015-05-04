@@ -2,6 +2,7 @@ imio.dashboard
 ==============
 
 This package does the glue between :
+
 - collective.eeafaceted.collectionwidget
 - collective.eeafaceted.z3ctable
 - collective.compoundcriterion
