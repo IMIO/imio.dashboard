@@ -77,12 +77,16 @@ div.listingBar,
 div.listingBar span.next {
     float: right;
     margin-left: 0.25em;
+    margin-top: 0em;
+    margin-bottom: 0.5em;
 }
 
 /* place "number of results" beside the listingBar */
 .table_faceted_results {
     float: left;
     margin: 1em;
+    margin-top: 0em;
+    margin-bottom: 0.5em;
 }
 
 /* skin sentence "25 results" and "no results" */
