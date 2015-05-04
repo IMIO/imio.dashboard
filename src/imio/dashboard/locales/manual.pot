@@ -16,3 +16,7 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: imio.dashboard\n"
+
+#. Default: "Collection used in dashboard"
+msgid "Collection used in imio.dashboard"
+msgstr ""
