@@ -11,6 +11,7 @@ This build a useable dashboard tool by adapting following things :
 
 - displaying the collectionwidget in a portlet;
 - defining an adapter to easily extend the plone.app.collection customViewFields to add our own columns;
+- adding a DashboardCollection based on plone.app.collection Collection;
 - styling of displayed dashboard.
 
 Distant faceted config :
