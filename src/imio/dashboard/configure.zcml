@@ -17,6 +17,7 @@
     <include package="collective.eeafaceted.z3ctable"/>
 
     <include package=".browser" />
+    <include package=".content" />
 
     <genericsetup:registerProfile
         name="default"
@@ -42,28 +43,9 @@
     <utility component=".vocabulary.ConditionAwareCollectionVocabularyFactory"
              name="imio.dashboard.conditionawarecollectionvocabulary" />
 
-    <!-- Apply talcondition extender to plone.app.collection -->
-    <class class="plone.app.collection.collection.Collection">
+    <!-- Apply talcondition extender to the DashboardCollection -->
+    <class class="imio.dashboard.content.dashboardcollection.DashboardCollection">
         <implements interface="collective.behavior.talcondition.interfaces.ITALConditionable" />
     </class>
-
-    <subscriber
-        for="collective.monkeypatcher.interfaces.IMonkeyPatchEvent"
-        handler=".events.onMonkeyPatched"
-        />
-
-    <monkey:patch
-        description="Makes the plone.app.collection Collection.customViewFields vocabulary easy to override"
-        class="plone.app.collection.collection.Collection"
-        original="listMetaDataFields"
-        replacement=".patches.listMetaDataFields"
-        />
-
-    <monkey:patch
-        description="Do not consider additional custom fields for the tabular view"
-        class="plone.app.collection.collection.Collection"
-        original="selectedViewFields"
-        replacement=".patches.selectedViewFields"
-        />
 
 </configure>

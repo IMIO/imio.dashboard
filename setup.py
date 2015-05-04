@@ -49,7 +49,6 @@ setup(
         'collective.compoundcriterion',
         'collective.eeafaceted.collectionwidget',
         'collective.eeafaceted.z3ctable',
-        'collective.monkeypatcher',
         'imio.actionspanel',
     ],
     extras_require={
