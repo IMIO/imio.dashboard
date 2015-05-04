@@ -14,4 +14,4 @@ def post_install(context):
 
     # we need to apply the ITALConditionable extender on existing elements
     portal = context.getSite()
-    applyExtender(portal, ('Collection', ))
+    applyExtender(portal, ('DashboardCollection', ))
