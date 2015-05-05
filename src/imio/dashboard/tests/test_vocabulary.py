@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-"""Setup/installation tests for this package."""
-
 from zope.component import queryUtility
 from zope.schema.interfaces import IVocabularyFactory
 from plone import api

@@ -10,9 +10,10 @@ from plone.portlets.interfaces import IPortletDataProvider
 
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from eea.facetednavigation.criteria.interfaces import ICriteria
+from eea.facetednavigation.subtypes.interfaces import IFacetedNavigable
+from collective.eeafaceted.collectionwidget.widgets.widget import CollectionWidget
 
 from imio.dashboard import ImioDashboardMessageFactory as _
-from eea.facetednavigation.subtypes.interfaces import IFacetedNavigable
 
 
 class IFacetedCollectionPortlet(IPortletDataProvider):
@@ -29,8 +30,6 @@ class Assignment(base.Assignment):
 
 class Renderer(base.Renderer):
 
-    widget_types = ('collection-radio', 'collection-link')
-
     def render(self):
         return ViewPageTemplateFile('templates/portlet_facetedcollection.pt')(self)
 
@@ -45,7 +44,7 @@ class Renderer(base.Renderer):
         criteria = ICriteria(criteriaHolder)
         widgets = []
         for criterion in criteria.values():
-            if criterion.widget not in self.widget_types:
+            if criterion.widget != CollectionWidget.widget_type:
                 continue
             widget_cls = criteria.widget(wid=criterion.widget)
             widget = widget_cls(criteriaHolder, self.request, criterion)
@@ -56,18 +55,23 @@ class Renderer(base.Renderer):
             rendered_widget = widget()
             if not IFacetedNavigable.providedBy(self.context):
                 # compute default criteria to display in the URL
-                default_criteria = []
-                for criterion in criteria.values():
-                    # keep default of criteria in the "default" section omitting the collection widget
-                    if criterion.section == u'default' and \
-                       not criterion.widget == u'collection-link' \
-                       and criterion.default:
-                        default_criteria.append('{0}={1}'.format(criterion.__name__, criterion.default))
-                base_query_url = '&'.join(default_criteria)
-                widget.base_url = '{0}#{1}'.format(criteriaHolder.absolute_url(), base_query_url)
+                widget.base_url = self._buildBaseLinkURL(criteria)
                 rendered_widget = ViewPageTemplateFile('templates/widget.pt')(widget)
             widgets.append(rendered_widget)
         return ''.join([w for w in widgets])
+
+    def _buildBaseLinkURL(self, criteria):
+        """Build the URL that will be used in the href when portlet is displayed
+           on a sub element of the container on which is defined the faceted."""
+        default_criteria = []
+        for criterion in criteria.values():
+            # keep default of criteria in the "default" section omitting the collection widget
+            if criterion.section == u'default' and \
+               not criterion.widget == CollectionWidget.widget_type \
+               and criterion.default:
+                default_criteria.append('{0}={1}'.format(criterion.__name__, criterion.default))
+        base_query_url = '&'.join(default_criteria)
+        return '{0}#{1}'.format(self._criteriaHolder.absolute_url(), base_query_url)
 
     @property
     def _criteriaHolder(self):
@@ -79,7 +83,7 @@ class Renderer(base.Renderer):
             if IFacetedNavigable.providedBy(parent):
                 return parent
             parent = aq_parent(aq_inner(parent))
-            if parent.portal_type == 'PloneSite':
+            if parent.portal_type == 'Plone Site':
                 return None
 
 
@@ -87,9 +91,6 @@ class AddForm(base.AddForm):
     form_fields = form.Fields(IFacetedCollectionPortlet)
     label = _(u"Add Collection Criteria Portlet")
     description = _(u"This portlet shows controls for faceted with collections.")
-
-    def create(self, data):
-        return Assignment(**data)
 
 
 class EditForm(base.EditForm):
