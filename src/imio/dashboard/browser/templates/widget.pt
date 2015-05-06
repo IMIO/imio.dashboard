@@ -1,9 +1,10 @@
 <div class="faceted-widget faceted-tagscloud-widget faceted-tagscloud-collection-widget"
      tal:define="wid python:view.data.getId();
-                 base_url string:${view/base_url}"
+                 base_url string:${view/base_url};
+                 grouped_vocabulary view/grouped_vocabulary;"
      i18n:domain="eea">
   <ul>
-    <li tal:condition="not:view/data/hidealloption|nothing"
+    <li tal:condition="python: not view.data.hidealloption or not grouped_vocabulary"
         tal:attributes="
         value string:'';
         data-kept-criteria python:view.kept_criteria_as_json('all');
@@ -15,7 +16,7 @@
            tal:attributes="href string:${base_url}&${wid}=all;"
            tal:content="string:All" i18n:translate="">All</a>
     </li>
-    <tal:categories repeat="grouped_element python: view.grouped_vocabulary.items()">
+    <tal:categories repeat="grouped_element python: grouped_vocabulary.items()">
       <tal:category define="category python:grouped_element[0];
                             elements python:grouped_element[1];">
         <div class="title" tal:content="python: category[1]" tal:omit-tag="python: not category[1]">Category title</div>
