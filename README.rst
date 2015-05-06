@@ -1,3 +1,9 @@
+.. image:: https://travis-ci.org/IMIO/imio.dashboard.svg?branch=master
+    :target: https://travis-ci.org/IMIO/imio.dashboard
+.. image:: https://coveralls.io/repos/IMIO/imio.dashboard/badge.png?branch=master
+   :target: https://coveralls.io/r/IMIO/imio.dashboard?branch=master
+
+
 imio.dashboard
 ==============
 
