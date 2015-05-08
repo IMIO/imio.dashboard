@@ -79,18 +79,19 @@ class Renderer(base.Renderer):
            a folder providing IFacetedNavigable is found.'''
         parent = self.context
         # look up parents until we found the criteria holder or we reach the 'Plone Site'
-        while parent:
+        while parent and not parent.portal_type == 'Plone Site':
             if IFacetedNavigable.providedBy(parent):
                 return parent
             parent = aq_parent(aq_inner(parent))
-            if parent.portal_type == 'Plone Site':
-                return None
 
 
 class AddForm(base.AddForm):
     form_fields = form.Fields(IFacetedCollectionPortlet)
     label = _(u"Add Collection Criteria Portlet")
     description = _(u"This portlet shows controls for faceted with collections.")
+
+    def create(self, data):
+        return Assignment(**data)
 
 
 class EditForm(base.EditForm):

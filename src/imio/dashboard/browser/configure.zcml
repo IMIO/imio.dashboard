@@ -30,4 +30,12 @@
         />
     </configure>
 
+    <browser:page
+        for="*"
+        name="render_collection_widget_term_portlet"
+        class=".views.RenderTermPortletView"
+        template="templates/term.pt"
+        permission="zope2.View"
+        />
+
 </configure>
