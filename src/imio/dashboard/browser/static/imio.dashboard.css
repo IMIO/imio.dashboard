@@ -56,6 +56,7 @@ div#faceted-form {
 /* add some padding inside the portlet widget collection */
 dl.portlet.portletWidgetCollection div.widget-portlet {
     padding-left: 0.5em;
+    padding-top: 0.3em;
 }
 
 /* limit spacing between elements displayed in the portlet */
