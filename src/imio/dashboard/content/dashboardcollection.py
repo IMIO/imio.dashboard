@@ -5,6 +5,7 @@ from Products.CMFCore.permissions import View
 from Products.CMFCore.utils import getToolByName
 from plone.app.collection.collection import Collection
 from plone.app.collection.config import ATCT_TOOLNAME
+from plone.app.querystring.queryparser import parseFormquery
 from imio.dashboard.config import PROJECTNAME
 from imio.dashboard.interfaces import ICustomViewFieldsVocabulary
 
@@ -40,6 +41,13 @@ class DashboardCollection(Collection):
                 continue
             _mapping[field[0]] = field
         return [_mapping[field] for field in self.customViewFields if field in metadatas]
+
+    security.declareProtected(View, 'selectedViewFields')
+
+    def displayCatalogQuery(self):
+        """
+          Return the stored query as a readable catalog query."""
+        return parseFormquery(self, self.query)
 
 
 registerType(DashboardCollection, PROJECTNAME)
