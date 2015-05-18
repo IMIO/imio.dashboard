@@ -50,6 +50,7 @@ setup(
         'collective.eeafaceted.collectionwidget',
         'collective.eeafaceted.z3ctable',
         'imio.actionspanel',
+        'imio.prettylink',
     ],
     extras_require={
         'test': [

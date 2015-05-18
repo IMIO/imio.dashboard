@@ -4,6 +4,7 @@ from collective.eeafaceted.z3ctable.browser.views import FacetedTableView
 from Products.CMFCore.utils import getToolByName
 
 from imio.dashboard.columns import ActionsColumn
+from imio.dashboard.columns import PrettyLinkColumn
 
 
 class IDFacetedTableView(FacetedTableView):
@@ -16,6 +17,8 @@ class IDFacetedTableView(FacetedTableView):
                 column = ActionsColumn(self.context, self.request, self)
                 column.view_name = 'actions_panel'
                 column.params = {'showHistory': True, 'showActions': False}
+            if colName == u'pretty_link':
+                column = PrettyLinkColumn(self.context, self.request, self)
         return column
 
     def _getViewFields(self):
@@ -35,4 +38,3 @@ class IDFacetedTableView(FacetedTableView):
                     if customViewFields:
                         colNames = customViewFields
         return colNames
-

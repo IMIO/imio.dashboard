@@ -1,2 +1,2 @@
-Faceted.Options.FADE_SPEED=100;
+Faceted.Options.FADE_SPEED=0;
 Faceted.Options.SHOW_SPINNER=false;

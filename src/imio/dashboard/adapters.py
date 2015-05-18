@@ -30,4 +30,4 @@ class CustomViewFieldsVocabularyAdapter(object):
 
     def additionalViewFields(self):
         """See docstring in interfaces.py."""
-        return DisplayList((('actions', 'Actions'), ))
+        return DisplayList((('actions', 'Actions'), ('pretty_link', 'Pretty link'), ))

@@ -20,3 +20,7 @@ msgstr ""
 #. Default: "Actions"
 msgid "actions__header_title"
 msgstr ""
+
+#. Default: "Title"
+msgid "pretty_link__header_title"
+msgstr ""

@@ -103,3 +103,8 @@ div.listingBar span.next {
     padding-left: 20px !important;
     background: url("dashboardcollection.png") no-repeat 0 transparent;
 }
+
+/* make content of column pretty_title display correctly */
+td.pretty_title a {
+    display: inline;
+}

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-05-04 09:33+0000\n"
+"POT-Creation-Date: 2015-05-18 13:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: imio.dashboard\n"
 
-#: ./browser/facetedcollectionportlet.py:88
+#: ./browser/facetedcollectionportlet.py:90
 msgid "Add Collection Criteria Portlet"
 msgstr ""
 
@@ -25,11 +25,11 @@ msgstr ""
 msgid "Collection used in imio.dashboard"
 msgstr ""
 
-#: ./browser/facetedcollectionportlet.py:97
+#: ./browser/facetedcollectionportlet.py:99
 msgid "Edit Collection Criteria Portlet"
 msgstr ""
 
-#: ./browser/facetedcollectionportlet.py:89
+#: ./browser/facetedcollectionportlet.py:91
 msgid "This portlet shows controls for faceted with collections."
 msgstr ""
 
