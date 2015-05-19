@@ -105,6 +105,6 @@ div.listingBar span.next {
 }
 
 /* make content of column pretty_title display correctly */
-td.pretty_title a {
+td.pretty_link a {
     display: inline;
 }
