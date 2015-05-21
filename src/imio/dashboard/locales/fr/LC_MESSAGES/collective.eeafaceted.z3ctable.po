@@ -16,9 +16,9 @@ msgstr ""
 "X-is-fallback-for: fr-fr fr-be fr-ca\n"
 
 #. Default: "Actions"
-msgid "actions__header_title"
+msgid "header_actions"
 msgstr "Actions"
 
 #. Default: "Title"
-msgid "pretty_link__header_title"
+msgid "header_pretty_link"
 msgstr "Titre"
