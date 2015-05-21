@@ -108,3 +108,8 @@ div.listingBar span.next {
 td.pretty_link a {
     display: inline;
 }
+
+/* display results in a 100% width table so passing from one page of the batch to another is pretty */
+table.faceted-table-results {
+    width: 100%;
+}
