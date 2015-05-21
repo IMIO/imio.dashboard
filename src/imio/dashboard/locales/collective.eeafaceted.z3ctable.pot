@@ -18,9 +18,9 @@ msgstr ""
 "Domain: collective.eeafaceted.z3ctable\n"
 
 #. Default: "Actions"
-msgid "actions__header_title"
+msgid "header_actions"
 msgstr ""
 
 #. Default: "Title"
-msgid "pretty_link__header_title"
+msgid "header_pretty_link"
 msgstr ""
