@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from collective.eeafaceted.collectionwidget.widgets.widget import CollectionWidget
-from collective.eeafaceted.z3ctable.browser.views import FacetedTableView
 from Products.CMFCore.utils import getToolByName
 
-from imio.dashboard.columns import ActionsColumn
+from collective.eeafaceted.collectionwidget.widgets.widget import CollectionWidget
+from collective.eeafaceted.z3ctable.browser.views import FacetedTableView
+from collective.eeafaceted.z3ctable.columns import BrowserViewCallColumn
 from imio.dashboard.columns import PrettyLinkColumn
 
 
@@ -14,7 +14,8 @@ class IDFacetedTableView(FacetedTableView):
         column = super(IDFacetedTableView, self)._manualColumnFor(colName)
         if not column:
             if colName == u'actions':
-                column = ActionsColumn(self.context, self.request, self)
+                column = BrowserViewCallColumn(self.context, self.request, self)
+                column.header_js = '<script type="text/javascript">jQuery(document).ready(initializeOverlays);</script>'
                 column.view_name = 'actions_panel'
                 column.params = {'showHistory': True, 'showActions': False}
             if colName == u'pretty_link':
