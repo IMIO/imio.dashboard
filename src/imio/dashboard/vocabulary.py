@@ -21,8 +21,9 @@ class ConditionAwareCollectionVocabulary(CollectionVocabulary):
         for term in terms:
             collection = catalog(UID=term.token)[0].getObject()
             # if collection is ITALConditionable, evaluate the TAL condition
+            # except if current user is Manager
             if ITALConditionable.providedBy(collection):
-                if not evaluateExpressionFor(collection):
+                if not evaluateExpressionFor(collection, bypass_for_manager=True):
                     continue
             filtered_terms.append(term)
         return SimpleVocabulary(filtered_terms)
