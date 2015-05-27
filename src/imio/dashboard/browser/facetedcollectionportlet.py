@@ -49,11 +49,11 @@ class Renderer(base.Renderer):
             widget_cls = criteria.widget(wid=criterion.widget)
             widget = widget_cls(criteriaHolder, self.request, criterion)
             widget.display_fieldset = False
-            # if current context does not provide IFacetedNavigable it means
+            # if we are not on the criteriaHolder, it means
             # that the portlet is displayed on children, we use another template
             # for rendering the widget
             rendered_widget = widget()
-            if not IFacetedNavigable.providedBy(self.context):
+            if not self.context == self._criteriaHolder:
                 # compute default criteria to display in the URL
                 widget.base_url = self._buildBaseLinkURL(criteria)
                 rendered_widget = ViewPageTemplateFile('templates/widget.pt')(widget)
