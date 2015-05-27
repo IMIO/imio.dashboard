@@ -28,6 +28,12 @@
             class="imio.dashboard.browser.overrides.IDFacetedTableView"
             permission="zope2.View"
         />
+        <browser:view
+            for="plone.app.collection.interfaces.ICollection"
+            name="faceted-table-view"
+            class="imio.dashboard.browser.overrides.IDFacetedTableView"
+            permission="zope2.View"
+        />
     </configure>
 
     <browser:page

@@ -1,4 +1,4 @@
-<div class="faceted-widget faceted-tagscloud-widget faceted-tagscloud-collection-widget"
+<div class="faceted-widget"
      tal:define="wid python:view.data.getId();
                  base_url string:${view/base_url};
                  grouped_vocabulary view/grouped_vocabulary;"

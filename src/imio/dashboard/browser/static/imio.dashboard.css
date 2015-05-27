@@ -31,7 +31,13 @@ div#center---default---widgets div.faceted-widget {
     margin-right: 1em;
     height: 85px;
     overflow: auto;
+    max-width: 165px;
 }
+/* make date widget display on 2 lines */
+#content form.faceted-daterange-widget-form {
+    width: 165px;
+}
+
 
 /* limit spacing in faceted widget under the fieldset legend */
 .widget-fieldset legend {
