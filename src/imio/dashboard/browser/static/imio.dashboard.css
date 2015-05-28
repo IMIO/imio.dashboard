@@ -119,3 +119,9 @@ td.pretty_link a {
 table.faceted-table-results {
     width: 100%;
 }
+
+/* when portlet is displayed outside the faceted navigation, reestablish left padding
+ * because the class '' is no more there and collective.eeafaceted.collectionwidget skin this class... */
+dl.portletWidgetCollection li a {
+    padding-left: 0.5em;
+}
