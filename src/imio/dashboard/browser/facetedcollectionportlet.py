@@ -46,6 +46,8 @@ class Renderer(base.Renderer):
         for criterion in criteria.values():
             if criterion.widget != CollectionWidget.widget_type:
                 continue
+            # avoid redirect
+            self.context.REQUEST.set('no_default', 1)
             widget_cls = criteria.widget(wid=criterion.widget)
             widget = widget_cls(criteriaHolder, self.request, criterion)
             widget.display_fieldset = False

@@ -73,6 +73,14 @@ dl.portlet.portletWidgetCollection div.widget-portlet li {
 dl.portlet.portletWidgetCollection div.widget-portlet div.title {
     margin-bottom: 0.3em;
 }
+/* when portlet is displayed outside the faceted navigation, reestablish left padding
+ * because the class '' is no more there and collective.eeafaceted.collectionwidget skin this class... */
+dl.portletWidgetCollection li a {
+    margin-left: 0.5em;
+}
+dl.portletWidgetCollection li.no-category-tag a {
+    margin-left: 0em;
+}
 
 /* do not increase size of selected element */
 .faceted-tag-selected {
@@ -118,10 +126,4 @@ td.pretty_link a {
 /* display results in a 100% width table so passing from one page of the batch to another is pretty */
 table.faceted-table-results {
     width: 100%;
-}
-
-/* when portlet is displayed outside the faceted navigation, reestablish left padding
- * because the class '' is no more there and collective.eeafaceted.collectionwidget skin this class... */
-dl.portletWidgetCollection li a {
-    padding-left: 0.5em;
 }
