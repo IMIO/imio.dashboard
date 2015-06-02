@@ -12,6 +12,7 @@
 
     <include package="plone.app.portlets" />
 
+    <!-- Register the portlet -->
     <plone:portlet
         name="imio.dashboard.FacetedCollectionPortlet"
         interface=".facetedcollectionportlet.IFacetedCollectionPortlet"
