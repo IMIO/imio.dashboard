@@ -23,7 +23,7 @@ class ConditionAwareCollectionVocabulary(CollectionVocabulary):
             # if collection is ITALConditionable, evaluate the TAL condition
             # except if current user is Manager
             if ITALConditionable.providedBy(collection):
-                if not evaluateExpressionFor(collection, bypass_for_manager=True):
+                if not evaluateExpressionFor(collection):
                     continue
             filtered_terms.append(term)
         return SimpleVocabulary(filtered_terms)
