@@ -19,9 +19,9 @@
     <tal:categories repeat="grouped_element python: grouped_vocabulary.items()">
       <tal:category define="category python:grouped_element[0];
                             elements python:grouped_element[1];">
-        <tal:renderCategory replace="structure python: view.context.restrictedTraverse('@@render_collection_widget_category')(category, widget=view)" />
+        <tal:renderCategory replace="structure python: context.restrictedTraverse('@@render_collection_widget_category')(category, widget=view)" />
         <tal:items repeat="term elements">
-          <tal:renderTerm replace="structure python: view.context.restrictedTraverse('@@render_collection_widget_term_portlet')(term, category, widget=view)" />
+          <tal:renderTerm replace="structure python: context.restrictedTraverse('@@render_collection_widget_term_portlet')(term, category, widget=view)" />
         </tal:items>
       </tal:category>
     </tal:categories>
