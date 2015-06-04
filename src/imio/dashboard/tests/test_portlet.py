@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import lxml
+from zope.annotation import IAnnotations
 from zope.component import getUtility
 from zope.component import getMultiAdapter
 from eea.facetednavigation.criteria.interfaces import ICriteria
@@ -92,7 +93,9 @@ class TestPortlet(IntegrationTestCase):
             title='Dashboard collection 1',
             container=self.folder
         )
-
+        # clean memoize for widget.categories,
+        # it was memoized when calling _generate_vocabulary here above
+        del IAnnotations(self.request)['plone.memoize']
         # now it is displayed and as we are on the faceted, it behaves like the collection widget
         # a <form> with an action
         # get the '<ul>' displaying collections
