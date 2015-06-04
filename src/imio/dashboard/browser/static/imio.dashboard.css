@@ -127,3 +127,8 @@ td.pretty_link a {
 table.faceted-table-results {
     width: 100%;
 }
+
+#content table.listing th a.sort_arrow_disabled {
+    color: #8CACBB;
+    padding: 0;
+}
