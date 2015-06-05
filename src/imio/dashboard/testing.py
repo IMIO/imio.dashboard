@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Base module for unittesting."""
 
-from plone.app.robotframework.testing import AUTOLOGIN_LIBRARY_FIXTURE
+from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
 from plone.app.testing import applyProfile
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
@@ -21,8 +21,7 @@ import imio.dashboard
 class ImioDashboardLayer(PloneSandboxLayer):
 
     defaultBases = (PLONE_FIXTURE,)
-    products = ('imio.dashboard',
-               )
+    products = ('imio.dashboard', )
 
     def setUpZope(self, app, configurationContext):
         """Set up Zope."""
@@ -55,23 +54,23 @@ class ImioDashboardLayer(PloneSandboxLayer):
 
 FIXTURE = ImioDashboardLayer(
     name="FIXTURE"
-    )
+)
 
 
 INTEGRATION = IntegrationTesting(
     bases=(FIXTURE,),
     name="INTEGRATION"
-    )
+)
 
 
 FUNCTIONAL = FunctionalTesting(
     bases=(FIXTURE,),
     name="FUNCTIONAL"
-    )
+)
 
 
 ACCEPTANCE = FunctionalTesting(bases=(FIXTURE,
-                                      AUTOLOGIN_LIBRARY_FIXTURE,
+                                      REMOTE_LIBRARY_BUNDLE_FIXTURE,
                                       z2.ZSERVER_FIXTURE),
                                name="ACCEPTANCE")
 
