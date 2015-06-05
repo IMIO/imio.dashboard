@@ -43,17 +43,27 @@ class Renderer(base.Renderer):
         criteriaHolder = self._criteriaHolder
         criteria = ICriteria(criteriaHolder)
         widgets = []
+        self.context.REQUEST.set('no_default', '0')
         for criterion in criteria.values():
             if criterion.widget != CollectionWidget.widget_type:
                 continue
             widget_cls = criteria.widget(wid=criterion.widget)
             widget = widget_cls(criteriaHolder, self.request, criterion)
             widget.display_fieldset = False
+
             # if we are not on the criteriaHolder, it means
             # that the portlet is displayed on children, we use another template
             # for rendering the widget
-            rendered_widget = widget()
             if not self.context == self._criteriaHolder:
+                # avoid redirect
+                self.context.REQUEST.set('no_default', '1')
+            # initialize the widget
+            rendered_widget = widget()
+
+            # render the widget as "portlet outside facetednav"
+            if not self.context == self._criteriaHolder:
+                # avoid redirect
+                self.context.REQUEST.set('no_default', '1')
                 # compute default criteria to display in the URL
                 widget.base_url = self._buildBaseLinkURL(criteria)
                 rendered_widget = ViewPageTemplateFile('templates/widget.pt')(widget)

@@ -7,6 +7,7 @@ div#center---default---widgets {
 div#top---advanced---widgets {
     background-color: #EEEEEE;
     padding-left: 0.5em;
+    padding-top: 1em;
     border-radius: 5px;
 }
 
@@ -57,6 +58,8 @@ div#faceted-form {
 #faceted-form .faceted-sections-buttons {
     position: absolute;
     right: 5em;
+    padding-top: 0.5em;
+    font-weight: bold;
 }
 
 /* add some padding inside the portlet widget collection */
@@ -72,6 +75,14 @@ dl.portlet.portletWidgetCollection div.widget-portlet li {
 }
 dl.portlet.portletWidgetCollection div.widget-portlet div.title {
     margin-bottom: 0.3em;
+}
+/* when portlet is displayed outside the faceted navigation, reestablish left padding
+ * because the class '' is no more there and collective.eeafaceted.collectionwidget skin this class... */
+dl.portletWidgetCollection li a {
+    margin-left: 0.5em;
+}
+dl.portletWidgetCollection li.no-category-tag a {
+    margin-left: 0em;
 }
 
 /* do not increase size of selected element */
@@ -120,8 +131,7 @@ table.faceted-table-results {
     width: 100%;
 }
 
-/* when portlet is displayed outside the faceted navigation, reestablish left padding
- * because the class '' is no more there and collective.eeafaceted.collectionwidget skin this class... */
-dl.portletWidgetCollection li a {
-    padding-left: 0.5em;
+#content table.listing th a.sort_arrow_disabled {
+    color: #8CACBB;
+    padding: 0;
 }

@@ -16,4 +16,4 @@ after_success:
 
 notifications:
   email:
-    - dev@imio.be
+    - devs@imio.be

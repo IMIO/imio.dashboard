@@ -29,12 +29,17 @@ class TestConditionAwareVocabulary(IntegrationTestCase):
         self.assertTrue(not self.dashboardcollection.tal_condition)
         vocab = factory(self.portal)
         self.assertTrue(self.dashboardcollection.UID() in vocab)
-        # now define a condition
+        # now define a condition and by pass for Manager
         self.dashboardcollection.tal_condition = u'python:False'
-        # no more listed
+        self.dashboardcollection.roles_bypassing_talcondition = [u"Manager"]
+        # No more listed except for Manager
+        vocab = factory(self.portal)
+        self.assertTrue(self.dashboardcollection.UID() in vocab)
+        # Now, desactivate by pass for manager
+        self.dashboardcollection.roles_bypassing_talcondition = []
         vocab = factory(self.portal)
         self.assertTrue(not self.dashboardcollection.UID() in vocab)
-        # if condition is True, it is listed
+        # If condition is True, it is listed
         self.dashboardcollection.tal_condition = u'python:True'
         vocab = factory(self.portal)
         self.assertTrue(self.dashboardcollection.UID() in vocab)
