@@ -15,6 +15,7 @@
     <include package="collective.monkeypatcher" file="meta.zcml" />
     <include package="collective.behavior.talcondition"/>
     <include package="collective.eeafaceted.z3ctable"/>
+    <include package="collective.js.iframeresizer"/>
 
     <include package=".browser" />
     <include package=".content" />
@@ -24,6 +25,14 @@
         title="imio.dashboard"
         directory="profiles/default"
         description="Installs the imio.dashboard add-on."
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <genericsetup:registerProfile
+        name="two_tables"
+        title="imio.dashboard demo of two tables"
+        directory="profiles/two_tables"
+        description="Installs the demo of two tables of imio.dashboard add-on."
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 

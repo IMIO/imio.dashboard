@@ -45,4 +45,12 @@
         permission="zope2.View"
         />
 
+  <browser:page
+    for="eea.facetednavigation.interfaces.IFacetedNavigable"
+    name="two_tables"
+    template="templates/two_tables.pt"
+    class="eea.facetednavigation.browser.app.view.FacetedContainerView"
+    permission="zope2.View"
+    />
+
 </configure>

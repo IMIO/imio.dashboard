@@ -51,6 +51,7 @@ setup(
         'collective.eeafaceted.z3ctable',
         'imio.actionspanel',
         'imio.prettylink',
+        'collective.js.iframeresizer',
     ],
     extras_require={
         'test': [
