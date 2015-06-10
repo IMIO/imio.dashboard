@@ -28,12 +28,17 @@ div#center---default---widgets div.faceted-widget {
 
 /* reduce margin and use height and overflow so checkbox lists are displayed with a scrollbar */
 #content fieldset.widget-fieldset ul {
+    max-width: 165px;
+    overflow: auto;
+    height: 100px;
     margin-left: 0.5em;
     margin-right: 1em;
-    height: 85px;
-    overflow: auto;
-    max-width: 165px;
 }
+#content form.faceted-checkboxes-widget-form,
+#content form.faceted-daterange-widget-form {
+    height: 100px;
+}
+
 /* make date widget display on 2 lines */
 #content form.faceted-daterange-widget-form {
     width: 165px;
