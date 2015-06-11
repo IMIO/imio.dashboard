@@ -7,6 +7,7 @@
 
   <include package="collective.eeafaceted.collectionwidget" />
   <include package="collective.compoundcriterion" />
+  <include package="imio.actionspanel" />
 
   <genericsetup:registerProfile
       name="testing"
