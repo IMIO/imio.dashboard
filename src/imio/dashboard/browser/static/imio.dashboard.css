@@ -126,9 +126,11 @@ div.listingBar span.next {
     background: url("dashboardcollection.png") no-repeat 0 transparent;
 }
 
-/* make content of column pretty_title display correctly */
-td.pretty_link a {
-    display: inline;
+/* align icons and pretty link correctly */
+a.pretty_link span.pretty_link_icons,
+div.pretty_link span.pretty_link_icons {
+    vertical-align: text-top;
+    padding-right: 0.2em;
 }
 
 /* display results in a 100% width table so passing from one page of the batch to another is pretty */
