@@ -4,8 +4,9 @@ Changelog
 
 0.2 (unreleased)
 ----------------
-
-- Nothing changed yet.
+- Factorized code that check if we are outise the faceted in the portlet
+  so it is easy to override without overriding the entire widget_render method.
+  [gbastien]
 
 
 0.1 (2015-07-14)

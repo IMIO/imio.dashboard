@@ -59,12 +59,16 @@ class Renderer(base.Renderer):
             # initialize the widget
             rendered_widget = widget()
             # render the widget as "portlet outside facetednav"
-            if not self.context == self._criteriaHolder:
+            if self._isPortletOutsideFaceted(self.context, self._criteriaHolder):
                 # compute default criteria to display in the URL
                 widget.base_url = self._buildBaseLinkURL(criteria)
                 rendered_widget = ViewPageTemplateFile('templates/widget.pt')(widget)
             widgets.append(rendered_widget)
         return ''.join([w for w in widgets])
+
+    def _isPortletOutsideFaceted(self, context, criteriaHolder):
+        """Are we outside the faceted?"""
+        return not context == criteriaHolder
 
     def _buildBaseLinkURL(self, criteria):
         """Build the URL that will be used in the href when portlet is displayed
