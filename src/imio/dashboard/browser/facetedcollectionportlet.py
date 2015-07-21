@@ -53,7 +53,7 @@ class Renderer(base.Renderer):
             # if we are not on the criteriaHolder, it means
             # that the portlet is displayed on children, we use another template
             # for rendering the widget
-            if not self.context == self._criteriaHolder:
+            if self._isPortletOutsideFaceted(self.context, self._criteriaHolder):
                 # avoid redirect
                 self.context.REQUEST.set('no_default', '1')
             # initialize the widget
