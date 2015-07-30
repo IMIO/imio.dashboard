@@ -47,6 +47,11 @@
         handler=".setuphandlers.post_install">
     </genericsetup:importStep>
 
+    <permission
+        id="imio.dashboard.AddDashboardCollection"
+        title="imio.dashboard: Add DashboardCollection"
+        />
+
     <adapter
         for="plone.app.collection.interfaces.ICollection"
         factory=".adapters.CustomViewFieldsVocabularyAdapter"
