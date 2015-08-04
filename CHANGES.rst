@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+0.3 (unreleased)
+----------------
+
+- Nothing changed yet.
+
+
 0.2 (2015-08-04)
 ----------------
 - Factorized code that check if we are outise the faceted in the portlet
