@@ -7,7 +7,6 @@
             term_label python:term[1][0];
             redirect_to python:term[1][1];
             term_label python:widget.translate(term_label);
-            wbr_term_label python:widget.word_break(term_label);"
             tal:attributes="
             class python: not category[0] and 'no-category-tag' or '';
             value python:term_id;
@@ -16,6 +15,6 @@
             data-kept-criteria python:widget.kept_criteria_as_json(term_id);">
                <a href="#"
                   tal:attributes="href python: redirect_to and redirect_to or '{0}&{1}={2}'.format(widget.base_url, wid, term_id)"
-                  tal:content="wbr_term_label" />
+                  tal:content="term_label" />
           </li>
 </tal:defines>
