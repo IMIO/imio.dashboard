@@ -6,7 +6,7 @@
             term_id python:term[0];
             term_label python:term[1][0];
             redirect_to python:term[1][1];
-            term_label python:widget.translate(term_label);
+            term_label python:widget.translate(term_label);"
             tal:attributes="
             class python: not category[0] and 'no-category-tag' or '';
             value python:term_id;
