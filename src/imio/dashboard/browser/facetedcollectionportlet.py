@@ -70,11 +70,14 @@ class Renderer(base.Renderer):
 
     def getPortletTitle(self):
         """Return the collection widget display name"""
+        default_title = 'Collections'
         try:
             criterion = getCollectionLinkCriterion(self._criteriaHolder)
         except NoFacetedViewDefinedException:
-            return 'Collections'
-        return criterion.title
+            return default_title
+
+        title = criterion and criterion.title or default_title
+        return title
 
     def _isPortletOutsideFaceted(self, context, criteriaHolder):
         """Are we outside the faceted?"""
