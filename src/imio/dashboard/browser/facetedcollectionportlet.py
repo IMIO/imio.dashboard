@@ -14,6 +14,8 @@ from eea.facetednavigation.subtypes.interfaces import IFacetedNavigable
 from collective.eeafaceted.collectionwidget.widgets.widget import CollectionWidget
 
 from imio.dashboard import ImioDashboardMessageFactory as _
+from imio.dashboard.interfaces import NoFacetedViewDefinedException
+from imio.dashboard.utils import getCollectionLinkCriterion
 
 
 class IFacetedCollectionPortlet(IPortletDataProvider):
@@ -65,6 +67,14 @@ class Renderer(base.Renderer):
                 rendered_widget = ViewPageTemplateFile('templates/widget.pt')(widget)
             widgets.append(rendered_widget)
         return ''.join([w for w in widgets])
+
+    def getPortletTitle(self):
+        """Return the collection widget display name"""
+        try
+            criterion = getCollectionLinkCriterion(self._criteriaHolder)
+        raise NoFacetedViewDefinedException:
+            return 'Collections'
+        return criterion.title
 
     def _isPortletOutsideFaceted(self, context, criteriaHolder):
         """Are we outside the faceted?"""

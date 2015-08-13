@@ -4,7 +4,9 @@
         <span class="portletTopLeft"></span>
         <a href="#"
            class="tile"
-           tal:attributes="href python: view._criteriaHolder.absolute_url()">Collections</a>
+           tal:attributes="href python: view._criteriaHolder.absolute_url()"
+           tal:content="view/getPortletTitle">
+           Collections</a>
         <span class="portletTopRight"></span>
     </dt>
     <dd class="portletItem odd">
