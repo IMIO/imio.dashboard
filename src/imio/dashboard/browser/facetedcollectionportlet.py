@@ -70,9 +70,9 @@ class Renderer(base.Renderer):
 
     def getPortletTitle(self):
         """Return the collection widget display name"""
-        try
+        try:
             criterion = getCollectionLinkCriterion(self._criteriaHolder)
-        raise NoFacetedViewDefinedException:
+        except NoFacetedViewDefinedException:
             return 'Collections'
         return criterion.title
 
