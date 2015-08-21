@@ -66,8 +66,6 @@ def enableFacetedDashboardFor(obj, xmlpath=None):
     response_status = obj.REQUEST.RESPONSE.getStatus()
     response_location = obj.REQUEST.RESPONSE.getHeader('location')
     obj.unrestrictedTraverse('@@faceted_subtyper').enable()
-    obj.REQUEST.RESPONSE.status = response_status
-    obj.REQUEST.RESPONSE.setHeader('location', response_location)
 
     # use correct layout in the faceted
     IFacetedLayout(obj).update_layout('faceted-table-items')
@@ -82,3 +80,5 @@ def enableFacetedDashboardFor(obj, xmlpath=None):
         else:
             logger.error("Specified xml file '%s' doesn't exist" % xmlpath)
     obj.reindexObject()
+    obj.REQUEST.RESPONSE.status = response_status
+    obj.REQUEST.RESPONSE.setHeader('location', response_location or '')
