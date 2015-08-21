@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.3 (unreleased)
+0.3 (2015-08-21)
 ----------------
 
 - Added utils method to enable faceted dashboard on an object and import xml configuration file.
