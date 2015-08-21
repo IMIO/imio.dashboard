@@ -55,7 +55,20 @@ def enableFacetedDashboardFor(obj, xmlpath=None):
     """
     Enable a faceted view on obj and import a specific xml
     """
+    # already a faceted?
+    if IFacetedNavigable.providedBy(obj):
+        logger.error("Faceted navigation is already enabled for '%s'" %
+                     '/'.join(obj.getPhysicalPath()))
+        return
+
+    # .enable() here under will redirect to enabled faceted
+    # we cancel this, safe previous RESPONSE status and location
+    response_status = obj.REQUEST.RESPONSE.getStatus()
+    response_location = obj.REQUEST.RESPONSE.getHeader('location')
     obj.unrestrictedTraverse('@@faceted_subtyper').enable()
+    obj.REQUEST.RESPONSE.status = response_status
+    obj.REQUEST.RESPONSE.setHeader('location', response_location)
+
     # use correct layout in the faceted
     IFacetedLayout(obj).update_layout('faceted-table-items')
     # show the left portlets
@@ -67,6 +80,5 @@ def enableFacetedDashboardFor(obj, xmlpath=None):
             obj.unrestrictedTraverse('@@faceted_exportimport').import_xml(
                 import_file=open(xmlpath))
         else:
-            logger.error("Specified xml file 'xmlpath' doesn't exist" % xmlpath)
+            logger.error("Specified xml file '%s' doesn't exist" % xmlpath)
     obj.reindexObject()
-
