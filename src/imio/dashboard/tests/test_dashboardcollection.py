@@ -27,7 +27,7 @@ class TestDashboardCollection(IntegrationTestCase):
         # classic metadata
         metadatas = self.portal.portal_atct.getMetadataDisplay(True).keys()
         # additional fields
-        additionalFields = ['actions', 'pretty_link']
+        additionalFields = ['pretty_link', 'actions', 'select_row', ]
         # additional fields from adapter
         self.assertTrue(ICustomViewFieldsVocabulary(self.dashboardcollection).additionalViewFields().keys() ==
                         additionalFields)
