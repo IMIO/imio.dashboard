@@ -5,6 +5,7 @@ from plone.app.collection.interfaces import ICollection
 from collective.eeafaceted.collectionwidget.widgets.widget import CollectionWidget
 from collective.eeafaceted.z3ctable.browser.views import FacetedTableView
 from collective.eeafaceted.z3ctable.columns import BrowserViewCallColumn
+from collective.eeafaceted.z3ctable.columns import CheckBoxColumn
 from imio.dashboard.columns import PrettyLinkColumn
 
 
@@ -22,6 +23,8 @@ class IDFacetedTableView(FacetedTableView):
                 column.params = {'showHistory': True, 'showActions': False}
             if colName == u'pretty_link':
                 column = PrettyLinkColumn(self.context, self.request, self)
+            if colName == u'select_row':
+                column = CheckBoxColumn(self.context, self.request, self)
         return column
 
     def _getViewFields(self):
