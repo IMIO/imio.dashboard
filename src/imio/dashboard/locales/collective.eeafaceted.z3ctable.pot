@@ -24,3 +24,12 @@ msgstr ""
 #. Default: "Title"
 msgid "header_pretty_link"
 msgstr ""
+
+msgid "actions"
+msgstr ""
+
+msgid "pretty_link"
+msgstr ""
+
+msgid "select_row"
+msgstr ""

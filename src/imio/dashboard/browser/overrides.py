@@ -4,36 +4,17 @@ from plone.app.collection.interfaces import ICollection
 
 from collective.eeafaceted.collectionwidget.widgets.widget import CollectionWidget
 from collective.eeafaceted.z3ctable.browser.views import FacetedTableView
-from collective.eeafaceted.z3ctable.columns import BrowserViewCallColumn
-from collective.eeafaceted.z3ctable.columns import CheckBoxColumn
-from imio.dashboard.columns import PrettyLinkColumn
 
 
 class IDFacetedTableView(FacetedTableView):
 
-    def _manualColumnFor(self, colName):
-        """Manage our own columns."""
-        column = super(IDFacetedTableView, self)._manualColumnFor(colName)
-        if not column:
-            if colName == u'actions':
-                column = BrowserViewCallColumn(self.context, self.request, self)
-                column.header_js = '<script type="text/javascript">jQuery(document).ready(initializeOverlays);' \
-                                   'jQuery(document).ready(preventDefaultClickTransition);</script>'
-                column.view_name = 'actions_panel'
-                column.params = {'showHistory': True, 'showActions': False}
-            if colName == u'pretty_link':
-                column = PrettyLinkColumn(self.context, self.request, self)
-            if colName == u'select_row':
-                column = CheckBoxColumn(self.context, self.request, self)
-        return column
+    def __init__(self, context, request):
+        super(IDFacetedTableView, self).__init__(context, request)
+        self.collection = self._set_collection()
 
-    def _getViewFields(self):
-        """Returns fields we want to show in the table."""
-        colNames = ['Title', 'CreationDate', 'Creator', 'review_state', 'getText']
-        # if the context is a collection, get customViewFields on it
-        collection = None
+    def _set_collection(self):
         if ICollection.providedBy(self.context):
-            collection = self.context
+            return self.context
         else:
             # if we can get the collection we are working with,
             # use customViewFields defined on it if any
@@ -44,10 +25,24 @@ class IDFacetedTableView(FacetedTableView):
                     catalog = getToolByName(self.context, 'portal_catalog')
                     collection = catalog(UID=collectionUID)
                     if collection:
-                        collection = collection[0].getObject()
-        if collection:
-            customViewFields = collection.getCustomViewFields()
-            if customViewFields:
-                colNames = customViewFields
+                        return collection[0].getObject()
 
-        return colNames
+    def _getViewFields(self):
+        """Returns fields we want to show in the table."""
+
+        # if the context is a collection, get customViewFields on it
+        if self.collection:
+            return self.collection.getCustomViewFields()
+
+        # else get default column names
+        return super(IDFacetedTableView, self)._getViewFields()
+
+    def orderColumns(self):
+        """ Order columns of the table."""
+        # do this to keep the column ordered as found on the field
+        # 'customViewFields' of the collection if there is any
+        if self.collection:
+            for i, column in enumerate(self.columns):
+                column.weight = i
+
+        super(IDFacetedTableView, self).orderColumns()

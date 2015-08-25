@@ -24,6 +24,8 @@
     <include package=".browser" />
     <include package=".content" />
 
+    <include file="columns.zcml" />
+
     <genericsetup:registerProfile
         name="default"
         title="imio.dashboard"

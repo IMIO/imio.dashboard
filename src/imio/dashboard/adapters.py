@@ -1,8 +1,11 @@
 # encoding: utf-8
-from plone.app.collection.config import ATCT_TOOLNAME
 
 from Products.Archetypes.atapi import DisplayList
-from Products.CMFCore.utils import getToolByName
+
+from collective.eeafaceted.z3ctable.interfaces import IFacetedColumn
+
+from zope.component import getGlobalSiteManager
+from zope.i18n import translate as _
 
 
 class CustomViewFieldsVocabularyAdapter(object):
@@ -17,19 +20,13 @@ class CustomViewFieldsVocabularyAdapter(object):
 
     def listMetaDataFields(self, exclude=True):
         """See docstring in interfaces.py."""
-        tool = getToolByName(self, ATCT_TOOLNAME)
-        # default behaviour, get displayable metadata
-        metadata = tool.getMetadataDisplay(exclude)
-        # addtional columns, prepend a [additional] to the term value
-        # so these columns are easy to locate in the vocabulary
-        additional = self.additionalViewFields()
-        res = []
-        for k, v in additional.items():
-            res.append((k, '[additional] {0}'.format(v)))
-        return (metadata + DisplayList(res)).sortedByValue()
 
-    def additionalViewFields(self):
-        """See docstring in interfaces.py."""
-        return DisplayList((('pretty_link', 'Pretty link'),
-                            ('actions', 'Actions'),
-                            ('select_row', 'Select row'), ))
+        gsm = getGlobalSiteManager()
+        columns = [adapter.name for adapter in list(gsm.registeredAdapters())
+                   if issubclass(adapter.provided, IFacetedColumn)]
+
+        vocabulary = DisplayList(
+            [(name, _(name, 'collective.eeafaceted.z3ctable', context=self.request)) for name in columns]
+        ).sortedByValue()
+
+        return vocabulary
