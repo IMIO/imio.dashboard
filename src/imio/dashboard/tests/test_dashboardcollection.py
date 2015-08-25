@@ -25,18 +25,15 @@ class TestDashboardCollection(IntegrationTestCase):
            also add to it's vocabulary, elements returned by an
            CustomViewFieldsVocabularyAdapter adapter."""
         # classic metadata
-        metadatas = self.portal.portal_atct.getMetadataDisplay(True).keys()
+        default_columns = ['Title', 'CreationDate', 'Creator', 'review_state', 'getText']
         # additional fields
-        additionalFields = ['pretty_link', 'actions', 'select_row', ]
-        # additional fields from adapter
-        self.assertTrue(ICustomViewFieldsVocabulary(self.dashboardcollection).additionalViewFields().keys() ==
-                        additionalFields)
+        additional_columns = ['pretty_link', 'actions', 'select_row', ]
         # complete list from adapter
         self.assertTrue(set(ICustomViewFieldsVocabulary(self.dashboardcollection).listMetaDataFields().keys()) ==
-                        set(metadatas + additionalFields))
+                        set(default_columns + additional_columns))
         # listMetaDataFields is now using adapter
         self.assertTrue(set(self.dashboardcollection.listMetaDataFields().keys()) ==
-                        set(metadatas + additionalFields))
+                        set(default_columns + additional_columns))
 
     def test_selectedViewFields(self):
         """Test the overrided selectedViewFields method that will make sure
