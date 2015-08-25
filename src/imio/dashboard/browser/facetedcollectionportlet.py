@@ -57,7 +57,7 @@ class Renderer(base.Renderer):
             # for rendering the widget
             if self._isPortletOutsideFaceted(self.context, self._criteriaHolder):
                 # avoid redirect
-                self.context.REQUEST.set('no_default', '1')
+                self.context.REQUEST.set('no_redirect', '1')
             # initialize the widget
             rendered_widget = widget()
             # render the widget as "portlet outside facetednav"
