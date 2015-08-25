@@ -5,7 +5,9 @@ Changelog
 0.4 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Added a creatorsvocabulary listing creators of the site,
+  available especially for faceted criteria.
+  [gbastien]
 
 
 0.3 (2015-08-21)

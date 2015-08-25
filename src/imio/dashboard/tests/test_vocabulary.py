@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from zope.component import queryUtility
 from zope.schema.interfaces import IVocabularyFactory
+from Products.CMFCore.utils import getToolByName
+from plone.app.testing import login
 from plone import api
 from imio.dashboard.testing import IntegrationTestCase
 from collective.behavior.talcondition.interfaces import ITALConditionable
@@ -19,7 +21,7 @@ class TestConditionAwareVocabulary(IntegrationTestCase):
             container=self.portal
         )
 
-    def test_vocabulary(self):
+    def test_conditionawarecollectionvocabulary(self):
         """This vocabulary is condition aware, it means
            that it will take into account condition defined in the
            'tal_condition' field added by ITALConditionable."""
@@ -43,3 +45,18 @@ class TestConditionAwareVocabulary(IntegrationTestCase):
         self.dashboardcollection.tal_condition = u'python:True'
         vocab = factory(self.portal)
         self.assertTrue(self.dashboardcollection.UID() in vocab)
+
+    def test_creatorsvocabulary(self):
+        """This will return every users that created a content in the portal."""
+        factory = queryUtility(IVocabularyFactory, u'imio.dashboard.creatorsvocabulary')
+        self.assertEquals(len(factory(self.portal)), 1)
+        self.assertTrue("test_user_1_" in factory(self.portal))
+        # add another user, create content and test again
+        membershipTool = getToolByName(self.portal, 'portal_membership')
+        membershipTool.addMember('test_user_2_', 'password', ['Manager'], [])
+        login(self.portal, 'test_user_2_')
+        # vocabulary cache not cleaned
+        self.assertEquals(len(factory(self.portal)), 1)
+        self.portal.invokeFactory('Folder', id='folder2')
+        # vocabulary cache cleaned
+        self.assertEquals(len(factory(self.portal)), 2)
