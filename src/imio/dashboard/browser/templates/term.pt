@@ -6,9 +6,10 @@
             term_id python:term[0];
             term_label python:term[1][0];
             redirect_to python:term[1][1];
-            term_label python:widget.translate(term_label);"
+            term_label python:widget.translate(term_label);
+            default_class python:term_id == view.selected_term and 'faceted-tag-selected' or '';"
             tal:attributes="
-            class python: not category[0] and 'no-category-tag' or '';
+            class python: not category[0] and default_class + ' no-category-tag' or default_class;
             value python:term_id;
             title term_label;
             id string:${wid}${term_id};
@@ -16,5 +17,6 @@
                <a href="#"
                   tal:attributes="href python: redirect_to and redirect_to or '{0}&{1}={2}'.format(widget.base_url, wid, term_id)"
                   tal:content="term_label" />
+
           </li>
 </tal:defines>

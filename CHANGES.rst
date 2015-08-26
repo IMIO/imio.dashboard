@@ -5,6 +5,9 @@ Changelog
 0.4 (unreleased)
 ----------------
 
+- Add adapter for collective.querynextprev integration.
+  [cedricmessiant]
+
 - Added a creatorsvocabulary listing creators of the site,
   available especially for faceted criteria.
   [gbastien]

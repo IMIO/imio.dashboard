@@ -59,6 +59,12 @@
         factory=".adapters.CustomViewFieldsVocabularyAdapter"
         provides=".interfaces.ICustomViewFieldsVocabulary" />
 
+    <adapter
+        name="current_criterion_provider"
+        for="eea.facetednavigation.subtypes.interfaces.IFacetedNavigable"
+        factory=".adapters.CurrentCriterionProvider"
+        provides="collective.querynextprev.interfaces.IAdditionalDataProvider" />
+
     <!-- Vocabularies -->
     <utility component=".vocabulary.ConditionAwareCollectionVocabularyFactory"
              name="imio.dashboard.conditionawarecollectionvocabulary" />

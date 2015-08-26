@@ -7,6 +7,10 @@ from collective.eeafaceted.z3ctable.interfaces import IFacetedColumn
 from zope.component import getGlobalSiteManager
 from zope.i18n import translate as _
 
+from imio.dashboard.utils import getCollectionLinkCriterion
+
+
+CURRENT_CRITERION = 'querynextprev.current_criterion'
 
 class CustomViewFieldsVocabularyAdapter(object):
     """Handles plone.app.collection Collection.customViewFields field vocabulary.
@@ -30,3 +34,19 @@ class CustomViewFieldsVocabularyAdapter(object):
         ).sortedByValue()
 
         return vocabulary
+
+
+class CurrentCriterionProvider(object):
+
+    """Provides key and value for current criterion in querynextprev."""
+
+    def __init__(self, context):
+        self.context = context
+        self.request = context.REQUEST
+
+    def get_key(self):
+        return CURRENT_CRITERION
+
+    def get_value(self):
+        criterion = getCollectionLinkCriterion(self.context).__name__
+        return self.request.form['{}[]'.format(criterion)]
