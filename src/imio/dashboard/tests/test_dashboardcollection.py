@@ -24,8 +24,9 @@ class TestDashboardCollection(IntegrationTestCase):
            list available metadata as base Collection but that will
            also add to it's vocabulary, elements returned by an
            CustomViewFieldsVocabularyAdapter adapter."""
-        # classic metadata
-        default_columns = ['Title', 'CreationDate', 'Creator', 'review_state', 'getText']
+        # classic metadata, coming from collective.eeafaceted.z3ctable
+        default_columns = ['Title', 'CreationDate', 'ModificationDate',
+                           'Creator', 'review_state', 'getText']
         # additional fields
         additional_columns = ['pretty_link', 'actions', 'select_row', ]
         # complete list from adapter
