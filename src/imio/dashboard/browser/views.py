@@ -14,7 +14,7 @@ class RenderTermPortletView(BrowserView):
         self.category = category
         self.widget = widget
         session = self.request.SESSION
-        if session.has_key(CURRENT_CRITERION):
+        if session.has_key(CURRENT_CRITERION):  # noqa
             self.selected_term = session[CURRENT_CRITERION]
 
         return self.index()

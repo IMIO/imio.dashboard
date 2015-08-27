@@ -12,6 +12,7 @@ from imio.dashboard.utils import getCollectionLinkCriterion
 
 CURRENT_CRITERION = 'querynextprev.current_criterion'
 
+
 class CustomViewFieldsVocabularyAdapter(object):
     """Handles plone.app.collection Collection.customViewFields field vocabulary.
        By default it has the same behaviour as original one but you can override the
