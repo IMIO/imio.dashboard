@@ -49,5 +49,9 @@ class CurrentCriterionProvider(object):
         return CURRENT_CRITERION
 
     def get_value(self):
-        criterion = getCollectionLinkCriterion(self.context).__name__
-        return self.request.form['{}[]'.format(criterion)]
+        criterion = getCollectionLinkCriterion(self.context)
+        if criterion is not None:
+            attr = '{}[]'.format(criterion.__name__)
+            return getattr(self.request.form, attr, '')
+        else:
+            return ''
