@@ -13,7 +13,7 @@ class RenderTermPortletView(BrowserView):
         self.term = term
         self.category = category
         self.widget = widget
-        session = self.request.SESSION
+        session = self.request.get('SESSION', {})
         if session.has_key(CURRENT_CRITERION):  # noqa
             self.selected_term = session[CURRENT_CRITERION]
 
