@@ -60,6 +60,7 @@
         provides=".interfaces.ICustomViewFieldsVocabulary" />
 
     <adapter
+        zcml:condition="installed collective.querynextprev"
         name="current_criterion_provider"
         for="eea.facetednavigation.subtypes.interfaces.IFacetedNavigable"
         factory=".adapters.CurrentCriterionProvider"
