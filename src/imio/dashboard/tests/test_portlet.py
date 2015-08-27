@@ -19,6 +19,7 @@ class TestPortlet(IntegrationTestCase):
         self.portal = self.layer['portal']
         self.folder = self.portal.folder
         self.request = self.portal.REQUEST
+        self.request.SESSION = {}
         self.view = self.portal.restrictedTraverse('@@plone')
         self.manager = getUtility(IPortletManager,
                                   name='plone.leftcolumn',
