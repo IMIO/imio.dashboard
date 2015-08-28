@@ -52,6 +52,6 @@ class CurrentCriterionProvider(object):
         criterion = getCollectionLinkCriterion(self.context)
         if criterion is not None:
             attr = '{}[]'.format(criterion.__name__)
-            return getattr(self.request.form, attr, '')
+            return self.request.form.get(attr, '')
         else:
             return ''
