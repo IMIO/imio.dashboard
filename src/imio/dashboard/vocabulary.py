@@ -24,10 +24,9 @@ class ConditionAwareCollectionVocabulary(CollectionVocabulary):
            but we will filter Collections regarding the defined tal_condition."""
         terms = super(ConditionAwareCollectionVocabulary, self).__call__(context, query=query)
 
-        catalog = getToolByName(context, 'portal_catalog')
         filtered_terms = []
         for term in terms:
-            collection = catalog(UID=term.token)[0].getObject()
+            collection = term.value
             # if collection is ITALConditionable, evaluate the TAL condition
             # except if current user is Manager
             if ITALConditionable.providedBy(collection):

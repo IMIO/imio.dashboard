@@ -30,21 +30,21 @@ class TestConditionAwareVocabulary(IntegrationTestCase):
         # for now, no condition defined on the collection so it is in the vocabulary
         self.assertTrue(not self.dashboardcollection.tal_condition)
         vocab = factory(self.portal)
-        self.assertTrue(self.dashboardcollection.UID() in vocab)
+        self.assertTrue(self.dashboardcollection.UID() in [term.token for term in vocab])
         # now define a condition and by pass for Manager
         self.dashboardcollection.tal_condition = u'python:False'
         self.dashboardcollection.roles_bypassing_talcondition = [u"Manager"]
         # No more listed except for Manager
         vocab = factory(self.portal)
-        self.assertTrue(self.dashboardcollection.UID() in vocab)
+        self.assertTrue(self.dashboardcollection.UID() in [term.token for term in vocab])
         # Now, desactivate by pass for manager
         self.dashboardcollection.roles_bypassing_talcondition = []
         vocab = factory(self.portal)
-        self.assertTrue(not self.dashboardcollection.UID() in vocab)
+        self.assertTrue(not self.dashboardcollection.UID() in [term.token for term in vocab])
         # If condition is True, it is listed
         self.dashboardcollection.tal_condition = u'python:True'
         vocab = factory(self.portal)
-        self.assertTrue(self.dashboardcollection.UID() in vocab)
+        self.assertTrue(self.dashboardcollection.UID() in [term.token for term in vocab])
 
     def test_creatorsvocabulary(self):
         """This will return every users that created a content in the portal."""
