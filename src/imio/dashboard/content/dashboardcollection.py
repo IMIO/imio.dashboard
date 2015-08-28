@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from AccessControl import ClassSecurityInfo
+from zope.interface import implements
 from Products.Archetypes.atapi import registerType
 from Products.CMFCore.permissions import View
 from Products.CMFCore.utils import getToolByName
@@ -8,11 +9,12 @@ from plone.app.collection.config import ATCT_TOOLNAME
 from plone.app.querystring.queryparser import parseFormquery
 from imio.dashboard.config import PROJECTNAME
 from imio.dashboard.interfaces import ICustomViewFieldsVocabulary
+from imio.dashboard.interfaces import IDashboardCollection
 
 
 class DashboardCollection(Collection):
     """A Collection used in our dashboards"""
-
+    implements(IDashboardCollection)
     meta_type = "DashboardCollection"
     security = ClassSecurityInfo()
 

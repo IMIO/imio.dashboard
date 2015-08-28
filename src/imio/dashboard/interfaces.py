@@ -8,6 +8,10 @@ class IImioDashboardLayer(IDefaultBrowserLayer):
     """Marker interface that defines a browser layer."""
 
 
+class IDashboardCollection(Interface):
+    """DashboardCollection marker interface"""
+
+
 class ICustomViewFieldsVocabulary(Interface):
     """
       Adapter interface that manage override of the
