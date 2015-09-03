@@ -15,6 +15,7 @@ from plone.testing import z2
 
 import unittest2 as unittest
 
+from eea.facetednavigation.layout.interfaces import IFacetedLayout
 import imio.dashboard
 
 
@@ -39,7 +40,7 @@ class ImioDashboardLayer(PloneSandboxLayer):
         # Login and create some test content
         setRoles(portal, TEST_USER_ID, ['Manager'])
         login(portal, TEST_USER_NAME)
-        folder_id = portal.invokeFactory('Folder', 'folder')
+        folder_id = portal.invokeFactory('Folder', 'folder', title='Folder')
         portal[folder_id].reindexObject()
 
         # Commit so that the test browser sees these objects
@@ -83,6 +84,10 @@ class IntegrationTestCase(unittest.TestCase):
     def setUp(self):
         super(IntegrationTestCase, self).setUp()
         self.portal = self.layer['portal']
+        self.folder = self.portal.get('folder')
+        self.folder.restrictedTraverse('@@faceted_subtyper').enable()
+        IFacetedLayout(self.folder).update_layout('faceted-table-items')
+        self.faceted_table = self.folder.restrictedTraverse('faceted-table-view')
 
 
 class FunctionalTestCase(unittest.TestCase):
