@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.4 (unreleased)
+0.4 (2015-09-04)
 ----------------
 - Moved 'sorting' and 'collection-link' criteria top 'top/default'
   position to be sure that it is evaluated first by faceted query.
