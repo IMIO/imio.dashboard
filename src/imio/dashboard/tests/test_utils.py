@@ -82,3 +82,9 @@ class TestUtils(IntegrationTestCase):
         dashcoll.reindexObject()
         _updateDefaultCollectionFor(self.folder, dashcoll.UID())
         self.assertEquals(criterion.default, dashcoll.UID())
+
+        # calling it on a non faceted enabled folder will raise a NoFacetedViewDefinedException
+        folder2_id = self.portal.invokeFactory('Folder', 'folder2', title='Folder2')
+        folder2 = getattr(self.portal, folder2_id)
+        folder2.reindexObject()
+        self.assertRaises(NoFacetedViewDefinedException, _updateDefaultCollectionFor, folder2, 'anUID')
