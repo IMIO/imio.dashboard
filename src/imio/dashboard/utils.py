@@ -40,6 +40,9 @@ def enableFacetedDashboardFor(obj, xmlpath=None):
                      '/'.join(obj.getPhysicalPath()))
         return
 
+    # do not go further if xmlpath does not exist
+    if xmlpath and not path.exists(xmlpath):
+        raise Exception("Specified xml file '%s' doesn't exist" % xmlpath)
     # .enable() here under will redirect to enabled faceted
     # we cancel this, safe previous RESPONSE status and location
     response_status = obj.REQUEST.RESPONSE.getStatus()
@@ -52,12 +55,9 @@ def enableFacetedDashboardFor(obj, xmlpath=None):
     if IHidePloneLeftColumn.providedBy(obj):
         noLongerProvides(obj, IHidePloneLeftColumn)
     # import configuration
-    if xmlpath is not None:
-        if path.exists(xmlpath):
-            obj.unrestrictedTraverse('@@faceted_exportimport').import_xml(
-                import_file=open(xmlpath))
-        else:
-            logger.error("Specified xml file '%s' doesn't exist" % xmlpath)
+    if xmlpath:
+        obj.unrestrictedTraverse('@@faceted_exportimport').import_xml(
+            import_file=open(xmlpath))
     obj.reindexObject()
     obj.REQUEST.RESPONSE.status = response_status
     obj.REQUEST.RESPONSE.setHeader('location', response_location or '')

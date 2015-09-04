@@ -65,6 +65,10 @@ class TestUtils(IntegrationTestCase):
         folder3_id = self.portal.invokeFactory('Folder', 'folder3', title='Folder3')
         folder3 = getattr(self.portal, folder3_id)
         folder3.reindexObject()
+        # an Exception is raised if xmlpath does not exist
+        wrong_xmlpath = os.path.dirname(__file__) + '/faceted_conf/wrong_testing_widgets.xml'
+        self.assertRaises(Exception, enableFacetedDashboardFor, folder3, wrong_xmlpath)
+        # apply correct xmlpath
         enableFacetedDashboardFor(folder3, xmlpath=xmlpath)
         # same things are done except that the widgets are taken from the given xmlpath
         self.assertEquals(len(ICriteria(folder3).criteria), 1)
