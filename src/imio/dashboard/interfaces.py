@@ -27,7 +27,3 @@ class ICustomViewFieldsVocabulary(Interface):
         """
           Additional fields taken into account by the listMetaDataFields vocabulary.
         """
-
-
-class NoFacetedViewDefinedException(Exception):
-    """ To be raised when a context has no faceted view defined on it. """

@@ -4,18 +4,20 @@ Changelog
 
 0.4 (unreleased)
 ----------------
-
+- Moved 'sorting' and 'collection-link' criteria top 'top/default'
+  position to be sure that it is evaluated first by faceted query.
+  [gbastien]
 - Add adapter for collective.querynextprev integration.
   [cedricmessiant]
-
 - Added a creatorsvocabulary listing creators of the site,
   available especially for faceted criteria.
   [gbastien]
-
+- Added helpers methods utils.getCollectionLinkCriterion and
+  utils._updateDefaultCollectionFor.
+  [sdelcourt]
 
 0.3 (2015-08-21)
 ----------------
-
 - Added utils method to enable faceted dashboard on an object and import xml configuration file.
   [sgeulette]
 

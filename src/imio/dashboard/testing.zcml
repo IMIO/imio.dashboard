@@ -8,6 +8,7 @@
   <include package="collective.eeafaceted.collectionwidget" />
   <include package="collective.compoundcriterion" />
   <include package="imio.actionspanel" />
+  <includeOverrides file="overrides.zcml" />
 
   <genericsetup:registerProfile
       name="testing"

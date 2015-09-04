@@ -14,7 +14,8 @@ from eea.facetednavigation.subtypes.interfaces import IFacetedNavigable
 from collective.eeafaceted.collectionwidget.widgets.widget import CollectionWidget
 
 from imio.dashboard import ImioDashboardMessageFactory as _
-from imio.dashboard.interfaces import NoFacetedViewDefinedException
+from imio.dashboard.config import DEFAULT_PORTLET_TITLE
+from imio.dashboard.utils import NoFacetedViewDefinedException
 from imio.dashboard.utils import getCollectionLinkCriterion
 
 
@@ -70,13 +71,12 @@ class Renderer(base.Renderer):
 
     def getPortletTitle(self):
         """Return the collection widget display name"""
-        default_title = 'Collections'
         try:
             criterion = getCollectionLinkCriterion(self._criteriaHolder)
         except NoFacetedViewDefinedException:
-            return default_title
+            return DEFAULT_PORTLET_TITLE
 
-        title = criterion and criterion.title or default_title
+        title = criterion and criterion.title or DEFAULT_PORTLET_TITLE
         return title
 
     def _isPortletOutsideFaceted(self, context, criteriaHolder):

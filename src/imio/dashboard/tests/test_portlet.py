@@ -7,8 +7,10 @@ from eea.facetednavigation.criteria.interfaces import ICriteria
 from collective.eeafaceted.collectionwidget.widgets.widget import CollectionWidget
 from plone import api
 from plone.portlets.interfaces import IPortletManager, IPortletRenderer
-from imio.dashboard.testing import IntegrationTestCase
+
 from imio.dashboard.browser import facetedcollectionportlet as portlet
+from imio.dashboard.testing import IntegrationTestCase
+from imio.dashboard.utils import getCollectionLinkCriterion
 
 
 class TestPortlet(IntegrationTestCase):
@@ -77,9 +79,13 @@ class TestPortlet(IntegrationTestCase):
              correctly initialized."""
         self.subtyper.enable()
         criteria = ICriteria(self.renderer._criteriaHolder)
+        # remove the collection-link widget
+        collcriterion = getCollectionLinkCriterion(self.renderer._criteriaHolder)
+        ICriteria(self.renderer._criteriaHolder).delete(collcriterion.getId())
         # by defaut no collection-link widget so nothing is rendered
         self.assertTrue(not [criterion for criterion in criteria.values()
                              if criterion.widget == CollectionWidget.widget_type])
+        self.assertFalse(getCollectionLinkCriterion(self.renderer._criteriaHolder))
         self.assertTrue(not self.renderer.widget_render)
         # add a collection-link widget
         data = {'vocabulary': 'collective.eeafaceted.collectionwidget.collectionvocabulary',
@@ -128,8 +134,8 @@ class TestPortlet(IntegrationTestCase):
         self.assertTrue(len(li_tag.getchildren()) == 1)
         a_tag = li_tag.getchildren()[0]
         # the URL is generated and contains every default values and relevant collection UID
-        url = "http://nohost/plone/folder#c0=5&c1=['Document']&c2=effective(reverse)&c4={0}".format(collection.UID())
-        self.assertTrue(a_tag.attrib['href'] == url)
+        url = "http://nohost/plone/folder#c3=20&c1={0}".format(collection.UID())
+        self.assertEquals(a_tag.attrib['href'], url)
 
     def test_portlet_render(self):
         """The portlet will be rendered without a fieldset and will contains rendered widgets."""
