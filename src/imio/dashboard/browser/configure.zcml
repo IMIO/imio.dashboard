@@ -22,6 +22,7 @@
         editview=".facetedcollectionportlet.EditForm"
     />
 
+    <!-- collective.eeafaceted.z3ctable -->
     <configure package="collective.eeafaceted.z3ctable">
         <browser:view
             for="Products.ATContentTypes.interfaces.folder.IATFolder"
@@ -43,6 +44,7 @@
         />
     </configure>
 
+    <!-- collective.eeafaceted.collectionwidget -->
     <browser:page
         for="*"
         name="render_collection_widget_term_portlet"
@@ -51,12 +53,28 @@
         permission="zope2.View"
         />
 
-  <browser:page
-    for="eea.facetednavigation.interfaces.IFacetedNavigable"
-    name="two_tables"
-    template="templates/two_tables.pt"
-    class="eea.facetednavigation.browser.app.view.FacetedContainerView"
-    permission="zope2.View"
-    />
+    <browser:page
+        for="eea.facetednavigation.interfaces.IFacetedNavigable"
+        name="two_tables"
+        template="templates/two_tables.pt"
+        class="eea.facetednavigation.browser.app.view.FacetedContainerView"
+        permission="zope2.View"
+        />
+
+
+    <!-- collective.documentgenerator -->
+    <browser:page
+        for="OFS.interfaces.IItem"
+        name="document-generation"
+        class="imio.dashboard.browser.overrides.IDDocumentGenerationView"
+        permission="zope2.View"
+        />
+    <browser:viewlet
+        for="OFS.interfaces.IItem"
+        name="document-generation-link"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+        class="imio.dashboard.browser.overrides.IDDocumentGeneratorLinksViewlet"
+        permission="zope2.View"
+        />
 
 </configure>

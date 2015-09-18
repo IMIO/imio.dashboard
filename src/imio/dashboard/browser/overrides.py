@@ -1,7 +1,13 @@
 # -*- coding: utf-8 -*-
+import json
+
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
 from plone.app.collection.interfaces import ICollection
+from eea.facetednavigation.interfaces import IFacetedNavigable
 
+from collective.documentgenerator.browser.generation_view import DocumentGenerationView
+from collective.documentgenerator.viewlets.generationlinks import DocumentGeneratorLinksViewlet
 from collective.eeafaceted.collectionwidget.widgets.widget import CollectionWidget
 from collective.eeafaceted.z3ctable.browser.views import FacetedTableView
 
@@ -46,3 +52,48 @@ class IDFacetedTableView(FacetedTableView):
                 column.weight = i
 
         super(IDFacetedTableView, self).orderColumns()
+
+
+class IDDocumentGenerationView(DocumentGenerationView):
+    """Override the 'get_generation_context' propertly so 'get_base_generation_context'
+       is available for sub-packages that want to extend the template generation context."""
+
+    def get_generation_context(self, helper_view):
+        """ """
+        uids = self.request.get('uids', '')
+        facetedQuery = self.request.get('facetedQuery', None)
+        generation_context = {}
+        brains = []
+        # if we did not receive itemUids, generate it, it is necessary for printing methods
+        if not uids and IFacetedNavigable.providedBy(self.context):
+            faceted_query = self.context.restrictedTraverse('@@faceted_query')
+            # maybe we have a facetedQuery? aka the meeting view was filtered and we want to print this result
+            if facetedQuery:
+                # put the facetedQuery criteria into the REQUEST.form
+                for k, v in json.JSONDecoder().decode(facetedQuery).items():
+                    # we receive list of elements, if we have only one elements, remove it from the list
+                    if len(v) == 1:
+                        v = v[0]
+                    self.request.form[k] = v
+            brains = faceted_query.query(batch=False)
+            uids = [brain.UID for brain in brains]
+        else:
+            uids = uids.split(',')
+        generation_context['uids'] = uids
+
+        # if we have uids, let 'brains' be directly available in the template context too
+        # brains could already fetched, if it is the case, use it, get it otherwise
+        if not brains:
+            catalog = getToolByName(self.context, 'portal_catalog')
+            brains = catalog(UID=uids)
+
+        generation_context['brains'] = brains
+        generation_context.update(super(IDDocumentGenerationView, self).get_generation_context(helper_view))
+        return generation_context
+
+
+class IDDocumentGeneratorLinksViewlet(DocumentGeneratorLinksViewlet):
+    """Make the viewlet aware of the 'select box' column displayed
+       using collective.eeafaceted.z3ctable in a eea.facetednavigation."""
+
+    render = ViewPageTemplateFile('templates/generationlinks.pt')

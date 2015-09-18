@@ -4,8 +4,10 @@ Changelog
 
 0.5 (unreleased)
 ----------------
-
-- Nothing changed yet.
+- Rely on collective.documentgenerator and override the 'document-generation' view
+  and the 'generationlink' viewlet so it is possible to generate a document from
+  elements displayed in a dashboard.
+  [gbastien]
 
 
 0.4 (2015-09-04)
@@ -21,6 +23,7 @@ Changelog
 - Added helpers methods utils.getCollectionLinkCriterion and
   utils._updateDefaultCollectionFor.
   [sdelcourt]
+
 
 0.3 (2015-08-21)
 ----------------
@@ -38,10 +41,10 @@ Changelog
 -  Fix DashboardCollection object name in type definition
   [cedricmessiant]
 
+
 0.1 (2015-07-14)
 ----------------
 - Added portlet that shows Collection widget defined on a faceted nav enabled folder.
   [gbastien]
-
 - Initial release.
   [IMIO]

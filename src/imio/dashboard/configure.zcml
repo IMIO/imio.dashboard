@@ -15,6 +15,7 @@
     <include package="collective.monkeypatcher" file="meta.zcml" />
     <include package="collective.behavior.talcondition"/>
     <include package="collective.compoundcriterion"/>
+    <include package="collective.documentgenerator"/>
     <include package="collective.eeafaceted.collectionwidget"/>
     <include package="collective.eeafaceted.z3ctable"/>
     <include package="collective.js.iframeresizer"/>

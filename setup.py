@@ -47,6 +47,7 @@ setup(
         'setuptools',
         'collective.behavior.talcondition',
         'collective.compoundcriterion',
+        'collective.documentgenerator',
         'collective.eeafaceted.collectionwidget',
         'collective.eeafaceted.z3ctable',
         'imio.actionspanel',
