@@ -87,6 +87,11 @@ class IDDocumentGenerationView(DocumentGenerationView):
             catalog = getToolByName(self.context, 'portal_catalog')
             brains = catalog(UID=uids)
 
+            # we need to sort found brains according to uids
+            def getKey(item):
+                return uids.index(item.UID)
+            brains = sorted(brains, key=getKey)
+
         generation_context['brains'] = brains
         generation_context.update(super(IDDocumentGenerationView, self).get_generation_context(helper_view))
         return generation_context
