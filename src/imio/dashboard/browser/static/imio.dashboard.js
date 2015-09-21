@@ -2,8 +2,8 @@ Faceted.Options.FADE_SPEED=0;
 Faceted.Options.SHOW_SPINNER=false;
 
 // Function that allows to generate a document aware of table listing documents in a faceted navigation.
-function generatePodDocument(template_uid, output_format) {
-    var theForm = document.forms["podTemplateForm"];
+function generatePodDocument(template_uid, output_format, tag) {
+    theForm = $(tag).parents('form')[0];
     theForm.template_uid.value = template_uid;
     theForm.output_format.value = output_format;
     var hasCheckBoxes = 0;
