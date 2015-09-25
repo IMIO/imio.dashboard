@@ -10,7 +10,7 @@ install:
 script:
   - bin/test
 after_success:
-  - bin/coverage
+  - bin/coverage run bin/test
   - pip install coveralls
   - coveralls
 
