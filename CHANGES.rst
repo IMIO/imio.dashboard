@@ -8,6 +8,9 @@ Changelog
   and the 'generationlink' viewlet so it is possible to generate a document from
   elements displayed in a dashboard.
   [gbastien]
+- Added helper method utils.getCurrentCollection that will return the current
+  collection used by a CollectionWidget in a faceted.
+  [gbastien]
 
 
 0.4 (2015-09-04)

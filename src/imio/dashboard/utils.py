@@ -2,6 +2,7 @@
 import logging
 from os import path
 from zope.interface import noLongerProvides
+from Products.CMFCore.utils import getToolByName
 
 from collective.eeafaceted.collectionwidget.widgets.widget import CollectionWidget
 
@@ -29,6 +30,17 @@ def getCollectionLinkCriterion(faceted_context):
     for criterion in criteria:
         if criterion.widget == CollectionWidget.widget_type:
             return criterion
+
+
+def getCurrentCollection(faceted_context):
+    """Return the Collection currently used by the faceted :
+       - first get the collection criterion;
+       - then look in the request the used UID and get the corresponding Collection."""
+    criterion = getCollectionLinkCriterion(faceted_context)
+    collectionUID = faceted_context.REQUEST.form.get('{0}[]'.format(criterion.__name__))
+    if collectionUID:
+        catalog = getToolByName(faceted_context, 'portal_catalog')
+        return catalog(UID=collectionUID)[0].getObject()
 
 
 def enableFacetedDashboardFor(obj, xmlpath=None):

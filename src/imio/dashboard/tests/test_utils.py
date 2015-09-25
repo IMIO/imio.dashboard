@@ -9,6 +9,7 @@ from eea.facetednavigation.interfaces import IHidePloneLeftColumn
 from imio.dashboard.testing import IntegrationTestCase
 from imio.dashboard.utils import enableFacetedDashboardFor
 from imio.dashboard.utils import getCollectionLinkCriterion
+from imio.dashboard.utils import getCurrentCollection
 from imio.dashboard.utils import NoFacetedViewDefinedException
 from imio.dashboard.utils import _updateDefaultCollectionFor
 
@@ -29,6 +30,24 @@ class TestUtils(IntegrationTestCase):
         folder2_id = self.portal.invokeFactory('Folder', 'folder2', title='Folder2')
         folder2 = getattr(self.portal, folder2_id)
         self.assertRaises(NoFacetedViewDefinedException, getCollectionLinkCriterion, folder2)
+
+    def test_getCurrentCollection(self):
+        """Returns the Collection currently used by the CollectionWidget in a faceted."""
+        # add a DashboardCollection to self.folder
+        dashcoll_id = self.folder.invokeFactory('DashboardCollection', 'dashcoll', title='Dashboard Collection')
+        dashcoll = getattr(self.folder, dashcoll_id)
+        dashcoll.reindexObject()
+
+        # current collection is get with collectionLink id in the REQUEST, not set for now
+        criterion = getCollectionLinkCriterion(self.folder)
+        criterion_name = '{0}[]'.format(criterion.__name__)
+        request = self.portal.REQUEST
+        self.assertFalse(criterion_name in request)
+        self.assertIsNone(getCurrentCollection(self.folder))
+
+        # set a correct collection in the REQUEST
+        request.form[criterion_name] = dashcoll.UID()
+        self.assertEquals(getCurrentCollection(self.folder), dashcoll)
 
     def test_enableFacetedDashboardFor(self):
         """This method will enable the faceted navigation for a given folder."""
