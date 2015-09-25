@@ -80,5 +80,13 @@
         layer="imio.dashboard.interfaces.IImioDashboardLayer"
         permission="zope2.View"
         />
+    <browser:viewlet
+        for="OFS.interfaces.IItem"
+        name="document-generation-link"
+        manager="collective.eeafaceted.z3ctable.interfaces.ITopManager"
+        class="imio.dashboard.browser.overrides.IDDashboardDocumentGeneratorLinksViewlet"
+        layer="imio.dashboard.interfaces.IImioDashboardLayer"
+        permission="zope2.View"
+        />
 
 </configure>
