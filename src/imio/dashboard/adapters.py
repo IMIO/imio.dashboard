@@ -5,7 +5,7 @@ from Products.Archetypes.atapi import DisplayList
 from collective.eeafaceted.z3ctable.interfaces import IFacetedColumn
 
 from zope.component import getGlobalSiteManager
-from zope.i18n import translate as _
+from zope.i18n import translate
 
 from imio.dashboard.utils import getCollectionLinkCriterion
 
@@ -31,7 +31,9 @@ class CustomViewFieldsVocabularyAdapter(object):
                    if issubclass(adapter.provided, IFacetedColumn)]
 
         vocabulary = DisplayList(
-            [(name, _(name, 'collective.eeafaceted.z3ctable', context=self.request)) for name in columns]
+            [(name, translate(name,
+                              'collective.eeafaceted.z3ctable',
+                              context=self.request)) for name in columns]
         ).sortedByValue()
 
         return vocabulary
