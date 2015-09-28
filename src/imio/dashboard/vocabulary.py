@@ -14,11 +14,12 @@ from collective.behavior.talcondition.interfaces import ITALConditionable
 from collective.behavior.talcondition.utils import evaluateExpressionFor
 from collective.eeafaceted.collectionwidget.vocabulary import CollectionVocabulary
 
+from imio.dashboard.interfaces import IDashboardCollection
+
 from Products.CMFCore.utils import getToolByName
 
 
 class ConditionAwareCollectionVocabulary(CollectionVocabulary):
-
     def __call__(self, context, query=None):
         """Same behaviour as the original CollectionVocabulary
            but we will filter Collections regarding the defined tal_condition."""
@@ -70,3 +71,21 @@ class CreatorsVocabulary(object):
         return SimpleVocabulary(res)
 
 CreatorsVocabularyFactory = CreatorsVocabulary()
+
+
+class DashboardCollectionsVocabulary(object):
+    """
+    Vocabulary factory for 'dashboard_collections' field of DashboardPODTemplate.
+    """
+
+    implements(IVocabularyFactory)
+
+    def __call__(self, context):
+        catalog = api.portal.get_tool('portal_catalog')
+        collection_brains = catalog(object_provides=IDashboardCollection.__identifier__)
+        vocabulary = SimpleVocabulary(
+            [SimpleTerm(b.UID, b.UID, b.Title) for b in collection_brains]
+        )
+        return vocabulary
+
+DashboardCollectionsVocabularyFactory = DashboardCollectionsVocabulary()
