@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-05-18 13:14+0000\n"
+"POT-Creation-Date: 2015-09-28 12:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,19 +14,35 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: ./browser/facetedcollectionportlet.py:90
+#: ./profiles/default/types/DashboardPODTemplate.xml
+msgid "A document to generate on a dashboard."
+msgstr "Un document à générer depuis un tableau de bord."
+
+#: ./browser/facetedcollectionportlet.py:113
 msgid "Add Collection Criteria Portlet"
 msgstr "Ajouter portlet 'Faceted Collection'"
+
+#: ./content/pod_template.py:29
+msgid "Allowed dashboard collections"
+msgstr "Tableaux de bord autorisés"
 
 #. Default: "Collection used in dashboard"
 msgid "Collection used in imio.dashboard"
 msgstr "Collection utilisée dans les tableaux de bord"
 
-#: ./browser/facetedcollectionportlet.py:99
+#: ./profiles/default/types/DashboardPODTemplate.xml
+msgid "DashboardPODTemplate"
+msgstr "Modèle de document POD pour tableau de bord"
+
+#: ./browser/facetedcollectionportlet.py:122
 msgid "Edit Collection Criteria Portlet"
 msgstr "Editer portlet 'Faceted Collection'"
 
-#: ./browser/facetedcollectionportlet.py:91
+#: ./content/pod_template.py:30
+msgid "Select for which dashboard collections the template will be available."
+msgstr "Sélectionnez les tableaux de bord pour lesquels le modèle sera disponible."
+
+#: ./browser/facetedcollectionportlet.py:114
 msgid "This portlet shows controls for faceted with collections."
 msgstr "Ce portlet affiche les widgets collection définis sur un dossier utilisant une vue à facettes"
 

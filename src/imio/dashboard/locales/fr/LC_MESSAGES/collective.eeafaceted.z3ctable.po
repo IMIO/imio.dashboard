@@ -15,6 +15,9 @@ msgstr ""
 "Domain: collective.eeafaceted.z3ctable\n"
 "X-is-fallback-for: fr-fr fr-be fr-ca\n"
 
+msgid "actions"
+msgstr "Actions"
+
 #. Default: "Actions"
 msgid "header_actions"
 msgstr "Actions"
@@ -23,11 +26,9 @@ msgstr "Actions"
 msgid "header_pretty_link"
 msgstr "Titre"
 
-msgid "actions"
-msgstr "Actions"
-
 msgid "pretty_link"
 msgstr "Titre (lien)"
 
 msgid "select_row"
 msgstr "Sélection"
+
