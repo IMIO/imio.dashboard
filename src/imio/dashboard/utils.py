@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import logging
+import json
 from os import path
 from zope.interface import noLongerProvides
 from Products.CMFCore.utils import getToolByName
@@ -13,6 +13,7 @@ from eea.facetednavigation.layout.interfaces import IFacetedLayout
 
 from imio.dashboard.config import NO_FACETED_EXCEPTION_MSG
 
+import logging
 logger = logging.getLogger('imio.dashboard: utils')
 
 
@@ -38,6 +39,10 @@ def getCurrentCollection(faceted_context):
        - then look in the request the used UID and get the corresponding Collection."""
     criterion = getCollectionLinkCriterion(faceted_context)
     collectionUID = faceted_context.REQUEST.form.get('{0}[]'.format(criterion.__name__))
+    # if not collectionUID, maybe we have a 'facetedQuery' in the REQUEST
+    if not collectionUID and 'facetedQuery' in faceted_context.REQUEST.form:
+        query = json.loads(faceted_context.REQUEST.form['facetedQuery'])
+        collectionUID = query.get(criterion.__name__)
     if collectionUID:
         catalog = getToolByName(faceted_context, 'portal_catalog')
         return catalog(UID=collectionUID)[0].getObject()

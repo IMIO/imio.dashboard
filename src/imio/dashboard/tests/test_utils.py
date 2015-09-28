@@ -34,7 +34,9 @@ class TestUtils(IntegrationTestCase):
     def test_getCurrentCollection(self):
         """Returns the Collection currently used by the CollectionWidget in a faceted."""
         # add a DashboardCollection to self.folder
-        dashcoll_id = self.folder.invokeFactory('DashboardCollection', 'dashcoll', title='Dashboard Collection')
+        dashcoll_id = self.folder.invokeFactory('DashboardCollection',
+                                                'dashcoll',
+                                                title='Dashboard Collection')
         dashcoll = getattr(self.folder, dashcoll_id)
         dashcoll.reindexObject()
 
@@ -47,6 +49,14 @@ class TestUtils(IntegrationTestCase):
 
         # set a correct collection in the REQUEST
         request.form[criterion_name] = dashcoll.UID()
+        self.assertEquals(getCurrentCollection(self.folder), dashcoll)
+
+        # it works also with 'facetedQuery' build in the REQUEST when generating
+        # a template on a dashboard
+        del request.form[criterion_name]
+        self.assertIsNone(getCurrentCollection(self.folder))
+        request.form['facetedQuery'] = '{{"c3":["20"],"b_start":["0"],"{0}":["{1}"]}}'.format(
+            criterion.__name__, dashcoll.UID())
         self.assertEquals(getCurrentCollection(self.folder), dashcoll)
 
     def test_enableFacetedDashboardFor(self):
