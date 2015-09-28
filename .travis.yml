@@ -10,8 +10,8 @@ install:
 script:
   - bin/test
 after_success:
-  - bin/coverage
-  - pip install coveralls
+  - bin/createcoverage
+  - pip install coveralls==0.5
   - coveralls
 
 notifications:
