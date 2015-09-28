@@ -32,6 +32,8 @@ class IDFacetedTableView(FacetedTableView):
                 if criterion.widget == CollectionWidget.widget_type:
                     # value is stored in the request with ending [], like 'c4[]'
                     collectionUID = self.request.get('{0}[]'.format(criterion.getId()))
+                    if not collectionUID:
+                        continue
                     catalog = getToolByName(self.context, 'portal_catalog')
                     collection = catalog(UID=collectionUID)
                     if collection:
