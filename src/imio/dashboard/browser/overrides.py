@@ -8,6 +8,7 @@ from plone.app.collection.interfaces import ICollection
 from eea.facetednavigation.interfaces import IFacetedNavigable
 
 from collective.documentgenerator.browser.generation_view import DocumentGenerationView
+from collective.documentgenerator.content.pod_template import IPODTemplate
 from collective.documentgenerator.viewlets.generationlinks import DocumentGeneratorLinksViewlet
 from collective.eeafaceted.collectionwidget.widgets.widget import CollectionWidget
 from collective.eeafaceted.z3ctable.browser.views import FacetedTableView
@@ -114,6 +115,19 @@ class IDDocumentGeneratorLinksViewlet(DocumentGeneratorLinksViewlet):
         available = super(IDDocumentGeneratorLinksViewlet, self).available()
         no_faceted_context = not bool(IFacetedNavigable.providedBy(self.context))
         return no_faceted_context and available
+
+    def get_all_pod_templates(self):
+        """
+        Override to only return NOT dashboard templates.
+        """
+        catalog = api.portal.get_tool(name='portal_catalog')
+        brains = catalog.unrestrictedSearchResults(
+            object_provides={'query': IPODTemplate.__identifier__,
+                             'not': IDashboardPODTemplate.__identifier__},
+        )
+        pod_templates = [self.context.unrestrictedTraverse(brain.getPath()) for brain in brains]
+
+        return pod_templates
 
 
 class IDDashboardDocumentGeneratorLinksViewlet(DocumentGeneratorLinksViewlet):

@@ -11,6 +11,8 @@ Changelog
 - Added helper method utils.getCurrentCollection that will return the current
   collection used by a CollectionWidget in a faceted.
   [gbastien]
+- Rely on Products.ZCatalog >= 3 to be able to use 'not:' statement in queries.
+  [gbastien]
 
 
 0.4 (2015-09-04)
