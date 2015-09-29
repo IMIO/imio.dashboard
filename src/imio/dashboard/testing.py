@@ -84,6 +84,7 @@ class IntegrationTestCase(unittest.TestCase):
     def setUp(self):
         super(IntegrationTestCase, self).setUp()
         self.portal = self.layer['portal']
+        self.request = self.portal.REQUEST
         self.folder = self.portal.get('folder')
         enableFacetedDashboardFor(self.folder)
         self.faceted_table = self.folder.restrictedTraverse('faceted-table-view')

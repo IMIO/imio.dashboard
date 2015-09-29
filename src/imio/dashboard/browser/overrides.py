@@ -126,8 +126,11 @@ class IDDocumentGeneratorLinksViewlet(DocumentGeneratorLinksViewlet):
         brains = catalog.unrestrictedSearchResults(
             object_provides={'query': IPODTemplate.__identifier__,
                              'not': IDashboardPODTemplate.__identifier__},
+            sort_on='getObjPositionInParent'
         )
         pod_templates = [self.context.unrestrictedTraverse(brain.getPath()) for brain in brains]
+        # we display templates 'float:right' ...
+        pod_templates.reverse()
 
         return pod_templates
 
@@ -151,8 +154,11 @@ class IDDashboardDocumentGeneratorLinksViewlet(DocumentGeneratorLinksViewlet):
         """
         catalog = api.portal.get_tool(name='portal_catalog')
         brains = catalog.unrestrictedSearchResults(
-            object_provides=IDashboardPODTemplate.__identifier__
+            object_provides=IDashboardPODTemplate.__identifier__,
+            sort_on='getObjPositionInParent'
         )
         pod_templates = [self.context.unrestrictedTraverse(brain.getPath()) for brain in brains]
+        # we display templates 'float:right' ...
+        pod_templates.reverse()
 
         return pod_templates
