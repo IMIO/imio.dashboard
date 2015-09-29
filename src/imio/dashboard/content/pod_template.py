@@ -49,12 +49,12 @@ class DashboardPODTemplateCondition(ConfigurablePODTemplateCondition):
         """
         Check:
         - Previous conditions.
-        - That we are on an allowed dashboard collection.
+        - That we are on an allowed dashboard collection (if any defined).
         """
-        previous_conditions = super(DashboardPODTemplateCondition, self).evaluate()
         current_collection = getCurrentCollection(self.context)
-        if not current_collection:
+        allowed_collections = self.pod_template.dashboard_collections
+        if not current_collection or \
+           (allowed_collections and not current_collection.UID() in allowed_collections):
             return False
-        allowed_collection = current_collection.UID() in self.pod_template.dashboard_collections
 
-        return previous_conditions and allowed_collection
+        return super(DashboardPODTemplateCondition, self).evaluate()
