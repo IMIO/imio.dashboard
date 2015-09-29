@@ -157,3 +157,9 @@ table.listing th.th_header_check_box_item {
     text-align: center;
     width: 1%;
 }
+
+body.template-facetednavigation_view.portaltype-folder div#faceted-results div#doc-generation-view {
+    margin-top: -28px;
+    position: absolute;
+    right: 0.5em;
+}
