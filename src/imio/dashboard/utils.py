@@ -40,7 +40,8 @@ def getCurrentCollection(faceted_context):
     criterion = getCollectionLinkCriterion(faceted_context)
     collectionUID = faceted_context.REQUEST.form.get('{0}[]'.format(criterion.__name__))
     # if not collectionUID, maybe we have a 'facetedQuery' in the REQUEST
-    if not collectionUID and 'facetedQuery' in faceted_context.REQUEST.form:
+    if not collectionUID and \
+       ('facetedQuery' in faceted_context.REQUEST.form and faceted_context.REQUEST.form['facetedQuery']):
         query = json.loads(faceted_context.REQUEST.form['facetedQuery'])
         collectionUID = query.get(criterion.__name__)
     if collectionUID:
