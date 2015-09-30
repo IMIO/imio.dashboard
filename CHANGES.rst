@@ -13,6 +13,9 @@ Changelog
   [gbastien]
 - Rely on Products.ZCatalog >= 3 to be able to use 'not:' statement in queries.
   [gbastien]
+- Add DashboardPODtemplate type. This type of pod template is configurable to
+  choose on which dashboard it is available/generable.
+  [sdelcourt]
 
 
 0.4 (2015-09-04)
