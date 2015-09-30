@@ -6,12 +6,11 @@ function generatePodDocument(template_uid, output_format, tag) {
     theForm = $(tag).parents('form')[0];
     theForm.template_uid.value = template_uid;
     theForm.output_format.value = output_format;
+    // manage the facetedquery
+    theForm.facetedQuery.value = JSON.stringify(Faceted.Query);
     var hasCheckBoxes = 0;
     // if not checkboxes detected, do not manage uids, we are not on a table
-    if (!$('input[name="select_item"]').length) {
-        theForm.submit();
-    }
-    else {
+    if ($('input[name="select_item"]').length) {
         var uids = selectedCheckBoxes('select_item');
         if (!uids.length) {
             alert(no_selected_items);
@@ -22,10 +21,8 @@ function generatePodDocument(template_uid, output_format, tag) {
             if ($('input[name="select_item"]').length === uids.length) {
                 uids = [];
             }
-            // pass the facetedquery
-            theForm.facetedQuery.value = JSON.stringify(Faceted.Query);
             theForm.uids.value = uids;
-            theForm.submit();
         }
     }
+    theForm.submit();
 }
