@@ -74,6 +74,17 @@ class TestDocumentGeneration(IntegrationTestCase):
         gen_context = self.view._get_generation_context(self.helper)
         self.assertEquals(len(gen_context['uids']), 1)
 
+        # facetedQuery is passed to the generation context as json
+        # reset query, back to 2 elements found
+        self.request.form = {}
+        self.assertEquals(len(faceted_query.query()), 2)
+        gen_context = self.view._get_generation_context(self.helper)
+        self.assertEquals(len(gen_context['uids']), 2)
+        # 'facetedQuery' is received as a serialized JSON of query criteria
+        self.request.form['facetedQuery'] = '{"c2":"Folder 2"}'
+        gen_context = self.view._get_generation_context(self.helper)
+        self.assertEquals(len(gen_context['uids']), 1)
+
     def test_get_generation_context_filtered_uids(self):
         """We may also filter 'uids' directly if set in the REQUEST."""
         # for now 2 elements
