@@ -12,12 +12,14 @@ This package does the glue between :
 - collective.eeafaceted.collectionwidget
 - collective.eeafaceted.z3ctable
 - collective.compoundcriterion
+- collective.documentgenerator
 
 This build a useable dashboard tool by adapting following things :
 
 - displaying the collectionwidget in a portlet;
 - defining an adapter to easily extend the plone.app.collection customViewFields to add our own columns;
 - adding a DashboardCollection based on plone.app.collection Collection;
+- being able to generate a POD template from what is displayed in a dashboard;
 - styling of displayed dashboard.
 
 Distant faceted config :
