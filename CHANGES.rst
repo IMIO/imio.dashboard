@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.5 (unreleased)
+0.5 (2015-10-01)
 ----------------
 - Rely on collective.documentgenerator and override the 'document-generation' view
   and the 'generationlink' viewlet so it is possible to generate a document from
