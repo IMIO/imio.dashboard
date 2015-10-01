@@ -9,6 +9,7 @@ from plone import api
 from plone.portlets.interfaces import IPortletManager, IPortletRenderer
 
 from imio.dashboard.browser import facetedcollectionportlet as portlet
+from imio.dashboard.config import DEFAULT_PORTLET_TITLE
 from imio.dashboard.testing import IntegrationTestCase
 from imio.dashboard.utils import getCollectionLinkCriterion
 
@@ -145,6 +146,6 @@ class TestPortlet(IntegrationTestCase):
         self.assertTrue("<fieldset" not in rendered)
         self.assertTrue(self.renderer.widget_render in rendered)
 
-    def test_portlet_assignment_title(self):
+    def test_portlet_title(self):
         """ """
-        self.assertTrue(self.assignment.title == u"Collections widget")
+        self.assertTrue(self.assignment.title == DEFAULT_PORTLET_TITLE)

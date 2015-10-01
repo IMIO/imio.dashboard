@@ -28,7 +28,7 @@ class Assignment(base.Assignment):
 
     @property
     def title(self):
-        return u"Collections widget"
+        return DEFAULT_PORTLET_TITLE
 
 
 class Renderer(base.Renderer):
