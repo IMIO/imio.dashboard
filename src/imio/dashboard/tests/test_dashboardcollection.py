@@ -45,3 +45,11 @@ class TestDashboardCollection(IntegrationTestCase):
         self.dashboardcollection.setCustomViewFields(['Title', 'Creator', 'actions'])
         # selectedViewFields returns [('Title', u'Title'), ('Creator', 'Creator')]
         self.assertTrue([elt[0] for elt in self.dashboardcollection.selectedViewFields()] == ['Title', 'Creator', ])
+
+    def test_displayCatalogQuery(self):
+        """This will display a readable version if the catalog query."""
+        self.dashboardcollection.query = [
+            {'i': 'portal_type', 'o': 'plone.app.querystring.operation.selection.is', 'v': ['Folder', ]},
+        ]
+        self.assertEquals(self.dashboardcollection.displayCatalogQuery(),
+                          {'portal_type': {'query': ['Folder']}})
