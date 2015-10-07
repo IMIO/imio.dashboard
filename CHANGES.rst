@@ -8,6 +8,8 @@ Changelog
 - Omit field 'pod_portal_types' for DashboardPODTemplate, it is useless as it
   is always available for Folders.
   [gbastien]
+- Do not fail when extracting facetedQuery values if we receive an 'int'.
+  [gbastien]
 
 
 0.5 (2015-10-01)

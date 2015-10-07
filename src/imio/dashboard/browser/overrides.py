@@ -78,7 +78,7 @@ class IDDocumentGenerationView(DocumentGenerationView):
                 # put the facetedQuery criteria into the REQUEST.form
                 for k, v in json.JSONDecoder().decode(facetedQuery).items():
                     # we receive list of elements, if we have only one elements, remove it from the list
-                    if len(v) == 1:
+                    if isinstance(v, list) and len(v) == 1:
                         v = v[0]
                     self.request.form[k] = v
             brains = faceted_query.query(batch=False)
