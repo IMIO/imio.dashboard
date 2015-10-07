@@ -10,7 +10,8 @@ Changelog
   [gbastien]
 - Do not fail when extracting facetedQuery values if we receive an 'int'.
   [gbastien]
-
+- Added content_type icon for DashboardPODTemplate.
+  [gbastien]
 
 0.5 (2015-10-01)
 ----------------

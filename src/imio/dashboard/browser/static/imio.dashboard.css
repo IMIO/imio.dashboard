@@ -118,12 +118,20 @@ div.listingBar span.next {
     font-weight: bold;
 }
 
-/* icon for DashboardCollection, use same as Collection */
+/* icon for DashboardCollection */
 .icons-on .contenttype-dashboardcollection {
     display: inline-block;
     line-height: 2em;
     padding-left: 20px !important;
     background: url("dashboardcollection.png") no-repeat 0 transparent;
+}
+
+/* icon for DashboardPODTemplate */
+.icons-on .contenttype-dashboardpodtemplate {
+    display: inline-block;
+    line-height: 2em;
+    padding-left: 20px !important;
+    background: url("dashboardpodtemplate.png") no-repeat 0 transparent;
 }
 
 /* align icons and pretty link correctly */
