@@ -5,7 +5,9 @@ Changelog
 0.6 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Omit field 'pod_portal_types' for DashboardPODTemplate, it is useless as it
+  is always available for Folders.
+  [gbastien]
 
 
 0.5 (2015-10-01)

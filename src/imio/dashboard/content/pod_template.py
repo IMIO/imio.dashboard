@@ -27,10 +27,12 @@ class IDashboardPODTemplate(IConfigurablePODTemplate):
     form.widget('dashboard_collections', SelectWidget, multiple='multiple', size=15)
     dashboard_collections = schema.List(
         title=_(u'Allowed dashboard collections'),
-        description=_(u'Select for which dashboard collections the template will be available.'),
+        description=_(u'Select for which dashboard collections the template will be available. '
+                      u'If nothing is selected, the template will be available on every dashboards.'),
         value_type=schema.Choice(source='imio.dashboard.collectionsvocabulary'),
         required=True,
     )
+    form.omitted('pod_portal_types')
 
 
 class DashboardPODTemplate(ConfigurablePODTemplate):

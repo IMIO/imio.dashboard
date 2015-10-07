@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-09-28 12:46+0000\n"
+"POT-Creation-Date: 2015-10-07 08:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,7 +42,7 @@ msgid "Edit Collection Criteria Portlet"
 msgstr ""
 
 #: ./content/pod_template.py:30
-msgid "Select for which dashboard collections the template will be available."
+msgid "Select for which dashboard collections the template will be available. If nothing is selected, the template will be available on every dashboards."
 msgstr ""
 
 #: ./browser/facetedcollectionportlet.py:114
