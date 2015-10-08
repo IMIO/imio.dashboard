@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.6 (unreleased)
+0.6 (2015-10-08)
 ----------------
 
 - Omit field 'pod_portal_types' for DashboardPODTemplate, it is useless as it
