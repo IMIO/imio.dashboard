@@ -5,10 +5,11 @@ cache:
   pip: true
   directories:
     - $HOME/buildout-cache
-install:
-  - easy_install --version
-  - pip install setuptools==18.3.2
+before_install:
   - mkdir -p $HOME/buildout-cache/{eggs,downloads}
+  - virtualenv .
+  - bin/pip install --upgrade pip setuptools zc.buildout
+install:
   - python bootstrap.py -c travis.cfg
   - bin/buildout -Nc travis.cfg
 script:
