@@ -5,7 +5,9 @@ Changelog
 0.7 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Give permission 'eea.facetednavigation: Configure faceted' 
+  only for 'Manager' by default.
+  [gbastien]
 
 
 0.6 (2015-10-08)
