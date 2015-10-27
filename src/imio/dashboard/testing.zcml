@@ -4,10 +4,6 @@
     i18n_domain="imio.dashboard">
 
   <include file="configure.zcml" />
-
-  <include package="collective.eeafaceted.collectionwidget" />
-  <include package="collective.compoundcriterion" />
-  <include package="imio.actionspanel" />
   <includeOverrides file="overrides.zcml" />
 
   <genericsetup:registerProfile
