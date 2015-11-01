@@ -70,7 +70,7 @@ class IDDocumentGenerationView(DocumentGenerationView):
         facetedQuery = self.request.get('facetedQuery', None)
         generation_context = {}
         brains = []
-        # if we did not receive itemUids, generate it, it is necessary for printing methods
+        # if we did not receive uids, then find it using faceted query
         if not uids and IFacetedNavigable.providedBy(self.context):
             faceted_query = self.context.restrictedTraverse('@@faceted_query')
             # maybe we have a facetedQuery? aka the meeting view was filtered and we want to print this result
@@ -89,7 +89,7 @@ class IDDocumentGenerationView(DocumentGenerationView):
 
         # if we have uids, let 'brains' be directly available in the template context too
         # brains could already fetched, if it is the case, use it, get it otherwise
-        if not brains:
+        if not brains and uids:
             catalog = getToolByName(self.context, 'portal_catalog')
             brains = catalog(UID=uids)
 
