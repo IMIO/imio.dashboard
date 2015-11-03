@@ -21,16 +21,22 @@ class NoFacetedViewDefinedException(Exception):
     """ To be raised when a context has no faceted view defined on it. """
 
 
-def getCollectionLinkCriterion(faceted_context):
-    """Return the CollectionLink criterion instance of a
+def _get_criterion(faceted_context, criterion_type):
+    """Return the given criterion_type instance of a
        context with a faceted navigation/search view on it."""
     if not IFacetedNavigable.providedBy(faceted_context):
         raise NoFacetedViewDefinedException(NO_FACETED_EXCEPTION_MSG)
 
     criteria = ICriteria(faceted_context).criteria
     for criterion in criteria:
-        if criterion.widget == CollectionWidget.widget_type:
+        if criterion.widget == criterion_type:
             return criterion
+
+
+def getCollectionLinkCriterion(faceted_context):
+    """Return the CollectionLink criterion used by faceted_context."""
+    return _get_criterion(faceted_context,
+                          criterion_type=CollectionWidget.widget_type)
 
 
 def getCurrentCollection(faceted_context):

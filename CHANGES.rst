@@ -8,7 +8,10 @@ Changelog
 - Give permission 'eea.facetednavigation: Configure faceted' 
   only for 'Manager' by default.
   [gbastien]
-
+- Added a submethod utils._get_criterion that gets any widget type
+  of a given faceted_context, it is now used by utils.getCollectionLinkCriterion
+  and may be used alone if necessary.
+  [gbastien]
 
 0.6 (2015-10-08)
 ----------------

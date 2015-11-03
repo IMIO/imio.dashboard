@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 import os
 from collective.eeafaceted.collectionwidget.widgets.widget import CollectionWidget
+from eea.facetednavigation.widgets.sorting.widget import Widget as SortingWidget
 from eea.facetednavigation.interfaces import ICriteria
 from eea.facetednavigation.interfaces import IFacetedLayout
 from eea.facetednavigation.interfaces import IFacetedNavigable
 from eea.facetednavigation.interfaces import IHidePloneLeftColumn
 
 from imio.dashboard.testing import IntegrationTestCase
+from imio.dashboard.utils import _get_criterion
 from imio.dashboard.utils import enableFacetedDashboardFor
 from imio.dashboard.utils import getCollectionLinkCriterion
 from imio.dashboard.utils import getCurrentCollection
@@ -16,6 +18,17 @@ from imio.dashboard.utils import _updateDefaultCollectionFor
 
 class TestUtils(IntegrationTestCase):
     """Test the utils."""
+
+    def test__get_criterion(self):
+        """This method is used by getCollectionLinkCriterion to get
+           the current CollectionWidget but may be used to get any
+           kind of criterion."""
+        # get the collection widget
+        self.assertEquals(_get_criterion(self.folder, CollectionWidget.widget_type).widget,
+                          CollectionWidget.widget_type)
+        # get the sorting widget
+        self.assertEquals(_get_criterion(self.folder, SortingWidget.widget_type).widget,
+                          SortingWidget.widget_type)
 
     def test_getCollectionLinkCriterion(self):
         """This method will return the Collection-link widget defined on a folder if ever."""
