@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.8 (unreleased)
+0.8 (2015-11-03)
 ----------------
 - Release that corrects the wrong 0.7 release.
   [gbastien]
