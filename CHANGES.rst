@@ -4,13 +4,12 @@ Changelog
 
 0.8 (unreleased)
 ----------------
-
-- Nothing changed yet.
+- Release that corrects the wrong 0.7 release.
+  [gbastien]
 
 
 0.7 (2015-11-03)
 ----------------
-
 - Give permission 'eea.facetednavigation: Configure faceted' 
   only for 'Manager' by default.
   [gbastien]
@@ -19,9 +18,9 @@ Changelog
   and may be used alone if necessary.
   [gbastien]
 
+
 0.6 (2015-10-08)
 ----------------
-
 - Omit field 'pod_portal_types' for DashboardPODTemplate, it is useless as it
   is always available for Folders.
   [gbastien]
@@ -29,6 +28,7 @@ Changelog
   [gbastien]
 - Added content_type icon for DashboardPODTemplate.
   [gbastien]
+
 
 0.5 (2015-10-01)
 ----------------
