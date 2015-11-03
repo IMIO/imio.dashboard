@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+0.9 (unreleased)
+----------------
+
+- Nothing changed yet.
+
+
 0.8 (2015-11-03)
 ----------------
 - Release that corrects the wrong 0.7 release.
