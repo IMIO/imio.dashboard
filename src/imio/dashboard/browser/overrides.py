@@ -81,7 +81,6 @@ class IDDocumentGenerationView(DocumentGenerationView):
                     if isinstance(v, list) and len(v) == 1:
                         v = v[0]
                     self.request.form[k] = v
-            import ipdb; ipdb.set_trace()
             brains = faceted_query.query(batch=False, sort=True)
             uids = [brain.UID for brain in brains]
         else:
