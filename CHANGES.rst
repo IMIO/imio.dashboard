@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.7 (unreleased)
+0.7 (2015-11-03)
 ----------------
 
 - Give permission 'eea.facetednavigation: Configure faceted' 
