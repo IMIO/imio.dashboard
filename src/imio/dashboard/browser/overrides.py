@@ -80,8 +80,8 @@ class IDDocumentGenerationView(DocumentGenerationView):
                     # we receive list of elements, if we have only one elements, remove it from the list
                     if isinstance(v, list) and len(v) == 1:
                         v = v[0]
-                    self.request.form[k] = v
-            brains = faceted_query.query(batch=False, sort=True)
+                    self.request.form['{0}[]'.format(k)] = v
+            brains = faceted_query.query(batch=False)
             uids = [brain.UID for brain in brains]
         else:
             uids = uids.split(',')
