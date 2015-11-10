@@ -136,7 +136,9 @@ div.listingBar span.next {
 
 /* align icons and pretty link correctly */
 a.pretty_link span.pretty_link_icons,
-div.pretty_link span.pretty_link_icons {
+div.pretty_link span.pretty_link_icons,
+a.pretty_link span.pretty_link_content,
+div.pretty_link span.pretty_link_content {
     vertical-align: text-top;
     padding-right: 0.2em;
 }
