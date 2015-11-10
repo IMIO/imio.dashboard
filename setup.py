@@ -51,9 +51,9 @@ setup(
         'collective.documentgenerator',
         'collective.eeafaceted.collectionwidget',
         'collective.eeafaceted.z3ctable',
+        'collective.js.iframeresizer',
         'imio.actionspanel',
         'imio.prettylink',
-        'collective.js.iframeresizer',
     ],
     extras_require={
         'test': [
