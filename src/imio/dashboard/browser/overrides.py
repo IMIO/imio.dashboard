@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import json
-
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
 from plone import api
@@ -14,6 +12,7 @@ from collective.eeafaceted.collectionwidget.widgets.widget import CollectionWidg
 from collective.eeafaceted.z3ctable.browser.views import FacetedTableView
 
 from imio.dashboard.content.pod_template import IDashboardPODTemplate
+from imio.dashboard.utils import getDashboardQueryResult
 
 
 class IDFacetedTableView(FacetedTableView):
@@ -66,39 +65,12 @@ class IDDocumentGenerationView(DocumentGenerationView):
 
     def _get_generation_context(self, helper_view):
         """ """
-        uids = self.request.get('uids', '')
-        facetedQuery = self.request.get('facetedQuery', None)
         generation_context = {}
-        brains = []
-        # if we did not receive uids, then find it using faceted query
-        if not uids and IFacetedNavigable.providedBy(self.context):
-            faceted_query = self.context.restrictedTraverse('@@faceted_query')
-            # maybe we have a facetedQuery? aka the meeting view was filtered and we want to print this result
-            if facetedQuery:
-                # put the facetedQuery criteria into the REQUEST.form
-                for k, v in json.JSONDecoder().decode(facetedQuery).items():
-                    # we receive list of elements, if we have only one elements, remove it from the list
-                    if isinstance(v, list) and len(v) == 1:
-                        v = v[0]
-                    self.request.form['{0}[]'.format(k)] = v
-            brains = faceted_query.query(batch=False)
-            uids = [brain.UID for brain in brains]
-        else:
-            uids = uids.split(',')
-        generation_context['uids'] = uids
 
-        # if we have uids, let 'brains' be directly available in the template context too
-        # brains could already fetched, if it is the case, use it, get it otherwise
-        if not brains and uids:
-            catalog = getToolByName(self.context, 'portal_catalog')
-            brains = catalog(UID=uids)
-
-            # we need to sort found brains according to uids
-            def getKey(item):
-                return uids.index(item.UID)
-            brains = sorted(brains, key=getKey)
+        brains = getDashboardQueryResult(self.context)
 
         generation_context['brains'] = brains
+        generation_context['uids'] = [brain.UID for brain in brains]
         generation_context.update(super(IDDocumentGenerationView, self)._get_generation_context(helper_view))
         return generation_context
 

@@ -14,6 +14,8 @@ from imio.dashboard.utils import getCollectionLinkCriterion
 from imio.dashboard.utils import getCurrentCollection
 from imio.dashboard.utils import NoFacetedViewDefinedException
 from imio.dashboard.utils import _updateDefaultCollectionFor
+from imio.dashboard.utils import getCriterionByTitle
+from imio.dashboard.utils import getCriterionByIndex
 
 
 class TestUtils(IntegrationTestCase):
@@ -134,3 +136,25 @@ class TestUtils(IntegrationTestCase):
         folder2 = getattr(self.portal, folder2_id)
         folder2.reindexObject()
         self.assertRaises(NoFacetedViewDefinedException, _updateDefaultCollectionFor, folder2, 'anUID')
+
+    def test_getCriterionByTitle(self):
+        """Test method returning criteria matching a given title."""
+        sort_criterion = getCriterionByTitle(self.folder, 'Sort on')
+        self.assertEquals(sort_criterion.title, u'Sort on')
+
+        # calling it on a non faceted enabled folder will raise a NoFacetedViewDefinedException
+        folder2_id = self.portal.invokeFactory('Folder', 'folder2', title='Folder2')
+        folder2 = getattr(self.portal, folder2_id)
+        folder2.reindexObject()
+        self.assertRaises(NoFacetedViewDefinedException, getCriterionByTitle, folder2, 'Sort on')
+
+    def test_getCriterionByIndex(self):
+        """Test method returning criteria matching a given search index."""
+        sort_criterion = getCriterionByIndex(self.folder, 'review_state')
+        self.assertEquals(sort_criterion.index, u'review_state')
+
+        # calling it on a non faceted enabled folder will raise a NoFacetedViewDefinedException
+        folder2_id = self.portal.invokeFactory('Folder', 'folder2', title='Folder2')
+        folder2 = getattr(self.portal, folder2_id)
+        folder2.reindexObject()
+        self.assertRaises(NoFacetedViewDefinedException, getCriterionByIndex, folder2, 'review_state')

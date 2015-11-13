@@ -2,7 +2,6 @@
 import json
 from os import path
 from zope.interface import noLongerProvides
-from Products.CMFCore.utils import getToolByName
 
 from collective.eeafaceted.collectionwidget.widgets.widget import CollectionWidget
 
@@ -12,6 +11,8 @@ from eea.facetednavigation.interfaces import IHidePloneLeftColumn
 from eea.facetednavigation.layout.interfaces import IFacetedLayout
 
 from imio.dashboard.config import NO_FACETED_EXCEPTION_MSG
+
+from plone import api
 
 import logging
 logger = logging.getLogger('imio.dashboard: utils')
@@ -51,7 +52,7 @@ def getCurrentCollection(faceted_context):
         query = json.loads(faceted_context.REQUEST.form['facetedQuery'])
         collectionUID = query.get(criterion.__name__)
     if collectionUID:
-        catalog = getToolByName(faceted_context, 'portal_catalog')
+        catalog = api.portal.get_tool('portal_catalog')
         return catalog(UID=collectionUID)[0].getObject()
 
 
@@ -96,3 +97,71 @@ def _updateDefaultCollectionFor(folderObj, default_uid):
 
     criterion = getCollectionLinkCriterion(folderObj)
     criterion.default = default_uid
+
+
+def getDashboardQueryResult(faceted_context):
+    """
+    Return dashboard selelected items of a faceted query.
+    """
+    if not IFacetedNavigable.providedBy(faceted_context):
+        raise NoFacetedViewDefinedException(NO_FACETED_EXCEPTION_MSG)
+
+    request = faceted_context.REQUEST
+    uids = request.get('uids', '')
+    faceted_query = request.get('facetedQuery', None)
+
+    brains = []
+    # maybe we have a facetedQuery? aka the meeting view was filtered and we want to print this result
+    if not uids:
+        if faceted_query:
+            # put the facetedQuery criteria into the REQUEST.form
+            for k, v in json.JSONDecoder().decode(faceted_query).items():
+                # we receive list of elements, if we have only one elements, remove it from the list
+                if isinstance(v, list) and len(v) == 1:
+                    v = v[0]
+                request.form['{0}[]'.format(k)] = v
+        faceted = faceted_context.restrictedTraverse('@@faceted_query')
+        brains = faceted.query(batch=False)
+    # if we have uids, let 'brains' be directly available in the template context too
+    # brains could already fetched, if it is the case, use it, get it otherwise
+    elif uids:
+        uids = uids.split(',')
+        catalog = api.portal.get_tool('portal_catalog')
+        brains = catalog(UID=uids)
+
+        # we need to sort found brains according to uids
+        def getKey(item):
+            return uids.index(item.UID)
+        brains = sorted(brains, key=getKey)
+    return brains
+
+
+def _get_criterion_by_attr(faceted_context, attr_name, value_to_match):
+    """
+    """
+    if not IFacetedNavigable.providedBy(faceted_context):
+        raise NoFacetedViewDefinedException(NO_FACETED_EXCEPTION_MSG)
+
+    criterions = ICriteria(faceted_context)
+    for criterion in criterions.values():
+        if not hasattr(criterion, attr_name):
+            continue
+        else:
+            attr = getattr(criterion, attr_name)
+            value = hasattr(attr, '__call__') and attr() or attr
+            if value == value_to_match:
+                return criterion
+
+
+def getCriterionByTitle(faceted_context, title):
+    """
+    Return criterion with title 'title'.
+    """
+    return _get_criterion_by_attr(faceted_context, 'title', title)
+
+
+def getCriterionByIndex(faceted_context, index):
+    """
+    Return criterion with index named 'index'.
+    """
+    return _get_criterion_by_attr(faceted_context, 'index', index)
