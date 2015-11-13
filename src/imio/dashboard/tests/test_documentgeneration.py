@@ -4,6 +4,7 @@ from DateTime import DateTime
 from plone import api
 
 from eea.facetednavigation.interfaces import ICriteria
+from eea.facetednavigation.interfaces import IFacetedNavigable
 from imio.dashboard.testing import IntegrationTestCase
 
 
@@ -56,6 +57,18 @@ class TestDocumentGeneration(IntegrationTestCase):
         gen_context = self.view._get_generation_context(self.helper)
         self.assertEquals(['Folder 2', 'Folder'],
                           [brain.Title for brain in gen_context['brains']])
+
+    def test_get_generation_context_not_faceted(self):
+        """
+        When called on a non faceted context, it just returns
+        a generation_context containing empty lists for 'brains' and 'uids'.
+        """
+        self.assertFalse(IFacetedNavigable.providedBy(self.folder2))
+        self.view = self.folder2.restrictedTraverse('@@document-generation')
+        self.helper = self.view.get_generation_context_helper()
+        gen_context = self.view._get_generation_context(self.helper)
+        self.assertEquals(gen_context['brains'], [])
+        self.assertEquals(gen_context['uids'], [])
 
     def test_get_generation_context_filtered_query(self):
         """

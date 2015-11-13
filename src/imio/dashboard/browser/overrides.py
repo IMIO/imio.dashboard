@@ -65,12 +65,14 @@ class IDDocumentGenerationView(DocumentGenerationView):
 
     def _get_generation_context(self, helper_view):
         """ """
-        generation_context = {}
+        generation_context = {'brains': [],
+                              'uids': []}
 
-        brains = getDashboardQueryResult(self.context)
+        if IFacetedNavigable.providedBy(self.context):
+            brains = getDashboardQueryResult(self.context)
+            generation_context['brains'] = brains
+            generation_context['uids'] = [brain.UID for brain in brains]
 
-        generation_context['brains'] = brains
-        generation_context['uids'] = [brain.UID for brain in brains]
         generation_context.update(super(IDDocumentGenerationView, self)._get_generation_context(helper_view))
         return generation_context
 

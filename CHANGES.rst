@@ -5,7 +5,9 @@ Changelog
 0.9 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Added method utils.getDashboardQueryResult that compute 'uids' and 'brains'
+  returned by the current faceted query.
+  [sdelcourt, gbastien]
 
 
 0.8 (2015-11-03)
