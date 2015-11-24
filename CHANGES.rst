@@ -9,6 +9,9 @@ Changelog
   returned by the current faceted query.
   [sdelcourt, gbastien]
 
+- Test if collective.querynextprev is installed before accessing session
+  [sgeulette]
+
 
 0.8 (2015-11-03)
 ----------------

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from plone import api
 from Products.Five.browser import BrowserView
 
 from imio.dashboard.adapters import CURRENT_CRITERION
@@ -13,8 +14,10 @@ class RenderTermPortletView(BrowserView):
         self.term = term
         self.category = category
         self.widget = widget
-        session = self.request.get('SESSION', {})
-        if session.has_key(CURRENT_CRITERION):  # noqa
-            self.selected_term = session[CURRENT_CRITERION]
+        pqi = api.portal.get_tool('portal_quickinstaller')
+        if pqi.isProductInstalled('collective.querynextprev'):
+            session = self.request.get('SESSION', {})
+            if session.has_key(CURRENT_CRITERION):  # noqa
+                self.selected_term = session[CURRENT_CRITERION]
 
         return self.index()
