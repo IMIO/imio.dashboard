@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.9 (unreleased)
+0.9 (2015-11-24)
 ----------------
 
 - Added method utils.getDashboardQueryResult that compute 'uids' and 'brains'
