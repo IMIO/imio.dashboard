@@ -20,21 +20,29 @@ from Products.CMFCore.utils import getToolByName
 
 
 class ConditionAwareCollectionVocabulary(CollectionVocabulary):
+
     def __call__(self, context, query=None):
         """Same behaviour as the original CollectionVocabulary
            but we will filter Collections regarding the defined tal_condition."""
         terms = super(ConditionAwareCollectionVocabulary, self).__call__(context, query=query)
 
         filtered_terms = []
+        # compute extra_expr_ctx given to evaluateExpressionFor only once
+        extra_expr_ctx = self._extra_expr_ctx()
         for term in terms:
             collection = term.value
             # if collection is ITALConditionable, evaluate the TAL condition
             # except if current user is Manager
             if ITALConditionable.providedBy(collection):
-                if not evaluateExpressionFor(collection):
+                if not evaluateExpressionFor(collection, extra_expr_ctx=extra_expr_ctx):
                     continue
             filtered_terms.append(term)
         return SimpleVocabulary(filtered_terms)
+
+    def _extra_expr_ctx(self):
+        """To be overrided, this way, extra_expr_ctx is given to the
+           expression evaluated on the DashboardCollection."""
+        return {}
 
 ConditionAwareCollectionVocabularyFactory = ConditionAwareCollectionVocabulary()
 

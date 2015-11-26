@@ -5,7 +5,9 @@ Changelog
 0.10 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Added possibility to pass 'extra_expr_ctx' to evaluateExpressionFor while
+  evaluating the TAL condition defined on the DashboardCollection.
+  [gbastien]
 
 
 0.9 (2015-11-24)
