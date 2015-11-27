@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.10 (unreleased)
+0.10 (2015-11-27)
 -----------------
 
 - Added possibility to pass 'extra_expr_ctx' to evaluateExpressionFor while
