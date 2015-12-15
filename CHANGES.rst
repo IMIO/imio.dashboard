@@ -5,8 +5,8 @@ Changelog
 0.11 (unreleased)
 -----------------
 
-- Nothing changed yet.
-
+- Format sort triangle entities.
+  [sgeulette]
 
 0.10 (2015-11-27)
 -----------------

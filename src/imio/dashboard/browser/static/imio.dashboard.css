@@ -150,7 +150,15 @@ table.faceted-table-results {
 #content table.listing th a.sort_arrow_disabled {
     color: #8CACBB;
     padding: 0;
+    font-size: 150%;
+    vertical-align: sub;
 }
+
+#content table.listing th a.sort_arrow_enabled {
+    font-size: 150%;
+    vertical-align: sub;
+}
+
 /* some padding under a portalMessage displayed when the faceted page is reloaded */
 #faceted-form dl.portalMessage {
     margin-bottom: 1em;
