@@ -126,14 +126,6 @@ div.listingBar span.next {
     background: url("dashboardcollection.png") no-repeat 0 transparent;
 }
 
-/* icon for DashboardPODTemplate */
-.icons-on .contenttype-dashboardpodtemplate {
-    display: inline-block;
-    line-height: 2em;
-    padding-left: 20px !important;
-    background: url("dashboardpodtemplate.png") no-repeat 0 transparent;
-}
-
 /* align icons and pretty link correctly */
 a.pretty_link span.pretty_link_icons,
 div.pretty_link span.pretty_link_icons,
