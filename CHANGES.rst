@@ -7,6 +7,9 @@ Changelog
 
 - Format sort triangle entities.
   [sgeulette]
+- Define an icon_expr for portal_type DashboardPODTemplate so it is correctly
+  displayed in the DX types control panel especially.
+  [gbastien]
 
 0.10 (2015-11-27)
 -----------------
