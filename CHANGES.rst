@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.11 (unreleased)
+0.11 (2015-12-17)
 -----------------
 
 - Format sort triangle entities.
