@@ -5,7 +5,8 @@ Changelog
 0.12 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Adapted CSS regarding sort triangle entities now that we use larger ones.
+  [gbastien]
 
 
 0.11 (2015-12-17)
@@ -16,6 +17,7 @@ Changelog
 - Define an icon_expr for portal_type DashboardPODTemplate so it is correctly
   displayed in the DX types control panel especially.
   [gbastien]
+
 
 0.10 (2015-11-27)
 -----------------
