@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.12 (unreleased)
+0.12 (2016-01-04)
 -----------------
 
 - Adapted CSS regarding sort triangle entities now that we use larger ones.
