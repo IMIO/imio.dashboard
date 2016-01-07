@@ -5,8 +5,8 @@ Changelog
 0.13 (unreleased)
 -----------------
 
-- Nothing changed yet.
-
+- Consider portlet is outside faceted when adding a new element.
+  [sgeulette]
 
 0.12 (2016-01-04)
 -----------------

@@ -81,7 +81,7 @@ class Renderer(base.Renderer):
 
     def _isPortletOutsideFaceted(self, context, criteriaHolder):
         """Are we outside the faceted?"""
-        return not context == criteriaHolder
+        return '/++add++' in context.REQUEST.URL0 or not context == criteriaHolder
 
     def _buildBaseLinkURL(self, criteria):
         """Build the URL that will be used in the href when portlet is displayed
