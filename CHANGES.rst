@@ -7,6 +7,11 @@ Changelog
 
 - Consider portlet is outside faceted when adding a new element.
   [sgeulette]
+- Use ITopAboveNavManager to display the dashboard POD templates viewlet,
+  this is due to a change in collective.eeafaceted.z3ctable where viewlet managers
+  were renamed (was ITopManager before).
+  [gbastien]
+
 
 0.12 (2016-01-04)
 -----------------
