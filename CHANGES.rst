@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.13 (unreleased)
+0.13 (2016-01-15)
 -----------------
 
 - Consider portlet is outside faceted when adding a new element.
