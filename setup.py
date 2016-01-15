@@ -19,7 +19,7 @@ long_description = (
 
 setup(
     name='imio.dashboard',
-    version='0.13',
+    version='0.14.dev0',
     description="This package is the glue between different packages offering a usable and integrated dashboard application",
     long_description=long_description,
     # Get more from http://pypi.python.org/pypi?%3Aaction=list_classifiers
