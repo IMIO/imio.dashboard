@@ -5,7 +5,8 @@ Changelog
 0.14 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- The POD template description is now displayed when hovering the POD template title.
+  [gbastien]
 
 
 0.13 (2016-01-15)
