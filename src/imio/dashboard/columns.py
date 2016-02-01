@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 from collective.eeafaceted.z3ctable.columns import BrowserViewCallColumn
+from collective.eeafaceted.z3ctable.columns import RelationTitleColumn
 from collective.eeafaceted.z3ctable.columns import TitleColumn
 
 from imio.prettylink.interfaces import IPrettyLink
@@ -31,3 +32,24 @@ class ActionsColumn(BrowserViewCallColumn):
                 'jQuery(document).ready(preventDefaultClickTransition);</script>'
     view_name = 'actions_panel'
     params = {'showHistory': True, 'showActions': True}
+
+
+class RelationPrettyLinkColumn(RelationTitleColumn):
+    """
+    A column displaying related items with IPrettyLink.getLink
+    """
+
+    params = {}
+
+    @property
+    def cssClasses(self):
+        """Generate a CSS class for each <th> so we can skin it if necessary."""
+        cssClasses = super(RelationPrettyLinkColumn, self).cssClasses.copy() or {}
+        cssClasses.update({'td': 'pretty_link', })
+        return cssClasses
+
+    def target_display(self, obj):
+        pl = IPrettyLink(obj)
+        if self.params:
+            pl.__init__(obj, **self.params)
+        return pl.getLink()
