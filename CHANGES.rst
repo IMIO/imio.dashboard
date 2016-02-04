@@ -7,6 +7,8 @@ Changelog
 
 - Added RelationPrettyLinkColumn to display with PrettyLink a z3c.relationfield.relation.RelationValue attribute.
   [sgeulette]
+- Limit padding left and right of the faceted checkbox widget to 0.2em instead of 1em.
+  [gbastien]
 
 0.14 (2016-01-21)
 -----------------
