@@ -13,6 +13,7 @@ from Products.CMFPlone.utils import safe_unicode
 from collective.behavior.talcondition.interfaces import ITALConditionable
 from collective.behavior.talcondition.utils import evaluateExpressionFor
 from collective.eeafaceted.collectionwidget.vocabulary import CollectionVocabulary
+from eea.faceted.vocabularies.catalog import CatalogIndexesVocabulary
 
 from imio.dashboard.interfaces import IDashboardCollection
 
@@ -97,3 +98,24 @@ class DashboardCollectionsVocabulary(object):
         return vocabulary
 
 DashboardCollectionsVocabularyFactory = DashboardCollectionsVocabulary()
+
+
+class CombinedCatalogIndexesVocabulary(CatalogIndexesVocabulary):
+    """ Return catalog indexes as vocabulary and dummy indexes prefixed
+        with 'combined__' used to be combined at query time with the corresponding
+        index not prefixed with 'combined__'.
+    """
+
+    def __call__(self, context):
+        """ Call original indexes and append 'combined__' prefixed ones.
+        """
+        indexes = super(CombinedCatalogIndexesVocabulary, self).__call__(context)
+        res = list(indexes)
+        for index in indexes:
+            if not index.value:
+                # ignore the '' value
+                continue
+            key = 'combined__' + index.value
+            value = '(Combined) ' + index.title
+            res.append(SimpleTerm(key, key, value))
+        return SimpleVocabulary(res)
