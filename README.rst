@@ -65,10 +65,12 @@ Let's say you have an index on folder that stores the portal_type and review_sta
 The index 'contained_with_review_state' content could looks like :
 
 .. code:: python
+
   ['Document__private', 'Document__published', 'Image__private']
 
 Now if you want to display in a dashboard folders containing 'Documents' that are in state 'private',
 you will likely use 2 filters :
+
 - the first listing portal_types ('Document', 'Image', 'Folder', ...);
 - the second listing review_states ('private', 'published', ...).
 
