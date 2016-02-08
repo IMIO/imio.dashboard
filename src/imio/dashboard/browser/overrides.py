@@ -141,13 +141,26 @@ class CombinedFacetedQueryHandler(FacetedQueryHandler):
     def criteria(self, sort=False, **kwargs):
         """Call original and triturate query to handle 'combined__' prefixed indexes."""
         criteria = super(CombinedFacetedQueryHandler, self).criteria(sort=sort, **kwargs)
-        # if we have both real existing index and the 'combined__' prefixed one, combinate it
-        res = {}
-        for key, value in criteria:
+        res = criteria.copy()
+        for key, value in criteria.items():
             real_index = key.replace(COMBINED_INDEX_PREFIX, '')
+            # if we have both real existing index and the 'combined__' prefixed one, combinate it
             if key.startswith(COMBINED_INDEX_PREFIX) and real_index in criteria:
                 # combine values to real index
-                continue
-            elif not key.startswith(COMBINED_INDEX_PREFIX):
-                res[key] = value
+                real_index_values = criteria[real_index]['query']
+                if not hasattr(real_index_values, '__iter__'):
+                    real_index_values = [real_index_values]
+                combined_index_values = criteria[key]['query']
+                if not hasattr(combined_index_values, '__iter__'):
+                    combined_index_values = [combined_index_values]
+                combined_values = []
+                for value in combined_index_values:
+                    for real_index_value in real_index_values:
+                        combined_values.append(real_index_value + '__' + value)
+                # update real_index and pop current key
+                res[real_index]['query'] = combined_values
+                res.pop(key)
+            # if we have only the 'combined__' prefixed one, use it as real index
+            elif key.startswith(COMBINED_INDEX_PREFIX) and not real_index in criteria:
+                res[real_index] = value
         return res

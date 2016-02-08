@@ -15,6 +15,7 @@ from collective.behavior.talcondition.utils import evaluateExpressionFor
 from collective.eeafaceted.collectionwidget.vocabulary import CollectionVocabulary
 from eea.faceted.vocabularies.catalog import CatalogIndexesVocabulary
 
+from imio.dashboard.config import COMBINED_INDEX_PREFIX
 from imio.dashboard.interfaces import IDashboardCollection
 
 from Products.CMFCore.utils import getToolByName
@@ -115,7 +116,7 @@ class CombinedCatalogIndexesVocabulary(CatalogIndexesVocabulary):
             if not index.value:
                 # ignore the '' value
                 continue
-            key = 'combined__' + index.value
+            key = COMBINED_INDEX_PREFIX + index.value
             value = '(Combined) ' + index.title
             res.append(SimpleTerm(key, key, value))
         return SimpleVocabulary(res)
