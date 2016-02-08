@@ -103,7 +103,7 @@ class TestUtils(IntegrationTestCase):
         # calling this on an already enabled faceted will do nothing
         xmlpath = os.path.dirname(__file__) + '/faceted_conf/testing_widgets.xml'
         enableFacetedDashboardFor(folder2, xmlpath=xmlpath)
-        # only one 'c44' widget in testing_widget.xml, not added here
+        # only one 'c44' widget in testing_widgets.xml, not added here
         self.assertFalse(ICriteria(folder2).get('c44'))
         # create a new folder and apply faceted with xmlpath to it
         folder3_id = self.portal.invokeFactory('Folder', 'folder3', title='Folder3')
