@@ -143,9 +143,13 @@ class CombinedFacetedQueryHandler(FacetedQueryHandler):
         criteria = super(CombinedFacetedQueryHandler, self).criteria(sort=sort, **kwargs)
         res = criteria.copy()
         for key, value in criteria.items():
+            # bypass if it is not a 'combined' index
+            if not key.startswith(COMBINED_INDEX_PREFIX):
+                continue
+
             real_index = key.replace(COMBINED_INDEX_PREFIX, '')
             # if we have both real existing index and the 'combined__' prefixed one, combinate it
-            if key.startswith(COMBINED_INDEX_PREFIX) and real_index in criteria:
+            if real_index in criteria:
                 # combine values to real index
                 real_index_values = criteria[real_index]['query']
                 if not hasattr(real_index_values, '__iter__'):
@@ -161,6 +165,6 @@ class CombinedFacetedQueryHandler(FacetedQueryHandler):
                 res[real_index]['query'] = combined_values
                 res.pop(key)
             # if we have only the 'combined__' prefixed one, use it as real index
-            elif key.startswith(COMBINED_INDEX_PREFIX) and not real_index in criteria:
+            elif not real_index in criteria:
                 res[real_index] = value
         return res
