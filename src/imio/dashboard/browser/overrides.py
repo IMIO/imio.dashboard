@@ -165,6 +165,6 @@ class CombinedFacetedQueryHandler(FacetedQueryHandler):
                 res[real_index]['query'] = combined_values
                 res.pop(key)
             # if we have only the 'combined__' prefixed one, use it as real index
-            elif not real_index in criteria:
+            elif real_index not in criteria:
                 res[real_index] = value
         return res

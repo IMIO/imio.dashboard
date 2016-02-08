@@ -9,6 +9,10 @@ Changelog
   [sgeulette]
 - Limit padding left and right of the faceted checkbox widget to 0.2em instead of 1em.
   [gbastien]
+- Added 'combined indexes' functionnality making it possible to combinate faceted filters together to
+  query a single catalog index.
+  [gbastien]
+
 
 0.14 (2016-01-21)
 -----------------

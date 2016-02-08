@@ -8,6 +8,7 @@ from imio.dashboard.config import COMBINED_INDEX_PREFIX
 from imio.dashboard.testing import IntegrationTestCase
 from imio.dashboard.tests.indexes import contained_types_and_states
 from imio.dashboard.utils import getCollectionLinkCriterion
+from imio.helpers.catalog import addOrUpdateIndexes
 
 
 class TestCombinedIndex(IntegrationTestCase):
@@ -17,7 +18,7 @@ class TestCombinedIndex(IntegrationTestCase):
         """Custom shared utility setup for tests."""
         super(TestCombinedIndex, self).setUp()
         # add the 'contained_types_and_states' to portal_catalog
-        import ipdb; ipdb.set_trace()
+        addOrUpdateIndexes(self.portal, {'contained_types_and_states': ('KeywordIndex', {})})
         # make sure we have a default workflow
         self.portal.portal_workflow.setDefaultChain('simple_publication_workflow')
         self.dashboardcollection = api.content.create(
@@ -84,6 +85,9 @@ class TestCombinedIndex(IntegrationTestCase):
             container=self.portal.folder3
         )
         # first check that contained_types_and_states index is correct
+        self.folder1.reindexObject(idxs=['contained_types_and_states'])
+        self.folder2.reindexObject(idxs=['contained_types_and_states'])
+        self.folder3.reindexObject(idxs=['contained_types_and_states'])
         self.assertEquals(contained_types_and_states(self.folder1)(),
                           ['Document', 'Document__private', 'Document__published',
                            'private', 'published'])
@@ -116,11 +120,40 @@ class TestCombinedIndex(IntegrationTestCase):
         self.assertEquals(len(faceted_query.query()), 5)
 
         # filter on 'review_state', get the private elements
+        self.request.form['c10[]'] = ''
         self.request.form['c11[]'] = 'private'
+        self.assertEquals(faceted_query.criteria()['contained_types_and_states']['query'],
+                          'private')
         # we get folder1 and folder3
         uids = [brain.UID for brain in faceted_query.query()]
+        self.assertEquals(len(faceted_query.query()), 2)
         self.assertTrue(self.folder1.UID() in uids and
                         self.folder3.UID() in uids)
         # filter on 'portal_type', get 'Document'
         self.request.form['c10[]'] = 'Document'
-        import ipdb; ipdb.set_trace()
+        self.request.form['c11[]'] = ''
+        self.assertEquals(faceted_query.criteria()['contained_types_and_states']['query'],
+                          'Document')
+        # we get folder1 and folder3
+        uids = [brain.UID for brain in faceted_query.query()]
+        self.assertEquals(len(faceted_query.query()), 2)
+        self.assertTrue(self.folder1.UID() in uids and
+                        self.folder3.UID() in uids)
+        # but if we filter 'review_state' published, we only get folder1
+        self.request.form['c10[]'] = 'Document'
+        self.request.form['c11[]'] = 'published'
+        self.assertEquals(faceted_query.criteria()['contained_types_and_states']['query'],
+                          ['Document__published'])
+        uids = [brain.UID for brain in faceted_query.query()]
+        self.assertEquals(len(faceted_query.query()), 1)
+        self.assertTrue(self.folder1.UID() in uids)
+
+        # query 'review_state' private and portal_type 'Document' and 'Folder'
+        self.request.form['c10[]'] = ['Document', 'Folder']
+        self.request.form['c11[]'] = 'private'
+        self.assertEquals(faceted_query.criteria()['contained_types_and_states']['query'],
+                          ['Document__private', 'Folder__private'])
+        uids = [brain.UID for brain in faceted_query.query()]
+        self.assertEquals(len(faceted_query.query()), 2)
+        self.assertTrue(self.folder1.UID() in uids and
+                        self.folder3.UID() in uids)

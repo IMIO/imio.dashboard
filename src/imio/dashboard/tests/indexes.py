@@ -21,14 +21,14 @@ def contained_types_and_states(folder):
     res = []
     for obj in folder.objectValues():
         # add also portal_type alone so it can be queried
-        if not obj.portal_type in res:
+        if obj.portal_type not in res:
             res.append(obj.portal_type)
         # add also review_state alone so it can be queried
-        if not api.content.get_state(obj) in res:
+        if api.content.get_state(obj) not in res:
             res.append(api.content.get_state(obj))
         # then add the combined value
         value = obj.portal_type + '__' + api.content.get_state(obj)
-        if not value in res:
+        if value not in res:
             res.append(value)
     res.sort()
     return res
