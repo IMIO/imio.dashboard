@@ -2,6 +2,8 @@
 """Setup/installation tests for this package."""
 
 import os
+from zope.component import queryUtility
+from zope.schema.interfaces import IVocabularyFactory
 from plone import api
 from eea.facetednavigation.interfaces import ICriteria
 from imio.dashboard.config import COMBINED_INDEX_PREFIX
@@ -157,3 +159,19 @@ class TestCombinedIndex(IntegrationTestCase):
         self.assertEquals(len(faceted_query.query()), 2)
         self.assertTrue(self.folder1.UID() in uids and
                         self.folder3.UID() in uids)
+
+    def test_catalog_indexes_vocabulary(self):
+        """The default 'eea.faceted.vocabularies.CatalogIndexes' id overrided
+           to add 'combined__' indexes."""
+        vocab = queryUtility(IVocabularyFactory,
+                             'eea.faceted.vocabularies.CatalogIndexes')(self.portal)
+        tokens = [term.token for term in vocab._terms]
+        # we have one single empty selection...
+        self.assertTrue(tokens[0] == '')
+        self.assertEquals(tokens.count(''), 1)
+        # ... then every indexes duplicated
+        real_indexes = [token for token in tokens if token and not token.startswith(COMBINED_INDEX_PREFIX)]
+        combined_indexes = [token for token in tokens if token and token.startswith(COMBINED_INDEX_PREFIX)]
+        self.assertEquals(len(real_indexes), len(combined_indexes))
+        for real_index in real_indexes:
+            self.assertTrue(COMBINED_INDEX_PREFIX + real_index in combined_indexes)
