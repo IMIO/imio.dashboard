@@ -97,6 +97,8 @@ def _updateDefaultCollectionFor(folderObj, default_uid):
 
     criterion = getCollectionLinkCriterion(folderObj)
     criterion.default = default_uid
+    # make change persist!
+    ICriteria(folderObj).criteria._p_changed = True
 
 
 def getDashboardQueryResult(faceted_context):
