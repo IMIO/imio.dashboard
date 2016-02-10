@@ -14,4 +14,7 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+  <!-- Indexes -->
+  <adapter name="contained_types_and_states" factory=".tests.indexes.contained_types_and_states" />
+
 </configure>
