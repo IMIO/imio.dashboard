@@ -5,9 +5,6 @@ cache:
   pip: true
   directories:
     - $HOME/buildout-cache
-deploy:
-  provider: pypi
-  server: http://devpi.imio.be/root/imio
 before_install:
   - mkdir -p $HOME/buildout-cache/{eggs,downloads}
   - virtualenv .
