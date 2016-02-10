@@ -12,7 +12,9 @@ Changelog
 - Added 'combined indexes' functionnality making it possible to combinate faceted filters together to
   query a single catalog index.
   [gbastien]
-
+- In utils._updateDefaultCollectionFor as we change the faceted criteria annotations, make sure
+  it is persisted by setting _p_changed = True
+  [gbastien]
 
 0.14 (2016-01-21)
 -----------------
