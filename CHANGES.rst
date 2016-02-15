@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.15 (unreleased)
+0.15 (2016-02-15)
 -----------------
 
 - Added RelationPrettyLinkColumn to display with PrettyLink a z3c.relationfield.relation.RelationValue attribute.
