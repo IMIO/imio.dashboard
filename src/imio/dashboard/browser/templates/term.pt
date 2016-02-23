@@ -15,8 +15,11 @@
             id string:${wid}${term_id};
             data-kept-criteria python:widget.kept_criteria_as_json(term_id);">
                <a href="#"
-                  tal:attributes="href python: redirect_to and redirect_to or '{0}&{1}={2}'.format(widget.base_url, wid, term_id)"
-                  tal:content="term_label" />
-
+                  tal:attributes="href python: redirect_to and redirect_to or '{0}&{1}={2}'.format(widget.base_url, wid, term_id)">
+                  <span tal:replace="term_label" />
+                  <span tal:condition="view/display_number_of_items">
+                     [<span tal:replace="view/number_of_items" />]
+                  </span>
+              </a>
           </li>
 </tal:defines>

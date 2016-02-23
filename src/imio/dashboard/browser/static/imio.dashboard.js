@@ -26,3 +26,12 @@ function generatePodDocument(template_uid, output_format, tag) {
     }
     theForm.submit();
 }
+
+$(document).ready(function () {
+  var url = $('base').attr('href') + '/@@ajax_render_dashboard_portlet';
+  $(Faceted.Events).bind(Faceted.Events.AJAX_QUERY_SUCCESS, function() {
+      $.get(url, function (response) {
+          $('.faceted-tagscloud-collection-widget').html(response);
+      })
+  });
+})

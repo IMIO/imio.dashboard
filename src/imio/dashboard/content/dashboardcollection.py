@@ -1,21 +1,38 @@
 # -*- coding: utf-8 -*-
 from AccessControl import ClassSecurityInfo
 from zope.interface import implements
+from Products.Archetypes import atapi
 from Products.Archetypes.atapi import registerType
+from Products.Archetypes.Field import BooleanField
+from Products.Archetypes.Widget import BooleanWidget
 from Products.CMFCore.permissions import View
 from Products.CMFCore.utils import getToolByName
-from plone.app.collection.collection import Collection
+from plone.app.collection.collection import Collection, CollectionSchema
 from plone.app.collection.config import ATCT_TOOLNAME
 from plone.app.querystring.queryparser import parseFormquery
 from imio.dashboard.config import PROJECTNAME
 from imio.dashboard.interfaces import ICustomViewFieldsVocabulary
 from imio.dashboard.interfaces import IDashboardCollection
+from imio.dashboard import ImioDashboardMessageFactory as _
+
+
+DashboardCollectionSchema = CollectionSchema.copy() + atapi.Schema((
+    BooleanField(
+        name="showNumberOfItems",
+        required=False,
+        widget=BooleanWidget(
+            label=_(u'Show number of items in filter'),
+            ),
+        schemata="default",
+        ),
+))
 
 
 class DashboardCollection(Collection):
     """A Collection used in our dashboards"""
     implements(IDashboardCollection)
     meta_type = "DashboardCollection"
+    schema = DashboardCollectionSchema
     security = ClassSecurityInfo()
 
     security.declareProtected(View, 'listMetaDataFields')

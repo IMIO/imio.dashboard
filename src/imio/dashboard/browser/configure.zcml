@@ -22,6 +22,14 @@
         editview=".facetedcollectionportlet.EditForm"
     />
 
+    <browser:page
+        for="*"
+        name="ajax_render_dashboard_portlet"
+        class=".views.AjaxRenderDashboardPortlet"
+        layer="imio.dashboard.interfaces.IImioDashboardLayer"
+        permission="zope2.View"
+        />
+
     <!-- collective.eeafaceted.z3ctable -->
     <configure package="collective.eeafaceted.z3ctable">
         <browser:view
@@ -50,6 +58,14 @@
         name="render_collection_widget_term_portlet"
         class=".views.RenderTermPortletView"
         template="templates/term.pt"
+        layer="imio.dashboard.interfaces.IImioDashboardLayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="render_collection_widget_term"
+        class=".views.RenderTermView"
         layer="imio.dashboard.interfaces.IImioDashboardLayer"
         permission="zope2.View"
         />

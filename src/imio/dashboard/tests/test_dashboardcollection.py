@@ -53,3 +53,8 @@ class TestDashboardCollection(IntegrationTestCase):
         ]
         self.assertEquals(self.dashboardcollection.displayCatalogQuery(),
                           {'portal_type': {'query': ['Folder']}})
+
+    def test_showNumberOfItems_field(self):
+        """Test showNumberOfItems field."""
+        self.dashboardcollection.setShowNumberOfItems(True)
+        self.assertEqual(self.dashboardcollection.getShowNumberOfItems(), True)
