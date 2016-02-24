@@ -24,8 +24,8 @@
 
     <browser:page
         for="*"
-        name="ajax_render_dashboard_portlet"
-        class=".views.AjaxRenderDashboardPortlet"
+        name="json_collections_count"
+        class=".views.JSONCollectionsCount"
         layer="imio.dashboard.interfaces.IImioDashboardLayer"
         permission="zope2.View"
         />

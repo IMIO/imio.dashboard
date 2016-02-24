@@ -28,10 +28,14 @@ function generatePodDocument(template_uid, output_format, tag) {
 }
 
 $(document).ready(function () {
-  var url = $('base').attr('href') + '/@@ajax_render_dashboard_portlet';
+  var url = $('base').attr('href') + '/@@json_collections_count';
   $(Faceted.Events).bind(Faceted.Events.AJAX_QUERY_SUCCESS, function() {
       $.get(url, function (response) {
-          $('.faceted-tagscloud-collection-widget').html(response);
+          var info = JSON.parse(response);
+          var criterionId = 'c1';
+          info.forEach(function (item) {
+            $('li#' + criterionId + item.uid + ' span.count').html(item.count);
+          })
       })
   });
 })
