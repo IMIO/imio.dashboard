@@ -10,6 +10,8 @@ from imio.prettylink.interfaces import IPrettyLink
 class PrettyLinkColumn(TitleColumn):
     """A column that display the IPrettyLink.getLink column."""
 
+    params = {}
+
     @property
     def cssClasses(self):
         """Generate a CSS class for each <th> so we can skin it if necessary."""
@@ -17,10 +19,15 @@ class PrettyLinkColumn(TitleColumn):
         cssClasses.update({'td': 'pretty_link', })
         return cssClasses
 
+    def getPrettyLink(self, obj):
+        pl = IPrettyLink(obj)
+        for k, v in self.params.items():
+            setattr(pl, k, v)
+        return pl.getLink()
+
     def renderCell(self, item):
         """ """
-        obj = self._getObject(item)
-        return IPrettyLink(obj).getLink()
+        return self.getPrettyLink(self._getObject(item))
 
 
 class ActionsColumn(BrowserViewCallColumn):
@@ -34,22 +41,12 @@ class ActionsColumn(BrowserViewCallColumn):
     params = {'showHistory': True, 'showActions': True}
 
 
-class RelationPrettyLinkColumn(RelationTitleColumn):
+class RelationPrettyLinkColumn(RelationTitleColumn, PrettyLinkColumn):
     """
     A column displaying related items with IPrettyLink.getLink
     """
 
     params = {}
 
-    @property
-    def cssClasses(self):
-        """Generate a CSS class for each <th> so we can skin it if necessary."""
-        cssClasses = super(RelationPrettyLinkColumn, self).cssClasses.copy() or {}
-        cssClasses.update({'td': 'pretty_link', })
-        return cssClasses
-
     def target_display(self, obj):
-        pl = IPrettyLink(obj)
-        if self.params:
-            pl.__init__(obj, **self.params)
-        return pl.getLink()
+        return PrettyLinkColumn.getPrettyLink(self, obj)

@@ -7,6 +7,8 @@ Changelog
 
 - Removed unused method CustomViewFieldsVocabularyAdapter.additionalViewFields.
   [gbastien]
+- Added params in PrettyLinkColumn. Use it in RelationPrettyLinkColumn and external columns.
+  [sgeulette]
 
 0.15 (2016-02-15)
 -----------------

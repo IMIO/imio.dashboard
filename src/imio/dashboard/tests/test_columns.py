@@ -25,6 +25,11 @@ class TestColumns(IntegrationTestCase):
         self.assertEquals(column.renderCell(brain),
                           u"<a class='pretty_link' title='' href='http://nohost/plone/folder' target='_self'>"
                           u"<span class='pretty_link_content'>Folder</span></a>")
+        # we define a parameter
+        column.params['target'] = '_blank'
+        self.assertEquals(column.renderCell(brain),
+                          u"<a class='pretty_link' title='' href='http://nohost/plone/folder' target='_blank'>"
+                          u"<span class='pretty_link_content'>Folder</span></a>")
         # a pretty_link class is defined for the tg
         self.assertEquals(column.cssClasses, {'td': 'pretty_link', 'th': 'th_header_Title'})
 
