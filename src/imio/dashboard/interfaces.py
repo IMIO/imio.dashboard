@@ -20,10 +20,5 @@ class ICustomViewFieldsVocabulary(Interface):
 
     def listMetaDataFields(self, exclude=True):
         """
-          Works the same way as the Collection.customViewFields vocabulary but get additionalViewFields.
-        """
-
-    def additionalViewFields(self):
-        """
-          Additional fields taken into account by the listMetaDataFields vocabulary.
+          Get every IFacetedColumn z3c.table columns.
         """

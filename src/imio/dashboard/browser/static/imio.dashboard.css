@@ -132,6 +132,7 @@ div.pretty_link span.pretty_link_icons,
 a.pretty_link span.pretty_link_content,
 div.pretty_link span.pretty_link_content {
     padding-right: 0.2em;
+    vertical-align: bottom;
 }
 
 /* display results in a 100% width table so passing from one page of the batch to another is pretty */

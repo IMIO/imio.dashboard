@@ -5,8 +5,8 @@ Changelog
 0.16 (unreleased)
 -----------------
 
-- Nothing changed yet.
-
+- Removed unused method CustomViewFieldsVocabularyAdapter.additionalViewFields.
+  [gbastien]
 
 0.15 (2016-02-15)
 -----------------

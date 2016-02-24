@@ -14,10 +14,7 @@ CURRENT_CRITERION = 'querynextprev.current_criterion'
 
 
 class CustomViewFieldsVocabularyAdapter(object):
-    """Handles plone.app.collection Collection.customViewFields field vocabulary.
-       By default it has the same behaviour as original one but you can override the
-       additionalViewFields method to provide your own fields.
-    """
+    """Handles plone.app.collection Collection.customViewFields field vocabulary."""
 
     def __init__(self, context):
         self.context = context
