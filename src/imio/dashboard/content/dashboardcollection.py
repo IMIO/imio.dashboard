@@ -27,6 +27,11 @@ DashboardCollectionSchema = CollectionSchema.copy() + atapi.Schema((
         ),
 ))
 
+# hide these fields to avoid conflict with eea.facetednavigation parameters
+DashboardCollectionSchema['limit'].default = 0
+DashboardCollectionSchema['b_size'].widget.visible = -1
+DashboardCollectionSchema['limit'].widget.visible = -1
+
 
 class DashboardCollection(Collection):
     """A Collection used in our dashboards"""

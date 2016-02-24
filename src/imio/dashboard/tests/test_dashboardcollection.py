@@ -58,3 +58,14 @@ class TestDashboardCollection(IntegrationTestCase):
         """Test showNumberOfItems field."""
         self.dashboardcollection.setShowNumberOfItems(True)
         self.assertEqual(self.dashboardcollection.getShowNumberOfItems(), True)
+
+    def test_limit_field(self):
+        """Test default value on limit field."""
+        self.assertEqual(self.dashboardcollection.limit, 0)
+
+    def test_non_visible_fields(self):
+        """Test non visible fields."""
+        non_visible = ('b_size', 'limit')
+        for field in self.dashboardcollection.schema.fields():
+            if field.getName() in non_visible:
+                self.assertEqual(field.widget.visible, -1)
