@@ -49,7 +49,7 @@ setup(
         'collective.behavior.talcondition',
         'collective.compoundcriterion',
         'collective.documentgenerator',
-        'collective.eeafaceted.collectionwidget',
+        'collective.eeafaceted.collectionwidget > 0.2',
         'collective.eeafaceted.z3ctable',
         'collective.js.iframeresizer',
         'imio.actionspanel',
