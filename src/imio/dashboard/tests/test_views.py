@@ -30,6 +30,16 @@ class TestJSONCollectionsCount(IntegrationTestCase):
             title='Dashboard collection 2',
             container=self.folder
         )
+        dashboardcol3 = api.content.create(
+            id='dc3',
+            type='DashboardCollection',
+            title='Dashboard collection 3',
+            container=self.folder
+        )
+        dashboardcoll.setShowNumberOfItems(True)
+        dashboardcol2.setShowNumberOfItems(False)
+        dashboardcol3.setShowNumberOfItems(True)
+
         dashboardcoll.query = [
             {
                 'i': 'portal_type',
@@ -38,7 +48,7 @@ class TestJSONCollectionsCount(IntegrationTestCase):
             },
         ]
         expected = [
-            {'uid': dashboardcoll.UID(), 'count': 2},
-            {'uid': dashboardcol2.UID(), 'count': 0},
+            {'uid': dashboardcoll.UID(), 'count': 3},
+            {'uid': dashboardcol3.UID(), 'count': 0},
         ]
         self.assertEqual(self.view(), json.dumps(expected))
