@@ -5,6 +5,8 @@ Changelog
 0.16 (unreleased)
 -----------------
 
+- Added possibility to display number of collection items in the term view.
+  [cedricmessiant]
 - Removed unused method CustomViewFieldsVocabularyAdapter.additionalViewFields.
   [gbastien]
 - Added params in PrettyLinkColumn. Use it in RelationPrettyLinkColumn and external columns.
