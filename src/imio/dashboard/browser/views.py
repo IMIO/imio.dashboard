@@ -58,8 +58,12 @@ class JSONCollectionsCount(BrowserView):
         for category in voc.itervalues():
             for term in category['collections']:
                 collection = api.content.get(UID=term.token)
-                count = collection.unrestrictedTraverse(
-                    '@@render_collection_widget_term_portlet').number_of_items()
-                info.append({'uid': term.token, 'count': count})
+                if collection.getShowNumberOfItems():
+                    view = collection.unrestrictedTraverse(
+                        '@@render_collection_widget_term_portlet')
+                    info.append({
+                        'uid': term.token,
+                        'count': view.number_of_items()
+                        })
 
         return json.dumps(info)
