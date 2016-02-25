@@ -34,7 +34,7 @@ $(document).ready(function () {
           var info = JSON.parse(response);
           var criterionId = 'c1';
           info.forEach(function (item) {
-            $('li#' + criterionId + item.uid + ' span.count').html(item.count);
+            $('li#' + criterionId + item.uid + ' .term-count').html(item.count);
           })
       })
   });
