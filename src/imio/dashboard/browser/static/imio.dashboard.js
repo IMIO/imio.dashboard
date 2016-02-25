@@ -32,8 +32,9 @@ $(document).ready(function () {
   $(Faceted.Events).bind(Faceted.Events.AJAX_QUERY_SUCCESS, function() {
       $.get(url, function (response) {
           var info = JSON.parse(response);
-          var criterionId = 'c1';
-          info.forEach(function (item) {
+          var criterionId = info.criterionId;
+          var countByCollection = info.countByCollection;
+          countByCollection.forEach(function (item) {
             $('li#' + criterionId + item.uid + ' .term-count').html(item.count);
           })
       })

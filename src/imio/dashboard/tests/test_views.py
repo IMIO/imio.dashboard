@@ -14,7 +14,7 @@ class TestJSONCollectionsCount(IntegrationTestCase):
         self.view = self.folder.unrestrictedTraverse('@@json_collections_count')
 
     def test_folder_empty(self):
-        expected = json.dumps([])
+        expected = json.dumps({'criterionId': 'c1', 'countByCollection': []})
         self.assertEqual(self.view(), expected)
 
     def test_with_collections(self):
@@ -47,8 +47,11 @@ class TestJSONCollectionsCount(IntegrationTestCase):
                 'v': ['DashboardCollection', ]
             },
         ]
-        expected = [
-            {'uid': dashboardcoll.UID(), 'count': 3},
-            {'uid': dashboardcol3.UID(), 'count': 0},
-        ]
+        expected = {
+            'criterionId': 'c1',
+            'countByCollection': [
+                {'uid': dashboardcoll.UID(), 'count': 3},
+                {'uid': dashboardcol3.UID(), 'count': 0},
+            ]
+        }
         self.assertEqual(self.view(), json.dumps(expected))
