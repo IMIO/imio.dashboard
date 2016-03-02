@@ -29,14 +29,16 @@ function generatePodDocument(template_uid, output_format, tag) {
 
 $(document).ready(function () {
   var url = $('base').attr('href') + '/@@json_collections_count';
-  $(Faceted.Events).bind(Faceted.Events.AJAX_QUERY_SUCCESS, function() {
-      $.get(url, function (response) {
-          var info = JSON.parse(response);
-          var criterionId = info.criterionId;
-          var countByCollection = info.countByCollection;
-          countByCollection.forEach(function (item) {
-            $('li#' + criterionId + item.uid + ' .term-count').html(item.count);
-          })
-      })
-  });
+  if ($('.faceted-tagscloud-collection-widget').length > 0) {
+    $(Faceted.Events).bind(Faceted.Events.AJAX_QUERY_SUCCESS, function() {
+        $.get(url, function (response) {
+            var info = JSON.parse(response);
+            var criterionId = info.criterionId;
+            var countByCollection = info.countByCollection;
+            countByCollection.forEach(function (item) {
+              $('li#' + criterionId + item.uid + ' .term-count').html(item.count);
+            })
+        })
+    });
+  }
 })
