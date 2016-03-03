@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.16 (unreleased)
+0.16 (2016-03-03)
 -----------------
 
 - Added possibility to display number of collection items in the term view.
