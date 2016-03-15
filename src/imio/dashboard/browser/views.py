@@ -65,7 +65,6 @@ class JSONCollectionsCount(BrowserView):
                         'uid': term.token,
                         'count': view.number_of_items()
                         })
-
         return json.dumps({
             'criterionId': data.__name__,
             'countByCollection': info

@@ -5,8 +5,8 @@ Changelog
 0.17 (unreleased)
 -----------------
 
-- Nothing changed yet.
-
+- Added meta_type for 'DashboardPODTemplate'.
+  [gbastien]
 
 0.16 (2016-03-03)
 -----------------
