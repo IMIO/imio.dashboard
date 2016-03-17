@@ -9,8 +9,8 @@ function generatePodDocument(template_uid, output_format, tag) {
     // manage the facetedquery
     theForm.facetedQuery.value = JSON.stringify(Faceted.Query);
     var hasCheckBoxes = 0;
-    // if not checkboxes detected, do not manage uids, we are not on a table
-    if ($('input[name="select_item"]').length) {
+    // if not on a faceted, do not manage uids, we have no table
+    if ($('div#faceted-results').length) {
         var uids = selectedCheckBoxes('select_item');
         if (!uids.length) {
             alert(no_selected_items);

@@ -7,6 +7,12 @@ Changelog
 
 - Added meta_type for 'DashboardPODTemplate'.
   [gbastien]
+- Fixed JS in generatePodDocument to not generate the Pod template after alert 'no items selected'.
+  [gbastien]
+- Changed JS generatePodDocument check to know if we are on a faceted page : do not query
+  input[name="select_item"] checkboxes as there could be none displayed if current faceted displays
+  no result, instead check for presence of div#faceted-results.
+  [gbastien]
 
 0.16 (2016-03-03)
 -----------------
