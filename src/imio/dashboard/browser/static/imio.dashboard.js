@@ -14,6 +14,7 @@ function generatePodDocument(template_uid, output_format, tag) {
         var uids = selectedCheckBoxes('select_item');
         if (!uids.length) {
             alert(no_selected_items);
+            return
         }
         else {
             // if we unselected some checkboxes, we pass uids
