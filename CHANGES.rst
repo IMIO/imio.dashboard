@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.17 (unreleased)
+0.17 (2016-03-22)
 -----------------
 
 - Added meta_type for 'DashboardPODTemplate'.
