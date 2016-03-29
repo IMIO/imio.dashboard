@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-02-22 14:19+0000\n"
+"POT-Creation-Date: 2016-03-29 13:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,6 +41,14 @@ msgstr ""
 msgid "Edit Collection Criteria Portlet"
 msgstr ""
 
+#: ./configure.zcml:44
+msgid "Installs the demo of two tables of imio.dashboard add-on."
+msgstr ""
+
+#: ./configure.zcml:36
+msgid "Installs the imio.dashboard add-on."
+msgstr ""
+
 #: ./content/pod_template.py:30
 msgid "Select for which dashboard collections the template will be available. If nothing is selected, the template will be available on every dashboards."
 msgstr ""
@@ -49,7 +57,22 @@ msgstr ""
 msgid "Show number of items in filter"
 msgstr ""
 
+#: ./testing.zcml:15
+msgid "Steps to ease tests of imio.dashboard"
+msgstr ""
+
 #: ./browser/facetedcollectionportlet.py:114
 msgid "This portlet shows controls for faceted with collections."
 msgstr ""
 
+#: ./configure.zcml:36
+msgid "imio.dashboard"
+msgstr ""
+
+#: ./configure.zcml:44
+msgid "imio.dashboard demo of two tables"
+msgstr ""
+
+#: ./testing.zcml:15
+msgid "imio.dashboard tests"
+msgstr ""

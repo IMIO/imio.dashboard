@@ -5,8 +5,8 @@ Changelog
 0.18 (unreleased)
 -----------------
 
-- Nothing changed yet.
-
+- Added english translations.
+  [sgeulette]
 
 0.17 (2016-03-22)
 -----------------
@@ -106,7 +106,7 @@ Changelog
 
 0.7 (2015-11-03)
 ----------------
-- Give permission 'eea.facetednavigation: Configure faceted' 
+- Give permission 'eea.facetednavigation: Configure faceted'
   only for 'Manager' by default.
   [gbastien]
 - Added a submethod utils._get_criterion that gets any widget type
