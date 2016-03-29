@@ -7,6 +7,10 @@ Changelog
 
 - Added english translations.
   [sgeulette]
+- Make configuration types not displayed in the search, added 'Collection', 'DashboardCollection',
+  'Topic', 'ConfigurablePODTemplate', 'DashboardPODTemplate', 'PODTemplate', 'StyleTemplate'
+  and 'SubTemplate to site_properties.types_not_searched.
+  [gbastien]
 
 0.17 (2016-03-22)
 -----------------
