@@ -17,10 +17,15 @@ div#center---default---widgets div.faceted-widget {
 }
 
 #faceted-form fieldset.widget-fieldset {
-    padding-top: 0em;
     margin-top: 0em;
     margin-right: 0.5em;
 }
+
+/* width of advanced faceted filters */
+#faceted-form div#top-area fieldset.widget-fieldset {
+    max-width: 165px;
+}
+
 /* reduce spacing between checkboxes in a widget */
 #faceted-form li {
     line-height: 1em;
@@ -28,7 +33,6 @@ div#center---default---widgets div.faceted-widget {
 
 /* reduce margin and use height and overflow so checkbox lists are displayed with a scrollbar */
 #content fieldset.widget-fieldset ul {
-    max-width: 165px;
     margin-left: 0.2em;
     margin-right: 0.2em;
 }
@@ -102,6 +106,8 @@ div.listingBar span.next {
 }
 
 /* place "number of results" beside the listingBar */
+.table_faceted_results_number,
+.table_faceted_no_results,
 .table_faceted_results {
     float: left;
     margin: 1em;
@@ -109,10 +115,9 @@ div.listingBar span.next {
     margin-bottom: 0.5em;
 }
 
-/* skin sentence "25 results" and "no results" */
-.table_faceted_results_number,
+/* skin sentence "no results" */
 .table_faceted_no_results {
-    font-weight: bold;
+    font-style: italic;
 }
 
 /* icon for DashboardCollection */
