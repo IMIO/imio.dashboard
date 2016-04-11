@@ -63,7 +63,6 @@ div#faceted-form {
 /* limit space on top, make 'more filters' link take less place */
 #faceted-form .faceted-sections-buttons {
     position: absolute;
-    right: 5em;
     padding-top: 0.5em;
     font-weight: bold;
 }
