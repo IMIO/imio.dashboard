@@ -23,7 +23,7 @@ div#center---default---widgets div.faceted-widget {
 
 /* width of advanced faceted filters */
 #faceted-form div#top-area fieldset.widget-fieldset {
-    max-width: 165px;
+    max-width: 175px;
 }
 
 /* reduce spacing between checkboxes in a widget */
@@ -134,11 +134,6 @@ a.pretty_link span.pretty_link_content,
 div.pretty_link span.pretty_link_content {
     padding-right: 0.2em;
     vertical-align: bottom;
-}
-
-/* display results in a 100% width table so passing from one page of the batch to another is pretty */
-table.faceted-table-results {
-    width: 100%;
 }
 
 #content table.listing th a.sort_arrow_disabled {
