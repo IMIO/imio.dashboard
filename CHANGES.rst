@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.18 (unreleased)
+0.18 (2016-04-15)
 -----------------
 
 - Added english translations.
