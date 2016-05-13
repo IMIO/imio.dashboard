@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.19 (unreleased)
+0.19 (2016-05-13)
 -----------------
 
 - Removed invasive styling, not the place here.
