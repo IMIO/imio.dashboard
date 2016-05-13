@@ -5,7 +5,8 @@ Changelog
 0.19 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Removed invasive styling, not the place here.
+  [gbastien]
 
 
 0.18 (2016-04-15)

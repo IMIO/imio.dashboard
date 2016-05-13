@@ -5,7 +5,6 @@ div#center---default---widgets {
     width: 100%;
 }
 div#top---advanced---widgets {
-    background-color: #EEEEEE;
     padding-left: 0.5em;
     padding-top: 1em;
     border-radius: 5px;
@@ -39,11 +38,6 @@ div#center---default---widgets div.faceted-widget {
 #content div#top---advanced---widgets .widget-fieldset > form {
     height: 100px;
     overflow-x: hidden;
-}
-
-/* make date widget display on 2 lines */
-#content form.faceted-daterange-widget-form {
-    width: 165px;
 }
 
 /* limit spacing in faceted widget under the fieldset legend */
