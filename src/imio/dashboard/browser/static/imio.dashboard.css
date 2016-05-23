@@ -20,11 +20,6 @@ div#center---default---widgets div.faceted-widget {
     margin-right: 0.5em;
 }
 
-/* width of advanced faceted filters */
-#faceted-form div#top-area fieldset.widget-fieldset {
-    max-width: 175px;
-}
-
 /* reduce spacing between checkboxes in a widget */
 #faceted-form li {
     line-height: 1em;
