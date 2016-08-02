@@ -19,6 +19,8 @@ from imio.dashboard.utils import getDashboardQueryResult
 
 class IDFacetedTableView(FacetedTableView):
 
+    ignoreColumnWeight = True
+
     def __init__(self, context, request):
         super(IDFacetedTableView, self).__init__(context, request)
         self.collection = self._set_collection()
@@ -49,16 +51,6 @@ class IDFacetedTableView(FacetedTableView):
 
         # else get default column names
         return super(IDFacetedTableView, self)._getViewFields()
-
-    def orderColumns(self):
-        """ Order columns of the table."""
-        # do this to keep the column ordered as found on the field
-        # 'customViewFields' of the collection if there is any
-        if self.collection:
-            for i, column in enumerate(self.columns):
-                column.weight = i
-
-        super(IDFacetedTableView, self).orderColumns()
 
 
 class IDDocumentGenerationView(DocumentGenerationView):

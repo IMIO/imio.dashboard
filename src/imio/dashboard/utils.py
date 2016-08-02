@@ -11,15 +11,14 @@ from eea.facetednavigation.interfaces import IHidePloneLeftColumn
 from eea.facetednavigation.layout.interfaces import IFacetedLayout
 
 from imio.dashboard.config import NO_FACETED_EXCEPTION_MSG
+from imio.dashboard.config import NO_COLLECTIONWIDGET_EXCEPTION_MSG
+from imio.dashboard.interfaces import NoCollectionWidgetDefinedException
+from imio.dashboard.interfaces import NoFacetedViewDefinedException
 
 from plone import api
 
 import logging
 logger = logging.getLogger('imio.dashboard: utils')
-
-
-class NoFacetedViewDefinedException(Exception):
-    """ To be raised when a context has no faceted view defined on it. """
 
 
 def _get_criterion(faceted_context, criterion_type):
@@ -36,8 +35,10 @@ def _get_criterion(faceted_context, criterion_type):
 
 def getCollectionLinkCriterion(faceted_context):
     """Return the CollectionLink criterion used by faceted_context."""
-    return _get_criterion(faceted_context,
+    criterion = _get_criterion(faceted_context,
                           criterion_type=CollectionWidget.widget_type)
+    if not criterion:
+        raise NoCollectionWidgetDefinedException(NO_COLLECTIONWIDGET_EXCEPTION_MSG)
 
 
 def getCurrentCollection(faceted_context):

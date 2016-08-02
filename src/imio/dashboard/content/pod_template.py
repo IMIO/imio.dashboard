@@ -6,6 +6,7 @@ from collective.documentgenerator.content.pod_template import IConfigurablePODTe
 
 from imio.dashboard import ImioDashboardMessageFactory as _
 from imio.dashboard.utils import getCurrentCollection
+from imio.dashboard.interfaces import NotDashboardContextException
 
 from plone.autoform import directives as form
 
@@ -54,7 +55,11 @@ class DashboardPODTemplateCondition(ConfigurablePODTemplateCondition):
         - Previous conditions.
         - That we are on an allowed dashboard collection (if any defined).
         """
-        current_collection = getCurrentCollection(self.context)
+        try:
+            current_collection = getCurrentCollection(self.context)
+        except NotDashboardContextException:
+            return False
+
         allowed_collections = self.pod_template.dashboard_collections
         if not current_collection or \
            (allowed_collections and not current_collection.UID() in allowed_collections):
