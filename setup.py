@@ -50,7 +50,7 @@ setup(
         'collective.compoundcriterion',
         'collective.documentgenerator',
         'collective.eeafaceted.collectionwidget > 0.2',
-        'collective.eeafaceted.z3ctable',
+        'collective.eeafaceted.z3ctable > 0.15',
         'collective.js.iframeresizer',
         'imio.actionspanel',
         'imio.prettylink',
