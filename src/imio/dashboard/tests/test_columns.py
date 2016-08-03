@@ -74,4 +74,5 @@ class TestColumns(IntegrationTestCase):
                          "<span class='pretty_link_content'>Folder 2</span></a></li>\n</ul>",
                          column.renderCell(brain))
         # a pretty_link class is defined for the td
+        table.nameColumn(column, 'rel_items')
         self.assertEquals(column.cssClasses, {'td': 'pretty_link', 'th': 'th_header_rel_items'})
