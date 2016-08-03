@@ -5,7 +5,8 @@ Changelog
 0.20 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Move columns ordering to collective.eeafaceted.z3ctable
+  [sdelcourt]
 
 
 0.19 (2016-05-13)
