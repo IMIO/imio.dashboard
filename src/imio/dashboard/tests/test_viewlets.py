@@ -8,7 +8,6 @@ from imio.dashboard.browser.overrides import IDDashboardDocumentGeneratorLinksVi
 from imio.dashboard.browser.overrides import IDDocumentGeneratorLinksViewlet
 from imio.dashboard.testing import IntegrationTestCase
 from imio.dashboard.utils import getCurrentCollection
-from imio.dashboard.utils import NoFacetedViewDefinedException
 
 
 class TestViewlets(IntegrationTestCase):
@@ -125,6 +124,6 @@ class TestViewlets(IntegrationTestCase):
                                                            None)
         viewlet.update()
         del IAnnotations(self.request)['plone.memoize']
-        self.assertRaises(NoFacetedViewDefinedException, viewlet.available)
+        self.assertFalse(viewlet.available())
         # no matter there are pod templates
         self.assertTrue(viewlet.get_all_pod_templates())
