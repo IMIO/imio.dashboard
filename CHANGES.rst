@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.20 (unreleased)
+0.20 (2016-08-03)
 -----------------
 
 - Move columns ordering to collective.eeafaceted.z3ctable
