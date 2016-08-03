@@ -10,6 +10,7 @@ from plone.portlets.interfaces import IPortletManager, IPortletRenderer
 
 from imio.dashboard.browser import facetedcollectionportlet as portlet
 from imio.dashboard.config import DEFAULT_PORTLET_TITLE
+from imio.dashboard.interfaces import NoCollectionWidgetDefinedException
 from imio.dashboard.testing import IntegrationTestCase
 from imio.dashboard.utils import getCollectionLinkCriterion
 
@@ -86,7 +87,8 @@ class TestPortlet(IntegrationTestCase):
         # by defaut no collection-link widget so nothing is rendered
         self.assertTrue(not [criterion for criterion in criteria.values()
                              if criterion.widget == CollectionWidget.widget_type])
-        self.assertFalse(getCollectionLinkCriterion(self.renderer._criteriaHolder))
+        with self.assertRaises(NoCollectionWidgetDefinedException):
+            getCollectionLinkCriterion(self.renderer._criteriaHolder)
         self.assertTrue(not self.renderer.widget_render)
         # add a collection-link widget
         data = {'vocabulary': 'collective.eeafaceted.collectionwidget.collectionvocabulary',
@@ -111,7 +113,8 @@ class TestPortlet(IntegrationTestCase):
         ul_tag = lxml.html.fromstring(self.renderer.widget_render)[0][0]
         # only 1 children, the collection and the href is as special javascript call that does nothing
         self.assertTrue(len(ul_tag.getchildren()) == 1)
-        li_tag = ul_tag.getchildren()[0]
+        div_tag = ul_tag.getchildren()[0]
+        li_tag = div_tag.getchildren()[0]
         self.assertTrue(li_tag.attrib['value'] == collection.UID())
         self.assertTrue(len(li_tag.getchildren()) == 1)
         a_tag = li_tag.getchildren()[0]
