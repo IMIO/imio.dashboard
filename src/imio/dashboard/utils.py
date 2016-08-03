@@ -40,6 +40,8 @@ def getCollectionLinkCriterion(faceted_context):
     if not criterion:
         raise NoCollectionWidgetDefinedException(NO_COLLECTIONWIDGET_EXCEPTION_MSG)
 
+    return criterion
+
 
 def getCurrentCollection(faceted_context):
     """Return the Collection currently used by the faceted :
