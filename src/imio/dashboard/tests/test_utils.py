@@ -7,6 +7,7 @@ from eea.facetednavigation.interfaces import IFacetedLayout
 from eea.facetednavigation.interfaces import IFacetedNavigable
 from eea.facetednavigation.interfaces import IHidePloneLeftColumn
 
+from imio.dashboard.interfaces import NoCollectionWidgetDefinedException
 from imio.dashboard.testing import IntegrationTestCase
 from imio.dashboard.utils import _get_criterion
 from imio.dashboard.utils import enableFacetedDashboardFor
@@ -39,7 +40,8 @@ class TestUtils(IntegrationTestCase):
                           CollectionWidget.widget_type)
         # remove the criterion then try to get it again
         ICriteria(self.folder).delete(getCollectionLinkCriterion(self.folder).getId())
-        self.assertEquals(getCollectionLinkCriterion(self.folder), None)
+        with self.assertRaises(NoCollectionWidgetDefinedException):
+            getCollectionLinkCriterion(self.folder)
         # trying to get collection-link widget on a folder that is not
         # faceted enabled will raise a NoFacetedViewDefinedException
         folder2_id = self.portal.invokeFactory('Folder', 'folder2', title='Folder2')
