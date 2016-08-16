@@ -7,6 +7,7 @@ from collective.eeafaceted.z3ctable.interfaces import IFacetedColumn
 from zope.component import getGlobalSiteManager
 from zope.i18n import translate
 
+from imio.dashboard.interfaces import NoCollectionWidgetDefinedException
 from imio.dashboard.utils import getCollectionLinkCriterion
 
 
@@ -48,9 +49,9 @@ class CurrentCriterionProvider(object):
         return CURRENT_CRITERION
 
     def get_value(self):
-        criterion = getCollectionLinkCriterion(self.context)
-        if criterion is not None:
-            attr = '{}[]'.format(criterion.__name__)
-            return self.request.form.get(attr, '')
-        else:
+        try:
+            criterion = getCollectionLinkCriterion(self.context)
+        except NoCollectionWidgetDefinedException:
             return ''
+        attr = '{}[]'.format(criterion.__name__)
+        return self.request.form.get(attr, '')

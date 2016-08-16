@@ -5,8 +5,8 @@ Changelog
 0.21 (unreleased)
 -----------------
 
-- Nothing changed yet.
-
+- Test exception when getting criterion value.
+  [sgeulette]
 
 0.20 (2016-08-03)
 -----------------
