@@ -5,6 +5,8 @@ Changelog
 0.21 (unreleased)
 -----------------
 
+- Display category in pod template collections vocabulary
+  [sgeulette]
 - Test exception when getting criterion value.
   [sgeulette]
 

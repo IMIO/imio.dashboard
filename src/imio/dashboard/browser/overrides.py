@@ -72,9 +72,7 @@ class IDDocumentGenerationView(DocumentGenerationView):
 
 
 class IDDocumentGeneratorLinksViewlet(DocumentGeneratorLinksViewlet):
-    """Make the viewlet aware of the 'select box' column displayed
-       using collective.eeafaceted.z3ctable in a eea.facetednavigation.
-       For displaying out of dashboard."""
+    """For displaying out of dashboard."""
 
     render = ViewPageTemplateFile('templates/generationlinks.pt')
 

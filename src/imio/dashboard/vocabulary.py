@@ -7,6 +7,7 @@ from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 from plone import api
+from plone.app.uuid.utils import uuidToCatalogBrain
 from plone.memoize import ram
 from Products.CMFPlone.utils import safe_unicode
 
@@ -14,6 +15,7 @@ from collective.behavior.talcondition.interfaces import ITALConditionable
 from collective.behavior.talcondition.utils import evaluateExpressionFor
 from collective.eeafaceted.collectionwidget.vocabulary import CollectionVocabulary
 from eea.faceted.vocabularies.catalog import CatalogIndexesVocabulary
+from eea.facetednavigation.interfaces import IFacetedNavigable
 
 from imio.dashboard.config import COMBINED_INDEX_PREFIX
 from imio.dashboard.interfaces import IDashboardCollection
@@ -99,6 +101,43 @@ class DashboardCollectionsVocabulary(object):
         return vocabulary
 
 DashboardCollectionsVocabularyFactory = DashboardCollectionsVocabulary()
+
+
+class DashboardCategoryCollectionsVocabulary(object):
+    """
+    Vocabulary factory for 'dashboard_collections' field of DashboardPODTemplate.
+    """
+
+    implements(IVocabularyFactory)
+
+    def _getParents(self, obj):
+        ret = []
+        while IFacetedNavigable.providedBy(obj.aq_inner.aq_parent):
+            obj = obj.aq_inner.aq_parent
+            ret.append(obj.UID())
+        return ','.join(reversed(ret))
+
+    def _brains(self):
+        catalog = api.portal.get_tool('portal_catalog')
+        return catalog(object_provides=IDashboardCollection.__identifier__)
+
+    def __call__(self, context):
+        collections = {}
+        for brain in self._brains():
+            obj = brain.getObject()
+            parents = self._getParents(obj)
+            if parents not in collections:
+                collections[parents] = []
+            collections[parents].append((brain.UID, brain.Title))
+        terms = []
+        for parents in collections:
+            prefix = ' - '.join([uuidToCatalogBrain(p).Title for p in parents.split(',') if p])
+            for term in collections[parents]:
+                terms.append(SimpleTerm(term[0], term[0], prefix and "%s - %s" % (prefix, term[1]) or term[1]))
+        terms.sort(key=attrgetter('title'))
+        return SimpleVocabulary(terms)
+
+DashboardCategoryCollectionsVocabularyFactory = DashboardCategoryCollectionsVocabulary()
 
 
 class CombinedCatalogIndexesVocabulary(CatalogIndexesVocabulary):

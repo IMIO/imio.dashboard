@@ -72,7 +72,7 @@
              name="imio.dashboard.conditionawarecollectionvocabulary" />
     <utility component=".vocabulary.CreatorsVocabularyFactory"
              name="imio.dashboard.creatorsvocabulary" />
-    <utility component=".vocabulary.DashboardCollectionsVocabularyFactory"
+    <utility component=".vocabulary.DashboardCategoryCollectionsVocabularyFactory"
              name="imio.dashboard.collectionsvocabulary" />
 
     <!-- Apply talcondition extender to the DashboardCollection -->
