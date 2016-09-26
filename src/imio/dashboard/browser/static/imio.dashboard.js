@@ -6,7 +6,7 @@ function generatePodDocument(template_uid, output_format, tag) {
     theForm = $(tag).parents('form')[0];
     theForm.template_uid.value = template_uid;
     theForm.output_format.value = output_format;
-    if ($(tag).parents('.faceted-results').length) {
+    if ($(tag).parents('div#faceted-results').length) {
         // manage the facetedquery
         theForm.facetedQuery.value = JSON.stringify(Faceted.Query);
         var hasCheckBoxes = 0;
