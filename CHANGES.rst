@@ -9,6 +9,9 @@ Changelog
   [sgeulette]
 - Test exception when getting criterion value.
   [sgeulette]
+- Check if we are in dashboard documentgenerator viewlet. For some content with iframe dashboard,
+  there can be also a normal documentgenerator viewlet.
+  [sgeulette]
 
 0.20 (2016-08-03)
 -----------------
