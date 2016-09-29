@@ -65,7 +65,7 @@ class TestViewlets(IntegrationTestCase):
                                                 None)
         viewlet.update()
         del IAnnotations(self.request)['plone.memoize']
-        self.assertFalse(viewlet.available())
+        self.assertTrue(viewlet.available())
         # no matter there are pod templates
         self.assertTrue(viewlet.get_all_pod_templates())
 

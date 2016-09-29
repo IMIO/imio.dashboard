@@ -111,9 +111,9 @@ def getDashboardQueryResult(faceted_context):
     if not IFacetedNavigable.providedBy(faceted_context):
         raise NoFacetedViewDefinedException(NO_FACETED_EXCEPTION_MSG)
 
-    request = faceted_context.REQUEST.form
-    uids = request.get('uids', '')
-    faceted_query = request.get('facetedQuery', None)
+    request = faceted_context.REQUEST
+    uids = request.form.get('uids', '')
+    faceted_query = request.form.get('facetedQuery', None)
 
     brains = []
     # maybe we have a facetedQuery? aka the meeting view was filtered and we want to print this result
