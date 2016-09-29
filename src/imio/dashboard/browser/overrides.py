@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
 from plone import api
 from plone.app.collection.interfaces import ICollection
@@ -7,7 +6,6 @@ from eea.facetednavigation.browser.app.query import FacetedQueryHandler
 from eea.facetednavigation.interfaces import IFacetedNavigable
 
 from collective.documentgenerator.browser.generation_view import DocumentGenerationView
-from collective.documentgenerator.content.pod_template import IPODTemplate
 from collective.documentgenerator.viewlets.generationlinks import DocumentGeneratorLinksViewlet
 from collective.eeafaceted.collectionwidget.widgets.widget import CollectionWidget
 from collective.eeafaceted.z3ctable.browser.views import FacetedTableView
@@ -54,11 +52,15 @@ class IDFacetedTableView(FacetedTableView):
 
 
 class IDDocumentGenerationView(DocumentGenerationView):
-    """Override the 'get_generation_context' propertly so 'get_base_generation_context'
+    """Override the 'get_generation_context' properly so 'get_base_generation_context'
        is available for sub-packages that want to extend the template generation context."""
 
     def _get_generation_context(self, helper_view):
         """ """
+        # if we are in base viewlet (not dashboard), return the base context
+        if 'facetedQuery' not in self.request.form:
+            return super(IDDocumentGenerationView, self)._get_generation_context(helper_view)
+
         generation_context = {'brains': [],
                               'uids': []}
 
@@ -71,46 +73,8 @@ class IDDocumentGenerationView(DocumentGenerationView):
         return generation_context
 
 
-class IDDocumentGeneratorLinksViewlet(DocumentGeneratorLinksViewlet):
-    """For displaying out of dashboard."""
-
-    render = ViewPageTemplateFile('templates/generationlinks.pt')
-
-    def available(self):
-        """
-        Exclude this viewlet from faceted contexts.
-        """
-        available = super(IDDocumentGeneratorLinksViewlet, self).available()
-        no_faceted_context = not bool(IFacetedNavigable.providedBy(self.context))
-        return no_faceted_context and available
-
-    def get_all_pod_templates(self):
-        """
-        Override to only return NOT dashboard templates.
-        """
-        catalog = api.portal.get_tool(name='portal_catalog')
-        brains = catalog.unrestrictedSearchResults(
-            object_provides={'query': IPODTemplate.__identifier__,
-                             'not': IDashboardPODTemplate.__identifier__},
-            sort_on='getObjPositionInParent'
-        )
-        pod_templates = [self.context.unrestrictedTraverse(brain.getPath()) for brain in brains]
-
-        return pod_templates
-
-
 class IDDashboardDocumentGeneratorLinksViewlet(DocumentGeneratorLinksViewlet):
     """For displaying on dashboards."""
-
-    render = ViewPageTemplateFile('templates/generationlinks.pt')
-
-    def available(self):
-        """
-        This viewlet is only visible on faceted contexts.
-        """
-        available = super(IDDashboardDocumentGeneratorLinksViewlet, self).available()
-        faceted_context = bool(IFacetedNavigable.providedBy(self.context))
-        return faceted_context and available
 
     def get_all_pod_templates(self):
         """

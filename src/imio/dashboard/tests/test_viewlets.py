@@ -3,9 +3,9 @@
 from plone import api
 
 from zope.annotation import IAnnotations
+from collective.documentgenerator.viewlets.generationlinks import DocumentGeneratorLinksViewlet
 from eea.facetednavigation.interfaces import IFacetedNavigable
 from imio.dashboard.browser.overrides import IDDashboardDocumentGeneratorLinksViewlet
-from imio.dashboard.browser.overrides import IDDocumentGeneratorLinksViewlet
 from imio.dashboard.testing import IntegrationTestCase
 from imio.dashboard.utils import getCurrentCollection
 
@@ -25,10 +25,10 @@ class TestViewlets(IntegrationTestCase):
         that list available PODTemplates."""
 
         # by default, viewlet is not displayed as no template to display
-        viewlet = IDDocumentGeneratorLinksViewlet(self.folder2,
-                                                  self.request,
-                                                  None,
-                                                  None)
+        viewlet = DocumentGeneratorLinksViewlet(self.folder2,
+                                                self.request,
+                                                None,
+                                                None)
         viewlet.update()
         self.assertFalse(viewlet.available())
         self.assertFalse(viewlet.get_all_pod_templates())
@@ -59,10 +59,10 @@ class TestViewlets(IntegrationTestCase):
         # this viewlet will not be displayed if current context is a faceted
         self.assertFalse(IFacetedNavigable.providedBy(self.folder2))
         self.assertTrue(IFacetedNavigable.providedBy(self.folder))
-        viewlet = IDDocumentGeneratorLinksViewlet(self.folder,
-                                                  self.request,
-                                                  None,
-                                                  None)
+        viewlet = DocumentGeneratorLinksViewlet(self.folder,
+                                                self.request,
+                                                None,
+                                                None)
         viewlet.update()
         del IAnnotations(self.request)['plone.memoize']
         self.assertFalse(viewlet.available())

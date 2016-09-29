@@ -5,6 +5,9 @@ Changelog
 0.21 (unreleased)
 -----------------
 
+- Added own doc generation dashboard viewlet.
+  Modified generation view to handle both outside or inside dashboard generations.
+  [sgeulette]
 - Display category in pod template collections vocabulary
   [sgeulette]
 - Test exception when getting criterion value.

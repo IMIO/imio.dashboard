@@ -90,17 +90,10 @@
         />
     <browser:viewlet
         for="OFS.interfaces.IItem"
-        name="document-generation-link"
-        manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
-        class="imio.dashboard.browser.overrides.IDDocumentGeneratorLinksViewlet"
-        layer="imio.dashboard.interfaces.IImioDashboardLayer"
-        permission="zope2.View"
-        />
-    <browser:viewlet
-        for="OFS.interfaces.IItem"
-        name="document-generation-link"
+        name="dashboard-document-generation-link"
         manager="collective.eeafaceted.z3ctable.interfaces.ITopAboveNavManager"
         class="imio.dashboard.browser.overrides.IDDashboardDocumentGeneratorLinksViewlet"
+        template="templates/generationlinks.pt"
         layer="imio.dashboard.interfaces.IImioDashboardLayer"
         permission="zope2.View"
         />

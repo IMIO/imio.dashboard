@@ -111,7 +111,7 @@ def getDashboardQueryResult(faceted_context):
     if not IFacetedNavigable.providedBy(faceted_context):
         raise NoFacetedViewDefinedException(NO_FACETED_EXCEPTION_MSG)
 
-    request = faceted_context.REQUEST
+    request = faceted_context.REQUEST.form
     uids = request.get('uids', '')
     faceted_query = request.get('facetedQuery', None)
 

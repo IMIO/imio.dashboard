@@ -4,7 +4,6 @@ from DateTime import DateTime
 from plone import api
 
 from eea.facetednavigation.interfaces import ICriteria
-from eea.facetednavigation.interfaces import IFacetedNavigable
 from imio.dashboard.testing import IntegrationTestCase
 
 
@@ -30,6 +29,13 @@ class TestDocumentGeneration(IntegrationTestCase):
         if nothing particular is done, every elements of the displayed
         dashboard are added to the template generation context.
         """
+        # document-generator view is called outside dashboard from base viewlet
+        gen_context = self.view._get_generation_context(self.helper)
+        self.assertIn('view', gen_context)
+        self.assertNotIn('facetedQuery', gen_context)
+
+        # document-generator view is called from dashboard viewlet
+        self.request.form['facetedQuery'] = ''
         # order is respected so sort_on created
         # Date catalog queries are 1 minute sensitive...
         # make sure self.folder created is really older than self.folder2
@@ -58,18 +64,6 @@ class TestDocumentGeneration(IntegrationTestCase):
         self.assertEquals(['Folder 2', 'Folder'],
                           [brain.Title for brain in gen_context['brains']])
 
-    def test_get_generation_context_not_faceted(self):
-        """
-        When called on a non faceted context, it just returns
-        a generation_context containing empty lists for 'brains' and 'uids'.
-        """
-        self.assertFalse(IFacetedNavigable.providedBy(self.folder2))
-        self.view = self.folder2.restrictedTraverse('@@document-generation')
-        self.helper = self.view.get_generation_context_helper()
-        gen_context = self.view._get_generation_context(self.helper)
-        self.assertEquals(gen_context['brains'], [])
-        self.assertEquals(gen_context['uids'], [])
-
     def test_get_generation_context_filtered_query(self):
         """
         If a filter is used in the facetedQuery, elements displayed
@@ -84,6 +78,7 @@ class TestDocumentGeneration(IntegrationTestCase):
         self.request.form['c2[]'] = 'Folder 2'
         self.assertEquals(len(faceted_query.query()), 1)
         # generation context respect query
+        self.request.form['facetedQuery'] = ''
         gen_context = self.view._get_generation_context(self.helper)
         self.assertEquals(len(gen_context['uids']), 1)
 
@@ -91,6 +86,7 @@ class TestDocumentGeneration(IntegrationTestCase):
         # reset query, back to 2 elements found
         self.request.form = {}
         self.assertEquals(len(faceted_query.query()), 2)
+        self.request.form['facetedQuery'] = ''
         gen_context = self.view._get_generation_context(self.helper)
         self.assertEquals(len(gen_context['uids']), 2)
         # 'facetedQuery' is received as a serialized JSON of query criteria
@@ -101,6 +97,7 @@ class TestDocumentGeneration(IntegrationTestCase):
     def test_get_generation_context_filtered_uids(self):
         """We may also filter 'uids' directly if set in the REQUEST."""
         # for now 2 elements
+        self.request.form['facetedQuery'] = ''
         gen_context = self.view._get_generation_context(self.helper)
         self.assertEquals(len(gen_context['uids']), 2)
         self.assertEquals(len(gen_context['brains']), 2)
