@@ -36,7 +36,7 @@ def _get_criterion(faceted_context, criterion_type):
 def getCollectionLinkCriterion(faceted_context):
     """Return the CollectionLink criterion used by faceted_context."""
     criterion = _get_criterion(faceted_context,
-                          criterion_type=CollectionWidget.widget_type)
+                               criterion_type=CollectionWidget.widget_type)
     if not criterion:
         raise NoCollectionWidgetDefinedException(NO_COLLECTIONWIDGET_EXCEPTION_MSG)
 

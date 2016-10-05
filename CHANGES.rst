@@ -16,6 +16,7 @@ Changelog
   there can be also a normal documentgenerator viewlet.
   [sgeulette]
 
+
 0.20 (2016-08-03)
 -----------------
 
