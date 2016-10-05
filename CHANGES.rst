@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.21 (unreleased)
+0.21 (2016-10-05)
 -----------------
 
 - Added own doc generation dashboard viewlet.
