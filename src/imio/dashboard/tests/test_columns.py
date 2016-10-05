@@ -23,12 +23,12 @@ class TestColumns(IntegrationTestCase):
         # we will use the 'folder' as a brain
         brain = self.portal.portal_catalog(UID=self.folder.UID())[0]
         self.assertEquals(column.renderCell(brain),
-                          u"<a class='pretty_link' title='' href='http://nohost/plone/folder' target='_self'>"
+                          u"<a class='pretty_link' title='Folder' href='http://nohost/plone/folder' target='_self'>"
                           u"<span class='pretty_link_content'>Folder</span></a>")
         # we define a parameter
         column.params['target'] = '_blank'
         self.assertEquals(column.renderCell(brain),
-                          u"<a class='pretty_link' title='' href='http://nohost/plone/folder' target='_blank'>"
+                          u"<a class='pretty_link' title='Folder' href='http://nohost/plone/folder' target='_blank'>"
                           u"<span class='pretty_link_content'>Folder</span></a>")
         # a pretty_link class is defined for the tg
         self.assertEquals(column.cssClasses, {'td': 'pretty_link', 'th': 'th_header_Title'})
@@ -59,18 +59,18 @@ class TestColumns(IntegrationTestCase):
                                 title='My testing type', rel_item=rel1, rel_items=[rel1, rel2])
         brain = self.portal.portal_catalog(UID=tt.UID())[0]
         column.attrName = 'rel_item'
-        self.assertEqual(u"<a class='pretty_link' title='' href='http://nohost/plone/fold1' target='_self'>"
+        self.assertEqual(u"<a class='pretty_link' title='Folder 1' href='http://nohost/plone/fold1' target='_self'>"
                          "<span class='pretty_link_content'>Folder 1</span></a>",
                          column.renderCell(brain))
         column.params = {'showContentIcon': True}
-        self.assertEqual(u"<a class='pretty_link contenttype-Folder' title='' href='http://nohost/plone/fold1' "
+        self.assertEqual(u"<a class='pretty_link contenttype-Folder' title='Folder 1' href='http://nohost/plone/fold1' "
                          "target='_self'><span class='pretty_link_content'>Folder 1</span></a>",
                          column.renderCell(brain))
         column.params = {}
         column.attrName = 'rel_items'
-        self.assertEqual(u"<ul>\n<li><a class='pretty_link' title='' href='http://nohost/plone/fold1' target='_self'>"
+        self.assertEqual(u"<ul>\n<li><a class='pretty_link' title='Folder 1' href='http://nohost/plone/fold1' target='_self'>"
                          "<span class='pretty_link_content'>Folder 1</span></a></li>\n"
-                         "<li><a class='pretty_link' title='' href='http://nohost/plone/fold2' target='_self'>"
+                         "<li><a class='pretty_link' title='Folder 2' href='http://nohost/plone/fold2' target='_self'>"
                          "<span class='pretty_link_content'>Folder 2</span></a></li>\n</ul>",
                          column.renderCell(brain))
         # a pretty_link class is defined for the td
