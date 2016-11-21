@@ -5,7 +5,8 @@ Changelog
 0.22 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Check if context is provided by IDashboardCollection to display_number_of_items.
+  [bsuttor]
 
 
 0.21 (2016-10-05)
