@@ -5,6 +5,12 @@ Changelog
 0.22 (unreleased)
 -----------------
 
+- Check if context is provided by IDashboardCollection to count number of dashborad collections.
+  [bsuttor]
+
+- Check if context is provided by IDashboardCollection to display_number_of_items.
+  [bsuttor]
+
 - Updated _get_generation_context to add needed parameter from documentgenerator.
   Test context variables integration
   [sgeulette]

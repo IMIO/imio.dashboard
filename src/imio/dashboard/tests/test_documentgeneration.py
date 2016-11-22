@@ -19,7 +19,7 @@ class TestDocumentGeneration(IntegrationTestCase):
                                           type='Folder',
                                           title='Folder 2',
                                           container=self.portal)
-        self.folder2.setCreationDate(self.folder2.created()-1)
+        self.folder2.setCreationDate(self.folder2.created() - 1)
         self.folder2.reindexObject()
         self.view = self.folder.restrictedTraverse('@@document-generation')
         self.helper = self.view.get_generation_context_helper()
