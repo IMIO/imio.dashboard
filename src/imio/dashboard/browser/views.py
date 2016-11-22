@@ -62,7 +62,8 @@ class JSONCollectionsCount(BrowserView):
         for category in voc.itervalues():
             for term in category['collections']:
                 collection = api.content.get(UID=term.token)
-                if collection.getShowNumberOfItems():
+                if IDashboardCollection.providedBy(self.context) \
+                        and collection.getShowNumberOfItems():
                     view = collection.unrestrictedTraverse(
                         '@@render_collection_widget_term_portlet')
                     info.append({

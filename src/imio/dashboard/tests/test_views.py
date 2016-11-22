@@ -17,7 +17,7 @@ class TestJSONCollectionsCount(IntegrationTestCase):
         expected = json.dumps({'criterionId': 'c1', 'countByCollection': []})
         self.assertEqual(self.view(), expected)
 
-    def test_with_collections(self):
+    def test_with_dashboard_collections(self):
         dashboardcoll = api.content.create(
             id='dc1',
             type='DashboardCollection',
@@ -53,5 +53,26 @@ class TestJSONCollectionsCount(IntegrationTestCase):
                 {'uid': dashboardcoll.UID(), 'count': 3},
                 {'uid': dashboardcol3.UID(), 'count': 0},
             ]
+        }
+        self.assertEqual(self.view(), json.dumps(expected))
+
+    def test_with_collections(self):
+        col = api.content.create(
+            id='col1',
+            type='Collection',
+            title='collection 1',
+            container=self.folder
+        )
+
+        col.query = [
+            {
+                'i': 'portal_type',
+                'o': 'plone.app.querystring.operation.selection.is',
+                'v': ['Collection', ]
+            },
+        ]
+        expected = {
+            'criterionId': 'c1',
+            'countByCollection': []
         }
         self.assertEqual(self.view(), json.dumps(expected))
