@@ -55,11 +55,11 @@ class IDDocumentGenerationView(DocumentGenerationView):
     """Override the 'get_generation_context' properly so 'get_base_generation_context'
        is available for sub-packages that want to extend the template generation context."""
 
-    def _get_generation_context(self, helper_view):
+    def _get_generation_context(self, helper_view, pod_template):
         """ """
         # if we are in base viewlet (not dashboard), return the base context
         if 'facetedQuery' not in self.request.form:
-            return super(IDDocumentGenerationView, self)._get_generation_context(helper_view)
+            return super(IDDocumentGenerationView, self)._get_generation_context(helper_view, pod_template)
 
         generation_context = {'brains': [],
                               'uids': []}
@@ -69,7 +69,8 @@ class IDDocumentGenerationView(DocumentGenerationView):
             generation_context['brains'] = brains
             generation_context['uids'] = [brain.UID for brain in brains]
 
-        generation_context.update(super(IDDocumentGenerationView, self)._get_generation_context(helper_view))
+        generation_context.update(super(IDDocumentGenerationView, self)._get_generation_context(helper_view,
+                                                                                                pod_template))
         return generation_context
 
 

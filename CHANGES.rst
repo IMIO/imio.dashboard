@@ -5,8 +5,9 @@ Changelog
 0.22 (unreleased)
 -----------------
 
-- Nothing changed yet.
-
+- Updated _get_generation_context to add needed parameter from documentgenerator.
+  Test context variables integration
+  [sgeulette]
 
 0.21 (2016-10-05)
 -----------------
