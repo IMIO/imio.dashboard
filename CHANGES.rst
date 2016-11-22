@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.22 (unreleased)
+0.22 (2016-11-22)
 -----------------
 
 - Check if context is provided by IDashboardCollection to count number of dashborad collections.
