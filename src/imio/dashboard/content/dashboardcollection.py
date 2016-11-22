@@ -22,9 +22,9 @@ DashboardCollectionSchema = CollectionSchema.copy() + atapi.Schema((
         required=False,
         widget=BooleanWidget(
             label=_(u'Show number of items in filter'),
-            ),
-        schemata="default",
         ),
+        schemata="default",
+    ),
 ))
 
 # hide these fields to avoid conflict with eea.facetednavigation parameters

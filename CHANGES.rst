@@ -11,6 +11,9 @@ Changelog
 - Check if context is provided by IDashboardCollection to display_number_of_items.
   [bsuttor]
 
+- Updated _get_generation_context to add needed parameter from documentgenerator.
+  Test context variables integration
+  [sgeulette]
 
 0.21 (2016-10-05)
 -----------------

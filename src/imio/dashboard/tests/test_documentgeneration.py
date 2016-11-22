@@ -19,8 +19,15 @@ class TestDocumentGeneration(IntegrationTestCase):
                                           type='Folder',
                                           title='Folder 2',
                                           container=self.portal)
+        self.folder2.setCreationDate(self.folder2.created()-1)
+        self.folder2.reindexObject()
         self.view = self.folder.restrictedTraverse('@@document-generation')
         self.helper = self.view.get_generation_context_helper()
+        self.dashboardtemplate = api.content.create(id='dashboardtemplate',
+                                                    type='DashboardPODTemplate',
+                                                    title='Dashboard template',
+                                                    context_variables=[{'name': 'details', 'value': '1'}],
+                                                    container=self.folder2)
 
     def test_get_generation_context(self):
         """
@@ -30,9 +37,10 @@ class TestDocumentGeneration(IntegrationTestCase):
         dashboard are added to the template generation context.
         """
         # document-generator view is called outside dashboard from base viewlet
-        gen_context = self.view._get_generation_context(self.helper)
+        gen_context = self.view._get_generation_context(self.helper, self.dashboardtemplate)
         self.assertIn('view', gen_context)
         self.assertNotIn('facetedQuery', gen_context)
+        self.assertIn('details', gen_context)
 
         # document-generator view is called from dashboard viewlet
         self.request.form['facetedQuery'] = ''
@@ -45,24 +53,25 @@ class TestDocumentGeneration(IntegrationTestCase):
                           u'sorting')
         self.request.form['c0[]'] = 'created'
 
-        gen_context = self.view._get_generation_context(self.helper)
+        gen_context = self.view._get_generation_context(self.helper, self.dashboardtemplate)
         self.assertTrue('uids' in gen_context)
-        self.assertEquals(len(gen_context['uids']), 2)
+        self.assertEquals(len(gen_context['uids']), 3)
         self.assertTrue('brains' in gen_context)
-        self.assertEquals(len(gen_context['brains']), 2)
+        self.assertEquals(len(gen_context['brains']), 3)
+        self.assertEqual(gen_context['details'], '1')
         # brains are sorted according to uids list
         self.assertEquals(gen_context['uids'],
                           [brain.UID for brain in gen_context['brains']])
 
-        # we have 2 elements in the dashboard : self.folder and self.folder2
-        self.assertEquals(['Folder', 'Folder 2'],
-                          [brain.Title for brain in gen_context['brains']])
+        # we have 3 elements in the dashboard : self.folder and self.folder2
+        self.assertListEqual(['Folder', 'Folder 2', 'Dashboard template'],
+                             [brain.Title for brain in gen_context['brains']])
 
         # order of query is kept in brains
         self.request.form['reversed'] = 'on'
-        gen_context = self.view._get_generation_context(self.helper)
-        self.assertEquals(['Folder 2', 'Folder'],
-                          [brain.Title for brain in gen_context['brains']])
+        gen_context = self.view._get_generation_context(self.helper, self.dashboardtemplate)
+        self.assertListEqual(['Dashboard template', 'Folder 2', 'Folder'],
+                             [brain.Title for brain in gen_context['brains']])
 
     def test_get_generation_context_filtered_query(self):
         """
@@ -70,8 +79,8 @@ class TestDocumentGeneration(IntegrationTestCase):
         in the dashboard are correctly given to the template.
         """
         faceted_query = self.folder.restrictedTraverse('@@faceted_query')
-        # for now 2 elements
-        self.assertEquals(len(faceted_query.query()), 2)
+        # for now 3 elements
+        self.assertEquals(len(faceted_query.query()), 3)
         # filter on text, 'Folder 2'
         self.assertEquals(ICriteria(self.folder).get('c2').index,
                           u'SearchableText')
@@ -79,29 +88,29 @@ class TestDocumentGeneration(IntegrationTestCase):
         self.assertEquals(len(faceted_query.query()), 1)
         # generation context respect query
         self.request.form['facetedQuery'] = ''
-        gen_context = self.view._get_generation_context(self.helper)
+        gen_context = self.view._get_generation_context(self.helper, self.dashboardtemplate)
         self.assertEquals(len(gen_context['uids']), 1)
 
         # facetedQuery is passed to the generation context as json
-        # reset query, back to 2 elements found
+        # reset query, back to 3 elements found
         self.request.form = {}
-        self.assertEquals(len(faceted_query.query()), 2)
+        self.assertEquals(len(faceted_query.query()), 3)
         self.request.form['facetedQuery'] = ''
-        gen_context = self.view._get_generation_context(self.helper)
-        self.assertEquals(len(gen_context['uids']), 2)
+        gen_context = self.view._get_generation_context(self.helper, self.dashboardtemplate)
+        self.assertEquals(len(gen_context['uids']), 3)
         # 'facetedQuery' is received as a serialized JSON of query criteria
         self.request.form['facetedQuery'] = '{"c2":"Folder 2"}'
-        gen_context = self.view._get_generation_context(self.helper)
+        gen_context = self.view._get_generation_context(self.helper, self.dashboardtemplate)
         self.assertEquals(len(gen_context['uids']), 1)
 
     def test_get_generation_context_filtered_uids(self):
         """We may also filter 'uids' directly if set in the REQUEST."""
         # for now 2 elements
         self.request.form['facetedQuery'] = ''
-        gen_context = self.view._get_generation_context(self.helper)
-        self.assertEquals(len(gen_context['uids']), 2)
-        self.assertEquals(len(gen_context['brains']), 2)
+        gen_context = self.view._get_generation_context(self.helper, self.dashboardtemplate)
+        self.assertEquals(len(gen_context['uids']), 3)
+        self.assertEquals(len(gen_context['brains']), 3)
         self.request.form['uids'] = self.folder.UID()
-        gen_context = self.view._get_generation_context(self.helper)
+        gen_context = self.view._get_generation_context(self.helper, self.dashboardtemplate)
         self.assertEquals(len(gen_context['uids']), 1)
         self.assertEquals(len(gen_context['brains']), 1)
