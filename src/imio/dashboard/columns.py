@@ -8,7 +8,7 @@ from imio.prettylink.interfaces import IPrettyLink
 
 
 class PrettyLinkColumn(TitleColumn):
-    """A column that display the IPrettyLink.getLink column."""
+    """A column that displays the IPrettyLink.getLink column."""
 
     params = {}
 
