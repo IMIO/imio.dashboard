@@ -5,7 +5,8 @@ Changelog
 0.23 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Check if there are some checkboxes on a faceted to get uids.
+  [bsuttor]
 
 
 0.22 (2016-11-22)
