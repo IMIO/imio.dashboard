@@ -7,7 +7,8 @@ Changelog
 
 - Check if there are some checkboxes on a faceted to get uids.
   [bsuttor]
-
+- Added plone.app.collection as a dependency.
+  [gbastien]
 
 0.22 (2016-11-22)
 -----------------
