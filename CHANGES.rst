@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.23 (unreleased)
+0.23 (2017-01-31)
 -----------------
 
 - Check if there are some checkboxes on a faceted to get uids.
