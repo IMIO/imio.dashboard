@@ -54,6 +54,7 @@ setup(
         'collective.js.iframeresizer',
         'eea.facetednavigation < 10.0',
         'imio.actionspanel',
+        'imio.migrator',
         'imio.prettylink',
     ],
     extras_require={
