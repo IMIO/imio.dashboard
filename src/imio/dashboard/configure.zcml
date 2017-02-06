@@ -80,4 +80,6 @@
         <implements interface="collective.behavior.talcondition.interfaces.ITALConditionable" />
     </class>
 
+    <include file="upgrades.zcml" />
+
 </configure>

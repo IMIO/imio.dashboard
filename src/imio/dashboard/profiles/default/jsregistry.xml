@@ -8,4 +8,7 @@
               inline="False"
               id="++resource++imio.dashboard/imio.dashboard.js"
   />
+
+ <javascript id="imiodashboard_js_variables.js" />
+
 </object>

@@ -1,0 +1,16 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="imio.dms.mail">
+
+    <include package="Products.GenericSetup" file="meta.zcml" />
+
+    <genericsetup:upgradeStep
+        title="Add imiodashboard_js_variables.js"
+        description=""
+        source="1"
+        destination="2"
+        handler="imio.dashboard.upgrades.upgrade_to_2.migrate"
+        profile="imio.dashboard:default" />
+
+</configure>

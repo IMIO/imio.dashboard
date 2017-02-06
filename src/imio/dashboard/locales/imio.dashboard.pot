@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-03-29 13:47+0000\n"
+"POT-Creation-Date: 2017-02-06 09:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,7 +25,7 @@ msgstr ""
 msgid "Add Collection Criteria Portlet"
 msgstr ""
 
-#: ./content/pod_template.py:29
+#: ./content/pod_template.py:30
 msgid "Allowed dashboard collections"
 msgstr ""
 
@@ -49,7 +49,7 @@ msgstr ""
 msgid "Installs the imio.dashboard add-on."
 msgstr ""
 
-#: ./content/pod_template.py:30
+#: ./content/pod_template.py:31
 msgid "Select for which dashboard collections the template will be available. If nothing is selected, the template will be available on every dashboards."
 msgstr ""
 
@@ -75,4 +75,9 @@ msgstr ""
 
 #: ./testing.zcml:15
 msgid "imio.dashboard tests"
+msgstr ""
+
+#. Default: "Please select at least one element."
+#: ./browser/jsvariables.py:15
+msgid "no_selected_items"
 msgstr ""

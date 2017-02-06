@@ -5,8 +5,8 @@ Changelog
 0.24 (unreleased)
 -----------------
 
-- Nothing changed yet.
-
+- Added javascript variables for i18n.
+  [sgeulette]
 
 0.23 (2017-01-31)
 -----------------

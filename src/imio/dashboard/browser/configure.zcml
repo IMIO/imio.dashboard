@@ -30,6 +30,12 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        for="*"
+        name="imiodashboard_js_variables.js"
+        class=".jsvariables.JSVariables"
+        permission="zope.Public" />
+
     <!-- collective.eeafaceted.z3ctable -->
     <configure package="collective.eeafaceted.z3ctable">
         <browser:view
