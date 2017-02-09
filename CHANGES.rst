@@ -7,6 +7,8 @@ Changelog
 
 - Added javascript variables for i18n.
   [sgeulette]
+- Enable merging and caching for imio.dashboard.js in portal_javascripts.
+  [gbastien]
 
 0.23 (2017-01-31)
 -----------------

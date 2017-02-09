@@ -13,4 +13,14 @@
         handler="imio.dashboard.upgrades.upgrade_to_2.migrate"
         profile="imio.dashboard:default" />
 
+    <genericsetup:upgradeSteps
+        source="2"
+        destination="3"
+        profile="imio.dashboard:default">
+        <genericsetup:upgradeDepends
+            title="Reapply imio.dashboard.js in portal_javascripts"
+            description="Enable merging and caching"
+            import_steps="jsregistry" />
+    </genericsetup:upgradeSteps>
+
 </configure>
