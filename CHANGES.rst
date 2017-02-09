@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.24 (unreleased)
+0.24 (2017-02-09)
 -----------------
 
 - Added javascript variables for i18n.
