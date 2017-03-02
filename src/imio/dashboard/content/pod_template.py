@@ -10,7 +10,7 @@ from imio.dashboard.interfaces import NotDashboardContextException
 
 from plone.autoform import directives as form
 
-from z3c.form.browser.select import SelectWidget
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
 
 from zope import schema
 from zope.interface import implements
@@ -25,7 +25,7 @@ class IDashboardPODTemplate(IConfigurablePODTemplate):
     DashboardPODTemplate dexterity schema.
     """
 
-    form.widget('dashboard_collections', SelectWidget, multiple='multiple', size=15)
+    form.widget('dashboard_collections', CheckBoxFieldWidget, multiple='multiple', size=15)
     dashboard_collections = schema.List(
         title=_(u'Allowed dashboard collections'),
         description=_(u'Select for which dashboard collections the template will be available. '

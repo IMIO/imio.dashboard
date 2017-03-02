@@ -5,8 +5,9 @@ Changelog
 0.25 (unreleased)
 -----------------
 
-- Nothing changed yet.
-
+- Use CheckBoxFieldWidget for IDashboardPODTemplate.dashboard_collections to
+  ease selection when displaying several elements.
+  [gbastien]
 
 0.24 (2017-02-09)
 -----------------
