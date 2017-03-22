@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.25 (unreleased)
+0.25 (2017-03-22)
 -----------------
 
 - Use CheckBoxFieldWidget for IDashboardPODTemplate.dashboard_collections to
