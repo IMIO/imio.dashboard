@@ -8,7 +8,6 @@ cache:
 before_install:
   - mkdir -p $HOME/buildout-cache/{eggs,downloads}
   - virtualenv .
-  - bin/pip install --upgrade pip setuptools zc.buildout
 install:
   - python bootstrap.py -c travis.cfg
   - bin/buildout -Nc travis.cfg
