@@ -9,7 +9,7 @@ before_install:
   - mkdir -p $HOME/buildout-cache/{eggs,downloads}
   - virtualenv .
 install:
-  - python bootstrap.py -c travis.cfg
+  - python bootstrap.py --version=2.5.3 -c travis.cfg
   - bin/buildout -Nc travis.cfg
 script:
   - bin/test
