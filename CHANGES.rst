@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.26 (unreleased)
+0.26 (2017-08-02)
 -----------------
 
 - Add 'use_objects' attribute on dashboard template if you want to have iterate over the objects 
