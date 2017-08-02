@@ -5,7 +5,9 @@ Changelog
 0.26 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Add 'use_objects' attribute on dashboard template if you want to have iterate over the objects 
+  and their helper view rather than the brains.
+  [sdelcourt]
 
 
 0.25 (2017-03-22)

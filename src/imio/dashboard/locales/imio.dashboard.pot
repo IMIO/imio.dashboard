@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-02-06 09:16+0000\n"
+"POT-Creation-Date: 2017-08-02 07:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,7 +25,7 @@ msgstr ""
 msgid "Add Collection Criteria Portlet"
 msgstr ""
 
-#: ./content/pod_template.py:30
+#: ./content/pod_template.py:38
 msgid "Allowed dashboard collections"
 msgstr ""
 
@@ -41,6 +41,10 @@ msgstr ""
 msgid "Edit Collection Criteria Portlet"
 msgstr ""
 
+#: ./content/pod_template.py:30
+msgid "If selelected, receive awoken objects wrapped into their  helper view rather than brains as generation context"
+msgstr ""
+
 #: ./configure.zcml:44
 msgid "Installs the demo of two tables of imio.dashboard add-on."
 msgstr ""
@@ -49,7 +53,7 @@ msgstr ""
 msgid "Installs the imio.dashboard add-on."
 msgstr ""
 
-#: ./content/pod_template.py:31
+#: ./content/pod_template.py:39
 msgid "Select for which dashboard collections the template will be available. If nothing is selected, the template will be available on every dashboards."
 msgstr ""
 
@@ -63,6 +67,10 @@ msgstr ""
 
 #: ./browser/facetedcollectionportlet.py:114
 msgid "This portlet shows controls for faceted with collections."
+msgstr ""
+
+#: ./content/pod_template.py:29
+msgid "Use objects as generation context"
 msgstr ""
 
 #: ./configure.zcml:36

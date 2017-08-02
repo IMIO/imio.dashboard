@@ -3,7 +3,11 @@
 from DateTime import DateTime
 from plone import api
 
+from collective.documentgenerator.helper.base import DisplayProxyObject
+from collective.documentgenerator.helper.base import DocumentGenerationHelperView
+
 from eea.facetednavigation.interfaces import ICriteria
+
 from imio.dashboard.testing import IntegrationTestCase
 
 
@@ -21,13 +25,16 @@ class TestDocumentGeneration(IntegrationTestCase):
                                           container=self.portal)
         self.folder2.setCreationDate(self.folder2.created() - 1)
         self.folder2.reindexObject()
+        self.dashboardtemplate = api.content.create(
+            id='dashboardtemplate',
+            type='DashboardPODTemplate',
+            title='Dashboard template',
+            enabled=True,
+            context_variables=[{'name': 'details', 'value': '1'}],
+            container=self.folder2,
+        )
         self.view = self.folder.restrictedTraverse('@@document-generation')
         self.helper = self.view.get_generation_context_helper()
-        self.dashboardtemplate = api.content.create(id='dashboardtemplate',
-                                                    type='DashboardPODTemplate',
-                                                    title='Dashboard template',
-                                                    context_variables=[{'name': 'details', 'value': '1'}],
-                                                    container=self.folder2)
 
     def test_get_generation_context(self):
         """
@@ -114,3 +121,25 @@ class TestDocumentGeneration(IntegrationTestCase):
         gen_context = self.view._get_generation_context(self.helper, self.dashboardtemplate)
         self.assertEquals(len(gen_context['uids']), 1)
         self.assertEquals(len(gen_context['brains']), 1)
+
+    def test_generation_context_with_use_objects(self):
+        """Activate the field 'use_object' on the dashboard POD template"""
+        self.request.form['facetedQuery'] = ''
+        gen_context = self.view._get_generation_context(self.helper, self.dashboardtemplate)
+        # so far, no objects in the generation context
+        self.assertEquals(gen_context.get('objects'), None)
+
+        # enable 'use_objects'
+        self.dashboardtemplate.use_objects = True
+        gen_context = self.view._get_generation_context(self.helper, self.dashboardtemplate)
+        self.assertEquals(len(gen_context['objects']), 3)
+
+        objs = [b.getObject() for b in gen_context['brains']]
+        self.assertEquals(len(gen_context['objects']), len(gen_context['brains']))
+
+        for proxy_obj, helper in gen_context['objects']:
+            self.assertTrue(isinstance(proxy_obj, DisplayProxyObject))
+            self.assertTrue(isinstance(helper, DocumentGenerationHelperView))
+            self.assertTrue(proxy_obj.context in objs)
+            self.assertTrue(helper.real_context in objs)
+

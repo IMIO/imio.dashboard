@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-02-06 09:16+0000\n"
+"POT-Creation-Date: 2017-08-02 07:44+0000\n"
 "PO-Revision-Date: 2016-02-22 15:20+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -24,7 +24,7 @@ msgstr "Un document à générer depuis un tableau de bord."
 msgid "Add Collection Criteria Portlet"
 msgstr "Ajouter portlet 'Faceted Collection'"
 
-#: ./content/pod_template.py:30
+#: ./content/pod_template.py:38
 msgid "Allowed dashboard collections"
 msgstr "Tableaux de bord autorisés"
 
@@ -40,6 +40,10 @@ msgstr "Modèle de document POD pour tableau de bord"
 msgid "Edit Collection Criteria Portlet"
 msgstr "Editer portlet 'Faceted Collection'"
 
+#: ./content/pod_template.py:30
+msgid "If selelected, receive awoken objects wrapped into their  helper view rather than brains as generation context"
+msgstr "Renvoie les objets et une vue d'aide à la génération comme contexte du modèle plutôt que les brains."
+
 #: ./configure.zcml:44
 msgid "Installs the demo of two tables of imio.dashboard add-on."
 msgstr ""
@@ -48,7 +52,7 @@ msgstr ""
 msgid "Installs the imio.dashboard add-on."
 msgstr ""
 
-#: ./content/pod_template.py:31
+#: ./content/pod_template.py:39
 msgid "Select for which dashboard collections the template will be available. If nothing is selected, the template will be available on every dashboards."
 msgstr "Sélectionnez les tableaux de bord pour lesquels le modèle sera disponible. Si rien n'est sélectionné, le modèle sera disponible sur tous les tableaux de bord."
 
@@ -63,6 +67,10 @@ msgstr ""
 #: ./browser/facetedcollectionportlet.py:114
 msgid "This portlet shows controls for faceted with collections."
 msgstr "Ce portlet affiche les widgets collection définis sur un dossier utilisant une vue à facettes"
+
+#: ./content/pod_template.py:29
+msgid "Use objects as generation context"
+msgstr "Utiliser les objets comme contexte de génération."
 
 #: ./configure.zcml:36
 msgid "imio.dashboard"

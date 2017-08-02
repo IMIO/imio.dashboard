@@ -25,6 +25,14 @@ class IDashboardPODTemplate(IConfigurablePODTemplate):
     DashboardPODTemplate dexterity schema.
     """
 
+    use_objects = schema.Bool(
+        title=_(u'Use objects as generation context'),
+        description=_(u'If selelected, receive awoken objects wrapped into their '
+                      u' helper view rather than brains as generation context'),
+        default=False,
+        required=False,
+    )
+
     form.widget('dashboard_collections', CheckBoxFieldWidget, multiple='multiple', size=15)
     dashboard_collections = schema.List(
         title=_(u'Allowed dashboard collections'),
