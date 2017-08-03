@@ -67,7 +67,7 @@ class IDDocumentGenerationView(DocumentGenerationView):
         if IFacetedNavigable.providedBy(self.context):
             brains = getDashboardQueryResult(self.context)
             generation_context['brains'] = brains
-            if pod_template.use_objects:
+            if getattr(pod_template, 'use_objects', False):
                 wrapped_objects = []
                 for brain in brains:
                     generation_context['uids'].append(brain.UID)
