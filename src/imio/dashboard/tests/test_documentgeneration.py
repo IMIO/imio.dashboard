@@ -133,13 +133,17 @@ class TestDocumentGeneration(IntegrationTestCase):
         self.dashboardtemplate.use_objects = True
         gen_context = self.view._get_generation_context(self.helper, self.dashboardtemplate)
         self.assertEquals(len(gen_context['objects']), 3)
+        self.assertEquals(len(gen_context['all']), 3)
 
         objs = [b.getObject() for b in gen_context['brains']]
-        self.assertEquals(len(gen_context['objects']), len(gen_context['brains']))
-
         for proxy_obj, helper in gen_context['objects']:
             self.assertTrue(isinstance(proxy_obj, DisplayProxyObject))
             self.assertTrue(isinstance(helper, DocumentGenerationHelperView))
             self.assertTrue(proxy_obj.context in objs)
             self.assertTrue(helper.real_context in objs)
 
+        for brain, proxy_obj, helper in gen_context['all']:
+            self.assertTrue(isinstance(proxy_obj, DisplayProxyObject))
+            self.assertTrue(isinstance(helper, DocumentGenerationHelperView))
+            self.assertTrue(proxy_obj.context == brain.getObject())
+            self.assertTrue(helper.real_context == brain.getObject())
