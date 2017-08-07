@@ -5,7 +5,9 @@ Changelog
 0.27 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Add a listing with brains, objects and helper view only available when selection 'use_objects'
+  on the dashboard template.
+  [sdelcourt]
 
 
 0.26 (2017-08-02)
