@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.27 (unreleased)
+0.27 (2017-08-07)
 -----------------
 
 - Add a listing with brains, objects and helper view only available when selection 'use_objects'
