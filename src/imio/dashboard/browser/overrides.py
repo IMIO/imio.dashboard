@@ -69,12 +69,15 @@ class IDDocumentGenerationView(DocumentGenerationView):
             generation_context['brains'] = brains
             if getattr(pod_template, 'use_objects', False):
                 wrapped_objects = []
+                brain_and_objects = []
                 for brain in brains:
                     generation_context['uids'].append(brain.UID)
                     obj = brain.getObject()
                     helper = obj.unrestrictedTraverse('@@document_generation_helper_view')
                     wrapped_objects.append((helper.context, helper))
+                    brain_and_objects.append((brain, helper.context, helper))
                 generation_context['objects'] = wrapped_objects
+                generation_context['all'] = brain_and_objects
             else:
                 generation_context['uids'] = [brain.UID for brain in brains]
 
