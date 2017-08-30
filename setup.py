@@ -6,21 +6,15 @@ from setuptools import setup
 
 
 long_description = (
-    open('README.rst').read()
-    + '\n' +
-    'Contributors\n'
-    '============\n'
-    + '\n' +
-    open('CONTRIBUTORS.rst').read()
-    + '\n' +
-    open('CHANGES.rst').read()
-    + '\n')
+    open('README.rst').read() + '\n' + 'Contributors\n============\n' + '\n' +
+    open('CONTRIBUTORS.rst').read() + '\n' + open('CHANGES.rst').read() + '\n')
 
 
 setup(
     name='imio.dashboard',
     version='0.28.dev0',
-    description="This package is the glue between different packages offering a usable and integrated dashboard application",
+    description="This package is the glue between different packages "
+                "offering a usable and integrated dashboard application",
     long_description=long_description,
     # Get more from http://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
