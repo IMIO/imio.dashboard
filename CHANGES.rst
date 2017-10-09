@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.28 (unreleased)
+0.28 (2017-10-09)
 -----------------
 
 - Removed bad class attribute meta_type to avoid paste error

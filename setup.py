@@ -12,7 +12,7 @@ long_description = (
 
 setup(
     name='imio.dashboard',
-    version='0.28.dev0',
+    version='0.28',
     description="This package is the glue between different packages "
                 "offering a usable and integrated dashboard application",
     long_description=long_description,
