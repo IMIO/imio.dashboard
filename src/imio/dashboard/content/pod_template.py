@@ -50,7 +50,6 @@ class DashboardPODTemplate(ConfigurablePODTemplate):
     """
 
     implements(IDashboardPODTemplate)
-    meta_type = 'DashboardPODTemplate'
 
 
 class DashboardPODTemplateCondition(ConfigurablePODTemplateCondition):

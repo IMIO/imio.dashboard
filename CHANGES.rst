@@ -5,8 +5,8 @@ Changelog
 0.28 (unreleased)
 -----------------
 
-- Nothing changed yet.
-
+- Removed bad class attribute meta_type to avoid paste error
+  [sgeulette]
 
 0.27 (2017-08-07)
 -----------------
@@ -19,7 +19,7 @@ Changelog
 0.26 (2017-08-02)
 -----------------
 
-- Add 'use_objects' attribute on dashboard template if you want to have iterate over the objects 
+- Add 'use_objects' attribute on dashboard template if you want to have iterate over the objects
   and their helper view rather than the brains.
   [sdelcourt]
 
