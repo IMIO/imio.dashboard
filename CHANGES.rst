@@ -5,8 +5,8 @@ Changelog
 0.29 (unreleased)
 -----------------
 
-- Nothing changed yet.
-
+- Corrected icon path and added contenttype-dashboardpodtemplate style.
+  [sgeulette]
 
 0.28 (2017-10-09)
 -----------------
