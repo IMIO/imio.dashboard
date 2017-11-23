@@ -7,6 +7,9 @@ Changelog
 
 - Corrected icon path and added contenttype-dashboardpodtemplate style.
   [sgeulette]
+- Rely on 'collective.eeafaceted.batchactions', removed 'select_row' column
+  that is already defined in 'collective.eeafaceted.batchactions'.
+  [gbastien]
 
 0.28 (2017-10-09)
 -----------------

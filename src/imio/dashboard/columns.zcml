@@ -10,8 +10,7 @@
           collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
      factory=".columns.ActionsColumn"
      provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
-     name="actions"
-  />
+     name="actions" />
 
   <adapter
      for="zope.interface.Interface
@@ -19,16 +18,6 @@
           collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
      factory=".columns.PrettyLinkColumn"
      provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
-     name="pretty_link"
-  />
-
-  <adapter
-     for="zope.interface.Interface
-          zope.publisher.interfaces.browser.IBrowserRequest
-          collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
-     factory="collective.eeafaceted.z3ctable.columns.CheckBoxColumn"
-     provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
-     name="select_row"
-  />
+     name="pretty_link" />
 
 </configure>
