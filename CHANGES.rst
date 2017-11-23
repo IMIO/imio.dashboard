@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.0 (unreleased)
+1.0 (2017-11-23)
 ----------------
 
 - Corrected icon path and added contenttype-dashboardpodtemplate style.
