@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.1 (unreleased)
+1.1 (2017-11-24)
 ----------------
 
 - Added upgrade step that installs 'collective.eeafaceted.batchactions'.
