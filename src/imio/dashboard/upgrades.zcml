@@ -23,4 +23,15 @@
             import_steps="jsregistry" />
     </genericsetup:upgradeSteps>
 
+    <genericsetup:upgradeSteps
+        source="3"
+        destination="4"
+        profile="imio.dashboard:default">
+        <genericsetup:upgradeDepends
+            title="Installs collective.eeafaceted.batchactions"
+            description="Installs new dependency collective.eeafaceted.batchactions"
+            import_profile="collective.eeafaceted.batchactions:default"
+            run_deps="True" />
+    </genericsetup:upgradeSteps>
+
 </configure>
