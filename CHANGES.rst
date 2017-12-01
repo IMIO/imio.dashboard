@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.2 (unreleased)
+1.2 (2017-12-01)
 ----------------
 
 - Removed 'imiodashboard_js_variables.js' as it just translated the
