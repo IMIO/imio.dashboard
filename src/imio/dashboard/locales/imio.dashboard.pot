@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-08-02 07:44+0000\n"
+"POT-Creation-Date: 2017-12-01 12:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,11 +45,11 @@ msgstr ""
 msgid "If selelected, receive awoken objects wrapped into their  helper view rather than brains as generation context"
 msgstr ""
 
-#: ./configure.zcml:44
+#: ./configure.zcml:45
 msgid "Installs the demo of two tables of imio.dashboard add-on."
 msgstr ""
 
-#: ./configure.zcml:36
+#: ./configure.zcml:37
 msgid "Installs the imio.dashboard add-on."
 msgstr ""
 
@@ -73,19 +73,14 @@ msgstr ""
 msgid "Use objects as generation context"
 msgstr ""
 
-#: ./configure.zcml:36
+#: ./configure.zcml:37
 msgid "imio.dashboard"
 msgstr ""
 
-#: ./configure.zcml:44
+#: ./configure.zcml:45
 msgid "imio.dashboard demo of two tables"
 msgstr ""
 
 #: ./testing.zcml:15
 msgid "imio.dashboard tests"
-msgstr ""
-
-#. Default: "Please select at least one element."
-#: ./browser/jsvariables.py:15
-msgid "no_selected_items"
 msgstr ""

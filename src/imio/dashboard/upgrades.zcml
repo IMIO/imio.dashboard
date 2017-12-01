@@ -1,7 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-    i18n_domain="imio.dms.mail">
+    i18n_domain="imio.dashboard">
 
     <include package="Products.GenericSetup" file="meta.zcml" />
 
@@ -32,6 +32,16 @@
             description="Installs new dependency collective.eeafaceted.batchactions"
             import_profile="collective.eeafaceted.batchactions:default"
             run_deps="True" />
+    </genericsetup:upgradeSteps>
+
+    <genericsetup:upgradeSteps
+        source="4"
+        destination="5"
+        profile="imio.dashboard:default">
+        <genericsetup:upgradeDepends
+            title="Remove imiodashboard_js_variables.js from portal_javascripts"
+            description="Relevant content was moved to collective.eeafaceted.batchactions"
+            import_steps="jsregistry" />
     </genericsetup:upgradeSteps>
 
 </configure>

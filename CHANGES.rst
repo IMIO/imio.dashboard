@@ -5,8 +5,10 @@ Changelog
 1.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
-
+- Removed 'imiodashboard_js_variables.js' as it just translated the
+  'no_selected_items' message and it is now in
+  'collective.eeafaceted.batchactions' this package is relying on.
+  [gbastien]
 
 1.1 (2017-11-24)
 ----------------
