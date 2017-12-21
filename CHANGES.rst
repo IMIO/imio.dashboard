@@ -5,8 +5,9 @@ Changelog
 1.3 (unreleased)
 ----------------
 
-- Nothing changed yet.
-
+- Do not use CSS to manage contenttype icon,
+  we have an icon_epxr on the portal_types.
+  [gbastien]
 
 1.2 (2017-12-01)
 ----------------

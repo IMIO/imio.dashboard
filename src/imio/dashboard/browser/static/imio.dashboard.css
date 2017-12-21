@@ -116,20 +116,6 @@ div.listingBar span.next {
     background: url("++resource++imio.dashboard/dashboardcollection.png") no-repeat 0 transparent;
 }
 
-.icons-on .contenttype-dashboardpodtemplate {
-    display: inline-block;
-    line-height: 2em;
-    padding-left: 20px !important;
-    background: url("++resource++imio.dashboard/dashboardpodtemplate.png") no-repeat 0 transparent;
-}
-
-.template-folder_contents.icons-on #listing-table td > img[src*="++resource++imio.dashboard"],
-.template-folder_listing.icons-on #content-core dt span.summary > img[src*="++resource++imio.dashboard"],
-.template-folder_tabular_view.icons-on table.listing td > img[src*="++resource++imio.dashboard"]
-{
-    display: none
-}
-
 /* align icons and pretty link correctly */
 a.pretty_link span.pretty_link_icons,
 div.pretty_link span.pretty_link_icons,
