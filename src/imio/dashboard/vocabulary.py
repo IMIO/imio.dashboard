@@ -32,13 +32,15 @@ class ConditionAwareCollectionVocabulary(CollectionVocabulary):
 
     def _cache_invalidation_key(self, context):
         '''The key will rely on :
+           - by user, in case faceted is stored in the user personal folder;
            - a stored cache volatile that is destroyed if a DashboardCollection is modified somewhere;
            - the first facetednavigable context encountered when ascending context parents.'''
+        user = api.user.get_current()
         date = get_cachekey_volatile('imio.dashboard.conditionawarecollectionvocabulary')
         parent = context
         while not IFacetedNavigable.providedBy(parent) and parent.meta_type != 'Plone Site':
             parent = parent.aq_parent
-        return date, parent
+        return user, date, parent
 
     @ram.cache(__call___cachekey)
     def __call__(self, context):
