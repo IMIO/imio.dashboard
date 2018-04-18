@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from zope.component import queryUtility
+from zope.event import notify
 from zope.interface import alsoProvides
+from zope.lifecycleevent import ObjectModifiedEvent
 from zope.schema.interfaces import IVocabularyFactory
 from Products.CMFCore.utils import getToolByName
 from plone.app.testing import login
@@ -33,7 +35,7 @@ class TestConditionAwareVocabulary(IntegrationTestCase):
         self.assertTrue(ITALConditionable.providedBy(self.dashboardcollection))
         factory = queryUtility(IVocabularyFactory, u'imio.dashboard.conditionawarecollectionvocabulary')
         # for now, no condition defined on the collection so it is in the vocabulary
-        self.assertTrue(not self.dashboardcollection.tal_condition)
+        self.assertEqual(self.dashboardcollection.tal_condition, u'')
         vocab = factory(self.portal)
         self.assertTrue(self.dashboardcollection.UID() in [term.token for term in vocab])
         # now define a condition and by pass for Manager
@@ -44,10 +46,13 @@ class TestConditionAwareVocabulary(IntegrationTestCase):
         self.assertTrue(self.dashboardcollection.UID() in [term.token for term in vocab])
         # Now, desactivate by pass for manager
         self.dashboardcollection.roles_bypassing_talcondition = []
+        # ObjectModified event on DashboardCollection invalidate the vocabulary caching
+        notify(ObjectModifiedEvent(self.dashboardcollection))
         vocab = factory(self.portal)
-        self.assertTrue(not self.dashboardcollection.UID() in [term.token for term in vocab])
+        self.assertFalse(self.dashboardcollection.UID() in [term.token for term in vocab])
         # If condition is True, it is listed
         self.dashboardcollection.tal_condition = u'python:True'
+        notify(ObjectModifiedEvent(self.dashboardcollection))
         vocab = factory(self.portal)
         self.assertTrue(self.dashboardcollection.UID() in [term.token for term in vocab])
 
