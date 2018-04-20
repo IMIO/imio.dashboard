@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.4 (unreleased)
+1.4 (2018-04-20)
 ----------------
 
 - Use `ram.cache` for the `imio.dashboard.conditionawarecollectionvocabulary`
