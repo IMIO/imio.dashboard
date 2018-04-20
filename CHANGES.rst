@@ -2,11 +2,19 @@ Changelog
 =========
 
 
-1.4 (unreleased)
+1.5 (unreleased)
 ----------------
 
 - Nothing changed yet.
 
+
+1.4 (2018-04-20)
+----------------
+
+- Use `ram.cache` for the `imio.dashboard.conditionawarecollectionvocabulary`
+  vocabulary.  This is user and closest faceted context relative and is
+  invalidated when a `DashboardCollection` is modified.
+  [gbastien]
 
 1.3 (2018-01-06)
 ----------------

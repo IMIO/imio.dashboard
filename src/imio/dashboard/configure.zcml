@@ -51,6 +51,8 @@
         handler=".setuphandlers.post_install">
     </genericsetup:importStep>
 
+    <include file="upgrades.zcml" />
+
     <permission
         id="imio.dashboard.AddDashboardCollection"
         title="imio.dashboard: Add DashboardCollection"
@@ -81,6 +83,9 @@
         <implements interface="collective.behavior.talcondition.interfaces.ITALConditionable" />
     </class>
 
-    <include file="upgrades.zcml" />
+    <!-- Events -->
+    <subscriber for="imio.dashboard.interfaces.IDashboardCollection
+                     zope.lifecycleevent.IObjectModifiedEvent"
+                handler=".events.onDashboardCollectionModified" />
 
 </configure>

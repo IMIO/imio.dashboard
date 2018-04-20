@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 from zope.component import queryUtility
+from zope.event import notify
 from zope.interface import alsoProvides
+from zope.lifecycleevent import ObjectModifiedEvent
 from zope.schema.interfaces import IVocabularyFactory
 from Products.CMFCore.utils import getToolByName
 from plone.app.testing import login
+from plone.app.testing import TEST_USER_NAME
 from plone import api
 from imio.dashboard.testing import IntegrationTestCase
 from collective.behavior.talcondition.interfaces import ITALConditionable
@@ -30,24 +33,39 @@ class TestConditionAwareVocabulary(IntegrationTestCase):
         """This vocabulary is condition aware, it means
            that it will take into account condition defined in the
            'tal_condition' field added by ITALConditionable."""
+        # add on non Manager user
+        api.user.create(
+            username='user_not_manager',
+            password='user_not_manager',
+            email="imio@dashboard.org",
+            roles=['Member'])
         self.assertTrue(ITALConditionable.providedBy(self.dashboardcollection))
         factory = queryUtility(IVocabularyFactory, u'imio.dashboard.conditionawarecollectionvocabulary')
         # for now, no condition defined on the collection so it is in the vocabulary
-        self.assertTrue(not self.dashboardcollection.tal_condition)
+        self.assertEqual(self.dashboardcollection.tal_condition, u'')
         vocab = factory(self.portal)
         self.assertTrue(self.dashboardcollection.UID() in [term.token for term in vocab])
         # now define a condition and by pass for Manager
         self.dashboardcollection.tal_condition = u'python:False'
         self.dashboardcollection.roles_bypassing_talcondition = [u"Manager"]
+        notify(ObjectModifiedEvent(self.dashboardcollection))
         # No more listed except for Manager
         vocab = factory(self.portal)
         self.assertTrue(self.dashboardcollection.UID() in [term.token for term in vocab])
-        # Now, desactivate by pass for manager
-        self.dashboardcollection.roles_bypassing_talcondition = []
+        login(self.portal, 'user_not_manager')
+        # cache is user aware
         vocab = factory(self.portal)
-        self.assertTrue(not self.dashboardcollection.UID() in [term.token for term in vocab])
+        self.assertFalse(self.dashboardcollection.UID() in [term.token for term in vocab])
+        # Now, desactivate by pass for manager
+        login(self.portal, TEST_USER_NAME)
+        self.dashboardcollection.roles_bypassing_talcondition = []
+        # ObjectModified event on DashboardCollection invalidate the vocabulary caching
+        notify(ObjectModifiedEvent(self.dashboardcollection))
+        vocab = factory(self.portal)
+        self.assertFalse(self.dashboardcollection.UID() in [term.token for term in vocab])
         # If condition is True, it is listed
         self.dashboardcollection.tal_condition = u'python:True'
+        notify(ObjectModifiedEvent(self.dashboardcollection))
         vocab = factory(self.portal)
         self.assertTrue(self.dashboardcollection.UID() in [term.token for term in vocab])
 

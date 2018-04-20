@@ -17,6 +17,7 @@ from collective.eeafaceted.collectionwidget.vocabulary import CollectionVocabula
 from eea.faceted.vocabularies.catalog import CatalogIndexesVocabulary
 from eea.facetednavigation.interfaces import IFacetedNavigable
 
+from imio.helpers.cache import get_cachekey_volatile
 from imio.dashboard.config import COMBINED_INDEX_PREFIX
 from imio.dashboard.interfaces import IDashboardCollection
 
@@ -25,11 +26,27 @@ from Products.CMFCore.utils import getToolByName
 
 class ConditionAwareCollectionVocabulary(CollectionVocabulary):
 
-    def __call__(self, context, query=None):
+    def __call___cachekey(method, self, context):
+        '''cachekey method for self.__call__.'''
+        return self._cache_invalidation_key(context)
+
+    def _cache_invalidation_key(self, context):
+        '''The key will rely on :
+           - by user, in case faceted is stored in the user personal folder;
+           - a stored cache volatile that is destroyed if a DashboardCollection is modified somewhere;
+           - the first facetednavigable context encountered when ascending context parents.'''
+        user = api.user.get_current()
+        date = get_cachekey_volatile('imio.dashboard.conditionawarecollectionvocabulary')
+        parent = context
+        while not IFacetedNavigable.providedBy(parent) and parent.meta_type != 'Plone Site':
+            parent = parent.aq_parent
+        return user, date, parent
+
+    @ram.cache(__call___cachekey)
+    def __call__(self, context):
         """Same behaviour as the original CollectionVocabulary
            but we will filter Collections regarding the defined tal_condition."""
-        terms = super(ConditionAwareCollectionVocabulary, self).__call__(context, query=query)
-
+        terms = super(ConditionAwareCollectionVocabulary, self).__call__(context)
         filtered_terms = []
         # compute extra_expr_ctx given to evaluateExpressionFor only once
         extra_expr_ctx = self._extra_expr_ctx()
