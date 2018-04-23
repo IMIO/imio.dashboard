@@ -20,6 +20,9 @@ class TestConditionAwareVocabulary(IntegrationTestCase):
     def setUp(self):
         """Custom shared utility setup for tests."""
         self.portal = self.layer['portal']
+        # make sure we have a default workflow
+        self.wfTool = self.portal.portal_workflow
+        self.wfTool.setDefaultChain('simple_publication_workflow')
         self.folder = api.content.create(id='f', type='Folder', title='My category', container=self.portal)
         self.dashboardcollection = api.content.create(
             id='dc1',
@@ -44,30 +47,40 @@ class TestConditionAwareVocabulary(IntegrationTestCase):
         # for now, no condition defined on the collection so it is in the vocabulary
         self.assertEqual(self.dashboardcollection.tal_condition, u'')
         vocab = factory(self.portal)
-        self.assertTrue(self.dashboardcollection.UID() in [term.token for term in vocab])
+        self.assertTrue(self.dashboardcollection.UID() in vocab.by_token)
         # now define a condition and by pass for Manager
         self.dashboardcollection.tal_condition = u'python:False'
         self.dashboardcollection.roles_bypassing_talcondition = [u"Manager"]
         notify(ObjectModifiedEvent(self.dashboardcollection))
         # No more listed except for Manager
         vocab = factory(self.portal)
-        self.assertTrue(self.dashboardcollection.UID() in [term.token for term in vocab])
+        self.assertTrue(self.dashboardcollection.UID() in vocab.by_token)
         login(self.portal, 'user_not_manager')
         # cache is user aware
         vocab = factory(self.portal)
-        self.assertFalse(self.dashboardcollection.UID() in [term.token for term in vocab])
-        # Now, desactivate by pass for manager
+        self.assertFalse(self.dashboardcollection.UID() in vocab.by_token)
+        # Now, desactivate bypass for manager
         login(self.portal, TEST_USER_NAME)
         self.dashboardcollection.roles_bypassing_talcondition = []
         # ObjectModified event on DashboardCollection invalidate the vocabulary caching
         notify(ObjectModifiedEvent(self.dashboardcollection))
         vocab = factory(self.portal)
-        self.assertFalse(self.dashboardcollection.UID() in [term.token for term in vocab])
+        self.assertFalse(self.dashboardcollection.UID() in vocab.by_token)
         # If condition is True, it is listed
         self.dashboardcollection.tal_condition = u'python:True'
         notify(ObjectModifiedEvent(self.dashboardcollection))
         vocab = factory(self.portal)
-        self.assertTrue(self.dashboardcollection.UID() in [term.token for term in vocab])
+        self.assertTrue(self.dashboardcollection.UID() in vocab.by_token)
+
+        # cache invalidated when transition triggered
+        # show this by editing title then changing state
+        self.assertTrue((self.dashboardcollection.title, '') in [term.title for term in vocab._terms])
+        self.dashboardcollection.title = u'Edited title'
+        vocab = factory(self.portal)
+        self.assertFalse((self.dashboardcollection.title, '') in [term.title for term in vocab._terms])
+        self.wfTool.doActionFor(self.dashboardcollection, 'publish')
+        vocab = factory(self.portal)
+        self.assertTrue((self.dashboardcollection.title, '') in [term.title for term in vocab._terms])
 
     def test_creatorsvocabulary(self):
         """This will return every users that created a content in the portal."""

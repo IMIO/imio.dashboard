@@ -5,8 +5,9 @@ Changelog
 1.5 (unreleased)
 ----------------
 
-- Nothing changed yet.
-
+- Invalidate `imio.dashboard.conditionawarecollectionvocabulary` vocabulary
+  cache when a WF transition is triggered on a `DashboardCollection`.
+  [gbastien]
 
 1.4 (2018-04-20)
 ----------------

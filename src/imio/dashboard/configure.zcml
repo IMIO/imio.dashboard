@@ -87,5 +87,7 @@
     <subscriber for="imio.dashboard.interfaces.IDashboardCollection
                      zope.lifecycleevent.IObjectModifiedEvent"
                 handler=".events.onDashboardCollectionModified" />
-
+    <subscriber for="imio.dashboard.interfaces.IDashboardCollection
+                     Products.DCWorkflow.interfaces.IAfterTransitionEvent"
+                handler=".events.onDashboardCollectionTransition" />
 </configure>
