@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.5 (unreleased)
+1.5 (2018-04-23)
 ----------------
 
 - Invalidate `imio.dashboard.conditionawarecollectionvocabulary` vocabulary
