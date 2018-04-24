@@ -5,8 +5,11 @@ Changelog
 1.6 (unreleased)
 ----------------
 
-- Nothing changed yet.
-
+- Do not rely on the `context.REQUEST` to get the `REQUEST` because context is a
+  `ram.cached DashboardCollection` and `REQUEST` is not reliable.
+  Use `getRequest` from `zope.globalrequest` to get the `REQUEST`.
+  The `REQUEST` is set in `term.request` so it is directly available.
+  [gbastien]
 
 1.5 (2018-04-23)
 ----------------

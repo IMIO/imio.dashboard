@@ -5,6 +5,7 @@ from Products.Archetypes.atapi import DisplayList
 from collective.eeafaceted.z3ctable.interfaces import IFacetedColumn
 
 from zope.component import getGlobalSiteManager
+from zope.globalrequest import getRequest
 from zope.i18n import translate
 
 from imio.dashboard.interfaces import NoCollectionWidgetDefinedException
@@ -19,7 +20,7 @@ class CustomViewFieldsVocabularyAdapter(object):
 
     def __init__(self, context):
         self.context = context
-        self.request = self.context.REQUEST
+        self.request = getRequest()
 
     def listMetaDataFields(self, exclude=True):
         """See docstring in interfaces.py."""
@@ -43,7 +44,7 @@ class CurrentCriterionProvider(object):
 
     def __init__(self, context):
         self.context = context
-        self.request = context.REQUEST
+        self.request = getRequest()
 
     def get_key(self):
         return CURRENT_CRITERION

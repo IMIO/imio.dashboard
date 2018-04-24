@@ -2,6 +2,7 @@
 import json
 import pkg_resources
 
+from zope.globalrequest import getRequest
 from plone import api
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -38,6 +39,7 @@ class RenderTermPortletView(BaseRenderTermView):
         return self.context.getShowNumberOfItems() or False
 
     def __call__(self, term, category, widget):
+        self.request = getRequest()
         self.term = term
         self.category = category
         self.widget = widget

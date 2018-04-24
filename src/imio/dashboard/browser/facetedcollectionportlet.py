@@ -58,7 +58,7 @@ class Renderer(base.Renderer):
             # for rendering the widget
             if self._isPortletOutsideFaceted(self.context, self._criteriaHolder):
                 # avoid redirect
-                self.context.REQUEST.set('no_redirect', '1')
+                self.request.set('no_redirect', '1')
             # initialize the widget
             rendered_widget = widget()
             # render the widget as "portlet outside facetednav"
@@ -81,7 +81,7 @@ class Renderer(base.Renderer):
 
     def _isPortletOutsideFaceted(self, context, criteriaHolder):
         """Are we outside the faceted?"""
-        return '/++add++' in context.REQUEST.URL0 or not context == criteriaHolder
+        return '/++add++' in self.request.URL0 or not context == criteriaHolder
 
     def _buildBaseLinkURL(self, criteria):
         """Build the URL that will be used in the href when portlet is displayed
