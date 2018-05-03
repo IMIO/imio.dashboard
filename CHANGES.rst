@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.6 (unreleased)
+1.6 (2018-05-03)
 ----------------
 
 - Do not rely on the `context.REQUEST` to get the `REQUEST` because context is a
