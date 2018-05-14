@@ -5,8 +5,8 @@ Changelog
 1.7 (unreleased)
 ----------------
 
-- Nothing changed yet.
-
+- Consider merge-contacts view from collective.contact.duplicated as outside faceted.
+  [sgeulette]
 
 1.6 (2018-05-03)
 ----------------

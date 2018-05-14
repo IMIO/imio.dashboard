@@ -81,7 +81,8 @@ class Renderer(base.Renderer):
 
     def _isPortletOutsideFaceted(self, context, criteriaHolder):
         """Are we outside the faceted?"""
-        return '/++add++' in self.request.URL0 or not context == criteriaHolder
+        return ('/++add++' in self.request.URL0 or not context == criteriaHolder or
+                '/merge-contacts' in self.request.URL0)
 
     def _buildBaseLinkURL(self, criteria):
         """Build the URL that will be used in the href when portlet is displayed
