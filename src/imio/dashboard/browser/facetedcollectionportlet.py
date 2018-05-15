@@ -85,8 +85,7 @@ class Renderer(base.Renderer):
         """Are we outside the faceted?"""
         return (context != criteriaHolder or
                 (self.request.get('PUBLISHED') and base_hasattr(self.request['PUBLISHED'], '__name__') and
-                 self.request['PUBLISHED'].__name__ != 'facetednavigation_view') or
-                self.request.get('no_redirect', '') == '1')
+                 self.request['PUBLISHED'].__name__ != 'facetednavigation_view'))
 
     def _buildBaseLinkURL(self, criteria):
         """Build the URL that will be used in the href when portlet is displayed
