@@ -5,7 +5,7 @@ Changelog
 1.7 (unreleased)
 ----------------
 
-- Consider merge-contacts view from collective.contact.duplicated as outside faceted.
+- Consider other view than "facetednavigation_view" as outside faceted.
   [sgeulette]
 
 1.6 (2018-05-03)

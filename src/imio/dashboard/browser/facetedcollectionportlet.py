@@ -8,6 +8,7 @@ from zope.interface import implements
 from plone.app.portlets.portlets import base
 from plone.portlets.interfaces import IPortletDataProvider
 
+from Products.CMFPlone.utils import base_hasattr
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from eea.facetednavigation.criteria.interfaces import ICriteria
 from eea.facetednavigation.subtypes.interfaces import IFacetedNavigable
@@ -56,13 +57,14 @@ class Renderer(base.Renderer):
             # if we are not on the criteriaHolder, it means
             # that the portlet is displayed on children, we use another template
             # for rendering the widget
-            if self._isPortletOutsideFaceted(self.context, self._criteriaHolder):
+            no_redirect = self._isPortletOutsideFaceted(self.context, self._criteriaHolder)
+            if no_redirect:
                 # avoid redirect
                 self.request.set('no_redirect', '1')
             # initialize the widget
             rendered_widget = widget()
             # render the widget as "portlet outside facetednav"
-            if self._isPortletOutsideFaceted(self.context, self._criteriaHolder):
+            if no_redirect:
                 # compute default criteria to display in the URL
                 widget.base_url = self._buildBaseLinkURL(criteria)
                 rendered_widget = ViewPageTemplateFile('templates/widget.pt')(widget)
@@ -81,8 +83,10 @@ class Renderer(base.Renderer):
 
     def _isPortletOutsideFaceted(self, context, criteriaHolder):
         """Are we outside the faceted?"""
-        return ('/++add++' in self.request.URL0 or not context == criteriaHolder or
-                '/merge-contacts' in self.request.URL0)
+        return (context != criteriaHolder or
+                (self.request.get('PUBLISHED') and base_hasattr(self.request['PUBLISHED'], '__name__') and
+                 self.request['PUBLISHED'].__name__ != 'facetednavigation_view') or
+                self.request.get('no_redirect', '') == '1')
 
     def _buildBaseLinkURL(self, criteria):
         """Build the URL that will be used in the href when portlet is displayed
