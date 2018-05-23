@@ -3,60 +3,20 @@ import json
 from os import path
 from zope.interface import noLongerProvides
 
-from collective.eeafaceted.collectionwidget.widgets.widget import CollectionWidget
+from collective.eeafaceted.collectionwidget.config import NO_FACETED_EXCEPTION_MSG
+from collective.eeafaceted.collectionwidget.interfaces import NoFacetedViewDefinedException
+from collective.eeafaceted.collectionwidget.utils import _get_criterion, getCollectionLinkCriterion  # backward compatibility
+from collective.eeafaceted.collectionwidget.utils import getCurrentCollection  # backward compatibility
 
 from eea.facetednavigation.criteria.interfaces import ICriteria
 from eea.facetednavigation.subtypes.interfaces import IFacetedNavigable
 from eea.facetednavigation.interfaces import IHidePloneLeftColumn
 from eea.facetednavigation.layout.interfaces import IFacetedLayout
 
-from imio.dashboard.config import NO_FACETED_EXCEPTION_MSG
-from imio.dashboard.config import NO_COLLECTIONWIDGET_EXCEPTION_MSG
-from imio.dashboard.interfaces import NoCollectionWidgetDefinedException
-from imio.dashboard.interfaces import NoFacetedViewDefinedException
-
 from plone import api
 
 import logging
 logger = logging.getLogger('imio.dashboard: utils')
-
-
-def _get_criterion(faceted_context, criterion_type):
-    """Return the given criterion_type instance of a
-       context with a faceted navigation/search view on it."""
-    if not IFacetedNavigable.providedBy(faceted_context):
-        raise NoFacetedViewDefinedException(NO_FACETED_EXCEPTION_MSG)
-
-    criteria = ICriteria(faceted_context).criteria
-    for criterion in criteria:
-        if criterion.widget == criterion_type:
-            return criterion
-
-
-def getCollectionLinkCriterion(faceted_context):
-    """Return the CollectionLink criterion used by faceted_context."""
-    criterion = _get_criterion(faceted_context,
-                               criterion_type=CollectionWidget.widget_type)
-    if not criterion:
-        raise NoCollectionWidgetDefinedException(NO_COLLECTIONWIDGET_EXCEPTION_MSG)
-
-    return criterion
-
-
-def getCurrentCollection(faceted_context):
-    """Return the Collection currently used by the faceted :
-       - first get the collection criterion;
-       - then look in the request the used UID and get the corresponding Collection."""
-    criterion = getCollectionLinkCriterion(faceted_context)
-    collectionUID = faceted_context.REQUEST.form.get('{0}[]'.format(criterion.__name__))
-    # if not collectionUID, maybe we have a 'facetedQuery' in the REQUEST
-    if not collectionUID and \
-       ('facetedQuery' in faceted_context.REQUEST.form and faceted_context.REQUEST.form['facetedQuery']):
-        query = json.loads(faceted_context.REQUEST.form['facetedQuery'])
-        collectionUID = query.get(criterion.__name__)
-    if collectionUID:
-        catalog = api.portal.get_tool('portal_catalog')
-        return catalog(UID=collectionUID)[0].getObject()
 
 
 def enableFacetedDashboardFor(obj, xmlpath=None):

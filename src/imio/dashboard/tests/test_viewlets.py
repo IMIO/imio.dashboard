@@ -4,10 +4,10 @@ from plone import api
 
 from zope.annotation import IAnnotations
 from collective.documentgenerator.viewlets.generationlinks import DocumentGeneratorLinksViewlet
+from collective.eeafaceted.collectionwidget.utils import getCurrentCollection
 from eea.facetednavigation.interfaces import IFacetedNavigable
 from imio.dashboard.browser.overrides import IDDashboardDocumentGeneratorLinksViewlet
 from imio.dashboard.testing import IntegrationTestCase
-from imio.dashboard.utils import getCurrentCollection
 
 
 class TestViewlets(IntegrationTestCase):

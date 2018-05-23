@@ -4,15 +4,15 @@ from zope.annotation import IAnnotations
 from zope.component import getUtility
 from zope.component import getMultiAdapter
 from eea.facetednavigation.criteria.interfaces import ICriteria
+from collective.eeafaceted.collectionwidget.interfaces import NoCollectionWidgetDefinedException
+from collective.eeafaceted.collectionwidget.utils import getCollectionLinkCriterion
 from collective.eeafaceted.collectionwidget.widgets.widget import CollectionWidget
 from plone import api
 from plone.portlets.interfaces import IPortletManager, IPortletRenderer
 
 from imio.dashboard.browser import facetedcollectionportlet as portlet
 from imio.dashboard.config import DEFAULT_PORTLET_TITLE
-from imio.dashboard.interfaces import NoCollectionWidgetDefinedException
 from imio.dashboard.testing import IntegrationTestCase
-from imio.dashboard.utils import getCollectionLinkCriterion
 
 
 class TestPortlet(IntegrationTestCase):

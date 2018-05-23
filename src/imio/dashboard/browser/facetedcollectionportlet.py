@@ -12,12 +12,12 @@ from Products.CMFPlone.utils import base_hasattr
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from eea.facetednavigation.criteria.interfaces import ICriteria
 from eea.facetednavigation.subtypes.interfaces import IFacetedNavigable
+from collective.eeafaceted.collectionwidget.interfaces import NoFacetedViewDefinedException
+from collective.eeafaceted.collectionwidget.utils import getCollectionLinkCriterion
 from collective.eeafaceted.collectionwidget.widgets.widget import CollectionWidget
 
 from imio.dashboard import ImioDashboardMessageFactory as _
 from imio.dashboard.config import DEFAULT_PORTLET_TITLE
-from imio.dashboard.utils import NoFacetedViewDefinedException
-from imio.dashboard.utils import getCollectionLinkCriterion
 
 
 class IFacetedCollectionPortlet(IPortletDataProvider):

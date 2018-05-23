@@ -44,7 +44,7 @@ setup(
         'collective.compoundcriterion',
         'collective.documentgenerator',
         'collective.eeafaceted.batchactions',
-        'collective.eeafaceted.collectionwidget > 0.2',
+        'collective.eeafaceted.collectionwidget > 0.8',
         'collective.eeafaceted.z3ctable > 0.15',
         'collective.js.iframeresizer',
         'eea.facetednavigation < 10.0',

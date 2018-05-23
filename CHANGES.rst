@@ -5,6 +5,9 @@ Changelog
 1.7 (unreleased)
 ----------------
 
+- Moved some methods to collective.eeafaceted.collectionwidget:
+  _get_criterion, getCollectionLinkCriterion, getCurrentCollection
+  [sgeulette]
 - Consider other view than "facetednavigation_view" as outside faceted.
   [sgeulette]
 

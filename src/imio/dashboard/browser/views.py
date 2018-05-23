@@ -7,11 +7,11 @@ from plone import api
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.eeafaceted.collectionwidget.browser.views import RenderTermView as BaseRenderTermView
+from collective.eeafaceted.collectionwidget.utils import getCollectionLinkCriterion
 from collective.eeafaceted.collectionwidget.widgets.widget import CollectionWidget
 
 from imio.dashboard.adapters import CURRENT_CRITERION
 from imio.dashboard.interfaces import IDashboardCollection
-from imio.dashboard.utils import getCollectionLinkCriterion
 
 
 class RenderTermView(BaseRenderTermView):

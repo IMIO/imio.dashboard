@@ -3,10 +3,10 @@
 from collective.documentgenerator.content.condition import ConfigurablePODTemplateCondition
 from collective.documentgenerator.content.pod_template import ConfigurablePODTemplate
 from collective.documentgenerator.content.pod_template import IConfigurablePODTemplate
+from collective.eeafaceted.collectionwidget.interfaces import NotDashboardContextException
+from collective.eeafaceted.collectionwidget.utils import getCurrentCollection
 
 from imio.dashboard import ImioDashboardMessageFactory as _
-from imio.dashboard.utils import getCurrentCollection
-from imio.dashboard.interfaces import NotDashboardContextException
 
 from plone.autoform import directives as form
 

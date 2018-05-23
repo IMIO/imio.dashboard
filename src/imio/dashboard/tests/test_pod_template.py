@@ -3,9 +3,9 @@
 from zope.component import queryMultiAdapter
 from plone import api
 from collective.documentgenerator.interfaces import IPODTemplateCondition
+from collective.eeafaceted.collectionwidget.utils import getCollectionLinkCriterion
 from imio.dashboard.content.pod_template import DashboardPODTemplateCondition
 from imio.dashboard.testing import IntegrationTestCase
-from imio.dashboard.utils import getCollectionLinkCriterion
 
 
 class TestDashboardPODTemplate(IntegrationTestCase):

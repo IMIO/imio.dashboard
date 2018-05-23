@@ -5,11 +5,11 @@ import os
 from zope.component import queryUtility
 from zope.schema.interfaces import IVocabularyFactory
 from plone import api
+from collective.eeafaceted.collectionwidget.utils import getCollectionLinkCriterion
 from eea.facetednavigation.interfaces import ICriteria
 from imio.dashboard.config import COMBINED_INDEX_PREFIX
 from imio.dashboard.testing import IntegrationTestCase
 from imio.dashboard.tests.indexes import contained_types_and_states
-from imio.dashboard.utils import getCollectionLinkCriterion
 from imio.helpers.catalog import addOrUpdateIndexes
 
 

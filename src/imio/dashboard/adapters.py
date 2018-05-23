@@ -3,13 +3,12 @@
 from Products.Archetypes.atapi import DisplayList
 
 from collective.eeafaceted.z3ctable.interfaces import IFacetedColumn
+from collective.eeafaceted.collectionwidget.interfaces import NoCollectionWidgetDefinedException
+from collective.eeafaceted.collectionwidget.utils import getCollectionLinkCriterion
 
 from zope.component import getGlobalSiteManager
 from zope.globalrequest import getRequest
 from zope.i18n import translate
-
-from imio.dashboard.interfaces import NoCollectionWidgetDefinedException
-from imio.dashboard.utils import getCollectionLinkCriterion
 
 
 CURRENT_CRITERION = 'querynextprev.current_criterion'
