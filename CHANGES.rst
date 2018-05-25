@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.7 (unreleased)
+1.7 (2018-05-25)
 ----------------
 
 - Moved some methods to collective.eeafaceted.collectionwidget:
