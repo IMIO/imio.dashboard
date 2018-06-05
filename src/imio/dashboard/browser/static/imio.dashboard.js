@@ -1,6 +1,3 @@
-Faceted.Options.FADE_SPEED=0;
-Faceted.Options.SHOW_SPINNER=false;
-
 // Function that allows to generate a document aware of table listing documents in a faceted navigation.
 function generatePodDocument(template_uid, output_format, tag) {
     theForm = $(tag).parents('form')[0];
@@ -16,7 +13,7 @@ function generatePodDocument(template_uid, output_format, tag) {
             var uids = selectedCheckBoxes('select_item');
             if (!uids.length) {
                 alert(no_selected_items);
-                return
+                return;
             }
             else {
                 // if we unselected some checkboxes, we pass uids
@@ -41,8 +38,10 @@ $(document).ready(function () {
             var countByCollection = info.countByCollection;
             countByCollection.forEach(function (item) {
               $('li#' + criterionId + item.uid + ' .term-count').html(item.count);
-            })
-        })
+            });
+        });
     });
   }
-})
+  Faceted.Options.FADE_SPEED=0;
+  Faceted.Options.SHOW_SPINNER=false;
+});

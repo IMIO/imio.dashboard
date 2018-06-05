@@ -47,7 +47,7 @@ setup(
         'collective.eeafaceted.collectionwidget > 0.8',
         'collective.eeafaceted.z3ctable > 0.15',
         'collective.js.iframeresizer',
-        'eea.facetednavigation < 10.0',
+        'eea.facetednavigation', # < 10.0',
         'imio.actionspanel',
         'imio.migrator',
         'imio.prettylink',
