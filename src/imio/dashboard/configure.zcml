@@ -71,23 +71,12 @@
         provides="collective.querynextprev.interfaces.IAdditionalDataProvider" />
 
     <!-- Vocabularies -->
-    <utility component=".vocabulary.ConditionAwareCollectionVocabularyFactory"
-             name="imio.dashboard.conditionawarecollectionvocabulary" />
     <utility component=".vocabulary.CreatorsVocabularyFactory"
              name="imio.dashboard.creatorsvocabulary" />
-    <utility component=".vocabulary.DashboardCategoryCollectionsVocabularyFactory"
-             name="imio.dashboard.collectionsvocabulary" />
 
     <!-- Apply talcondition extender to the DashboardCollection -->
     <class class="imio.dashboard.content.dashboardcollection.DashboardCollection">
         <implements interface="collective.behavior.talcondition.interfaces.ITALConditionable" />
     </class>
 
-    <!-- Events -->
-    <subscriber for="imio.dashboard.interfaces.IDashboardCollection
-                     zope.lifecycleevent.IObjectModifiedEvent"
-                handler=".events.onDashboardCollectionModified" />
-    <subscriber for="imio.dashboard.interfaces.IDashboardCollection
-                     Products.DCWorkflow.interfaces.IAfterTransitionEvent"
-                handler=".events.onDashboardCollectionTransition" />
 </configure>

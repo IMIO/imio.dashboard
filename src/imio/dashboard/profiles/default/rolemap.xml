@@ -4,10 +4,6 @@
     <role name="Manager"></role>
   </roles>
   <permissions>
-    <permission name="imio.dashboard: Add DashboardCollection" acquire="True">
-      <role name="Manager" />
-      <role name="Site Administrator" />
-    </permission>
     <permission name="eea.facetednavigation: Configure faceted"
                 acquire="False">
       <role name="Manager"/>
