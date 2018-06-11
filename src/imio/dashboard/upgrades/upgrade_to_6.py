@@ -6,6 +6,7 @@ from plone.app.contenttypes.migration.dxmigration import ContentMigrator
 from plone.app.contenttypes.migration.migration import CollectionMigrator
 from plone.app.contenttypes.migration.migration import migrate as pac_migrate
 from plone.dexterity.utils import iterSchemataForType
+from Products.GenericSetup.tool import DEPENDENCY_STRATEGY_IGNORE
 from zope.interface.interfaces import IMethod
 from zope.schema import getFieldsInOrder
 
@@ -54,6 +55,9 @@ class Migrate_To_6(Migrator):
     def run(self):
         logger.info('Migrating to imio.dashboard 6...')
         # install collective.eeafaceted.dashboard before migrating so portal_types are correct
+        self.ps.runAllImportStepsFromProfile(
+            'profile-collective.eeafaceted.dashboard:universal',
+            dependency_strategy=DEPENDENCY_STRATEGY_IGNORE)
         self.reinstall(['profile-collective.eeafaceted.dashboard:default'])
         pac_migrate(self.portal, DashboardPODTemplateMigrator)
         pac_migrate(self.portal, DashboardCollectionMigrator)
