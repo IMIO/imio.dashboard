@@ -14,6 +14,8 @@ logger = logging.getLogger('imio.dashboard: DashboardPODTemplate')
 #                                                                              #
 #  DEPRECATED, THIS CONTENT WAS MOVED TO COLLECTIVE.EEAFACETED.DASHBOARD !!!   #
 #                                                                              #
+#  STILL EXISTS FOR MIGRATION PURPOSE !!!                                      #
+#                                                                              #
 ################################################################################
 
 

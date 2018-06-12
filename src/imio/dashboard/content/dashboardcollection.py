@@ -19,6 +19,8 @@ from imio.dashboard import ImioDashboardMessageFactory as _
 #                                                                              #
 #  DEPRECATED, THIS CONTENT WAS MOVED TO COLLECTIVE.EEAFACETED.DASHBOARD !!!   #
 #                                                                              #
+#  STILL EXISTS FOR MIGRATION PURPOSE !!!                                      #
+#                                                                              #
 ################################################################################
 
 
