@@ -11,22 +11,15 @@
 
     <i18n:registerTranslations directory="locales" />
 
-    <include package="Products.CMFCore" file="permissions.zcml" />
     <include package="collective.monkeypatcher" file="meta.zcml" />
-    <include package="collective.behavior.talcondition"/>
-    <include package="collective.compoundcriterion"/>
-    <include package="collective.documentgenerator"/>
-    <include package="collective.eeafaceted.batchactions"/>
-    <include package="collective.eeafaceted.collectionwidget"/>
-    <include package="collective.eeafaceted.z3ctable"/>
     <include package="collective.js.iframeresizer"/>
     <include package="imio.actionspanel"/>
-    <include package="imio.prettylink"/>
 
     <include package=".browser" />
     <include package=".content" />
 
     <include file="columns.zcml" />
+    <include file="events.zcml" />
 
     <genericsetup:registerProfile
         name="default"
@@ -53,16 +46,6 @@
 
     <include file="upgrades.zcml" />
 
-    <permission
-        id="imio.dashboard.AddDashboardCollection"
-        title="imio.dashboard: Add DashboardCollection"
-        />
-
-    <adapter
-        for="plone.app.collection.interfaces.ICollection"
-        factory=".adapters.CustomViewFieldsVocabularyAdapter"
-        provides=".interfaces.ICustomViewFieldsVocabulary" />
-
     <adapter
         zcml:condition="installed collective.querynextprev"
         name="current_criterion_provider"
@@ -71,12 +54,9 @@
         provides="collective.querynextprev.interfaces.IAdditionalDataProvider" />
 
     <!-- Vocabularies -->
+    <utility component=".vocabulary.CachedCollectionVocabularyFactory"
+             name="imio.dashboard.cachedcollectionvocabulary" />
     <utility component=".vocabulary.CreatorsVocabularyFactory"
              name="imio.dashboard.creatorsvocabulary" />
-
-    <!-- Apply talcondition extender to the DashboardCollection -->
-    <class class="imio.dashboard.content.dashboardcollection.DashboardCollection">
-        <implements interface="collective.behavior.talcondition.interfaces.ITALConditionable" />
-    </class>
 
 </configure>

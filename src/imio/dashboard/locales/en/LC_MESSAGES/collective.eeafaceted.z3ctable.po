@@ -21,13 +21,3 @@ msgstr "Actions"
 #. Default: "Actions"
 msgid "header_actions"
 msgstr "Actions"
-
-#. Default: "Title"
-msgid "header_pretty_link"
-msgstr "Title"
-
-msgid "pretty_link"
-msgstr "Title (link)"
-
-msgid "select_row"
-msgstr "Selection"
