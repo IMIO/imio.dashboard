@@ -11,9 +11,13 @@
 
     <i18n:registerTranslations directory="locales" />
 
-    <include package="collective.monkeypatcher" file="meta.zcml" />
+    <include package="collective.eeafaceted.batchactions"/>
+    <include package="collective.eeafaceted.collectionwidget"/>
+    <include package="collective.eeafaceted.dashboard"/>
     <include package="collective.js.iframeresizer"/>
+    <include package="collective.monkeypatcher" file="meta.zcml" />
     <include package="imio.actionspanel"/>
+    <include package="plone.app.dexterity"/>
 
     <include package=".browser" />
     <include package=".content" />

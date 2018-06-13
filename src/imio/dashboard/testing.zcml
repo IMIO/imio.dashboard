@@ -4,15 +4,16 @@
     i18n_domain="imio.dashboard">
 
   <include file="configure.zcml" />
+
   <includeOverrides file="overrides.zcml" />
+  <includeOverrides package="collective.eeafaceted.dashboard" file="overrides.zcml" />
 
   <genericsetup:registerProfile
       name="testing"
       title="imio.dashboard tests"
       directory="profiles/testing"
       description="Steps to ease tests of imio.dashboard"
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      />
+      provides="Products.GenericSetup.interfaces.EXTENSION" />
 
   <!-- Indexes -->
   <adapter name="contained_types_and_states" factory=".tests.indexes.contained_types_and_states" />

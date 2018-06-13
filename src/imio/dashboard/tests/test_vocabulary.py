@@ -9,9 +9,7 @@ from plone.app.testing import login
 from plone.app.testing import TEST_USER_NAME
 from plone import api
 from imio.dashboard.testing import IntegrationTestCase
-from collective.behavior.talcondition.interfaces import ITALConditionable
 from eea.facetednavigation.interfaces import IFacetedNavigable
-from ..vocabulary import DashboardCollectionsVocabulary
 
 
 class TestConditionAwareVocabulary(IntegrationTestCase):
@@ -32,22 +30,18 @@ class TestConditionAwareVocabulary(IntegrationTestCase):
         )
         alsoProvides(self.folder, IFacetedNavigable)
 
-    def test_conditionawarecollectionvocabulary(self):
-        """This vocabulary is condition aware, it means
-           that it will take into account condition defined in the
-           'tal_condition' field added by ITALConditionable."""
+    def test_cachedcollectionvocabulary(self):
+        """This vocabulary is cached by and is invalidated when :
+           - user changed;
+           - a dashboardcollection is added/removed/edited/transition triggered;
+           - faceted container."""
         # add on non Manager user
         api.user.create(
             username='user_not_manager',
             password='user_not_manager',
             email="imio@dashboard.org",
             roles=['Member'])
-        self.assertTrue(ITALConditionable.providedBy(self.dashboardcollection))
-        factory = queryUtility(IVocabularyFactory, u'imio.dashboard.conditionawarecollectionvocabulary')
-        # for now, no condition defined on the collection so it is in the vocabulary
-        self.assertEqual(self.dashboardcollection.tal_condition, u'')
-        vocab = factory(self.portal)
-        self.assertTrue(self.dashboardcollection.UID() in vocab.by_token)
+        factory = queryUtility(IVocabularyFactory, u'imio.dashboard.cachedcollectionvocabulary')
         # now define a condition and by pass for Manager
         self.dashboardcollection.tal_condition = u'python:False'
         self.dashboardcollection.roles_bypassing_talcondition = [u"Manager"]
@@ -66,14 +60,12 @@ class TestConditionAwareVocabulary(IntegrationTestCase):
         notify(ObjectModifiedEvent(self.dashboardcollection))
         vocab = factory(self.portal)
         self.assertFalse(self.dashboardcollection.UID() in vocab.by_token)
-        # If condition is True, it is listed
-        self.dashboardcollection.tal_condition = u'python:True'
-        notify(ObjectModifiedEvent(self.dashboardcollection))
-        vocab = factory(self.portal)
-        self.assertTrue(self.dashboardcollection.UID() in vocab.by_token)
 
         # cache invalidated when transition triggered
         # show this by editing title then changing state
+        self.dashboardcollection.tal_condition = u'python:True'
+        notify(ObjectModifiedEvent(self.dashboardcollection))
+        vocab = factory(self.portal)
         self.assertTrue((self.dashboardcollection.title, '') in [term.title for term in vocab._terms])
         self.dashboardcollection.title = u'Edited title'
         vocab = factory(self.portal)
@@ -81,6 +73,23 @@ class TestConditionAwareVocabulary(IntegrationTestCase):
         self.wfTool.doActionFor(self.dashboardcollection, 'publish')
         vocab = factory(self.portal)
         self.assertTrue((self.dashboardcollection.title, '') in [term.title for term in vocab._terms])
+
+        # cache invalidated when new DashboardCollection added
+        self.dashboardcollection2 = api.content.create(
+            id='dc2',
+            type='DashboardCollection',
+            title='Dashboard collection 2',
+            container=self.folder,
+            tal_condition=u'',
+            roles_bypassing_talcondition=[]
+        )
+        vocab = factory(self.portal)
+        self.assertTrue((self.dashboardcollection2.title, '') in [term.title for term in vocab._terms])
+
+        # cache invalidated when DashboardCollection deleted
+        api.content.delete(self.dashboardcollection2)
+        vocab = factory(self.portal)
+        self.assertFalse((self.dashboardcollection2.title, '') in [term.title for term in vocab._terms])
 
     def test_creatorsvocabulary(self):
         """This will return every users that created a content in the portal."""
@@ -102,22 +111,3 @@ class TestConditionAwareVocabulary(IntegrationTestCase):
         # vocabulary cache cleaned
         self.assertEquals(len(factory(self.portal)), 2)
         self.assertEquals(factory(self.portal).getTerm('test_user_2_').title, 'User 2')
-
-    def test_collectionsvocabulary(self):
-        """This will return every DashboardCollections of the portal."""
-        # factory = queryUtility(IVocabularyFactory, u'imio.dashboard.collectionsvocabulary')
-        # one DashboardCollection
-        factory = DashboardCollectionsVocabulary()
-        self.assertEquals(len(factory(self.portal)), 1)
-        term = factory(self.portal).getTerm(self.dashboardcollection.UID())
-        self.assertEquals(term.token, term.value, self.dashboardcollection.UID())
-        self.assertEquals(term.title, self.dashboardcollection.Title())
-
-    def test_categorycollectionsvocabulary(self):
-        """This will return every DashboardCollections of the portal prefixed by categories."""
-        factory = queryUtility(IVocabularyFactory, u'imio.dashboard.collectionsvocabulary')
-        # one DashboardCollection
-        self.assertEquals(len(factory(self.portal)), 1)
-        term = factory(self.portal).getTerm(self.dashboardcollection.UID())
-        self.assertEquals(term.token, term.value, self.dashboardcollection.UID())
-        self.assertEquals(term.title, '%s - %s' % (self.folder.Title(), self.dashboardcollection.Title()))

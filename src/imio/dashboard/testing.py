@@ -16,7 +16,7 @@ from plone.testing import z2
 import unittest
 
 import imio.dashboard
-from imio.dashboard.utils import enableFacetedDashboardFor
+from collective.eeafaceted.dashboard.utils import enableFacetedDashboardFor
 
 
 class ImioDashboardLayer(PloneSandboxLayer):

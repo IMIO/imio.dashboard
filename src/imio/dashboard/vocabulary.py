@@ -27,9 +27,10 @@ class CachedCollectionVocabulary(CollectionVocabulary):
         '''The key will rely on :
            - current user, in case faceted is stored in the user personal folder;
            - a stored cache volatile that is destroyed if a DashboardCollection is modified somewhere;
-           - the first facetednavigable context encountered when ascending context parents.'''
+           - the first facetednavigable context encountered when ascending context parents
+             (useful when collections are defined in a single folder but displayed on various faceted container).'''
         user = api.user.get_current()
-        date = get_cachekey_volatile('collective.eeafaceted.dashboard.conditionawarecollectionvocabulary')
+        date = get_cachekey_volatile('imio.dashboard.cachedcollectionvocabulary')
         parent = context
         while not IFacetedNavigable.providedBy(parent) and parent.meta_type != 'Plone Site':
             parent = parent.aq_parent

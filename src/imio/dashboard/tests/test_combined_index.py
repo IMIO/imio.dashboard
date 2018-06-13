@@ -27,7 +27,9 @@ class TestCombinedIndex(IntegrationTestCase):
             id='dc1',
             type='DashboardCollection',
             title='Dashboard collection 1',
-            container=self.portal
+            container=self.portal,
+            sort_on='',
+            sort_reversed=''
         )
         # this will by default query Folders
         self.dashboardcollection.query = [

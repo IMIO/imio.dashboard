@@ -8,10 +8,17 @@
     i18n_domain="imio.dashboard">
 
     <subscriber for="collective.eeafaceted.collectionwidget.content.dashboardcollection.IDashboardCollection
+                     zope.lifecycleevent.IObjectCreatedEvent"
+                handler=".events.onDashboardCollectionCreated" />
+    <subscriber for="collective.eeafaceted.collectionwidget.content.dashboardcollection.IDashboardCollection
                      zope.lifecycleevent.IObjectModifiedEvent"
                 handler=".events.onDashboardCollectionModified" />
     <subscriber for="collective.eeafaceted.collectionwidget.content.dashboardcollection.IDashboardCollection
                      Products.DCWorkflow.interfaces.IAfterTransitionEvent"
                 handler=".events.onDashboardCollectionTransition" />
+    <subscriber for="collective.eeafaceted.collectionwidget.content.dashboardcollection.IDashboardCollection
+                     zope.container.interfaces.IObjectRemovedEvent"
+                handler=".events.onDashboardCollectionRemoved" />
+
 </configure>
 
