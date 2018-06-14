@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.8 (unreleased)
+2.0 (unreleased)
 ----------------
 
 - Change JS `Faceted` options in the `ready` function so we are sure that
@@ -10,7 +10,7 @@ Changelog
   [gbastien]
 - Rely on `collective.eeafaceted.dashboard` to move to Plone5.  Dashboard
   functionnalities working on Plone5 are now moved to this package we are
-  relying on.
+  relying on.  Needs `eea.facetednavigation` >= 10.0.
   [gbastien]
 
 1.7 (2018-05-25)
