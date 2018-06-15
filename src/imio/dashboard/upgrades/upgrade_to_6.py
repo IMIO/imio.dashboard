@@ -77,11 +77,18 @@ class Migrate_To_6(Migrator):
 
     def run(self):
         logger.info('Migrating to imio.dashboard 6...')
+        # run eea.facetednavigation upgrade step first so new JS are registered
+        # and we insert our after eea.facetednavigation ones
+        self.upgradeProfile('eea.facetednavigation:default')
+        self.ps.runAllImportStepsFromProfile(
+            'profile-collective.eeafaceted.dashboard:universal',
+            dependency_strategy=DEPENDENCY_STRATEGY_IGNORE)
         # install collective.eeafaceted.dashboard before migrating so portal_types are correct
         self.ps.runAllImportStepsFromProfile(
             'profile-collective.eeafaceted.dashboard:universal',
             dependency_strategy=DEPENDENCY_STRATEGY_IGNORE)
         self.reinstall(['profile-collective.eeafaceted.dashboard:default'])
+        self.upgradeProfile('collective.eeafacated.collectionwidget:default')
         pac_migrate(self.portal, DashboardPODTemplateMigrator)
         pac_migrate(self.portal, DashboardCollectionMigrator)
         # pac migration do not reindex migrated objects
@@ -95,6 +102,5 @@ class Migrate_To_6(Migrator):
 
 
 def migrate(context):
-    '''
-    '''
+    '''Handler to launch migration.'''
     Migrate_To_6(context).run()

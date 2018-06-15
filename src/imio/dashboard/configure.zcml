@@ -1,10 +1,11 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:monkey="http://namespaces.plone.org/monkey"
+    xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:five="http://namespaces.zope.org/five"
-    xmlns:i18n="http://namespaces.zope.org/i18n"
-    xmlns:zcml="http://namespaces.zope.org/zcml"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:monkey="http://namespaces.plone.org/monkey"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="imio.dashboard">
 
     <five:registerPackage package="." initialize=".initialize" />
@@ -18,6 +19,19 @@
     <include package="collective.monkeypatcher" file="meta.zcml" />
     <include package="imio.actionspanel"/>
     <include package="plone.app.dexterity"/>
+
+    <include package="z3c.unconfigure" file="meta.zcml"/>
+
+    <unconfigure>
+        <browser:page
+            for="eea.facetednavigation.interfaces.IFacetedNavigable"
+            name="faceted_query"
+            class="eea.facetednavigation.browser.app.query.FacetedQueryHandler"
+            permission="zope2.View" />
+        <utility
+            factory="eea.faceted.vocabularies.catalog.CatalogIndexesVocabulary"
+            name="eea.faceted.vocabularies.CatalogIndexes" />
+    </unconfigure>
 
     <include package=".browser" />
     <include package=".content" />
@@ -62,5 +76,19 @@
              name="imio.dashboard.cachedcollectionvocabulary" />
     <utility component=".vocabulary.CreatorsVocabularyFactory"
              name="imio.dashboard.creatorsvocabulary" />
+
+    <utility
+        factory=".vocabulary.CombinedCatalogIndexesVocabulary"
+        name="eea.faceted.vocabularies.CatalogIndexes" />
+
+    <configure package="eea.facetednavigation">
+        <browser:page
+            for="eea.facetednavigation.interfaces.IFacetedNavigable"
+            name="faceted_query"
+            class="imio.dashboard.browser.overrides.CombinedFacetedQueryHandler"
+            template="browser/template/query.pt"
+            permission="zope2.View" />
+    </configure>
+
 
 </configure>

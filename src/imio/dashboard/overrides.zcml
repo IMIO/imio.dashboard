@@ -4,17 +4,5 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="imio.dashboard">
 
-    <utility
-        factory=".vocabulary.CombinedCatalogIndexesVocabulary"
-        name="eea.faceted.vocabularies.CatalogIndexes" />
-
-    <configure package="eea.facetednavigation">
-        <browser:page
-            for="eea.facetednavigation.interfaces.IFacetedNavigable"
-            name="faceted_query"
-            class="imio.dashboard.browser.overrides.CombinedFacetedQueryHandler"
-            template="browser/template/query.pt"
-            permission="zope2.View" />
-    </configure>
 
 </configure>
