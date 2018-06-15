@@ -20,11 +20,6 @@ def onDashboardCollectionModified(obj, event):
     invalidate_cachekey_volatile_for('imio.dashboard.cachedcollectionvocabulary')
 
 
-def onDashboardCollectionTransition(obj, event):
-    '''Called whenever a WF transition was triggered on a DashboardCollection.'''
-    invalidate_cachekey_volatile_for('imio.dashboard.cachedcollectionvocabulary')
-
-
 def onDashboardCollectionRemoved(obj, event):
     '''Called whenever a WF transition was triggered on a DashboardCollection.'''
     invalidate_cachekey_volatile_for('imio.dashboard.cachedcollectionvocabulary')

@@ -61,19 +61,6 @@ class TestConditionAwareVocabulary(IntegrationTestCase):
         vocab = factory(self.portal)
         self.assertFalse(self.dashboardcollection.UID() in vocab.by_token)
 
-        # cache invalidated when transition triggered
-        # show this by editing title then changing state
-        self.dashboardcollection.tal_condition = u'python:True'
-        notify(ObjectModifiedEvent(self.dashboardcollection))
-        vocab = factory(self.portal)
-        self.assertTrue((self.dashboardcollection.title, '') in [term.title for term in vocab._terms])
-        self.dashboardcollection.title = u'Edited title'
-        vocab = factory(self.portal)
-        self.assertFalse((self.dashboardcollection.title, '') in [term.title for term in vocab._terms])
-        self.wfTool.doActionFor(self.dashboardcollection, 'publish')
-        vocab = factory(self.portal)
-        self.assertTrue((self.dashboardcollection.title, '') in [term.title for term in vocab._terms])
-
         # cache invalidated when new DashboardCollection added
         self.dashboardcollection2 = api.content.create(
             id='dc2',

@@ -14,9 +14,6 @@
                      zope.lifecycleevent.IObjectModifiedEvent"
                 handler=".events.onDashboardCollectionModified" />
     <subscriber for="collective.eeafaceted.collectionwidget.content.dashboardcollection.IDashboardCollection
-                     Products.DCWorkflow.interfaces.IAfterTransitionEvent"
-                handler=".events.onDashboardCollectionTransition" />
-    <subscriber for="collective.eeafaceted.collectionwidget.content.dashboardcollection.IDashboardCollection
                      zope.container.interfaces.IObjectRemovedEvent"
                 handler=".events.onDashboardCollectionRemoved" />
 
