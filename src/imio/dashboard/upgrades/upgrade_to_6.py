@@ -80,9 +80,6 @@ class Migrate_To_6(Migrator):
         # run eea.facetednavigation upgrade step first so new JS are registered
         # and we insert our after eea.facetednavigation ones
         self.upgradeProfile('eea.facetednavigation:default')
-        self.ps.runAllImportStepsFromProfile(
-            'profile-collective.eeafaceted.dashboard:universal',
-            dependency_strategy=DEPENDENCY_STRATEGY_IGNORE)
         # install collective.eeafaceted.dashboard before migrating so portal_types are correct
         self.ps.runAllImportStepsFromProfile(
             'profile-collective.eeafaceted.dashboard:universal',
