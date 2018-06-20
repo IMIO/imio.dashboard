@@ -12,9 +12,9 @@ long_description = (
 
 setup(
     name='imio.dashboard',
-    version='1.8.dev0',
-    description="This package is the glue between different packages "
-                "offering a usable and integrated dashboard application",
+    version='2.0.dev0',
+    description="This package adds functionnality to collective.eeafaceted.dashboard "
+                "but only work for Plone 4.3.x",
     long_description=long_description,
     # Get more from http://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
@@ -35,22 +35,11 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'Products.ZCatalog >= 3.1',
-        'plone.api',
-        # version 1.0.3+ manage correctly orphans
-        'plone.batching > 1.0.4',
-        'setuptools',
-        'collective.behavior.talcondition',
-        'collective.compoundcriterion',
-        'collective.documentgenerator',
         'collective.eeafaceted.batchactions',
-        'collective.eeafaceted.collectionwidget > 0.8',
-        'collective.eeafaceted.z3ctable > 0.15',
+        'collective.eeafaceted.dashboard',
         'collective.js.iframeresizer',
-        'eea.facetednavigation', # < 10.0',
         'imio.actionspanel',
         'imio.migrator',
-        'imio.prettylink',
     ],
     extras_require={
         'test': [

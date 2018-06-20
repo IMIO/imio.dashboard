@@ -15,6 +15,14 @@ from imio.dashboard.interfaces import ICustomViewFieldsVocabulary
 from imio.dashboard.interfaces import IDashboardCollection
 from imio.dashboard import ImioDashboardMessageFactory as _
 
+################################################################################
+#                                                                              #
+#  DEPRECATED, THIS CONTENT WAS MOVED TO COLLECTIVE.EEAFACETED.DASHBOARD !!!   #
+#                                                                              #
+#  STILL EXISTS FOR MIGRATION PURPOSE !!!                                      #
+#                                                                              #
+################################################################################
+
 
 DashboardCollectionSchema = CollectionSchema.copy() + atapi.Schema((
     BooleanField(

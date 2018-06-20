@@ -17,7 +17,15 @@ from collective.eeafaceted.collectionwidget.utils import getCollectionLinkCriter
 from collective.eeafaceted.collectionwidget.widgets.widget import CollectionWidget
 
 from imio.dashboard import ImioDashboardMessageFactory as _
-from imio.dashboard.config import DEFAULT_PORTLET_TITLE
+from collective.eeafaceted.dashboard.config import DEFAULT_PORTLET_TITLE
+
+################################################################################
+#                                                                              #
+#  DEPRECATED, THIS PORTLET WAS MOVED TO COLLECTIVE.EEAFACETED.DASHBOARD !!!   #
+#                                                                              #
+#  STILL EXISTS FOR MIGRATION PURPOSE !!!                                      #
+#                                                                              #
+################################################################################
 
 
 class IFacetedCollectionPortlet(IPortletDataProvider):
@@ -125,3 +133,5 @@ class EditForm(base.EditForm):
     form_fields = form.Fields(IFacetedCollectionPortlet)
     label = _(u"Edit Collection Criteria Portlet")
     description = _(u"This portlet shows controls for faceted with collections.")
+
+

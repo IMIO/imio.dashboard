@@ -6,4 +6,6 @@ omit =
     src/imio/__init__.py
     src/imio/dashboard/__init__.py
     src/imio/dashboard/browser/__init__.py
-    src/imio/dashboard/content/__init__.py
+    src/imio/dashboard/browser/facetedcollectionportlet.py
+    src/imio/dashboard/content/*
+    src/imio/dashboard/upgrades/*
