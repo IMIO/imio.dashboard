@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.0 (unreleased)
+2.0 (2018-06-21)
 ----------------
 
 - Change JS `Faceted` options in the `ready` function so we are sure that
