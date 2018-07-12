@@ -5,8 +5,9 @@ Changelog
 2.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
-
+- Added back imio.dashboard.js file to remove faceted spinner
+  and speed up faceted fade speed.
+  [gbastien]
 
 2.0 (2018-06-21)
 ----------------

@@ -52,4 +52,14 @@
         handler="imio.dashboard.upgrades.upgrade_to_6.migrate"
         profile="imio.dashboard:default" />
 
+    <genericsetup:upgradeSteps
+        source="6"
+        destination="7"
+        profile="imio.dashboard:default">
+        <genericsetup:upgradeDepends
+            title="Add back imio.dashboard.js in portal_javascripts"
+            description="Add back imio.dashboard.js that was removed..."
+            import_steps="jsregistry" />
+    </genericsetup:upgradeSteps>
+
 </configure>
