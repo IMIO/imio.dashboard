@@ -20,7 +20,8 @@ logger = logging.getLogger('imio.dashboard')
 
 
 class DashboardPODTemplateMigrator(ContentMigrator):
-    """ """
+    """For DashboardPODTemplates created after imio.dashboard 0.28 where
+       meta_type was removed and so 'Dexterity Item' by default."""
     src_portal_type = 'DashboardPODTemplate'
     src_meta_type = 'Dexterity Item'
     dst_portal_type = 'DashboardPODTemplate'
@@ -33,6 +34,15 @@ class DashboardPODTemplateMigrator(ContentMigrator):
                 if not IMethod.providedBy(field):
                     # special handling for file field
                     setattr(self.new, fieldName, getattr(self.old, fieldName))
+
+
+class DashboardPODTemplateMigratorWithDashboardPODTemplateMetaType(DashboardPODTemplateMigrator):
+    """For DashboardPODTemplates created before imio.dashboard 0.28 where
+       meta_type was defined to 'DashboardPODTemplate'."""
+    src_portal_type = 'DashboardPODTemplate'
+    src_meta_type = 'DashboardPODTemplate'
+    dst_portal_type = 'DashboardPODTemplate'
+    dst_meta_type = None  # not used
 
 
 class DashboardCollectionMigrator(CollectionMigrator):
@@ -87,6 +97,7 @@ class Migrate_To_6(Migrator):
         self.reinstall(['profile-collective.eeafaceted.dashboard:default'])
         self.upgradeProfile('collective.eeafacated.collectionwidget:default')
         pac_migrate(self.portal, DashboardPODTemplateMigrator)
+        pac_migrate(self.portal, DashboardPODTemplateMigratorWithDashboardPODTemplateMetaType)
         pac_migrate(self.portal, DashboardCollectionMigrator)
         # pac migration do not reindex migrated objects
         brains = self.portal.portal_catalog(portal_type=['DashboardCollection', 'DashboardPODTemplate'])

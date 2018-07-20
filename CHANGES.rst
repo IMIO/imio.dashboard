@@ -8,6 +8,12 @@ Changelog
 - Added back imio.dashboard.js file to remove faceted spinner
   and speed up faceted fade speed.
   [gbastien]
+- Added migrator `DashboardPODTemplateMigratorWithDashboardPODTemplateMetaType`
+  as due to missing migration to 0.28 where `DashboardPODTemplate meta_type`
+  was changed from `DashboardPODTemplate` to `Dexterity Item`, we may have
+  `DashboardPODTemplate` created with different meta_types that is still
+  cataloged.  This way we manage both cases.
+  [gbastien]
 
 2.0 (2018-06-21)
 ----------------
