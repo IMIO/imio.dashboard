@@ -14,6 +14,8 @@ Changelog
   `DashboardPODTemplate` created with different meta_types that is still
   cataloged.  This way we manage both cases.
   [gbastien]
+- The `actions` column was moved to `collective.eeafaceted.z3ctable`.
+  [gbastien]
 
 2.0 (2018-06-21)
 ----------------
