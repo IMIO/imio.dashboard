@@ -5,8 +5,10 @@ Changelog
 2.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
-
+- Fixed failing migration because unexisting attribute `exclude_from_nav`
+  was migrated with the parent's value that is an instancemethod and it crashed
+  the transaction during commit because it can not be serialized.
+  [gbastien]
 
 2.1 (2018-09-04)
 ----------------

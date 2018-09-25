@@ -27,6 +27,11 @@ class DashboardPODTemplateMigrator(ContentMigrator):
     dst_portal_type = 'DashboardPODTemplate'
     dst_meta_type = None  # not used
 
+    def migrate_atctmetadata(self):
+        """Override to not migrate exclude_from_nav because it does not exist by default
+           and it takes parent's value that is an instancemethod and fails at transaction commit..."""
+        pass
+
     def migrate_schema_fields(self):
         for schemata in iterSchemataForType('DashboardPODTemplate'):
             for fieldName, field in getFieldsInOrder(schemata):
@@ -51,6 +56,11 @@ class DashboardCollectionMigrator(CollectionMigrator):
     src_meta_type = 'DashboardCollection'
     dst_portal_type = 'DashboardCollection'
     dst_meta_type = None  # not used
+
+    def migrate_atctmetadata(self):
+        """Override to not migrate exclude_from_nav because it does not exist by default
+           and it takes parent's value that is an instancemethod and fails at transaction commit..."""
+        pass
 
     def migrate_schema_fields(self):
         super(DashboardCollectionMigrator, self).migrate_schema_fields()
