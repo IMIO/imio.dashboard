@@ -9,6 +9,9 @@ Changelog
   was migrated with the parent's value that is an instancemethod and it crashed
   the transaction during commit because it can not be serialized.
   [gbastien]
+- Completelly removed ActionsColumn as it was moved to
+  `collective.eeafaceted.z3ctable` previously.
+  [gbastien]
 
 2.1 (2018-09-04)
 ----------------
