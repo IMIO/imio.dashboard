@@ -9,41 +9,9 @@ from zope.schema.vocabulary import SimpleVocabulary
 from plone import api
 from plone.memoize import ram
 from Products.CMFPlone.utils import safe_unicode
-from collective.eeafaceted.collectionwidget.vocabulary import CollectionVocabulary
-from eea.facetednavigation.interfaces import IFacetedNavigable
 from eea.faceted.vocabularies.catalog import CatalogIndexesVocabulary
 
 from imio.dashboard.config import COMBINED_INDEX_PREFIX
-from imio.helpers.cache import get_cachekey_volatile
-
-
-class CachedCollectionVocabulary(CollectionVocabulary):
-
-    def __call___cachekey(method, self, context):
-        '''cachekey method for self.__call__.'''
-        return self._cache_invalidation_key(context)
-
-    def _cache_invalidation_key(self, context):
-        '''The key will rely on :
-           - current user, in case faceted is stored in the user personal folder;
-           - a stored cache volatile that is destroyed if a DashboardCollection is modified somewhere;
-           - the first facetednavigable context encountered when ascending context parents
-             (useful when collections are defined in a single folder but displayed on various faceted container).'''
-        user = api.user.get_current()
-        date = get_cachekey_volatile('imio.dashboard.cachedcollectionvocabulary')
-        parent = context
-        while not IFacetedNavigable.providedBy(parent) and parent.meta_type != 'Plone Site':
-            parent = parent.aq_parent
-        return user, date, parent
-
-    @ram.cache(__call___cachekey)
-    def __call__(self, context):
-        """Same behaviour as the original CollectionVocabulary, just cached."""
-        terms = super(CachedCollectionVocabulary, self).__call__(context)
-        return terms
-
-
-CachedCollectionVocabularyFactory = CachedCollectionVocabulary()
 
 
 class CreatorsVocabulary(object):

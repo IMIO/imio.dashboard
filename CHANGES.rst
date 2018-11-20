@@ -12,6 +12,10 @@ Changelog
 - Completelly removed ActionsColumn as it was moved to
   `collective.eeafaceted.z3ctable` previously.
   [gbastien]
+- Moved CachedCollectionVocabulary to collective.eeafaceted.collectionwidget, now named
+    `collective.eeafaceted.collectionwidget.cachedcollectionvocabulary`.
+  Moved also dashboard collection related events.
+  [sgeulette]
 
 2.1 (2018-09-04)
 ----------------

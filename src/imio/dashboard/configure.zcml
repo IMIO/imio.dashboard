@@ -37,7 +37,6 @@
     <include package=".content" />
 
     <include file="columns.zcml" />
-    <include file="events.zcml" />
 
     <genericsetup:registerProfile
         name="default"
@@ -72,8 +71,6 @@
         provides="collective.querynextprev.interfaces.IAdditionalDataProvider" />
 
     <!-- Vocabularies -->
-    <utility component=".vocabulary.CachedCollectionVocabularyFactory"
-             name="imio.dashboard.cachedcollectionvocabulary" />
     <utility component=".vocabulary.CreatorsVocabularyFactory"
              name="imio.dashboard.creatorsvocabulary" />
 

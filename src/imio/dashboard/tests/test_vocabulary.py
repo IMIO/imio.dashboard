@@ -30,54 +30,6 @@ class TestConditionAwareVocabulary(IntegrationTestCase):
         )
         alsoProvides(self.folder, IFacetedNavigable)
 
-    def test_cachedcollectionvocabulary(self):
-        """This vocabulary is cached by and is invalidated when :
-           - user changed;
-           - a dashboardcollection is added/removed/edited/transition triggered;
-           - faceted container."""
-        # add on non Manager user
-        api.user.create(
-            username='user_not_manager',
-            password='user_not_manager',
-            email="imio@dashboard.org",
-            roles=['Member'])
-        factory = queryUtility(IVocabularyFactory, u'imio.dashboard.cachedcollectionvocabulary')
-        # now define a condition and by pass for Manager
-        self.dashboardcollection.tal_condition = u'python:False'
-        self.dashboardcollection.roles_bypassing_talcondition = [u"Manager"]
-        notify(ObjectModifiedEvent(self.dashboardcollection))
-        # No more listed except for Manager
-        vocab = factory(self.portal)
-        self.assertTrue(self.dashboardcollection.UID() in vocab.by_token)
-        login(self.portal, 'user_not_manager')
-        # cache is user aware
-        vocab = factory(self.portal)
-        self.assertFalse(self.dashboardcollection.UID() in vocab.by_token)
-        # Now, desactivate bypass for manager
-        login(self.portal, TEST_USER_NAME)
-        self.dashboardcollection.roles_bypassing_talcondition = []
-        # ObjectModified event on DashboardCollection invalidate the vocabulary caching
-        notify(ObjectModifiedEvent(self.dashboardcollection))
-        vocab = factory(self.portal)
-        self.assertFalse(self.dashboardcollection.UID() in vocab.by_token)
-
-        # cache invalidated when new DashboardCollection added
-        self.dashboardcollection2 = api.content.create(
-            id='dc2',
-            type='DashboardCollection',
-            title='Dashboard collection 2',
-            container=self.folder,
-            tal_condition=u'',
-            roles_bypassing_talcondition=[]
-        )
-        vocab = factory(self.portal)
-        self.assertTrue((self.dashboardcollection2.title, '') in [term.title for term in vocab._terms])
-
-        # cache invalidated when DashboardCollection deleted
-        api.content.delete(self.dashboardcollection2)
-        vocab = factory(self.portal)
-        self.assertFalse((self.dashboardcollection2.title, '') in [term.title for term in vocab._terms])
-
     def test_creatorsvocabulary(self):
         """This will return every users that created a content in the portal."""
         factory = queryUtility(IVocabularyFactory, u'imio.dashboard.creatorsvocabulary')
