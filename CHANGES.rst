@@ -16,6 +16,9 @@ Changelog
     `collective.eeafaceted.collectionwidget.cachedcollectionvocabulary`.
   Moved also dashboard collection related events.
   [sgeulette]
+- Migration: secure attribute get in DashboardPODTemplateMigrator.
+  Include portal portlet migration.
+  [sgeulette]
 
 2.1 (2018-09-04)
 ----------------

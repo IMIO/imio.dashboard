@@ -38,7 +38,7 @@ class DashboardPODTemplateMigrator(ContentMigrator):
                 # bypass interface methods
                 if not IMethod.providedBy(field):
                     # special handling for file field
-                    setattr(self.new, fieldName, getattr(self.old, fieldName))
+                    setattr(self.new, fieldName, getattr(self.old, fieldName, None))
 
 
 class DashboardPODTemplateMigratorWithDashboardPODTemplateMetaType(DashboardPODTemplateMigrator):
@@ -85,14 +85,15 @@ class Migrate_To_6(Migrator):
         # this will only take into account Plone Site and Folders as portlet holders
         manager = getUtility(IPortletManager, name=u"plone.leftcolumn")
         brains = self.portal.portal_catalog(portal_type=['Folder'])
-        for brain in brains:
-            folder = brain.getObject()
-            assignment_mapping = getMultiAdapter((folder, manager), IPortletAssignmentMapping)
+        objs = [brain.getObject() for brain in brains]
+        objs.insert(0, self.portal)
+        for obj in objs:
+            assignment_mapping = getMultiAdapter((obj, manager), IPortletAssignmentMapping)
             for k, v in assignment_mapping.items():
                 if isinstance(v, old_dashboard_portlet):
                     del assignment_mapping[k]
                     assignment_mapping[k] = new_dashboard_portlet()
-                    logger.info('Portlet was updated for {0}'.format('/'.join(folder.getPhysicalPath())))
+                    logger.info('Portlet was updated for {0}'.format('/'.join(obj.getPhysicalPath())))
         logger.info('Done.')
 
     def run(self):
