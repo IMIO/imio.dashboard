@@ -1,17 +1,18 @@
 # encoding: utf-8
 
+from collective.contact.plonegroup.interfaces import INotPloneGroupContact
+from collective.contact.plonegroup.interfaces import IPloneGroupContact
+from eea.faceted.vocabularies.catalog import CatalogIndexesVocabulary
+from imio.dashboard.config import COMBINED_INDEX_PREFIX
 from operator import attrgetter
-
+from plone import api
+from plone.memoize import ram
+from Products.CMFPlone.utils import safe_unicode
+from zope.i18n import translate
 from zope.interface import implements
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
-from plone import api
-from plone.memoize import ram
-from Products.CMFPlone.utils import safe_unicode
-from eea.faceted.vocabularies.catalog import CatalogIndexesVocabulary
-
-from imio.dashboard.config import COMBINED_INDEX_PREFIX
 
 
 class CreatorsVocabulary(object):
@@ -67,3 +68,49 @@ class CombinedCatalogIndexesVocabulary(CatalogIndexesVocabulary):
             value = '(Combined) ' + index.title
             res.append(SimpleTerm(key, key, value))
         return SimpleVocabulary(res)
+
+
+class PloneGroupInterfacesVocabulary(object):
+    """List interfaces that will be shown in contacts faceted navigation."""
+    implements(IVocabularyFactory)
+
+    def _interfaces(self):
+        """ """
+        interfaces = [
+            IPloneGroupContact,
+            INotPloneGroupContact,
+        ]
+        return interfaces
+
+    def __call__(self, context):
+
+        terms = [SimpleVocabulary.createTerm(
+            interface.__identifier__,
+            interface.__identifier__,
+            interface.__name__)
+            for interface in self._interfaces()]
+
+        return SimpleVocabulary(terms)
+
+PloneGroupInterfacesVocabularyFactory = PloneGroupInterfacesVocabulary()
+
+
+class ContactsReviewStatesVocabulary(object):
+    """ Contacts states vocabulary """
+    implements(IVocabularyFactory)
+
+    def __call__(self, context):
+        terms = []
+        wfTool = api.portal.get_tool('portal_workflow')
+        org_wfs = wfTool.getWorkflowsFor('organization')
+        if org_wfs:
+            for state in org_wfs[0].states.values():
+                terms.append(SimpleVocabulary.createTerm(
+                    state.id,
+                    state.id,
+                    translate(safe_unicode(state.title),
+                              domain='plone',
+                              context=context.REQUEST)))
+        return SimpleVocabulary(terms)
+
+ContactsReviewStatesVocabularyFactory = ContactsReviewStatesVocabulary()
