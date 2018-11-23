@@ -1,7 +1,5 @@
 # encoding: utf-8
 
-from collective.contact.plonegroup.interfaces import INotPloneGroupContact
-from collective.contact.plonegroup.interfaces import IPloneGroupContact
 from eea.faceted.vocabularies.catalog import CatalogIndexesVocabulary
 from imio.dashboard.config import COMBINED_INDEX_PREFIX
 from operator import attrgetter
@@ -13,6 +11,14 @@ from zope.interface import implements
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
+
+
+HAS_PLONEGROUP = True
+try:
+    from collective.contact.plonegroup.interfaces import INotPloneGroupContact
+    from collective.contact.plonegroup.interfaces import IPloneGroupContact
+except ImportError:
+    HAS_PLONEGROUP = False
 
 
 class CreatorsVocabulary(object):
@@ -83,12 +89,13 @@ class PloneGroupInterfacesVocabulary(object):
         return interfaces
 
     def __call__(self, context):
-
-        terms = [SimpleVocabulary.createTerm(
-            interface.__identifier__,
-            interface.__identifier__,
-            interface.__name__)
-            for interface in self._interfaces()]
+        terms = []
+        if HAS_PLONEGROUP:
+            terms = [SimpleVocabulary.createTerm(
+                interface.__identifier__,
+                interface.__identifier__,
+                interface.__name__)
+                for interface in self._interfaces()]
 
         return SimpleVocabulary(terms)
 
