@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-06-12 07:23+0000\n"
+"POT-Creation-Date: 2018-11-26 16:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,58 +17,106 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: imio.dashboard\n"
 
-#: ./browser/facetedcollectionportlet.py:117
+#: ./browser/facetedcollectionportlet.py:125
 msgid "Add Collection Criteria Portlet"
 msgstr ""
 
-#: ./content/pod_template.py:35
+#: ./content/pod_template.py:37
 msgid "Allowed dashboard collections"
 msgstr ""
 
-#: ./browser/facetedcollectionportlet.py:126
+#: ./setuphandlers.py:149
+msgid "Contact list searches"
+msgstr ""
+
+#: ./setuphandlers.py:149
+msgid "Contact lists"
+msgstr ""
+
+#: ./browser/facetedcollectionportlet.py:134
 msgid "Edit Collection Criteria Portlet"
 msgstr ""
 
-#: ./content/pod_template.py:27
+#: ./setuphandlers.py:134
+msgid "Held positions"
+msgstr ""
+
+#: ./setuphandlers.py:134
+msgid "Held positions searches"
+msgstr ""
+
+#: ./content/pod_template.py:29
 msgid "If selelected, receive awoken objects wrapped into their  helper view rather than brains as generation context"
 msgstr ""
 
-#: ./configure.zcml:38
+#: ./configure.zcml:55
 msgid "Installs the demo of two tables of imio.dashboard add-on."
 msgstr ""
 
-#: ./configure.zcml:30
+#: ./configure.zcml:47
 msgid "Installs the imio.dashboard add-on."
 msgstr ""
 
-#: ./content/pod_template.py:36
+#: ./setuphandlers.py:124
+msgid "Organizations"
+msgstr ""
+
+#: ./setuphandlers.py:124
+msgid "Organizations searches"
+msgstr ""
+
+#: ./setuphandlers.py:141
+msgid "Persons"
+msgstr ""
+
+#: ./setuphandlers.py:141
+msgid "Persons searches"
+msgstr ""
+
+#: ./content/pod_template.py:38
 msgid "Select for which dashboard collections the template will be available. If nothing is selected, the template will be available on every dashboards."
 msgstr ""
 
-#: ./content/dashboardcollection.py:30
+#: ./content/dashboardcollection.py:32
 msgid "Show number of items in filter"
 msgstr ""
 
-#: ./testing.zcml:15
+#: ./testing.zcml:16
 msgid "Steps to ease tests of imio.dashboard"
 msgstr ""
 
-#: ./browser/facetedcollectionportlet.py:118
+#: ./browser/facetedcollectionportlet.py:126
 msgid "This portlet shows controls for faceted with collections."
 msgstr ""
 
-#: ./content/pod_template.py:26
+#: ./content/pod_template.py:28
 msgid "Use objects as generation context"
 msgstr ""
 
-#: ./configure.zcml:30
+#: ./setuphandlers.py:78
+msgid "all_cls"
+msgstr ""
+
+#: ./setuphandlers.py:54
+msgid "all_hps"
+msgstr ""
+
+#: ./setuphandlers.py:42
+msgid "all_orgs"
+msgstr ""
+
+#: ./setuphandlers.py:66
+msgid "all_persons"
+msgstr ""
+
+#: ./configure.zcml:47
 msgid "imio.dashboard"
 msgstr ""
 
-#: ./configure.zcml:38
+#: ./configure.zcml:55
 msgid "imio.dashboard demo of two tables"
 msgstr ""
 
-#: ./testing.zcml:15
+#: ./testing.zcml:16
 msgid "imio.dashboard tests"
 msgstr ""

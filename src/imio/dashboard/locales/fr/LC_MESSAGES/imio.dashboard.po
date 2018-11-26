@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-06-12 07:23+0000\n"
+"POT-Creation-Date: 2018-11-26 16:10+0000\n"
 "PO-Revision-Date: 2016-02-22 15:20+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,58 +16,106 @@ msgstr ""
 "Language: fr\n"
 "X-Generator: Poedit 1.8.4\n"
 
-#: ./browser/facetedcollectionportlet.py:117
+#: ./browser/facetedcollectionportlet.py:125
 msgid "Add Collection Criteria Portlet"
 msgstr "Ajouter portlet 'Faceted Collection'"
 
-#: ./content/pod_template.py:35
+#: ./content/pod_template.py:37
 msgid "Allowed dashboard collections"
 msgstr "Tableaux de bord autorisés"
 
-#: ./browser/facetedcollectionportlet.py:126
+#: ./setuphandlers.py:149
+msgid "Contact list searches"
+msgstr "Listes de contact"
+
+#: ./setuphandlers.py:149
+msgid "Contact lists"
+msgstr "Contact lists"
+
+#: ./browser/facetedcollectionportlet.py:134
 msgid "Edit Collection Criteria Portlet"
 msgstr "Editer portlet 'Faceted Collection'"
 
-#: ./content/pod_template.py:27
+#: ./setuphandlers.py:134
+msgid "Held positions"
+msgstr "Held positions"
+
+#: ./setuphandlers.py:134
+msgid "Held positions searches"
+msgstr "Fonctions occupées"
+
+#: ./content/pod_template.py:29
 msgid "If selelected, receive awoken objects wrapped into their  helper view rather than brains as generation context"
 msgstr "Renvoie les objets et une vue d'aide à la génération comme contexte du modèle plutôt que les brains."
 
-#: ./configure.zcml:38
+#: ./configure.zcml:55
 msgid "Installs the demo of two tables of imio.dashboard add-on."
 msgstr ""
 
-#: ./configure.zcml:30
+#: ./configure.zcml:47
 msgid "Installs the imio.dashboard add-on."
 msgstr ""
 
-#: ./content/pod_template.py:36
+#: ./setuphandlers.py:124
+msgid "Organizations"
+msgstr "Organizations"
+
+#: ./setuphandlers.py:124
+msgid "Organizations searches"
+msgstr "Organisations"
+
+#: ./setuphandlers.py:141
+msgid "Persons"
+msgstr "Persons"
+
+#: ./setuphandlers.py:141
+msgid "Persons searches"
+msgstr "Personnes"
+
+#: ./content/pod_template.py:38
 msgid "Select for which dashboard collections the template will be available. If nothing is selected, the template will be available on every dashboards."
 msgstr "Sélectionnez les tableaux de bord pour lesquels le modèle sera disponible. Si rien n'est sélectionné, le modèle sera disponible sur tous les tableaux de bord."
 
-#: ./content/dashboardcollection.py:30
+#: ./content/dashboardcollection.py:32
 msgid "Show number of items in filter"
 msgstr "Montrer le nombre d'éléments dans les filtres"
 
-#: ./testing.zcml:15
+#: ./testing.zcml:16
 msgid "Steps to ease tests of imio.dashboard"
 msgstr ""
 
-#: ./browser/facetedcollectionportlet.py:118
+#: ./browser/facetedcollectionportlet.py:126
 msgid "This portlet shows controls for faceted with collections."
 msgstr "Ce portlet affiche les widgets collection définis sur un dossier utilisant une vue à facettes"
 
-#: ./content/pod_template.py:26
+#: ./content/pod_template.py:28
 msgid "Use objects as generation context"
 msgstr "Utiliser les objets comme contexte de génération."
 
-#: ./configure.zcml:30
+#: ./setuphandlers.py:78
+msgid "all_cls"
+msgstr "Toutes les listes de contact"
+
+#: ./setuphandlers.py:54
+msgid "all_hps"
+msgstr "Toutes les fonctions occupées"
+
+#: ./setuphandlers.py:42
+msgid "all_orgs"
+msgstr "Toutes les organisations"
+
+#: ./setuphandlers.py:66
+msgid "all_persons"
+msgstr "Toutes les personnes"
+
+#: ./configure.zcml:47
 msgid "imio.dashboard"
 msgstr ""
 
-#: ./configure.zcml:38
+#: ./configure.zcml:55
 msgid "imio.dashboard demo of two tables"
 msgstr ""
 
-#: ./testing.zcml:15
+#: ./testing.zcml:16
 msgid "imio.dashboard tests"
 msgstr ""

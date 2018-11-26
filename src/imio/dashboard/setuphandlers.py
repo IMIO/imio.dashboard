@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 from collective.eeafaceted.collectionwidget.interfaces import ICollectionCategories
 from collective.eeafaceted.dashboard.utils import enableFacetedDashboardFor
-from imio.dashboard import ImioDashboardMessageFactory as _
 from imio.dashboard import logger
 from plone import api
 from Products.CMFPlone.utils import base_hasattr
+from zope.component import queryUtility
+from zope.i18n.interfaces import ITranslationDomain
 from zope.interface import alsoProvides
 
 import os
@@ -18,6 +19,12 @@ def post_install(context):
     """Post install script"""
     if isNotCurrentProfile(context):
         return
+
+
+def _(msgid, domain='imio.dashboard'):
+    translation_domain = queryUtility(ITranslationDomain, domain)
+    sp = api.portal.get().portal_properties.site_properties
+    return translation_domain.translate(msgid, target_language=sp.getProperty('default_language', 'fr'))
 
 
 def _add_db_col_folder(folder, id, title, displayed=''):

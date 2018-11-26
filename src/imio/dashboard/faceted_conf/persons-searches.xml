@@ -10,7 +10,7 @@
    <property name="title">Sort on</property>
    <property name="position">top</property>
    <property name="section">default</property>
-   <property name="hidden">1</property>
+   <property name="hidden">True</property>
    <property name="vocabulary"></property>
    <property name="default"></property>
   </criterion>
@@ -20,14 +20,14 @@
    <property name="title">Base collections</property>
    <property name="position">top</property>
    <property name="section">default</property>
-   <property name="hidden">1</property>
-   <property name="count">0</property>
-   <property name="sortcountable">0</property>
-   <property name="hidezerocount">0</property>
+   <property name="hidden">True</property>
+   <property name="count">False</property>
+   <property name="sortcountable">False</property>
+   <property name="hidezerocount">False</property>
    <property name="vocabulary">collective.eeafaceted.collectionwidget.collectionvocabulary</property>
-   <property name="hidealloption">1</property>
+   <property name="hidealloption">True</property>
    <property name="maxitems">0</property>
-   <property name="sortreversed">0</property>
+   <property name="sortreversed">False</property>
    <property name="default"></property>
   </criterion>
 
@@ -36,11 +36,11 @@
    <property name="title">Search</property>
    <property name="position">center</property>
    <property name="section">default</property>
-   <property name="hidden">0</property>
+   <property name="hidden">False</property>
    <property name="index">SearchableText</property>
    <property name="default"/>
-   <property name="onlyallelements">1</property>
-   <property name="wildcard">1</property>
+   <property name="onlyallelements">True</property>
+   <property name="wildcard">True</property>
   </criterion>
 
   <criterion name="c3" i18n:attributes="title">
@@ -48,7 +48,7 @@
    <property name="title">Per page</property>
    <property name="position">center</property>
    <property name="section">default</property>
-   <property name="hidden">0</property>
+   <property name="hidden">False</property>
    <property name="start">20</property>
    <property name="end">1000</property>
    <property name="step">20</property>
@@ -60,7 +60,7 @@
    <property name="title">Path</property>
    <property name="position">top</property>
    <property name="section">default</property>
-   <property name="hidden">1</property>
+   <property name="hidden">True</property>
    <property name="index">path</property>
    <property name="root">/</property>
    <property name="default">/contacts</property>
@@ -72,17 +72,17 @@
    <property name="title">Contact plonegroup/normal</property>
    <property name="position">top</property>
    <property name="section">default</property>
-   <property name="hidden">1</property>
-   <property name="count">0</property>
-   <property name="sortcountable">0</property>
-   <property name="hidezerocount">0</property>
+   <property name="hidden">True</property>
+   <property name="count">False</property>
+   <property name="sortcountable">False</property>
+   <property name="hidezerocount">False</property>
    <property name="index">object_provides</property>
    <property name="operator">or</property>
-   <property name="operator_visible">0</property>
+   <property name="operator_visible">False</property>
    <property name="vocabulary">imio.dashboard.PloneGroupInterfacesVocabulary</property>
    <property name="catalog"></property>
-   <property name="maxitems"></property>
-   <property name="sortreversed">0</property>
+   <property name="maxitems">0</property>
+   <property name="sortreversed">False</property>
    <property name="default">
     <element value="collective.contact.plonegroup.interfaces.INotPloneGroupContact" />
    </property>
@@ -95,18 +95,17 @@
    <property name="title">Review state</property>
    <property name="position">top</property>
    <property name="section">advanced</property>
-   <property name="hidden">0</property>
-   <property name="count">0</property>
-   <property name="sortcountable">0</property>
-   <property name="hidezerocount">0</property>
+   <property name="hidden">False</property>
+   <property name="count">False</property>
+   <property name="sortcountable">False</property>
+   <property name="hidezerocount">False</property>
    <property name="index">review_state</property>
    <property name="operator">or</property>
-   <property name="operator_visible">0</property>
+   <property name="operator_visible">False</property>
    <property name="vocabulary">imio.dashboard.ContactsReviewStatesVocabulary</property>
    <property name="catalog"></property>
-   <property name="maxitems"></property>
-   <property name="sortreversed">0</property>
-   <property name="default"/>
+   <property name="maxitems">0</property>
+   <property name="sortreversed">False</property>
   </criterion>
 
   <criterion name="c13" i18n:attributes="title">
@@ -114,7 +113,7 @@
    <property name="title">Modified</property>
    <property name="position">top</property>
    <property name="section">advanced</property>
-   <property name="hidden">0</property>
+   <property name="hidden">False</property>
    <property name="index">Date</property>
    <property name="default"></property>
    <property name="calYearRange">2013:+0</property>
@@ -125,11 +124,11 @@
    <property name="title">Title only</property>
    <property name="position">top</property>
    <property name="section">advanced</property>
-   <property name="hidden">0</property>
+   <property name="hidden">False</property>
    <property name="index">Title</property>
    <property name="default"/>
-   <property name="onlyallelements">1</property>
-   <property name="wildcard">1</property>
+   <property name="onlyallelements">True</property>
+   <property name="wildcard">True</property>
   </criterion>
 
  </criteria>
