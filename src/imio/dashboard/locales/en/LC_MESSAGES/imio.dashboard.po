@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-11-26 16:10+0000\n"
+"POT-Creation-Date: 2018-11-27 14:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,11 +23,11 @@ msgstr ""
 msgid "Allowed dashboard collections"
 msgstr ""
 
-#: ./setuphandlers.py:149
+#: ./setuphandlers.py:173
 msgid "Contact list searches"
 msgstr ""
 
-#: ./setuphandlers.py:149
+#: ./setuphandlers.py:174
 msgid "Contact lists"
 msgstr ""
 
@@ -35,12 +35,18 @@ msgstr ""
 msgid "Edit Collection Criteria Portlet"
 msgstr ""
 
-#: ./setuphandlers.py:134
+#: ./setuphandlers.py:151
 msgid "Held positions"
 msgstr ""
 
-#: ./setuphandlers.py:134
+#: ./setuphandlers.py:150
 msgid "Held positions searches"
+msgstr ""
+
+msgid "INotPloneGroupContact"
+msgstr ""
+
+msgid "IPloneGroupContact"
 msgstr ""
 
 #: ./content/pod_template.py:29
@@ -55,19 +61,19 @@ msgstr ""
 msgid "Installs the imio.dashboard add-on."
 msgstr ""
 
-#: ./setuphandlers.py:124
+#: ./setuphandlers.py:137
 msgid "Organizations"
 msgstr ""
 
-#: ./setuphandlers.py:124
+#: ./setuphandlers.py:136
 msgid "Organizations searches"
 msgstr ""
 
-#: ./setuphandlers.py:141
+#: ./setuphandlers.py:162
 msgid "Persons"
 msgstr ""
 
-#: ./setuphandlers.py:141
+#: ./setuphandlers.py:161
 msgid "Persons searches"
 msgstr ""
 
@@ -91,23 +97,24 @@ msgstr ""
 msgid "Use objects as generation context"
 msgstr ""
 
-#: ./setuphandlers.py:78
+#: ./setuphandlers.py:88
 msgid "all_cls"
 msgstr ""
 
-#: ./setuphandlers.py:54
+#: ./setuphandlers.py:64
 msgid "all_hps"
 msgstr ""
 
-#: ./setuphandlers.py:42
+#: ./setuphandlers.py:52
 msgid "all_orgs"
 msgstr ""
 
-#: ./setuphandlers.py:66
+#: ./setuphandlers.py:76
 msgid "all_persons"
 msgstr ""
 
 #: ./configure.zcml:47
+#: ./setuphandlers.py:25
 msgid "imio.dashboard"
 msgstr ""
 

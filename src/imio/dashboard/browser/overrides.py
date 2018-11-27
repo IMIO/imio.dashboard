@@ -1,6 +1,38 @@
 # -*- coding: utf-8 -*-
+
+from collective.eeafaceted.collectionwidget.browser.views import RenderCategoryView
 from eea.facetednavigation.browser.app.query import FacetedQueryHandler
 from imio.dashboard.config import COMBINED_INDEX_PREFIX
+from imio.dashboard.interfaces import IContactsDashboard
+from plone import api
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+
+
+class IDRenderCategoryView(RenderCategoryView):
+    '''
+      Override the way a category is rendered so we add an icon
+      to add content when relevant.
+    '''
+
+    manage_add_contact_actions = True
+
+    def contact_infos(self):
+        return {'orgs-searches': {'typ': 'organization', 'add': '++add++organization', 'img': 'organization_icon.png'},
+                'hps-searches': {'typ': 'contact', 'add': '@@add-contact', 'img': 'create_contact.png'},
+                'persons-searches': {'typ': 'person', 'add': '++add++person', 'img': 'person_icon.png'},
+                'cls-searches': {'typ': 'contact_list', 'add': 'contact-lists-folder',
+                                 'img': 'directory_icon.png', 'class': ''}
+                }
+
+    def _get_category_template(self):
+        if self.manage_add_contact_actions and IContactsDashboard.providedBy(self.context):
+            return ViewPageTemplateFile("templates/category_contact.pt")
+
+    def __call__(self, widget):
+        self.member = api.user.get_current()
+        self.widget = widget
+        category_template = self._get_category_template() or ViewPageTemplateFile("templates/category.pt")
+        return category_template(self)
 
 
 class CombinedFacetedQueryHandler(FacetedQueryHandler):

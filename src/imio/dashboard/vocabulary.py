@@ -2,6 +2,7 @@
 
 from eea.faceted.vocabularies.catalog import CatalogIndexesVocabulary
 from imio.dashboard.config import COMBINED_INDEX_PREFIX
+from imio.dashboard import ImioDashboardMessageFactory as _
 from operator import attrgetter
 from plone import api
 from plone.memoize import ram
@@ -94,7 +95,7 @@ class PloneGroupInterfacesVocabulary(object):
             terms = [SimpleVocabulary.createTerm(
                 interface.__identifier__,
                 interface.__identifier__,
-                interface.__name__)
+                _(interface.__name__))
                 for interface in self._interfaces()]
 
         return SimpleVocabulary(terms)

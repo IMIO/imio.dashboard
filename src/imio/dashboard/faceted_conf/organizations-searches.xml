@@ -67,11 +67,13 @@
    <property name="depth">0</property>
   </criterion>
 
+  <!-- advanced widgets -->
+
   <criterion name="c5" i18n:attributes="title">
    <property name="widget">checkbox</property>
    <property name="title">Contact plonegroup/normal</property>
    <property name="position">top</property>
-   <property name="section">default</property>
+   <property name="section">advanced</property>
    <property name="hidden">True</property>
    <property name="count">False</property>
    <property name="sortcountable">False</property>
@@ -87,8 +89,6 @@
     <element value="collective.contact.plonegroup.interfaces.INotPloneGroupContact" />
    </property>
   </criterion>
-
-  <!-- advanced widgets -->
 
   <criterion name="c6" i18n:attributes="title">
    <property name="widget">checkbox</property>

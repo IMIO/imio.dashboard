@@ -2,6 +2,7 @@
 from collective.eeafaceted.collectionwidget.interfaces import ICollectionCategories
 from collective.eeafaceted.dashboard.utils import enableFacetedDashboardFor
 from imio.dashboard import logger
+from imio.dashboard.interfaces import IContactsDashboard
 from plone import api
 from Products.CMFPlone.utils import base_hasattr
 from zope.component import queryUtility
@@ -27,7 +28,7 @@ def _(msgid, domain='imio.dashboard'):
     return translation_domain.translate(msgid, target_language=sp.getProperty('default_language', 'fr'))
 
 
-def _add_db_col_folder(folder, id, title, displayed=''):
+def _add_db_col_folder(folder, id, title, displayed='', markers=[]):
     if base_hasattr(folder, id):
         return folder[id]
 
@@ -40,6 +41,8 @@ def _add_db_col_folder(folder, id, title, displayed=''):
     if "show_internally" in wfTool.getTransitionsFor(col_folder):
         wfTool.doActionFor(col_folder, "show_internally")
     alsoProvides(col_folder, ICollectionCategories)
+    for marker in markers:
+        alsoProvides(col_folder, marker)
     return col_folder
 
 
@@ -128,7 +131,11 @@ def add_orgs_searches(portal, add_contact_lists_collections=True):
     # add organizations searches
     portal.portal_types.directory.filter_content_types = False
     contacts = portal.contacts
-    col_folder = _add_db_col_folder(contacts, 'orgs-searches', _("Organizations searches"), _("Organizations"))
+    col_folder = _add_db_col_folder(contacts,
+                                    'orgs-searches',
+                                    _("Organizations searches"),
+                                    _("Organizations"),
+                                    markers=[IContactsDashboard])
     contacts.moveObjectToPosition('orgs-searches', 0)
     _createOrganizationsCollections(col_folder)
     # createStateCollections(col_folder, 'organization')
@@ -138,14 +145,22 @@ def add_orgs_searches(portal, add_contact_lists_collections=True):
     # configure contacts faceted
     enableFacetedDashboardFor(contacts, default_UID=col_folder['all_orgs'].UID())
     # add held positions searches
-    col_folder = _add_db_col_folder(contacts, 'hps-searches', _("Held positions searches"), _("Held positions"))
+    col_folder = _add_db_col_folder(contacts,
+                                    'hps-searches',
+                                    _("Held positions searches"),
+                                    _("Held positions"),
+                                    markers=[IContactsDashboard])
     contacts.moveObjectToPosition('hps-searches', 1)
     _createHeldPositionsCollections(col_folder)
     # createStateCollections(col_folder, 'held_position')
     enableFacetedDashboardFor(col_folder, xmlpath=xml_base_path + 'held-positions-searches.xml',
                               default_UID=col_folder['all_hps'].UID())
     # add persons searches
-    col_folder = _add_db_col_folder(contacts, 'persons-searches', _("Persons searches"), _("Persons"))
+    col_folder = _add_db_col_folder(contacts,
+                                    'persons-searches',
+                                    _("Persons searches"),
+                                    _("Persons"),
+                                    markers=[IContactsDashboard])
     contacts.moveObjectToPosition('persons-searches', 2)
     _createPersonsCollections(col_folder)
     # createStateCollections(col_folder, 'person')
@@ -153,7 +168,11 @@ def add_orgs_searches(portal, add_contact_lists_collections=True):
                               default_UID=col_folder['all_persons'].UID())
     # add contact list searches
     if add_contact_lists_collections:
-        col_folder = _add_db_col_folder(contacts, 'cls-searches', _("Contact list searches"), _("Contact lists"))
+        col_folder = _add_db_col_folder(contacts,
+                                        'cls-searches',
+                                        _("Contact list searches"),
+                                        _("Contact lists"),
+                                        markers=[IContactsDashboard])
         contacts.moveObjectToPosition('cls-searches', 3)
         _createContactListsCollections(col_folder)
         # createStateCollections(col_folder, 'contact_list')
