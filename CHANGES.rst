@@ -16,6 +16,9 @@ Changelog
   `collective.eeafaceted.collectionwidget.cachedcollectionvocabulary`.
   Moved also dashboard collection related events.
   [sgeulette]
+- Migration: secure attribute get in DashboardPODTemplateMigrator.
+  Include portal portlet migration.
+  [sgeulette]
 - Added `setuphandlers.add_orgs_searches` that adds dashboards for
   `collective.contact.core` on the `/contacts directory`.
   [gbastien]
