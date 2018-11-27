@@ -30,9 +30,7 @@ class IDRenderCategoryView(RenderCategoryView):
 
     def __call__(self, widget):
         self.member = api.user.get_current()
-        self.widget = widget
-        category_template = self._get_category_template() or ViewPageTemplateFile("templates/category.pt")
-        return category_template(self)
+        return super(IDRenderCategoryView, self).__call__(widget)
 
 
 class CombinedFacetedQueryHandler(FacetedQueryHandler):
