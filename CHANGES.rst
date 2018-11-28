@@ -13,12 +13,15 @@ Changelog
   `collective.eeafaceted.z3ctable` previously.
   [gbastien]
 - Moved CachedCollectionVocabulary to collective.eeafaceted.collectionwidget, now named
-    `collective.eeafaceted.collectionwidget.cachedcollectionvocabulary`.
+  `collective.eeafaceted.collectionwidget.cachedcollectionvocabulary`.
   Moved also dashboard collection related events.
   [sgeulette]
 - Migration: secure attribute get in DashboardPODTemplateMigrator.
   Include portal portlet migration.
   [sgeulette]
+- Added `setuphandlers.add_orgs_searches` that adds dashboards for
+  `collective.contact.core` on the `/contacts directory`.
+  [gbastien]
 
 2.1 (2018-09-04)
 ----------------

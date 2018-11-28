@@ -73,10 +73,15 @@
     <!-- Vocabularies -->
     <utility component=".vocabulary.CreatorsVocabularyFactory"
              name="imio.dashboard.creatorsvocabulary" />
-
     <utility
         factory=".vocabulary.CombinedCatalogIndexesVocabulary"
         name="eea.faceted.vocabularies.CatalogIndexes" />
+    <utility
+        component="imio.dashboard.vocabulary.ContactsReviewStatesVocabularyFactory"
+        name="imio.dashboard.ContactsReviewStatesVocabulary" />
+    <utility
+        component="imio.dashboard.vocabulary.PloneGroupInterfacesVocabularyFactory"
+        name="imio.dashboard.PloneGroupInterfacesVocabulary" />
 
     <configure package="eea.facetednavigation">
         <browser:page

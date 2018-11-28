@@ -4,4 +4,13 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="imio.dashboard">
 
+  <!-- imio.dashboard.interfaces.IContactsDashboard -->
+  <adapter
+     for="imio.dashboard.interfaces.IContactsDashboard
+          zope.publisher.interfaces.browser.IBrowserRequest
+          collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
+     factory=".columns.ContactPrettyLinkColumn"
+     provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
+     name="pretty_link" />
+
 </configure>

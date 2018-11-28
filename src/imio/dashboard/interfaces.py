@@ -22,3 +22,7 @@ class ICustomViewFieldsVocabulary(Interface):
         """
           Get every IFacetedColumn z3c.table columns.
         """
+
+
+class IContactsDashboard(Interface):
+    """Marker interface for contacts dashboard."""
