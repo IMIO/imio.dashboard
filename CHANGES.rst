@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.2 (unreleased)
+2.2 (2018-11-29)
 ----------------
 
 - Fixed failing migration because unexisting attribute `exclude_from_nav`
