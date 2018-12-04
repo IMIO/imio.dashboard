@@ -22,3 +22,15 @@ msgstr ""
 
 msgid "INotPloneGroupContact"
 msgstr ""
+
+msgid "create_organization"
+msgstr ""
+
+msgid "create_contact"
+msgstr ""
+
+msgid "create_person"
+msgstr ""
+
+msgid "create_contact_list"
+msgstr ""

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-11-27 14:31+0000\n"
+"POT-Creation-Date: 2018-12-04 10:55+0000\n"
 "PO-Revision-Date: 2016-02-22 15:20+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -113,6 +113,18 @@ msgstr "Toutes les organisations"
 #: ./setuphandlers.py:76
 msgid "all_persons"
 msgstr "Toutes les personnes"
+
+msgid "create_contact"
+msgstr "Créer un contact"
+
+msgid "create_contact_list"
+msgstr "Créer une liste de contact"
+
+msgid "create_organization"
+msgstr "Créer une organisation"
+
+msgid "create_person"
+msgstr "Créer une personne"
 
 #: ./configure.zcml:47
 #: ./setuphandlers.py:25

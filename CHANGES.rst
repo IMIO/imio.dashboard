@@ -5,8 +5,8 @@ Changelog
 2.3 (unreleased)
 ----------------
 
-- Nothing changed yet.
-
+- Added translations for `Add contacts` icons.
+  [gbastien]
 
 2.2 (2018-11-29)
 ----------------

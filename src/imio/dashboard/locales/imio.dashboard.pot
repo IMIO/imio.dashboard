@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-11-27 14:31+0000\n"
+"POT-Creation-Date: 2018-12-04 10:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -113,6 +113,18 @@ msgstr ""
 
 #: ./setuphandlers.py:76
 msgid "all_persons"
+msgstr ""
+
+msgid "create_contact"
+msgstr ""
+
+msgid "create_contact_list"
+msgstr ""
+
+msgid "create_organization"
+msgstr ""
+
+msgid "create_person"
 msgstr ""
 
 #: ./configure.zcml:47
