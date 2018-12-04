@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.3 (unreleased)
+2.3 (2018-12-04)
 ----------------
 
 - Added translations for `Add contacts` icons.
