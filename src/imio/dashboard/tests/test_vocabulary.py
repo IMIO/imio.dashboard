@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
 from zope.component import queryUtility
-from zope.event import notify
 from zope.interface import alsoProvides
-from zope.lifecycleevent import ObjectModifiedEvent
 from zope.schema.interfaces import IVocabularyFactory
 from Products.CMFCore.utils import getToolByName
 from plone.app.testing import login
-from plone.app.testing import TEST_USER_NAME
 from plone import api
 from imio.dashboard.testing import IntegrationTestCase
 from eea.facetednavigation.interfaces import IFacetedNavigable

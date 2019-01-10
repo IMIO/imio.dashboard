@@ -12,6 +12,7 @@ from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
 from plone.testing import z2
+from zope.globalrequest.local import setLocal
 
 import unittest
 
@@ -34,6 +35,7 @@ class ImioDashboardLayer(PloneSandboxLayer):
 
     def setUpPloneSite(self, portal):
         """Set up Plone."""
+        setLocal('request', portal.REQUEST)
         # Install into Plone site using portal_setup
         applyProfile(portal, 'imio.dashboard:testing')
 
