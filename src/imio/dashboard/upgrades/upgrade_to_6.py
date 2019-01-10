@@ -84,7 +84,7 @@ class Migrate_To_6(Migrator):
         logger.info('Migrating dashboard portlets...')
         # this will only take into account Plone Site and Folders as portlet holders
         manager = getUtility(IPortletManager, name=u"plone.leftcolumn")
-        brains = self.portal.portal_catalog(portal_type=['Folder'])
+        brains = self.portal.portal_catalog(portal_type=['Folder', 'projectspace'])
         objs = [brain.getObject() for brain in brains]
         objs.insert(0, self.portal)
         for obj in objs:
