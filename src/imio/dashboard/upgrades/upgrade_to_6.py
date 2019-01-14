@@ -91,8 +91,11 @@ class Migrate_To_6(Migrator):
             assignment_mapping = getMultiAdapter((obj, manager), IPortletAssignmentMapping)
             for k, v in assignment_mapping.items():
                 if isinstance(v, old_dashboard_portlet):
+                    idx = assignment_mapping._order.index(k)  # get portlet position
                     del assignment_mapping[k]
                     assignment_mapping[k] = new_dashboard_portlet()
+                    del assignment_mapping._order[-1]  # del new portlet position
+                    assignment_mapping._order.insert(idx, k)  # put new portlet at same position
                     logger.info('Portlet was updated for {0}'.format('/'.join(obj.getPhysicalPath())))
         logger.info('Done.')
 

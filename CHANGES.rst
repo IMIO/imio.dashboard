@@ -5,6 +5,8 @@ Changelog
 2.4 (unreleased)
 ----------------
 
+- Keep order of migrated portlet
+  [sgeulette]
 - Added projectspace type in migration.
   [sgeulette]
 - Pinned products
