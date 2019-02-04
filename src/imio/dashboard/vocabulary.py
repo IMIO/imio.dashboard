@@ -110,15 +110,22 @@ class ContactsReviewStatesVocabulary(object):
     def __call__(self, context):
         terms = []
         wfTool = api.portal.get_tool('portal_workflow')
-        org_wfs = wfTool.getWorkflowsFor('organization')
-        if org_wfs:
-            for state in org_wfs[0].states.values():
-                terms.append(SimpleVocabulary.createTerm(
-                    state.id,
-                    state.id,
-                    translate(safe_unicode(state.title),
-                              domain='plone',
-                              context=context.REQUEST)))
+        # keep every states of every contact portal_types
+        org_wfs = wfTool.getWorkflowsFor('organization') + \
+            wfTool.getWorkflowsFor('person') + wfTool.getWorkflowsFor('held_position')
+        # avoid duplicates
+        state_ids = []
+        for org_wf in org_wfs:
+            for state in org_wf.states.values():
+                state_id = state.id
+                if state_id not in state_ids:
+                    state_ids.append(state_id)
+                    terms.append(SimpleVocabulary.createTerm(
+                        state.id,
+                        state.id,
+                        translate(safe_unicode(state.title),
+                                  domain='plone',
+                                  context=context.REQUEST)))
         return SimpleVocabulary(terms)
 
 ContactsReviewStatesVocabularyFactory = ContactsReviewStatesVocabulary()

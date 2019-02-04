@@ -5,8 +5,10 @@ Changelog
 2.5 (unreleased)
 ----------------
 
-- Nothing changed yet.
-
+- For `imio.dashboard.ContactsReviewStatesVocabulary`, take into account
+  workflow of each contact portal_types (organization, person, held_position)
+  as it can be different for each.
+  [gbastien]
 
 2.4 (2019-01-25)
 ----------------
