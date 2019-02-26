@@ -5,6 +5,9 @@ Changelog
 2.5 (unreleased)
 ----------------
 
+- Fix an issue with SolR and combined indexes
+  [mpeeters]
+
 - For `imio.dashboard.ContactsReviewStatesVocabulary`, take into account
   workflow of each contact portal_types (organization, person, held_position)
   as it can be different for each.
