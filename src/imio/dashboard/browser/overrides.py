@@ -40,6 +40,9 @@ class CombinedFacetedQueryHandler(FacetedQueryHandler):
         criteria = super(CombinedFacetedQueryHandler, self).criteria(sort=sort, **kwargs)
         res = criteria.copy()
         for key, value in criteria.items():
+            if key == 'facet.field':
+                res[key] = [e for e in value
+                            if not e.startswith(COMBINED_INDEX_PREFIX)]
             # bypass if it is not a 'combined' index
             if not key.startswith(COMBINED_INDEX_PREFIX):
                 continue
