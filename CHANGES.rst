@@ -13,7 +13,7 @@ Changelog
   [gbastien]
 - Add CSS class to `ContactPrettyLinkColumn` if content is an organization,
   so we have a different class for every elements and we can style specific
-  content.
+  content.  This needed to add soft dependency to `collective.contact.core`.
   [gbastien]
 
 2.4 (2019-01-25)
