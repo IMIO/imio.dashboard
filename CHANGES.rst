@@ -7,10 +7,13 @@ Changelog
 
 - Fix an issue with SolR and combined indexes
   [mpeeters]
-
 - For `imio.dashboard.ContactsReviewStatesVocabulary`, take into account
   workflow of each contact portal_types (organization, person, held_position)
   as it can be different for each.
+  [gbastien]
+- Add CSS class to `ContactPrettyLinkColumn` if content is an organization,
+  so we have a different class for every elements and we can style specific
+  content.
   [gbastien]
 
 2.4 (2019-01-25)
