@@ -109,7 +109,7 @@ class Migrate_To_6(Migrator):
             'profile-collective.eeafaceted.dashboard:universal',
             dependency_strategy=DEPENDENCY_STRATEGY_IGNORE)
         self.reinstall(['profile-collective.eeafaceted.dashboard:default'])
-        self.upgradeProfile('collective.eeafacated.collectionwidget:default')
+        self.upgradeProfile('collective.eeafaceted.collectionwidget:default')
         pac_migrate(self.portal, DashboardPODTemplateMigrator)
         pac_migrate(self.portal, DashboardPODTemplateMigratorWithDashboardPODTemplateMetaType)
         pac_migrate(self.portal, DashboardCollectionMigrator)

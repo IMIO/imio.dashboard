@@ -15,6 +15,8 @@ Changelog
   so we have a different class for every elements and we can style specific
   content.  This needed to add soft dependency to `collective.contact.core`.
   [gbastien]
+- Corrected typo
+  [sgeulette]
 
 2.4 (2019-01-25)
 ----------------
