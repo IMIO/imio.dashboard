@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.5 (unreleased)
+2.5 (2019-03-28)
 ----------------
 
 - Fix an issue with SolR and combined indexes
