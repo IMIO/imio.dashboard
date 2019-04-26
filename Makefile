@@ -7,8 +7,7 @@ BUILDOUT_FILES = bin/buildout buildout.cfg buildout.d/*.cfg
 .PHONY: bootstrap buildout run test cleanall
 bin/buildout: bootstrap.py buildout.cfg
 	virtualenv-2.7 .
-	./bin/python bootstrap.py --version=2.5.3
-	touch $@
+	./bin/pip install -r requirements.txt
 
 buildout: bin/buildout
 	bin/buildout -t 5

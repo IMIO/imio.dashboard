@@ -1,0 +1,4 @@
+# Same version as http://dist.plone.org/release/5.1.4/versions.cfg
+
+setuptools == 39.1.0
+zc.buildout == 2.11.4
