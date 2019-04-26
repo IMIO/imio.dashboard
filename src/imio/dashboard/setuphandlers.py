@@ -52,7 +52,8 @@ def _createOrganizationsCollections(folder):
         {'id': 'all_orgs', 'tit': _('all_orgs'), 'subj': (u'search', ), 'query': [
             {'i': 'portal_type', 'o': 'plone.app.querystring.operation.selection.is', 'v': ['organization']}],
             'cond': u"", 'bypass': [],
-            'flds': (u'select_row', u'pretty_link', u'review_state', u'CreationDate', u'actions'),
+            'flds': (u'select_row', u'org_pretty_link_with_additional_infos',
+                     u'SelectedInPlonegroupColumn', u'review_state', u'CreationDate', u'actions'),
             'sort': u'sortable_title', 'rev': False, 'count': False},
     ]
     _createDashboardCollections(folder, collections)

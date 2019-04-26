@@ -5,8 +5,9 @@ Changelog
 2.6 (unreleased)
 ----------------
 
-- Nothing changed yet.
-
+- Use `OrgaPrettyLinkWithAdditionalInfosColumn` and `SelectedInPlonegroupColumn`
+  in dashboards displaying organizations.
+  [gbastien]
 
 2.5 (2019-03-28)
 ----------------
