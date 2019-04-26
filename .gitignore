@@ -22,3 +22,4 @@ output.xml
 *.swp
 include
 lib
+pip-selfcheck.json

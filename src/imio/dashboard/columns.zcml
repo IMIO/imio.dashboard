@@ -2,6 +2,7 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="imio.dashboard">
 
   <!-- imio.dashboard.interfaces.IContactsDashboard -->
@@ -14,6 +15,7 @@
      name="pretty_link" />
 
   <adapter
+     zcml:condition="installed collective.contact.plonegroup"
      for="imio.dashboard.interfaces.IContactsDashboard
           zope.publisher.interfaces.browser.IBrowserRequest
           collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
@@ -22,6 +24,7 @@
      name="org_pretty_link_with_additional_infos" />
 
   <adapter
+     zcml:condition="installed collective.contact.plonegroup"
      for="imio.dashboard.interfaces.IContactsDashboard
           zope.interface.Interface
           collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
