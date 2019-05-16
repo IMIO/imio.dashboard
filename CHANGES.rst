@@ -225,20 +225,17 @@ Changelog
   there can be also a normal documentgenerator viewlet.
   [sgeulette]
 
-
 0.20 (2016-08-03)
 -----------------
 
 - Move columns ordering to collective.eeafaceted.z3ctable
   [sdelcourt]
 
-
 0.19 (2016-05-13)
 -----------------
 
 - Removed invasive styling, not the place here.
   [gbastien]
-
 
 0.18 (2016-04-15)
 -----------------
@@ -292,7 +289,6 @@ Changelog
 - The POD template description is now displayed when hovering the POD template title.
   [gbastien]
 
-
 0.13 (2016-01-15)
 -----------------
 
@@ -303,13 +299,11 @@ Changelog
   were renamed (was ITopManager before).
   [gbastien]
 
-
 0.12 (2016-01-04)
 -----------------
 
 - Adapted CSS regarding sort triangle entities now that we use larger ones.
   [gbastien]
-
 
 0.11 (2015-12-17)
 -----------------
@@ -320,14 +314,12 @@ Changelog
   displayed in the DX types control panel especially.
   [gbastien]
 
-
 0.10 (2015-11-27)
 -----------------
 
 - Added possibility to pass 'extra_expr_ctx' to evaluateExpressionFor while
   evaluating the TAL condition defined on the DashboardCollection.
   [gbastien]
-
 
 0.9 (2015-11-24)
 ----------------
@@ -339,12 +331,10 @@ Changelog
 - Test if collective.querynextprev is installed before accessing session
   [sgeulette]
 
-
 0.8 (2015-11-03)
 ----------------
 - Release that corrects the wrong 0.7 release.
   [gbastien]
-
 
 0.7 (2015-11-03)
 ----------------
@@ -356,7 +346,6 @@ Changelog
   and may be used alone if necessary.
   [gbastien]
 
-
 0.6 (2015-10-08)
 ----------------
 - Omit field 'pod_portal_types' for DashboardPODTemplate, it is useless as it
@@ -366,7 +355,6 @@ Changelog
   [gbastien]
 - Added content_type icon for DashboardPODTemplate.
   [gbastien]
-
 
 0.5 (2015-10-01)
 ----------------
@@ -383,7 +371,6 @@ Changelog
   choose on which dashboard it is available/generable.
   [sdelcourt]
 
-
 0.4 (2015-09-04)
 ----------------
 - Moved 'sorting' and 'collection-link' criteria top 'top/default'
@@ -398,12 +385,10 @@ Changelog
   utils._updateDefaultCollectionFor.
   [sdelcourt]
 
-
 0.3 (2015-08-21)
 ----------------
 - Added utils method to enable faceted dashboard on an object and import xml configuration file.
   [sgeulette]
-
 
 0.2 (2015-08-04)
 ----------------
@@ -412,9 +397,8 @@ Changelog
   [gbastien]
 - Create the "imio.dashboard: Add DashboardCollection" permission in ZCML
   [cedricmessiant]
--  Fix DashboardCollection object name in type definition
+- Fix DashboardCollection object name in type definition
   [cedricmessiant]
-
 
 0.1 (2015-07-14)
 ----------------
@@ -422,3 +406,4 @@ Changelog
   [gbastien]
 - Initial release.
   [IMIO]
+
