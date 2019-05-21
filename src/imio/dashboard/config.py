@@ -1,4 +1,4 @@
-PROJECTNAME = 'imio.dashboard'
+# -*- coding: utf-8 -*-
+PROJECTNAME = "imio.dashboard"
 
-COMBINED_INDEX_PREFIX = 'combined__'
-
+COMBINED_INDEX_PREFIX = "combined__"

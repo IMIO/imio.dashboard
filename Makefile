@@ -6,7 +6,7 @@ BUILDOUT_FILES = bin/buildout buildout.cfg buildout.d/*.cfg
 
 .PHONY: bootstrap buildout run test cleanall
 bin/buildout: bootstrap.py buildout.cfg
-	virtualenv-2.7 .
+	virtualenv .
 	./bin/pip install -r requirements.txt
 
 buildout: bin/buildout
@@ -14,7 +14,7 @@ buildout: bin/buildout
 
 bootstrap: bin/buildout
 
-run: bin/instance 
+run: bin/instance
 	bin/instance fg
 
 bin/instance: $(BUILDOUT_FILES)
@@ -31,3 +31,6 @@ bin/test: $(BUILDOUT_FILES)
 
 cleanall:
 	rm -fr bin develop-eggs htmlcov include .installed.cfg lib .mr.developer.cfg parts downloads eggs
+
+lint:
+	pre-commit run --all

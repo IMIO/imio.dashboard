@@ -20,7 +20,7 @@
 <body>
 
 <div metal:fill-slot="content-description">
-        <fieldset tal:condition="python:context.getId()!='iframe'"> 
+        <fieldset tal:condition="python:context.getId()!='iframe'">
                 <legend>Other</legend>
         <iframe src="/Plone/iframe?ajax_load=1&ajax_include_head=1"
                 class="auto-height" style="width: 100%;">

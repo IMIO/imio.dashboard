@@ -1,0 +1,196 @@
+---
+repos:
+  -
+    repo: 'git://github.com/pre-commit/pre-commit-hooks'
+    rev: v2.2.3
+    hooks:
+      -
+        id: trailing-whitespace
+        stages:
+          - commit
+          - push
+      -
+        id: check-json
+        stages:
+          - commit
+          - push
+      -
+        id: flake8
+        stages:
+          - commit
+          - push
+        additional_dependencies:
+          - flake8-blind-except
+          - flake8-debugger
+          - flake8-coding
+          - flake8-isort
+        exclude: ^bootstrap.py$
+      -
+        id: check-yaml
+        stages:
+          - commit
+          - push
+      -
+        id: check-json
+        stages:
+          - commit
+          - push
+      -
+        id: check-merge-conflict
+        stages:
+          - commit
+          - push
+      -
+        id: debug-statements
+        stages:
+          - commit
+          - push
+      -
+        id: fix-encoding-pragma
+        stages:
+          - commit
+          - push
+      -
+        id: check-symlinks
+        stages:
+          - commit
+          - push
+      -
+        id: debug-statements
+        stages:
+          - commit
+          - push
+  - repo: 'https://github.com/ambv/black.git'
+    rev: a4399f3054206eac52a89832a415e31077bafa0a
+    hooks:
+      - id: black
+        name: black
+        description: 'Black: The uncompromising Python code formatter'
+        entry: black
+        language: python
+        language_version: python3
+        require_serial: true
+        types: [python]
+        exclude: ^bootstrap.py$
+  - repo: 'git://github.com/luismayta/pre-commit-isort'
+    rev: 1.0.1
+    hooks:
+      - id: isort
+        name: isort
+        args:
+          - -sp setup.cfg
+        language_version: python
+        types: [python]
+        exclude: ^bootstrap.py$
+  -
+    repo: 'https://github.com/jumanjihouse/pre-commit-hooks.git'
+    rev: 1.11.0
+    hooks:
+      -
+        id: shellcheck
+        exclude: 'mk_sync_locales.sh'
+        stages:
+          - commit
+          - push
+      -
+        id: shfmt
+        exclude: 'mk_sync_locales.sh'
+        stages:
+          - commit
+          - push
+  -
+    repo: 'https://github.com/asottile/yesqa'
+    rev: v0.0.11
+    hooks:
+      -
+        id: yesqa
+        stages:
+          - commit
+          - push
+  -
+    repo: 'https://github.com/adrienverge/yamllint'
+    rev: v1.15.0
+    hooks:
+      -
+        id: yamllint
+        stages:
+          - commit
+          - push
+  -
+    repo: 'https://github.com/jorisroovers/gitlint.git'
+    rev: v0.11.0
+    hooks:
+      -
+        id: gitlint
+        stages:
+          - commit-msg
+  -
+    repo: local
+    hooks:
+      -
+        id: check-dockerfile
+        name: 'Check dockerfile'
+        entry: 'bash -c "docker run --rm -i hadolint/hadolint < Dockerfile"'
+        pass_filenames: false
+        language: system
+        types:
+          - dockerfile
+        stages:
+          - commit
+          - push
+
+  - repo: local
+    hooks:
+      - id: run-csslint
+        name: Running CSS Lint
+        entry: bin/code-analysis-csslint
+        language: system
+        stages: [commit, push]
+
+  - repo: local
+    hooks:
+      - id: run-analysis-clean-lines
+        name: Running analysis clean lines
+        entry: bin/code-analysis-clean-lines
+        language: system
+        stages: [commit, push]
+
+  - repo: local
+    hooks:
+      - id: run-code-analysis-find-untranslated
+        name: Running analysis find untranslated
+        entry: bin/code-analysis-find-untranslated
+        language: system
+        stages: [commit, push]
+
+  - repo: local
+    hooks:
+      - id: run-code-analysis-jscs
+        name: Running code analysis jscs
+        entry: bin/code-analysis-jscs
+        language: system
+        stages: [commit, push]
+
+  - repo: local
+    hooks:
+      - id: run-code-analysis-jshint
+        name: Running code analysis jshint
+        entry: bin/code-analysis-jshint
+        language: system
+        stages: [commit, push]
+
+  - repo: local
+    hooks:
+      - id: run-code-analysis-zptlint
+        name: Running code analysis zptlint
+        entry: bin/code-analysis-zptlint
+        language: system
+        stages: [commit, push]
+  - repo: local
+    hooks:
+      - id: run-tests
+        name: Running unit tests
+        entry: bin/test
+        pass_filenames: false
+        language: system
+        stages: [commit, push]
