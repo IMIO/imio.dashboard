@@ -17,5 +17,5 @@
 
   <!-- Indexes -->
   <adapter name="contained_types_and_states" factory=".tests.indexes.contained_types_and_states" />
-
+  <include package="plone.restapi" file="testing.zcml" />
 </configure>

@@ -12,7 +12,9 @@
 
     <i18n:registerTranslations directory="locales" />
 
+    <include file="permissions.zcml" />
     <include package="plone.restapi"/>
+    <include package=".services" />
     <include package="collective.eeafaceted.batchactions"/>
     <include package="collective.eeafaceted.collectionwidget"/>
     <include package="collective.eeafaceted.dashboard"/>
@@ -52,6 +54,14 @@
         title="imio.dashboard demo of two tables"
         directory="profiles/two_tables"
         description="Installs the demo of two tables of imio.dashboard add-on."
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <genericsetup:registerProfile
+        name="restapi"
+        title="imio.dashboard with rest api"
+        directory="profiles/default"
+        description="Installs the imio.dashboard add-on with rest api"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 

@@ -5,6 +5,7 @@ import unittest
 
 import imio.dashboard
 from collective.eeafaceted.dashboard.utils import enableFacetedDashboardFor
+from plone import api
 from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
 from plone.app.testing import (
     PLONE_FIXTURE,
@@ -24,7 +25,7 @@ from zope.globalrequest.local import setLocal
 class ImioDashboardLayer(PloneSandboxLayer):
 
     defaultBases = (PLONE_FIXTURE,)
-    products = ("imio.dashboard",)
+    products = ("imio.dashboard", "plone.restapi")
 
     def setUpZope(self, app, configurationContext):
         """Set up Zope."""
@@ -43,7 +44,25 @@ class ImioDashboardLayer(PloneSandboxLayer):
         setRoles(portal, TEST_USER_ID, ["Manager"])
         login(portal, TEST_USER_NAME)
         folder_id = portal.invokeFactory("Folder", "folder", title="Folder")
-        portal[folder_id].reindexObject()
+        folder = portal[folder_id]
+        dashboardcollection = api.content.create(
+            id="dc1",
+            type="DashboardCollection",
+            title="Dashboard collection 1",
+            container=portal,
+            sort_on="",
+            sort_reversed="",
+        )
+        dashboardcollection.query = [
+            {
+                "i": "portal_type",
+                "o": "plone.app.querystring.operation.selection.is",
+                "v": ["Folder"],
+            }
+        ]
+        enableFacetedDashboardFor(folder, default_UID=dashboardcollection.UID())
+        enableFacetedDashboardFor(folder)
+        folder.reindexObject()
 
         # Commit so that the test browser sees these objects
         import transaction
@@ -62,7 +81,7 @@ FIXTURE = ImioDashboardLayer(name="FIXTURE")
 INTEGRATION = IntegrationTesting(bases=(FIXTURE,), name="INTEGRATION")
 
 
-FUNCTIONAL = FunctionalTesting(bases=(FIXTURE,), name="FUNCTIONAL")
+FUNCTIONAL = FunctionalTesting(bases=(FIXTURE, z2.ZSERVER_FIXTURE), name="FUNCTIONAL")
 
 
 ACCEPTANCE = FunctionalTesting(
@@ -81,11 +100,16 @@ class IntegrationTestCase(unittest.TestCase):
         self.portal = self.layer["portal"]
         self.request = self.portal.REQUEST
         self.folder = self.portal.get("folder")
-        enableFacetedDashboardFor(self.folder)
         self.faceted_table = self.folder.restrictedTraverse("faceted-table-view")
 
 
-class FunctionalTestCase(unittest.TestCase):
+class FunctionalTestCase(IntegrationTestCase):
     """Base class for functional tests."""
 
     layer = FUNCTIONAL
+
+    def setUp(self):
+        super(FunctionalTestCase, self).setUp()
+        import transaction
+
+        transaction.commit()

@@ -1,0 +1,10 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    i18n_domain="plone.restapi">
+
+  <permission
+      id="plone.restapi.dashboards"
+      title="plone.restapi: Access dashboards information"
+      />
+
+</configure>

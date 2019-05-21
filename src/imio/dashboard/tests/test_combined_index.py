@@ -26,14 +26,7 @@ class TestCombinedIndex(IntegrationTestCase):
         )
         # make sure we have a default workflow
         self.portal.portal_workflow.setDefaultChain("simple_publication_workflow")
-        self.dashboardcollection = api.content.create(
-            id="dc1",
-            type="DashboardCollection",
-            title="Dashboard collection 1",
-            container=self.portal,
-            sort_on="",
-            sort_reversed="",
-        )
+        self.dashboardcollection = self.portal.dc1
         # this will by default query Folders
         self.dashboardcollection.query = [
             {

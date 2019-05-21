@@ -38,6 +38,7 @@ setup(
         "imio.actionspanel",
         "imio.migrator",
         "plone.restapi",
+        "requests",
     ],
     extras_require={
         "test": [
@@ -46,6 +47,7 @@ setup(
             "plone.app.testing",
             "plone.app.relationfield",
             "plone.app.robotframework[debug]",
+            "plone.restapi[test]",
         ]
     },
     entry_points="""
