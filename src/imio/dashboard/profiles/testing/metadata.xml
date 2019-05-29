@@ -6,5 +6,6 @@
     <dependency>profile-plone.app.relationfield:default</dependency>
     <dependency>profile-imio.dashboard:default</dependency>
     <dependency>profile-imio.dashboard:restapi</dependency>
+    <dependency>profile-plone.restapi:default</dependency>
   </dependencies>
 </metadata>

@@ -8,5 +8,8 @@
                 acquire="False">
       <role name="Manager"/>
     </permission>
+    <permission name="plone.restapi: Access dashboards information" acquire="True">
+      <role name="Authenticated"/>
+    </permission>
   </permissions>
 </rolemap>
