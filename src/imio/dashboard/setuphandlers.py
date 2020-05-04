@@ -50,7 +50,9 @@ def _createOrganizationsCollections(folder):
     """ create some dashboard collections """
     collections = [
         {'id': 'all_orgs', 'tit': _('all_orgs'), 'subj': (u'search', ), 'query': [
-            {'i': 'portal_type', 'o': 'plone.app.querystring.operation.selection.is', 'v': ['organization']}],
+            {'i': 'portal_type',
+             'o': 'plone.app.querystring.operation.selection.is',
+             'v': ['organization']}],
             'cond': u"", 'bypass': [],
             'flds': (u'select_row', u'org_pretty_link_with_additional_infos',
                      u'SelectedInPlonegroupColumn', u'review_state', u'CreationDate', u'actions'),
@@ -63,9 +65,12 @@ def _createHeldPositionsCollections(folder):
     """ create some dashboard collections """
     collections = [
         {'id': 'all_hps', 'tit': _('all_hps'), 'subj': (u'search', ), 'query': [
-            {'i': 'portal_type', 'o': 'plone.app.querystring.operation.selection.is', 'v': ['held_position']}],
+            {'i': 'portal_type',
+             'o': 'plone.app.querystring.operation.selection.is',
+             'v': ['held_position']}],
             'cond': u"", 'bypass': [],
-            'flds': (u'select_row', u'pretty_link', u'review_state', u'CreationDate', u'actions'),
+            'flds': (u'select_row', u'org_pretty_link_with_additional_infos',
+                     u'review_state', u'CreationDate', u'actions'),
             'sort': u'sortable_title', 'rev': False, 'count': False},
     ]
     _createDashboardCollections(folder, collections)
@@ -75,9 +80,12 @@ def _createPersonsCollections(folder):
     """ create some dashboard collections """
     collections = [
         {'id': 'all_persons', 'tit': _('all_persons'), 'subj': (u'search', ), 'query': [
-            {'i': 'portal_type', 'o': 'plone.app.querystring.operation.selection.is', 'v': ['person']}],
+            {'i': 'portal_type',
+             'o': 'plone.app.querystring.operation.selection.is',
+             'v': ['person']}],
             'cond': u"", 'bypass': [],
-            'flds': (u'select_row', u'pretty_link', u'review_state', u'CreationDate', u'actions'),
+            'flds': (u'select_row', u'org_pretty_link_with_additional_infos',
+                     u'review_state', u'CreationDate', u'actions'),
             'sort': u'sortable_title', 'rev': False, 'count': False},
     ]
     _createDashboardCollections(folder, collections)
@@ -87,9 +95,12 @@ def _createContactListsCollections(folder):
     """ create some dashboard collections """
     collections = [
         {'id': 'all_cls', 'tit': _('all_cls'), 'subj': (u'search', ), 'query': [
-            {'i': 'portal_type', 'o': 'plone.app.querystring.operation.selection.is', 'v': ['contact_list']}],
+            {'i': 'portal_type',
+             'o': 'plone.app.querystring.operation.selection.is',
+             'v': ['contact_list']}],
             'cond': u"", 'bypass': [],
-            'flds': (u'select_row', u'pretty_link', u'relative_path', u'review_state', u'CreationDate', u'actions'),
+            'flds': (u'select_row', u'pretty_link', u'relative_path',
+                     u'review_state', u'CreationDate', u'actions'),
             'sort': u'sortable_title', 'rev': False, 'count': False},
     ]
     _createDashboardCollections(folder, collections)

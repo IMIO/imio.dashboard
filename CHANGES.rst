@@ -5,8 +5,9 @@ Changelog
 2.7 (unreleased)
 ----------------
 
-- Nothing changed yet.
-
+- Use `OrgaPrettyLinkWithAdditionalInfosColumn` instead `PrettyLinkColumn`
+  in dashboards displaying persons and held_positions.
+  [gbastien]
 
 2.6 (2019-05-16)
 ----------------
