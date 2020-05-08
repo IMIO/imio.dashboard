@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.7 (unreleased)
+2.7 (2020-05-08)
 ----------------
 
 - Use `OrgaPrettyLinkWithAdditionalInfosColumn` instead `PrettyLinkColumn`
