@@ -10,7 +10,7 @@ long_description = (
 
 setup(
     name='imio.dashboard',
-    version='2.7',
+    version='2.8.dev0',
     description="This package adds functionnality to collective.eeafaceted.dashboard "
                 "but only work for Plone 4.3.x",
     long_description=long_description,
