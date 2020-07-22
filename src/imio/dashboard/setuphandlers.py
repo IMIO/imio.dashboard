@@ -55,7 +55,8 @@ def _createOrganizationsCollections(folder):
              'v': ['organization']}],
             'cond': u"", 'bypass': [],
             'flds': (u'select_row', u'org_pretty_link_with_additional_infos',
-                     u'SelectedInPlonegroupColumn', u'review_state', u'CreationDate', u'actions'),
+                     u'SelectedInPlonegroupColumn', u'PloneGroupUsersGroupsColumn',
+                     u'review_state', u'CreationDate', u'actions'),
             'sort': u'sortable_title', 'rev': False, 'count': False},
     ]
     _createDashboardCollections(folder, collections)

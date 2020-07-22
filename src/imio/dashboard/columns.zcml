@@ -32,4 +32,13 @@
      factory="collective.contact.plonegroup.browser.tables.SelectedInPlonegroupColumn"
      name="SelectedInPlonegroupColumn" />
 
+  <adapter
+     zcml:condition="installed collective.contact.plonegroup"
+     for="imio.dashboard.interfaces.IContactsDashboard
+          zope.interface.Interface
+          collective.eeafaceted.z3ctable.interfaces.IFacetedTable"
+     provides="collective.eeafaceted.z3ctable.interfaces.IFacetedColumn"
+     factory="collective.contact.plonegroup.browser.tables.PloneGroupUsersGroupsColumn"
+     name="PloneGroupUsersGroupsColumn" />
+
 </configure>
