@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.8 (unreleased)
+2.8 (2020-08-18)
 ----------------
 
 - Enable `PloneGroupUsersGroupsColumn` in dashboards displaying organizations.
