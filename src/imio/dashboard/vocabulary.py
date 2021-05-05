@@ -32,12 +32,18 @@ class CreatorsVocabulary(object):
 
     def _get_user_fullname(self, login):
         """Get fullname without using getMemberInfo that is slow slow slow..."""
-        storage = api.portal.get_tool('acl_users').mutable_properties._storage
-        data = storage.get(login, None)
-        if data is not None:
-            return data.get('fullname', '') or login
-        else:
-            return login
+        acl_user_tool = api.portal.get_tool('acl_users')
+        storages = [acl_user_tool.mutable_properties._storage, ]
+        # if authentic is available check it first
+        if hasattr('authentic', acl_user_tool):
+            storages.insert(0, acl_user_tool.authentic._useridentities_by_userid)
+
+        for storage in storages:
+            data = storage.get(login, None)
+            if data and data.get('fullname'):
+                return data.get('fullname')
+
+        return login
 
     @ram.cache(__call__cachekey)
     def __call__(self, context):
