@@ -1,20 +1,22 @@
 # -*- coding: utf-8 -*-
 
-import logging
 from collective.eeafaceted.dashboard.browser.facetedcollectionportlet import Assignment as new_dashboard_portlet
-from imio.migrator.migrator import Migrator
 from imio.dashboard.browser.facetedcollectionportlet import Assignment as old_dashboard_portlet
+from imio.migrator.migrator import Migrator
 from plone.app.contenttypes.migration.dxmigration import ContentMigrator
 from plone.app.contenttypes.migration.migration import CollectionMigrator
 from plone.app.contenttypes.migration.migration import migrate as pac_migrate
-from plone.app.portlets.interfaces import IPortletManager
 from plone.app.portlets.interfaces import IPortletAssignmentMapping
+from plone.app.portlets.interfaces import IPortletManager
 from plone.dexterity.utils import iterSchemataForType
 from Products.GenericSetup.tool import DEPENDENCY_STRATEGY_IGNORE
-from zope.component import getUtility
 from zope.component import getMultiAdapter
+from zope.component import getUtility
 from zope.interface.interfaces import IMethod
 from zope.schema import getFieldsInOrder
+
+import logging
+
 
 logger = logging.getLogger('imio.dashboard')
 

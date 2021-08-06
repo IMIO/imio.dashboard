@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
+from eea.facetednavigation.interfaces import IFacetedNavigable
+from imio.dashboard.testing import IntegrationTestCase
+from plone import api
+from plone.app.testing import login
+from Products.CMFCore.utils import getToolByName
 from zope.component import queryUtility
 from zope.interface import alsoProvides
 from zope.schema.interfaces import IVocabularyFactory
-from Products.CMFCore.utils import getToolByName
-from plone.app.testing import login
-from plone import api
-from imio.dashboard.testing import IntegrationTestCase
-from eea.facetednavigation.interfaces import IFacetedNavigable
 
 
 class TestConditionAwareVocabulary(IntegrationTestCase):

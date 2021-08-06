@@ -4,6 +4,7 @@ from collective.eeafaceted.z3ctable.columns import PrettyLinkColumn
 
 import pkg_resources
 
+
 HAS_CONTACT_CORE = True
 try:
     pkg_resources.get_distribution('collective.contact.core')

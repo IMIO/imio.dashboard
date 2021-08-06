@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Base module for unittesting."""
 
+from collective.eeafaceted.dashboard.utils import enableFacetedDashboardFor
 from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
 from plone.app.testing import applyProfile
 from plone.app.testing import FunctionalTesting
@@ -14,10 +15,8 @@ from plone.app.testing import TEST_USER_NAME
 from plone.testing import z2
 from zope.globalrequest.local import setLocal
 
-import unittest
-
 import imio.dashboard
-from collective.eeafaceted.dashboard.utils import enableFacetedDashboardFor
+import unittest
 
 
 class ImioDashboardLayer(PloneSandboxLayer):
