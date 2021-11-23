@@ -5,8 +5,9 @@ Changelog
 2.9 (unreleased)
 ----------------
 
-- Nothing changed yet.
-
+- Fixed setup functions changing state of created elements, use
+  `imio.helpers.content.get_transitions` instead `portal_workflow.getTransitionsFor`.
+  [gbastien]
 
 2.8 (2020-08-18)
 ----------------
