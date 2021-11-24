@@ -1,18 +1,18 @@
 # encoding: utf-8
 
+from operator import attrgetter
+
+from Products.CMFPlone.utils import safe_unicode
 from eea.faceted.vocabularies.catalog import CatalogIndexesVocabulary
 from imio.dashboard import ImioDashboardMessageFactory as _
 from imio.dashboard.config import COMBINED_INDEX_PREFIX
-from operator import attrgetter
 from plone import api
 from plone.memoize import ram
-from Products.CMFPlone.utils import safe_unicode
 from zope.i18n import translate
-from zope.interface import implements
+from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
-
 
 HAS_PLONEGROUP = True
 try:
@@ -22,8 +22,8 @@ except ImportError:
     HAS_PLONEGROUP = False
 
 
+@implementer(IVocabularyFactory)
 class CreatorsVocabulary(object):
-    implements(IVocabularyFactory)
 
     def __call__cachekey(method, self, context):
         '''cachekey method for self.__call__.'''
@@ -78,9 +78,9 @@ class CombinedCatalogIndexesVocabulary(CatalogIndexesVocabulary):
         return SimpleVocabulary(res)
 
 
+@implementer(IVocabularyFactory)
 class PloneGroupInterfacesVocabulary(object):
     """List interfaces that will be shown in contacts faceted navigation."""
-    implements(IVocabularyFactory)
 
     def _interfaces(self):
         """ """
@@ -105,9 +105,9 @@ class PloneGroupInterfacesVocabulary(object):
 PloneGroupInterfacesVocabularyFactory = PloneGroupInterfacesVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class ContactsReviewStatesVocabulary(object):
     """ Contacts states vocabulary """
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         terms = []

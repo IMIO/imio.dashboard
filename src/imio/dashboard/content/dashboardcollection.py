@@ -1,21 +1,21 @@
 # -*- coding: utf-8 -*-
+from Products.Archetypes import atapi
+from Products.Archetypes.Field import BooleanField
+from Products.Archetypes.Widget import BooleanWidget
+from Products.Archetypes.atapi import registerType
+from plone.app.collection.collection import Collection
+from plone.app.collection.collection import CollectionSchema
+from plone.app.collection.config import ATCT_TOOLNAME
+
 from AccessControl import ClassSecurityInfo
+from Products.CMFCore.permissions import View
+from Products.CMFCore.utils import getToolByName
 from imio.dashboard import ImioDashboardMessageFactory as _
 from imio.dashboard.config import PROJECTNAME
 from imio.dashboard.interfaces import ICustomViewFieldsVocabulary
 from imio.dashboard.interfaces import IDashboardCollection
-from plone.app.collection.collection import Collection
-from plone.app.collection.collection import CollectionSchema
-from plone.app.collection.config import ATCT_TOOLNAME
 from plone.app.querystring.queryparser import parseFormquery
-from Products.Archetypes import atapi
-from Products.Archetypes.atapi import registerType
-from Products.Archetypes.Field import BooleanField
-from Products.Archetypes.Widget import BooleanWidget
-from Products.CMFCore.permissions import View
-from Products.CMFCore.utils import getToolByName
-from zope.interface import implements
-
+from zope.interface import implementer
 
 ################################################################################
 #                                                                              #
@@ -43,9 +43,9 @@ DashboardCollectionSchema['b_size'].widget.visible = -1
 DashboardCollectionSchema['limit'].widget.visible = -1
 
 
+@implementer(IDashboardCollection)
 class DashboardCollection(Collection):
     """A Collection used in our dashboards"""
-    implements(IDashboardCollection)
     meta_type = "DashboardCollection"
     schema = DashboardCollectionSchema
     security = ClassSecurityInfo()

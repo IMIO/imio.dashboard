@@ -5,6 +5,8 @@ Changelog
 2.9 (unreleased)
 ----------------
 
+- Fixed py3 errors.
+  [fngaha]
 - Fixed setup functions changing state of created elements, use
   `imio.helpers.content.get_transitions` instead `portal_workflow.getTransitionsFor`.
   [gbastien]
