@@ -44,14 +44,6 @@
             import_steps="jsregistry" />
     </genericsetup:upgradeSteps>
 
-    <genericsetup:upgradeStep
-        title="Move to collective.eeafaceted.dashboard"
-        description=""
-        source="5"
-        destination="6"
-        handler="imio.dashboard.upgrades.upgrade_to_6.migrate"
-        profile="imio.dashboard:default" />
-
     <genericsetup:upgradeSteps
         source="6"
         destination="7"

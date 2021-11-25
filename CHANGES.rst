@@ -5,6 +5,8 @@ Changelog
 2.9 (unreleased)
 ----------------
 
+- Removed Archetypes
+  [fngaha]
 - Fixed py3 errors.
   [fngaha]
 - Fixed setup functions changing state of created elements, use
