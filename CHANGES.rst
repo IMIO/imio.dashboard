@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.9 (unreleased)
+2.9 (2022-01-07)
 ----------------
 
 - Fixed setup functions changing state of created elements, use
