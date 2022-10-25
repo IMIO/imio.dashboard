@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.10 (unreleased)
+2.10 (2022-10-25)
 -----------------
 
 - Adapts generationlink viewlet to last `collective.documentgenerator` last changes.
