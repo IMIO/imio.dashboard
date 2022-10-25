@@ -5,7 +5,8 @@ Changelog
 2.10 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Adapts generationlink viewlet to last `collective.documentgenerator` last changes.
+  [sdelcourt]
 
 
 2.9 (2022-01-07)
