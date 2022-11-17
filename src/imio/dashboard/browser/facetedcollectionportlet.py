@@ -73,7 +73,7 @@ class Renderer(base.Renderer):
         """Return the collection widget display name"""
         try:
             criterion = getCollectionLinkCriterion(self._criteriaHolder)
-        except NoFacetedViewDefinedException:
+        except :
             return DEFAULT_PORTLET_TITLE
 
         title = criterion and criterion.title or DEFAULT_PORTLET_TITLE
