@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.11 (unreleased)
+2.11 (2023-03-22)
 -----------------
 
 - Changes for WCA compatibility.
