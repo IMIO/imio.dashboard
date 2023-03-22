@@ -1,5 +1,4 @@
 # encoding: utf-8
-
 from collective.eeafaceted.z3ctable.columns import PrettyLinkColumn
 
 import pkg_resources

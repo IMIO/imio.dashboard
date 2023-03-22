@@ -39,6 +39,7 @@ setup(
         'collective.js.iframeresizer',
         'imio.actionspanel',
         'imio.migrator',
+        'imio.helpers',
     ],
     extras_require={
         'test': [
