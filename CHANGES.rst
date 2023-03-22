@@ -5,7 +5,8 @@ Changelog
 2.11 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Changes for WCA compatibility.
+  [odelaere]
 
 
 2.10 (2022-10-25)
