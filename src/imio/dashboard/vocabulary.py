@@ -3,9 +3,8 @@
 from eea.faceted.vocabularies.catalog import CatalogIndexesVocabulary
 from imio.dashboard import ImioDashboardMessageFactory as _
 from imio.dashboard.config import COMBINED_INDEX_PREFIX
-from operator import attrgetter
-
 from imio.helpers.content import get_user_fullname
+from operator import attrgetter
 from plone import api
 from plone.memoize import ram
 from Products.CMFPlone.utils import safe_unicode
