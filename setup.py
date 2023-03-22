@@ -10,12 +10,13 @@ long_description = (
 
 setup(
     name='imio.dashboard',
-    version='2.9.dev0',
+    version='2.11.dev0',
     description="This package adds functionnality to collective.eeafaceted.dashboard "
                 "but only work for Plone 4.3.x",
     long_description=long_description,
     # Get more from http://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
+        "Development Status :: 6 - Mature",
         "Environment :: Web Environment",
         "Framework :: Plone",
         "Framework :: Plone :: 4.3",

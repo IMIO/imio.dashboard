@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
-import logging
 from imio.migrator.migrator import Migrator
+
+import logging
+
 
 logger = logging.getLogger('imio.dashboard')
 

@@ -1,8 +1,8 @@
 # encoding: utf-8
 
 from eea.faceted.vocabularies.catalog import CatalogIndexesVocabulary
-from imio.dashboard.config import COMBINED_INDEX_PREFIX
 from imio.dashboard import ImioDashboardMessageFactory as _
+from imio.dashboard.config import COMBINED_INDEX_PREFIX
 from operator import attrgetter
 
 from imio.helpers.content import get_user_fullname
@@ -45,6 +45,7 @@ class CreatorsVocabulary(object):
                        )
         res = sorted(res, key=attrgetter('title'))
         return SimpleVocabulary(res)
+
 
 CreatorsVocabularyFactory = CreatorsVocabulary()
 
@@ -93,6 +94,7 @@ class PloneGroupInterfacesVocabulary(object):
 
         return SimpleVocabulary(terms)
 
+
 PloneGroupInterfacesVocabularyFactory = PloneGroupInterfacesVocabulary()
 
 
@@ -120,5 +122,6 @@ class ContactsReviewStatesVocabulary(object):
                                   domain='plone',
                                   context=context.REQUEST)))
         return SimpleVocabulary(terms)
+
 
 ContactsReviewStatesVocabularyFactory = ContactsReviewStatesVocabulary()

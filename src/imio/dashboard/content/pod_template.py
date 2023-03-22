@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import logging
 from collective.documentgenerator.content.pod_template import ConfigurablePODTemplate
 from collective.documentgenerator.content.pod_template import IConfigurablePODTemplate
 from imio.dashboard import ImioDashboardMessageFactory as _
@@ -8,6 +7,10 @@ from plone.autoform import directives as form
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.interface import implements
+
+import logging
+
+
 logger = logging.getLogger('imio.dashboard: DashboardPODTemplate')
 
 ################################################################################

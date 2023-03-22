@@ -1,8 +1,8 @@
 # encoding: utf-8
 
-from zope.globalrequest import getRequest
 from collective.eeafaceted.collectionwidget.interfaces import NoCollectionWidgetDefinedException
 from collective.eeafaceted.collectionwidget.utils import getCollectionLinkCriterion
+from zope.globalrequest import getRequest
 
 
 CURRENT_CRITERION = 'querynextprev.current_criterion'

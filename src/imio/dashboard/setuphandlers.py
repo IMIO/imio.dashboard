@@ -3,6 +3,7 @@ from collective.eeafaceted.collectionwidget.interfaces import ICollectionCategor
 from collective.eeafaceted.dashboard.utils import enableFacetedDashboardFor
 from imio.dashboard import logger
 from imio.dashboard.interfaces import IContactsDashboard
+from imio.helpers.content import get_transitions
 from plone import api
 from Products.CMFPlone.utils import base_hasattr
 from zope.component import queryUtility
@@ -38,7 +39,7 @@ def _add_db_col_folder(folder, id, title, displayed='', markers=[]):
     col_folder.setLocallyAllowedTypes(['DashboardCollection'])
     col_folder.setImmediatelyAddableTypes(['DashboardCollection'])
     wfTool = api.portal.get_tool('portal_workflow')
-    if "show_internally" in wfTool.getTransitionsFor(col_folder):
+    if "show_internally" in get_transitions(col_folder):
         wfTool.doActionFor(col_folder, "show_internally")
     alsoProvides(col_folder, ICollectionCategories)
     for marker in markers:
@@ -129,7 +130,7 @@ def _createDashboardCollections(folder, collections):
                                  b_size=30,
                                  limit=0)
             collection = folder[dic['id']]
-            if "show_internally" in wfTool.getTransitionsFor(collection):
+            if "show_internally" in get_transitions(collection):
                 wfTool.doActionFor(collection, "show_internally")
             if 'subj' in dic:
                 collection.setSubject(dic['subj'])

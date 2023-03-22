@@ -2,11 +2,25 @@ Changelog
 =========
 
 
-2.9 (unreleased)
-----------------
+2.11 (unreleased)
+-----------------
 
 - Nothing changed yet.
 
+
+2.10 (2022-10-25)
+-----------------
+
+- Adapts generationlink viewlet to last `collective.documentgenerator` last changes.
+  [sdelcourt]
+
+
+2.9 (2022-01-07)
+----------------
+
+- Fixed setup functions changing state of created elements, use
+  `imio.helpers.content.get_transitions` instead `portal_workflow.getTransitionsFor`.
+  [gbastien]
 
 2.8 (2020-08-18)
 ----------------

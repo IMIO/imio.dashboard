@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
 """Setup/installation tests for this package."""
 
-import os
-from zope.component import queryUtility
-from zope.schema.interfaces import IVocabularyFactory
-from plone import api
 from collective.eeafaceted.collectionwidget.utils import getCollectionLinkCriterion
 from eea.facetednavigation.interfaces import ICriteria
 from imio.dashboard.config import COMBINED_INDEX_PREFIX
 from imio.dashboard.testing import IntegrationTestCase
 from imio.dashboard.tests.indexes import contained_types_and_states
 from imio.helpers.catalog import addOrUpdateIndexes
+from plone import api
+from zope.component import queryUtility
+from zope.schema.interfaces import IVocabularyFactory
+
+import os
 
 
 class TestCombinedIndex(IntegrationTestCase):
@@ -131,8 +132,7 @@ class TestCombinedIndex(IntegrationTestCase):
         # we get folder1 and folder3
         uids = [brain.UID for brain in faceted_query.query()]
         self.assertEquals(len(faceted_query.query()), 2)
-        self.assertTrue(self.folder1.UID() in uids and
-                        self.folder3.UID() in uids)
+        self.assertTrue(self.folder1.UID() in uids and self.folder3.UID() in uids)
         # filter on 'portal_type', get 'Document'
         self.request.form['c10[]'] = 'Document'
         self.request.form['c11[]'] = ''
@@ -141,8 +141,7 @@ class TestCombinedIndex(IntegrationTestCase):
         # we get folder1 and folder3
         uids = [brain.UID for brain in faceted_query.query()]
         self.assertEquals(len(faceted_query.query()), 2)
-        self.assertTrue(self.folder1.UID() in uids and
-                        self.folder3.UID() in uids)
+        self.assertTrue(self.folder1.UID() in uids and self.folder3.UID() in uids)
         # but if we filter 'review_state' published, we only get folder1
         self.request.form['c10[]'] = 'Document'
         self.request.form['c11[]'] = 'published'
@@ -159,8 +158,7 @@ class TestCombinedIndex(IntegrationTestCase):
                           ['Document__private', 'Folder__private'])
         uids = [brain.UID for brain in faceted_query.query()]
         self.assertEquals(len(faceted_query.query()), 2)
-        self.assertTrue(self.folder1.UID() in uids and
-                        self.folder3.UID() in uids)
+        self.assertTrue(self.folder1.UID() in uids and self.folder3.UID() in uids)
 
     def test_catalog_indexes_vocabulary(self):
         """The default 'eea.faceted.vocabularies.CatalogIndexes' id overrided
