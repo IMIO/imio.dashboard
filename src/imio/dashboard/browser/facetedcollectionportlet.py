@@ -131,5 +131,3 @@ class EditForm(base.EditForm):
     form_fields = form.Fields(IFacetedCollectionPortlet)
     label = _(u"Edit Collection Criteria Portlet")
     description = _(u"This portlet shows controls for faceted with collections.")
-
-
