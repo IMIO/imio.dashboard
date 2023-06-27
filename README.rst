@@ -1,7 +1,12 @@
-.. image:: https://travis-ci.org/IMIO/imio.dashboard.svg?branch=master
-  :target: https://travis-ci.org/IMIO/imio.dashboard
-.. image:: https://coveralls.io/repos/IMIO/imio.dashboard/badge.png?branch=master
-  :target: https://coveralls.io/r/IMIO/imio.dashboard?branch=master
+.. image:: https://github.com/IMIO/imio.dashboard/actions/workflows/main.yml/badge.svg?branch=master
+    :target: https://github.com/IMIO/imio.dashboard/actions/workflows/main.yml
+
+.. image:: https://coveralls.io/repos/IMIO/imio.dashboard/badge.svg
+  :target: https://coveralls.io/IMIO/imio.dashboard
+
+.. image:: http://img.shields.io/pypi/v/imio.dashboard.svg
+   :alt: PyPI badge
+   :target: https://pypi.org/project/imio.dashboard
 
 
 imio.dashboard
@@ -9,7 +14,9 @@ imio.dashboard
 
 This package does the glue between :
 
+- collective.eeafaceted.batchactions
 - collective.eeafaceted.collectionwidget
+- collective.eeafaceted.dashboard
 - collective.eeafaceted.z3ctable
 - collective.compoundcriterion
 - collective.documentgenerator
