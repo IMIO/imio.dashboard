@@ -3,7 +3,7 @@ from collective.eeafaceted.collectionwidget.interfaces import ICollectionCategor
 from collective.eeafaceted.dashboard.utils import enableFacetedDashboardFor
 from imio.dashboard import logger
 from imio.dashboard.interfaces import IContactsDashboard
-from imio.helpers.content import get_transitions
+from imio.helpers.workflow import get_transitions
 from plone import api
 from Products.CMFPlone.utils import base_hasattr
 from zope.component import queryUtility
