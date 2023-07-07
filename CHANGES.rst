@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.12 (unreleased)
+2.12 (2023-07-07)
 -----------------
 
 - `get_transitions` was moved from `imio.helpers.content` to `imio.helpers.workflow`.
