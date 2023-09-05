@@ -86,3 +86,16 @@ list of these indexes prefixed with ``(Combined)``.  If you select the index ``c
 the filter ``portal_types`` and the ``(Combined) contained_with_review_state`` for the filter ``review_states``, this will
 automatically be combined so selecting ``Document`` in first filter and ``private`` in second filter will actually query
 for ``Document__private``.
+
+
+Translations
+------------
+
+This product has been translated into
+
+- French.
+
+- Spanish.
+
+You can contribute for any message missing or other new languages, join us at `PloneGov iMiO Team <https://www.transifex.com/plone/plonegov-imio/>`_ into *Transifex.net* service with all world Plone translators community.
+
