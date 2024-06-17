@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-from eea.faceted.vocabularies.catalog import CatalogIndexesVocabulary
+from eea.facetednavigation.vocabularies.catalog import CatalogIndexesVocabulary
 from imio.dashboard import ImioDashboardMessageFactory as _
 from imio.dashboard.config import COMBINED_INDEX_PREFIX
 from imio.helpers.content import get_user_fullname

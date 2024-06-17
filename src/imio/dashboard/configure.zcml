@@ -29,7 +29,7 @@
             class="eea.facetednavigation.browser.app.query.FacetedQueryHandler"
             permission="zope2.View" />
         <utility
-            factory="eea.faceted.vocabularies.catalog.CatalogIndexesVocabulary"
+            factory="eea.facetednavigation.vocabularies.catalog.CatalogIndexesVocabulary"
             name="eea.faceted.vocabularies.CatalogIndexes" />
     </unconfigure>
 
