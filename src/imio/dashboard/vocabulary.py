@@ -9,7 +9,7 @@ from plone import api
 from plone.memoize import ram
 from Products.CMFPlone.utils import safe_unicode
 from zope.i18n import translate
-from zope.interface import implements
+from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
@@ -23,8 +23,8 @@ except ImportError:
     HAS_PLONEGROUP = False
 
 
+@implementer(IVocabularyFactory)
 class CreatorsVocabulary(object):
-    implements(IVocabularyFactory)
 
     def __call__cachekey(method, self, context):
         '''cachekey method for self.__call__.'''
@@ -70,9 +70,9 @@ class CombinedCatalogIndexesVocabulary(CatalogIndexesVocabulary):
         return SimpleVocabulary(res)
 
 
+@implementer(IVocabularyFactory)
 class PloneGroupInterfacesVocabulary(object):
     """List interfaces that will be shown in contacts faceted navigation."""
-    implements(IVocabularyFactory)
 
     def _interfaces(self):
         """ """
@@ -97,9 +97,9 @@ class PloneGroupInterfacesVocabulary(object):
 PloneGroupInterfacesVocabularyFactory = PloneGroupInterfacesVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class ContactsReviewStatesVocabulary(object):
     """ Contacts states vocabulary """
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         terms = []

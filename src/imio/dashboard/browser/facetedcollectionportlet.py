@@ -14,7 +14,7 @@ from plone.portlets.interfaces import IPortletDataProvider
 from Products.CMFPlone.utils import base_hasattr
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.formlib import form
-from zope.interface import implements
+from zope.interface import implementer
 
 
 ################################################################################
@@ -30,8 +30,8 @@ class IFacetedCollectionPortlet(IPortletDataProvider):
     """ A portlet that shows controls for faceted with collections """
 
 
+@implementer(IFacetedCollectionPortlet)
 class Assignment(base.Assignment):
-    implements(IFacetedCollectionPortlet)
 
     @property
     def title(self):
