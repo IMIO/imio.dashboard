@@ -14,7 +14,7 @@ from Products.Archetypes.Field import BooleanField
 from Products.Archetypes.Widget import BooleanWidget
 from Products.CMFCore.permissions import View
 from Products.CMFCore.utils import getToolByName
-from zope.interface import implements
+from zope.interface import implementer
 
 
 ################################################################################
@@ -43,9 +43,9 @@ DashboardCollectionSchema['b_size'].widget.visible = -1
 DashboardCollectionSchema['limit'].widget.visible = -1
 
 
+@implementer(IDashboardCollection)
 class DashboardCollection(Collection):
     """A Collection used in our dashboards"""
-    implements(IDashboardCollection)
     meta_type = "DashboardCollection"
     schema = DashboardCollectionSchema
     security = ClassSecurityInfo()
