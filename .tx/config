@@ -1,0 +1,24 @@
+[main]
+host = https://www.transifex.com
+
+[plonegov-imio.imio-dashboard-pot]
+file_filter = src/imio/dashboard/locales/<lang>/LC_MESSAGES/imio.dashboard.po
+minimum_perc = 0
+source_file = src/imio/dashboard/locales/imio.dashboard.pot
+source_lang = en
+type = PO
+
+[plonegov-imio.imio-dashboard-eea-pot]
+file_filter = src/imio/dashboard/locales/<lang>/LC_MESSAGES/eea.po
+minimum_perc = 0
+source_file = src/imio/dashboard/locales/eea.pot
+source_lang = en
+type = PO
+
+[plonegov-imio.imio-dashboard-collective-eeafaceted-z3ctable-pot]
+file_filter = src/imio/dashboard/locales/<lang>/LC_MESSAGES/collective.eeafaceted.z3ctable.po
+minimum_perc = 0
+source_file = src/imio/dashboard/locales/collective.eeafaceted.z3ctable.pot
+source_lang = en
+type = PO
+

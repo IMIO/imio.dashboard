@@ -1,0 +1,154 @@
+# Translators:
+# Leonardo J. Caballero G. <leonardocaballero@gmail.com>, 2020
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: imio.dashboard 1.0\n"
+"POT-Creation-Date: 2018-12-04 10:55+0000\n"
+"PO-Revision-Date: 2020-04-27 09:05+0000\n"
+"Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>, 2020\n"
+"Language-Team: Spanish (https://www.transifex.com/plone/teams/10519/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Domain: imio.dashboard\n"
+"Language: es\n"
+"Language-Code: es\n"
+"Language-Name: Spanish\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"X-Is-Fallback-For: es-ar es-bo es-cl es-co es-cr es-do es-ec es-es es-sv es-gt es-hn es-mx es-ni es-pa es-py es-pe es-pr es-us es-uy es-ve\n"
+
+#: ./browser/facetedcollectionportlet.py:125
+msgid "Add Collection Criteria Portlet"
+msgstr "Añadir portlet Criterios de Colección"
+
+#: ./content/pod_template.py:37
+msgid "Allowed dashboard collections"
+msgstr "Colecciones de paneles autorizados"
+
+#: ./setuphandlers.py:173
+msgid "Contact list searches"
+msgstr "Búsquedas en la lista de contactos"
+
+#: ./setuphandlers.py:174
+msgid "Contact lists"
+msgstr "Listas de contactos"
+
+#: ./browser/facetedcollectionportlet.py:134
+msgid "Edit Collection Criteria Portlet"
+msgstr "Editar portlet Criterios de Colección"
+
+#: ./setuphandlers.py:151
+msgid "Held positions"
+msgstr "Posiciones ocupadas"
+
+#: ./setuphandlers.py:150
+msgid "Held positions searches"
+msgstr "Búsqueda de posiciones ocupadas"
+
+msgid "INotPloneGroupContact"
+msgstr "Fuera de \"Mi organización\""
+
+msgid "IPloneGroupContact"
+msgstr "En \"Mi organización\""
+
+#: ./content/pod_template.py:29
+msgid ""
+"If selelected, receive awoken objects wrapped into their  helper view rather"
+" than brains as generation context"
+msgstr ""
+"Si se selecciona, devuelve objetos despertados envueltos en su vista de "
+"ayuda (helper view) en lugar de cerebros (brains) como contexto de "
+"generación."
+
+#: ./configure.zcml:55
+msgid "Installs the demo of two tables of imio.dashboard add-on."
+msgstr "Instalar el perfil demo de dos tablas del complemento imio.dashboard."
+
+#: ./configure.zcml:47
+msgid "Installs the imio.dashboard add-on."
+msgstr "Instalar el complemento imio.dashboard."
+
+#: ./setuphandlers.py:137
+msgid "Organizations"
+msgstr "Organizaciones"
+
+#: ./setuphandlers.py:136
+msgid "Organizations searches"
+msgstr "Búsquedas en Organizaciones"
+
+#: ./setuphandlers.py:162
+msgid "Persons"
+msgstr "Personas"
+
+#: ./setuphandlers.py:161
+msgid "Persons searches"
+msgstr "Búsqueda de personas"
+
+#: ./content/pod_template.py:38
+msgid ""
+"Select for which dashboard collections the template will be available. If "
+"nothing is selected, the template will be available on every dashboards."
+msgstr ""
+"Seleccione para qué colecciones de los paneles estará disponible la "
+"plantilla. Si no se selecciona nada, la plantilla estará disponible en todos"
+" los paneles."
+
+#: ./content/dashboardcollection.py:32
+msgid "Show number of items in filter"
+msgstr "Mostrar número de elementos en filtro"
+
+#: ./testing.zcml:16
+msgid "Steps to ease tests of imio.dashboard"
+msgstr "Pasos para de forma fácil probar imio.dashboard"
+
+#: ./browser/facetedcollectionportlet.py:126
+msgid "This portlet shows controls for faceted with collections."
+msgstr ""
+"Este portlet muestra widgets de colección definidos en una carpeta "
+"utilizando una vista facetada"
+
+#: ./content/pod_template.py:28
+msgid "Use objects as generation context"
+msgstr "Usar los objetos como contexto de generación."
+
+#: ./setuphandlers.py:88
+msgid "all_cls"
+msgstr "Todas las listas de contactos"
+
+#: ./setuphandlers.py:64
+msgid "all_hps"
+msgstr "Todas las posiciones ocupadas"
+
+#: ./setuphandlers.py:52
+msgid "all_orgs"
+msgstr "Todas las organizaciones"
+
+#: ./setuphandlers.py:76
+msgid "all_persons"
+msgstr "Todas las personas"
+
+msgid "create_contact"
+msgstr "Crear contacto"
+
+msgid "create_contact_list"
+msgstr "Crea una lista de contactos"
+
+msgid "create_organization"
+msgstr "Crear una organización"
+
+msgid "create_person"
+msgstr "Crear una persona"
+
+#: ./configure.zcml:47 ./setuphandlers.py:25
+msgid "imio.dashboard"
+msgstr "imio.dashboard"
+
+#: ./configure.zcml:55
+msgid "imio.dashboard demo of two tables"
+msgstr "imio.dashboard - demostración de dos tablas"
+
+#: ./testing.zcml:16
+msgid "imio.dashboard tests"
+msgstr "imio.dashboard - pruebas"
