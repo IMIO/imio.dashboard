@@ -1,11 +1,13 @@
 # encoding: utf-8
 
-from collective.eeafaceted.collectionwidget.interfaces import NoCollectionWidgetDefinedException
+from collective.eeafaceted.collectionwidget.interfaces import (
+    NoCollectionWidgetDefinedException,
+)
 from collective.eeafaceted.collectionwidget.utils import getCollectionLinkCriterion
 from zope.globalrequest import getRequest
 
 
-CURRENT_CRITERION = 'querynextprev.current_criterion'
+CURRENT_CRITERION = "querynextprev.current_criterion"
 
 
 class CurrentCriterionProvider(object):
@@ -23,6 +25,6 @@ class CurrentCriterionProvider(object):
         try:
             criterion = getCollectionLinkCriterion(self.context)
         except NoCollectionWidgetDefinedException:
-            return ''
-        attr = '{}[]'.format(criterion.__name__)
-        return self.request.form.get(attr, '')
+            return ""
+        attr = "{}[]".format(criterion.__name__)
+        return self.request.form.get(attr, "")
