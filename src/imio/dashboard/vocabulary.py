@@ -1,6 +1,5 @@
 # encoding: utf-8
 
-from eea.facetednavigation.vocabularies.catalog import CatalogIndexesVocabulary
 from imio.dashboard import ImioDashboardMessageFactory as _
 from imio.dashboard.config import COMBINED_INDEX_PREFIX
 from imio.helpers.content import get_user_fullname
@@ -14,6 +13,11 @@ from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
+
+try:
+    from eea.facetednavigation.vocabularies.catalog import CatalogIndexesVocabulary
+except ImportError:  # eea.facetednavigation < 15 (Plone 4)
+    from eea.faceted.vocabularies.catalog import CatalogIndexesVocabulary
 
 HAS_PLONEGROUP = True
 try:
