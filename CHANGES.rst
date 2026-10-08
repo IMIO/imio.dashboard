@@ -2,8 +2,8 @@ Changelog
 =========
 
 
-2.13 (unreleased)
------------------
+3.0.0 (unreleased)
+------------------
 
 - Migrated to Plone 6.2 / Python 3: Plone 4 support, the Archetypes and deprecated code
   (old portlet, content, upgrade steps), the `two_tables` demo and the

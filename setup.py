@@ -11,7 +11,7 @@ long_description = (
 
 setup(
     name="imio.dashboard",
-    version="2.13.dev0",
+    version="3.0.0.dev0",
     description="This package adds functionnality to collective.eeafaceted.dashboard",
     long_description=long_description,
     # Get more from http://pypi.python.org/pypi?%3Aaction=list_classifiers
