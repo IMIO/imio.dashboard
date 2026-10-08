@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from eea.facetednavigation.interfaces import IFacetedNavigable
 from imio.dashboard.testing import IntegrationTestCase
+from imio.dashboard.vocabulary import HAS_PLONEGROUP
 from plone import api
 from plone.app.testing import login
 from Products.CMFCore.utils import getToolByName
@@ -47,3 +48,31 @@ class TestConditionAwareVocabulary(IntegrationTestCase):
         # vocabulary cache cleaned
         self.assertEquals(len(factory(self.portal)), 2)
         self.assertEquals(factory(self.portal).getTerm('test_user_2_').title, 'User 2')
+
+
+class TestContactsReviewStatesVocabulary(IntegrationTestCase):
+    """Test the ContactsReviewStatesVocabulary vocabulary."""
+
+    def test_call(self):
+        factory = queryUtility(IVocabularyFactory, u'imio.dashboard.ContactsReviewStatesVocabulary')
+        wf_tool = self.portal.portal_workflow
+        wf_tool.setChainForPortalTypes(('organization', 'person', 'held_position'), '', verify=False)
+        self.assertEqual(len(factory(self.portal)), 0)
+        # states of the 3 contact types workflows, without duplicates
+        wf_tool.setChainForPortalTypes(('organization', ), 'simple_publication_workflow', verify=False)
+        wf_tool.setChainForPortalTypes(('person', ), 'one_state_workflow', verify=False)
+        wf_tool.setChainForPortalTypes(('held_position', ), 'simple_publication_workflow', verify=False)
+        self.assertEqual(sorted([(term.value, term.token, term.title) for term in factory(self.portal)]),
+                         [('pending', 'pending', u'Pending review'),
+                          ('private', 'private', u'Private'),
+                          ('published', 'published', u'Published')])
+
+
+class TestPloneGroupInterfacesVocabulary(IntegrationTestCase):
+    """Test the PloneGroupInterfacesVocabulary vocabulary."""
+
+    def test_call(self):
+        factory = queryUtility(IVocabularyFactory, u'imio.dashboard.PloneGroupInterfacesVocabulary')
+        # collective.contact.plonegroup is not installed
+        self.assertFalse(HAS_PLONEGROUP)
+        self.assertEqual(len(factory(self.portal)), 0)
