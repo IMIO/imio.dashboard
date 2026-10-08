@@ -80,7 +80,7 @@ class TestCombinedFacetedQueryHandler(IntegrationTestCase):
     def test_criteria(self):
         addOrUpdateIndexes(self.portal, {'contained_types_and_states': ('KeywordIndex', {})})
         xmlpath = os.path.join(os.path.dirname(__file__), 'faceted_conf', 'combined_index_widgets.xml')
-        with open(xmlpath) as xml_file:
+        with open(xmlpath, 'rb') as xml_file:
             self.folder.unrestrictedTraverse('@@faceted_exportimport').import_xml(import_file=xml_file)
         faceted_query = self.folder.restrictedTraverse('@@faceted_query')
         # combined indexes are removed from 'facet.field'

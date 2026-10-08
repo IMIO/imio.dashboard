@@ -52,10 +52,10 @@ class CombinedFacetedQueryHandler(FacetedQueryHandler):
             if real_index in criteria:
                 # combine values to real index
                 real_index_values = criteria[real_index]['query']
-                if not hasattr(real_index_values, '__iter__'):
+                if not isinstance(real_index_values, (list, tuple)):
                     real_index_values = [real_index_values]
                 combined_index_values = criteria[key]['query']
-                if not hasattr(combined_index_values, '__iter__'):
+                if not isinstance(combined_index_values, (list, tuple)):
                     combined_index_values = [combined_index_values]
                 combined_values = []
                 for value in combined_index_values:
