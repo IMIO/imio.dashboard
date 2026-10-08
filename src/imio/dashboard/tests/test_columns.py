@@ -10,7 +10,7 @@ from zope.interface import alsoProvides
 
 class DummyContact(object):
     def get_full_title(self):
-        return u"Organization - Sub organization"
+        return "Organization - Sub organization"
 
 
 class TestContactPrettyLinkColumn(IntegrationTestCase):
@@ -28,7 +28,7 @@ class TestContactPrettyLinkColumn(IntegrationTestCase):
     def test_contentValue(self):
         self.assertIsInstance(self.column, ContactPrettyLinkColumn)
         self.assertEqual(
-            self.column.contentValue(DummyContact()), u"Organization - Sub organization"
+            self.column.contentValue(DummyContact()), "Organization - Sub organization"
         )
         self.assertEqual(self.column.params["target"], "_blank")
         self.assertEqual(self.column.params["additionalCSSClasses"], ["link-tooltip"])

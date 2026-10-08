@@ -4,6 +4,7 @@ from imio.dashboard.testing import IntegrationTestCase
 from imio.dashboard.vocabulary import HAS_PLONEGROUP
 from plone import api
 from plone.app.testing import login
+from Products.CMFCore.indexing import processQueue
 from Products.CMFCore.utils import getToolByName
 from zope.component import queryUtility
 from zope.interface import alsoProvides
@@ -32,8 +33,10 @@ class TestConditionAwareVocabulary(IntegrationTestCase):
 
     def test_creatorsvocabulary(self):
         """This will return every users that created a content in the portal."""
-        factory = queryUtility(IVocabularyFactory, u"imio.dashboard.creatorsvocabulary")
-        self.assertEqual(len(factory(self.portal)), 1)
+        factory = queryUtility(IVocabularyFactory, "imio.dashboard.creatorsvocabulary")
+        # the site root is cataloged, created by the site owner
+        self.assertEqual(len(factory(self.portal)), 2)
+        self.assertTrue("admin" in factory(self.portal))
         self.assertTrue("test_user_1_" in factory(self.portal))
         # no fullname, title is the login
         self.assertEqual(
@@ -47,10 +50,12 @@ class TestConditionAwareVocabulary(IntegrationTestCase):
         self.assertEqual(user2.getProperty("fullname"), "User 2")
         login(self.portal, "test_user_2_")
         # vocabulary cache not cleaned
-        self.assertEqual(len(factory(self.portal)), 1)
-        self.portal.invokeFactory("Folder", id="folder2")
-        # vocabulary cache cleaned
         self.assertEqual(len(factory(self.portal)), 2)
+        self.portal.invokeFactory("Folder", id="folder2")
+        # the indexing queue is processed at the end of the request
+        processQueue()
+        # vocabulary cache cleaned
+        self.assertEqual(len(factory(self.portal)), 3)
         self.assertEqual(factory(self.portal).getTerm("test_user_2_").title, "User 2")
 
 
@@ -59,7 +64,7 @@ class TestContactsReviewStatesVocabulary(IntegrationTestCase):
 
     def test_call(self):
         factory = queryUtility(
-            IVocabularyFactory, u"imio.dashboard.ContactsReviewStatesVocabulary"
+            IVocabularyFactory, "imio.dashboard.ContactsReviewStatesVocabulary"
         )
         wf_tool = self.portal.portal_workflow
         wf_tool.setChainForPortalTypes(
@@ -79,9 +84,9 @@ class TestContactsReviewStatesVocabulary(IntegrationTestCase):
                 [(term.value, term.token, term.title) for term in factory(self.portal)]
             ),
             [
-                ("pending", "pending", u"Pending review"),
-                ("private", "private", u"Private"),
-                ("published", "published", u"Published"),
+                ("pending", "pending", "Pending review"),
+                ("private", "private", "Private"),
+                ("published", "published", "Published"),
             ],
         )
 
@@ -91,7 +96,7 @@ class TestPloneGroupInterfacesVocabulary(IntegrationTestCase):
 
     def test_call(self):
         factory = queryUtility(
-            IVocabularyFactory, u"imio.dashboard.PloneGroupInterfacesVocabulary"
+            IVocabularyFactory, "imio.dashboard.PloneGroupInterfacesVocabulary"
         )
         # collective.contact.plonegroup is not installed
         self.assertFalse(HAS_PLONEGROUP)

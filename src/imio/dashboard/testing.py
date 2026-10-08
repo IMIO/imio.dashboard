@@ -14,11 +14,12 @@ from plone.app.testing import PloneSandboxLayer
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
-from plone.testing import z2
+from plone.testing import zope
 from zope.globalrequest.local import setLocal
 
 import imio.dashboard
 import os
+import transaction
 import unittest
 
 
@@ -32,7 +33,7 @@ class ImioDashboardLayer(PloneSandboxLayer):
         # Load ZCML
         self.loadZCML(package=imio.dashboard, name="testing.zcml")
         for p in self.products:
-            z2.installProduct(app, p)
+            zope.installProduct(app, p)
 
     def setUpPloneSite(self, portal):
         """Set up Plone."""
@@ -54,7 +55,7 @@ class ImioDashboardLayer(PloneSandboxLayer):
     def tearDownZope(self, app):
         """Tear down Zope."""
         for p in reversed(self.products):
-            z2.uninstallProduct(app, p)
+            zope.uninstallProduct(app, p)
 
 
 FIXTURE = ImioDashboardLayer(name="FIXTURE")
@@ -97,7 +98,7 @@ class CombinedIndexDashboardLayer(ImioDashboardLayer):
                 "v": ["Folder"],
             }
         ]
-        collection.customViewFields = (u"Title",)
+        collection.customViewFields = ("Title",)
         collection.reindexObject()
         folder1 = api.content.create(
             container=portal, type="Folder", id="folder1", title="Folder 1"
@@ -139,20 +140,20 @@ class CombinedIndexDashboardLayer(ImioDashboardLayer):
             "combined_index_widgets.xml",
         )
         enableFacetedDashboardFor(folder, xmlpath=xmlpath, default_UID=collection.UID())
+        # Plone 6: what is not committed here is lost at the end of the layer setup
+        transaction.commit()
 
 
 COMBINED_INDEX_FIXTURE = CombinedIndexDashboardLayer(name="COMBINED_INDEX_FIXTURE")
 
 
-try:  # Plone 5.2+
-    from plone.testing.zope import WSGI_SERVER_FIXTURE as SERVER_FIXTURE
-except ImportError:  # Plone 4
-    SERVER_FIXTURE = z2.ZSERVER_FIXTURE
-
-
 # robot scenarios (tests/robot), served over HTTP
 ACCEPTANCE = FunctionalTesting(
-    bases=(COMBINED_INDEX_FIXTURE, REMOTE_LIBRARY_BUNDLE_FIXTURE, SERVER_FIXTURE),
+    bases=(
+        COMBINED_INDEX_FIXTURE,
+        REMOTE_LIBRARY_BUNDLE_FIXTURE,
+        zope.WSGI_SERVER_FIXTURE,
+    ),
     name="ACCEPTANCE",
 )
 

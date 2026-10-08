@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 from collective.eeafaceted.collectionwidget.interfaces import ICollectionCategories
 from collective.eeafaceted.dashboard.utils import enableFacetedDashboardFor
+from eea.facetednavigation.interfaces import IPossibleFacetedNavigable
 from imio.dashboard import logger
 from imio.dashboard.interfaces import IContactsDashboard
 from imio.helpers.workflow import get_transitions
 from plone import api
-from Products.CMFPlone.utils import base_hasattr
+from plone.base.interfaces.constrains import ISelectableConstrainTypes
+from plone.base.utils import base_hasattr
 from zope.component import queryUtility
 from zope.i18n.interfaces import ITranslationDomain
 from zope.interface import alsoProvides
@@ -25,10 +27,8 @@ def post_install(context):
 
 def _(msgid, domain="imio.dashboard"):
     translation_domain = queryUtility(ITranslationDomain, domain)
-    sp = api.portal.get().portal_properties.site_properties
-    return translation_domain.translate(
-        msgid, target_language=sp.getProperty("default_language", "fr")
-    )
+    language = api.portal.get_registry_record("plone.default_language", default="fr")
+    return translation_domain.translate(msgid, target_language=language)
 
 
 def _add_db_col_folder(folder, id, title, displayed="", markers=[]):
@@ -37,13 +37,15 @@ def _add_db_col_folder(folder, id, title, displayed="", markers=[]):
 
     folder.invokeFactory("Folder", id=id, title=title, rights=displayed)
     col_folder = folder[id]
-    col_folder.setConstrainTypesMode(1)
-    col_folder.setLocallyAllowedTypes(["DashboardCollection"])
-    col_folder.setImmediatelyAddableTypes(["DashboardCollection"])
+    constraints = ISelectableConstrainTypes(col_folder)
+    constraints.setConstrainTypesMode(1)
+    constraints.setLocallyAllowedTypes(["DashboardCollection"])
+    constraints.setImmediatelyAddableTypes(["DashboardCollection"])
     wfTool = api.portal.get_tool("portal_workflow")
     if "show_internally" in get_transitions(col_folder):
         wfTool.doActionFor(col_folder, "show_internally")
-    alsoProvides(col_folder, ICollectionCategories)
+    # eea.facetednavigation 16 only enables a faceted on IPossibleFacetedNavigable
+    alsoProvides(col_folder, ICollectionCategories, IPossibleFacetedNavigable)
     for marker in markers:
         alsoProvides(col_folder, marker)
     return col_folder
@@ -55,7 +57,7 @@ def _createOrganizationsCollections(folder):
         {
             "id": "all_orgs",
             "tit": _("all_orgs"),
-            "subj": (u"search",),
+            "subj": ("search",),
             "query": [
                 {
                     "i": "portal_type",
@@ -63,18 +65,18 @@ def _createOrganizationsCollections(folder):
                     "v": ["organization"],
                 }
             ],
-            "cond": u"",
+            "cond": "",
             "bypass": [],
             "flds": (
-                u"select_row",
-                u"org_pretty_link_with_additional_infos",
-                u"SelectedInPlonegroupColumn",
-                u"PloneGroupUsersGroupsColumn",
-                u"review_state",
-                u"CreationDate",
-                u"actions",
+                "select_row",
+                "org_pretty_link_with_additional_infos",
+                "SelectedInPlonegroupColumn",
+                "PloneGroupUsersGroupsColumn",
+                "review_state",
+                "CreationDate",
+                "actions",
             ),
-            "sort": u"sortable_title",
+            "sort": "sortable_title",
             "rev": False,
             "count": False,
         },
@@ -88,7 +90,7 @@ def _createHeldPositionsCollections(folder):
         {
             "id": "all_hps",
             "tit": _("all_hps"),
-            "subj": (u"search",),
+            "subj": ("search",),
             "query": [
                 {
                     "i": "portal_type",
@@ -96,16 +98,16 @@ def _createHeldPositionsCollections(folder):
                     "v": ["held_position"],
                 }
             ],
-            "cond": u"",
+            "cond": "",
             "bypass": [],
             "flds": (
-                u"select_row",
-                u"org_pretty_link_with_additional_infos",
-                u"review_state",
-                u"CreationDate",
-                u"actions",
+                "select_row",
+                "org_pretty_link_with_additional_infos",
+                "review_state",
+                "CreationDate",
+                "actions",
             ),
-            "sort": u"sortable_title",
+            "sort": "sortable_title",
             "rev": False,
             "count": False,
         },
@@ -119,7 +121,7 @@ def _createPersonsCollections(folder):
         {
             "id": "all_persons",
             "tit": _("all_persons"),
-            "subj": (u"search",),
+            "subj": ("search",),
             "query": [
                 {
                     "i": "portal_type",
@@ -127,16 +129,16 @@ def _createPersonsCollections(folder):
                     "v": ["person"],
                 }
             ],
-            "cond": u"",
+            "cond": "",
             "bypass": [],
             "flds": (
-                u"select_row",
-                u"org_pretty_link_with_additional_infos",
-                u"review_state",
-                u"CreationDate",
-                u"actions",
+                "select_row",
+                "org_pretty_link_with_additional_infos",
+                "review_state",
+                "CreationDate",
+                "actions",
             ),
-            "sort": u"sortable_title",
+            "sort": "sortable_title",
             "rev": False,
             "count": False,
         },
@@ -150,7 +152,7 @@ def _createContactListsCollections(folder):
         {
             "id": "all_cls",
             "tit": _("all_cls"),
-            "subj": (u"search",),
+            "subj": ("search",),
             "query": [
                 {
                     "i": "portal_type",
@@ -158,17 +160,17 @@ def _createContactListsCollections(folder):
                     "v": ["contact_list"],
                 }
             ],
-            "cond": u"",
+            "cond": "",
             "bypass": [],
             "flds": (
-                u"select_row",
-                u"pretty_link",
-                u"relative_path",
-                u"review_state",
-                u"CreationDate",
-                u"actions",
+                "select_row",
+                "pretty_link",
+                "relative_path",
+                "review_state",
+                "CreationDate",
+                "actions",
             ),
-            "sort": u"sortable_title",
+            "sort": "sortable_title",
             "rev": False,
             "count": False,
         },
@@ -232,6 +234,7 @@ def add_orgs_searches(portal, add_contact_lists_collections=True):
         default_UID=col_folder["all_orgs"].UID(),
     )
     # configure contacts faceted
+    alsoProvides(contacts, IPossibleFacetedNavigable)
     enableFacetedDashboardFor(contacts, default_UID=col_folder["all_orgs"].UID())
     # add held positions searches
     col_folder = _add_db_col_folder(

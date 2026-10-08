@@ -23,7 +23,7 @@ class TestIDRenderCategoryView(IntegrationTestCase):
         self.contacts = api.content.create(
             container=self.portal, type="Folder", id="contacts", title="Contacts"
         )
-        self.orgs = self._category("orgs-searches", u"Organizations")
+        self.orgs = self._category("orgs-searches", "Organizations")
         self.widget = CollectionWidget(
             self.folder, self.request, getCollectionLinkCriterion(self.folder)
         )
@@ -43,7 +43,7 @@ class TestIDRenderCategoryView(IntegrationTestCase):
         html = category.unrestrictedTraverse("@@render_collection_widget_category")(
             widget=self.widget
         )
-        return lxml.html.fromstring(u"<div>{0}</div>".format(html))
+        return lxml.html.fromstring("<div>{0}</div>".format(html))
 
     def test__get_category_template(self):
         view = IDRenderCategoryView(self.orgs, self.request)
@@ -66,13 +66,16 @@ class TestIDRenderCategoryView(IntegrationTestCase):
         tree = self._render(self.orgs)
         link = tree.xpath('//div[@class="portlet_add_icons"]/a')[0]
         self.assertEqual(link.get("href"), portal_url + "/contacts/++add++organization")
-        self.assertEqual(link.get("class"), "add_contact_overlay")
+        self.assertEqual(link.get("class"), "add_contact_overlay pat-plone-modal")
         img = link.xpath("img")[0]
-        self.assertEqual(img.get("src"), portal_url + "/organization_icon.png")
+        self.assertEqual(
+            img.get("src"),
+            portal_url + "/++resource++collective.contact.core/organization_icon.png",
+        )
         self.assertEqual(img.get("title"), "create_organization")
         self.assertEqual(tree.xpath('//div[@class="title"]')[0].text, "Organizations")
         # contact lists category: no overlay class
-        link = self._render(self._category("cls-searches", u"Contact lists")).xpath(
+        link = self._render(self._category("cls-searches", "Contact lists")).xpath(
             "//a"
         )[0]
         self.assertEqual(
@@ -80,10 +83,11 @@ class TestIDRenderCategoryView(IntegrationTestCase):
         )
         self.assertEqual(link.get("class"), "")
         self.assertEqual(
-            link.xpath("img")[0].get("src"), portal_url + "/directory_icon.png"
+            link.xpath("img")[0].get("src"),
+            portal_url + "/++resource++collective.contact.core/directory_icon.png",
         )
         # unknown category: title only
-        tree = self._render(self._category("other-searches", u"Other"))
+        tree = self._render(self._category("other-searches", "Other"))
         self.assertEqual(tree.xpath('//div[@class="portlet_add_icons"]'), [])
         self.assertEqual(tree.xpath('//div[@class="title"]')[0].text, "Other")
         # a member that can not add content in contacts does not get the add link

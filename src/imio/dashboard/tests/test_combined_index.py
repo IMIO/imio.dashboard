@@ -123,11 +123,11 @@ class TestCombinedIndex(IntegrationTestCase):
             import_file=open(xmlpath, "rb")
         )
         self.assertEqual(
-            ICriteria(self.folder).get("c10").index, u"contained_types_and_states"
+            ICriteria(self.folder).get("c10").index, "contained_types_and_states"
         )
         self.assertEqual(
             ICriteria(self.folder).get("c11").index,
-            COMBINED_INDEX_PREFIX + u"contained_types_and_states",
+            COMBINED_INDEX_PREFIX + "contained_types_and_states",
         )
         # by default the dashboardcollection will return the every found folders, aka 6
         faceted_query = self.folder.restrictedTraverse("@@faceted_query")

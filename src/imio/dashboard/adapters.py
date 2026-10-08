@@ -11,7 +11,6 @@ CURRENT_CRITERION = "querynextprev.current_criterion"
 
 
 class CurrentCriterionProvider(object):
-
     """Provides key and value for current criterion in querynextprev."""
 
     def __init__(self, context):

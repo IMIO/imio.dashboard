@@ -8,11 +8,11 @@
 #
 
 from plone import api
+from plone.app.contenttypes.interfaces import IFolder
 from plone.indexer import indexer
-from Products.ATContentTypes.interfaces import IATFolder
 
 
-@indexer(IATFolder)
+@indexer(IFolder)
 def contained_types_and_states(folder):
     """
     Index the portal_type and review_state of contained objects like :

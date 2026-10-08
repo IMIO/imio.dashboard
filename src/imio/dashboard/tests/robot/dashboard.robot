@@ -55,7 +55,8 @@ The index label
     [Arguments]  ${index}
     ${option}=  Set variable  ${ADD_WIDGET_FORM} .field-c0-faceted-c0-index select option[value="${index}"]
     Wait until page contains element  ${option}
-    ${text}=  Get text  ${option}
+    # retried: the add widget form re-renders its fields after the widget type is selected (stale element)
+    ${text}=  Wait until keyword succeeds  10s  0.5s  Get text  ${option}
     [Return]  ${text}
 
 Show the advanced filters
@@ -66,7 +67,10 @@ Show the advanced filters
 Click the filter value
     [Documentation]  Checkbox ${value} (vocabulary token) of the checkboxes widget ${widget}
     [Arguments]  ${widget}  ${value}
-    Click element  css=#${widget}_widget input[value="${value}"]
+    # its label, retried: eea 16 checkboxes scroll in a 100px high box and the advanced section is
+    # still sliding down, geckodriver can't scroll the checkbox into view (ElementNotInteractable)
+    ${id}=  Get element attribute  css=#${widget}_widget input[value="${value}"]  id
+    Wait until keyword succeeds  10s  0.5s  Click element  css=#${widget}_widget label[for="${id}"]
     The faceted results are loaded
 
 The results list

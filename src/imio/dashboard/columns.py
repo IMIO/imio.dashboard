@@ -1,14 +1,11 @@
 # encoding: utf-8
 from collective.eeafaceted.z3ctable.columns import PrettyLinkColumn
 
-import pkg_resources
-
 
 HAS_CONTACT_CORE = True
 try:
-    pkg_resources.get_distribution("collective.contact.core")
     from collective.contact.core.content.organization import IOrganization
-except pkg_resources.DistributionNotFound:
+except ImportError:
     HAS_CONTACT_CORE = False
 
 

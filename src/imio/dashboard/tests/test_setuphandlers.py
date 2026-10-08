@@ -9,6 +9,7 @@ from imio.dashboard.setuphandlers import _createDashboardCollections
 from imio.dashboard.setuphandlers import add_orgs_searches
 from imio.dashboard.testing import IntegrationTestCase
 from plone import api
+from plone.base.interfaces.constrains import ISelectableConstrainTypes
 from plone.dexterity.fti import DexterityFTI
 
 
@@ -31,10 +32,11 @@ class TestSetuphandlers(IntegrationTestCase):
         )
         self.assertEqual(col_folder.Title(), "Organizations searches")
         self.assertEqual(col_folder.Rights(), "Organizations")
-        self.assertEqual(col_folder.getConstrainTypesMode(), 1)
-        self.assertEqual(col_folder.getLocallyAllowedTypes(), ("DashboardCollection",))
+        constraints = ISelectableConstrainTypes(col_folder)
+        self.assertEqual(constraints.getConstrainTypesMode(), 1)
+        self.assertEqual(constraints.getLocallyAllowedTypes(), ["DashboardCollection"])
         self.assertEqual(
-            col_folder.getImmediatelyAddableTypes(), ("DashboardCollection",)
+            constraints.getImmediatelyAddableTypes(), ["DashboardCollection"]
         )
         self.assertTrue(ICollectionCategories.providedBy(col_folder))
         self.assertTrue(IContactsDashboard.providedBy(col_folder))
@@ -59,25 +61,25 @@ class TestSetuphandlers(IntegrationTestCase):
         collections = [
             {
                 "id": "all",
-                "tit": u"All",
-                "subj": (u"search",),
+                "tit": "All",
+                "subj": ("search",),
                 "query": query,
-                "cond": u"",
+                "cond": "",
                 "bypass": [],
-                "flds": (u"select_row", u"pretty_link", u"actions"),
-                "sort": u"sortable_title",
+                "flds": ("select_row", "pretty_link", "actions"),
+                "sort": "sortable_title",
                 "rev": False,
                 "count": False,
             },
             {"id": ""},
             {
                 "id": "second",
-                "tit": u"Second",
+                "tit": "Second",
                 "query": query,
-                "cond": u"python: True",
+                "cond": "python: True",
                 "bypass": ["Manager"],
-                "flds": (u"pretty_link",),
-                "sort": u"created",
+                "flds": ("pretty_link",),
+                "sort": "created",
                 "rev": True,
                 "count": True,
             },
@@ -88,10 +90,8 @@ class TestSetuphandlers(IntegrationTestCase):
         self.assertEqual(dc.portal_type, "DashboardCollection")
         self.assertEqual(dc.Title(), "All")
         self.assertEqual(dc.query, query)
-        self.assertEqual(
-            dc.customViewFields, (u"select_row", u"pretty_link", u"actions")
-        )
-        self.assertEqual(dc.sort_on, u"sortable_title")
+        self.assertEqual(dc.customViewFields, ("select_row", "pretty_link", "actions"))
+        self.assertEqual(dc.sort_on, "sortable_title")
         self.assertFalse(dc.sort_reversed)
         self.assertFalse(dc.showNumberOfItems)
         self.assertEqual(dc.b_size, 30)
@@ -102,13 +102,13 @@ class TestSetuphandlers(IntegrationTestCase):
         )
         self.assertEqual(dc.getLayout(), "tabular_view")
         dc2 = self.contacts["second"]
-        self.assertEqual(dc2.tal_condition, u"python: True")
+        self.assertEqual(dc2.tal_condition, "python: True")
         self.assertEqual(dc2.roles_bypassing_talcondition, ["Manager"])
         self.assertTrue(dc2.sort_reversed)
         self.assertTrue(dc2.showNumberOfItems)
         self.assertEqual(dc2.Subject(), ())
         # existing collections are kept and moved to their position
-        dc.setTitle(u"Changed")
+        dc.setTitle("Changed")
         _createDashboardCollections(self.contacts, [collections[2], collections[0]])
         self.assertEqual(self.contacts.objectIds(), ["second", "all"])
         self.assertEqual(dc.Title(), "Changed")
@@ -164,5 +164,13 @@ class TestSetuphandlers(IntegrationTestCase):
             getCollectionLinkCriterion(self.contacts).default,
             self.contacts["orgs-searches"]["all_orgs"].UID(),
         )
-        # known issue: contact-lists-searches.xml has an empty int 'maxitems' (see MIGRATION.md)
-        self.assertRaises(ValueError, add_orgs_searches, self.portal)
+        # contact lists: contact-lists-searches.xml has an empty int 'maxitems',
+        # refused by eea.facetednavigation 14 (Plone 4), ignored by eea 16
+        add_orgs_searches(self.portal)
+        cls = self.contacts["cls-searches"]
+        self.assertEqual(self.contacts.objectIds()[3], "cls-searches")
+        self.assertEqual(
+            (cls.Title(), cls.Rights()), ("Contact list searches", "Contact lists")
+        )
+        self.assertEqual(cls["all_cls"].query[0]["v"], ["contact_list"])
+        self.assertEqual(getCollectionLinkCriterion(cls).default, cls["all_cls"].UID())

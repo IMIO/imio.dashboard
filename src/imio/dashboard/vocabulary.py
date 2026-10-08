@@ -1,23 +1,19 @@
 # encoding: utf-8
 
+from eea.facetednavigation.vocabularies.catalog import CatalogIndexesVocabulary
 from imio.dashboard import ImioDashboardMessageFactory as _
 from imio.dashboard.config import COMBINED_INDEX_PREFIX
 from imio.helpers.content import get_user_fullname
 from operator import attrgetter
 from plone import api
+from plone.base.utils import safe_text
 from plone.memoize import ram
-from Products.CMFPlone.utils import safe_unicode
 from zope.i18n import translate
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
-
-try:
-    from eea.facetednavigation.vocabularies.catalog import CatalogIndexesVocabulary
-except ImportError:  # eea.facetednavigation < 15 (Plone 4)
-    from eea.faceted.vocabularies.catalog import CatalogIndexesVocabulary
 
 HAS_PLONEGROUP = True
 try:
@@ -41,7 +37,7 @@ class CreatorsVocabulary(object):
         res = []
         for creator in catalog.uniqueValuesFor("Creator"):
             fullname = get_user_fullname(creator)
-            res.append(SimpleTerm(creator, creator, safe_unicode(fullname)))
+            res.append(SimpleTerm(creator, creator, safe_text(fullname)))
         res = sorted(res, key=attrgetter("title"))
         return SimpleVocabulary(res)
 
@@ -124,7 +120,7 @@ class ContactsReviewStatesVocabulary(object):
                             state.id,
                             state.id,
                             translate(
-                                safe_unicode(state.title),
+                                safe_text(state.title),
                                 domain="plone",
                                 context=context.REQUEST,
                             ),
