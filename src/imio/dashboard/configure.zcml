@@ -4,7 +4,6 @@
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
-    xmlns:monkey="http://namespaces.plone.org/monkey"
     xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="imio.dashboard">
 
@@ -15,8 +14,6 @@
     <include package="collective.eeafaceted.batchactions"/>
     <include package="collective.eeafaceted.collectionwidget"/>
     <include package="collective.eeafaceted.dashboard"/>
-    <include package="collective.js.iframeresizer"/>
-    <include package="collective.monkeypatcher" file="meta.zcml" />
     <include package="imio.actionspanel"/>
     <include package="plone.app.dexterity"/>
 
@@ -29,12 +26,11 @@
             class="eea.facetednavigation.browser.app.query.FacetedQueryHandler"
             permission="zope2.View" />
         <utility
-            factory="eea.faceted.vocabularies.catalog.CatalogIndexesVocabulary"
+            factory="eea.facetednavigation.vocabularies.catalog.CatalogIndexesVocabulary"
             name="eea.faceted.vocabularies.CatalogIndexes" />
     </unconfigure>
 
     <include package=".browser" />
-    <include package=".content" />
 
     <include file="columns.zcml" />
 
@@ -47,10 +43,10 @@
         />
 
     <genericsetup:registerProfile
-        name="two_tables"
-        title="imio.dashboard demo of two tables"
-        directory="profiles/two_tables"
-        description="Installs the demo of two tables of imio.dashboard add-on."
+        name="uninstall"
+        title="imio.dashboard (uninstall)"
+        directory="profiles/uninstall"
+        description="Uninstalls the imio.dashboard add-on."
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
@@ -60,8 +56,6 @@
         description="Post install import step from imio.dashboard"
         handler=".setuphandlers.post_install">
     </genericsetup:importStep>
-
-    <include file="upgrades.zcml" />
 
     <adapter
         zcml:condition="installed collective.querynextprev"
