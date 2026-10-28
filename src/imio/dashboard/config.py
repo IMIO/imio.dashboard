@@ -1,3 +1,3 @@
-PROJECTNAME = 'imio.dashboard'
+PROJECTNAME = "imio.dashboard"
 
-COMBINED_INDEX_PREFIX = 'combined__'
+COMBINED_INDEX_PREFIX = "combined__"

@@ -10,15 +10,6 @@
         directory="static"
     />
 
-    <browser:page
-        for="eea.facetednavigation.interfaces.IFacetedNavigable"
-        name="two_tables"
-        template="templates/two_tables.pt"
-        class="eea.facetednavigation.browser.app.view.FacetedContainerView"
-        layer="imio.dashboard.interfaces.IImioDashboardLayer"
-        permission="zope2.View"
-        />
-
     <configure package="collective.eeafaceted.collectionwidget">
         <browser:page
             for="imio.dashboard.interfaces.IContactsDashboard"
