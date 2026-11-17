@@ -2,10 +2,16 @@ Changelog
 =========
 
 
-2.13 (unreleased)
------------------
+3.0.0 (unreleased)
+------------------
 
-- Nothing changed yet.
+- Migrated to Plone 6.2 / Python 3, based on the work started by @laulaz on
+  `python3`.
+  [laulaz, chris-adam]
+- Migrated to Plone 6.2 / Python 3: Plone 4 support, the Archetypes and deprecated code
+  (old portlet, content, upgrade steps), the `two_tables` demo and the
+  collective.js.iframeresizer dependency are removed.
+  [chris-adam]
 
 
 2.12 (2023-07-07)

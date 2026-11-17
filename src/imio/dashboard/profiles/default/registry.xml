@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<registry>
+
+  <!-- after eea.facetednavigation's faceted.view bundle: sets Faceted.Options -->
+  <records interface="plone.base.interfaces.IBundleRegistry"
+           prefix="plone.bundles/imio-dashboard">
+    <value key="enabled">True</value>
+    <value key="jscompilation">++resource++imio.dashboard/imio.dashboard.js</value>
+    <value key="expression"></value>
+    <value key="depends">faceted.view</value>
+    <value key="load_async">False</value>
+    <value key="load_defer">True</value>
+  </records>
+
+  <record name="plone.types_not_searched">
+    <value purge="False">
+      <element>Collection</element>
+      <element>DashboardCollection</element>
+      <element>ConfigurablePODTemplate</element>
+      <element>DashboardPODTemplate</element>
+      <element>PODTemplate</element>
+      <element>StyleTemplate</element>
+      <element>SubTemplate</element>
+    </value>
+  </record>
+
+</registry>
